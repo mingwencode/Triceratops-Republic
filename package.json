@@ -1,0 +1,50 @@
+{
+  "name": "Front-End-Capstone",
+  "version": "1.0.0",
+  "description": "Set up of repo - webpack - npm init -y - add build and start scripts to package json - npm install dependencies   - axios   - react, react-dom   - nodemon   - path   - express   - webpack, webpack-cli   - babel-loader, @babel/preset-react, @babel/preset-env, @babel/core     - (npm install -D babel-loader @babel/core @babel/preset-env @babel/preset-react webpack webpack-cli react react-dom --save)   - style- components     - (npm install --save styled-components)   - maybe mongo, mongoose, morgan - make webpack.config.js file   - module.exports with input, output(path, filename), module with rules, mode, resolve",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "webpack": "webpack --config webpack.config.js --watch -d source-map",
+    "start": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pixel-Triceratops/Front-End-Capstone.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pixel-Triceratops/Front-End-Capstone/issues"
+  },
+  "homepage": "https://github.com/Pixel-Triceratops/Front-End-Capstone#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.18",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.7",
+    "path": "^0.12.7",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.2.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.0",
+    "@babel/core": "^7.13.1",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.13.5",
+    "@babel/preset-react": "^7.12.13",
+    "@testing-library/react": "^11.2.5",
+    "babel-loader": "^8.2.2",
+    "eslint": "^7.20.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "webpack": "^5.24.2",
+    "webpack-cli": "^4.5.0"
+  }
+}
