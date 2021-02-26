@@ -4,7 +4,7 @@ const RelatedProducts = () => {
   const [todos, setTodos] = useState([{ text: 'Learn Hooks' }]);
 
   return (
-    <div>Hello Beautiful World!!!</div>
+    <div>Related Products!!!</div>
   );
 };
 

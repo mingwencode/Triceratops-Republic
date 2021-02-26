@@ -2042,7 +2042,7 @@ var RelatedProducts = function RelatedProducts() {
       todos = _useState2[0],
       setTodos = _useState2[1];
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Hello Beautiful World!!!");
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Related Products!!!");
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RelatedProducts);
