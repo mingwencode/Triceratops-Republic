@@ -4,7 +4,7 @@ const QAndA = () => {
   const [todos, setTodos] = useState([{ text: 'Learn Hooks' }]);
 
   return (
-    <div>Hello Beautiful World!!!</div>
+    <div>Question and Answer</div>
   );
 };
 
