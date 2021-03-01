@@ -1885,6 +1885,44 @@ var App = function App() {
 
 /***/ }),
 
+/***/ "./client/src/component/NewReviewForm.jsx":
+/*!************************************************!*\
+  !*** ./client/src/component/NewReviewForm.jsx ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var NewReviewForm = function NewReviewForm(_ref) {
+  var showNewReviewModal = _ref.showNewReviewModal,
+      setNewReviewModal = _ref.setNewReviewModal;
+
+  var onClose = function onClose() {
+    setNewReviewModal(false);
+  };
+
+  if (!showNewReviewModal) {
+    return null;
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, " Write a New Review"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "submit",
+    onClick: function onClick() {
+      onClose();
+    }
+  }, "Close")));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NewReviewForm);
+
+/***/ }),
+
 /***/ "./client/src/component/Overview.jsx":
 /*!*******************************************!*\
   !*** ./client/src/component/Overview.jsx ***!
@@ -1979,6 +2017,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _NewReviewForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NewReviewForm */ "./client/src/component/NewReviewForm.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1993,15 +2032,22 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var RatingsAndReviews = function RatingsAndReviews() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
-    text: 'Learn Hooks'
-  }]),
-      _useState2 = _slicedToArray(_useState, 2),
-      todos = _useState2[0],
-      setTodos = _useState2[1];
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Hello Beautiful World!!!");
+var RatingsAndReviews = function RatingsAndReviews() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      showNewMReviewModal = _useState2[0],
+      setNewReviewModal = _useState2[1];
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Hello Beautiful World!!!", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
+    onClick: function onClick() {
+      setNewReviewModal(!showNewMReviewModal);
+    }
+  }, "New Message"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_NewReviewForm__WEBPACK_IMPORTED_MODULE_1__.default, {
+    showNewReviewModal: showNewMReviewModal,
+    setNewReviewModal: setNewReviewModal
+  }));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RatingsAndReviews);
