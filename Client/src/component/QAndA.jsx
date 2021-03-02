@@ -44,17 +44,43 @@ const QAndA = () => {
       <QAModal isOpenModal={isAnswerModalOpen} onDismiss={onAnswerDismiss}>
         <form onSubmit={handleAnswerSubmit}>
           <p>Type your answer:</p>
-          <textarea required="required" maxLength="1000" value={answerInput} onChange={(e) => setAnswerInput(e.target.value)} />
+          <textarea
+            required="required"
+            maxLength="1000"
+            value={answerInput}
+            onChange={(e) => setAnswerInput(e.target.value)}
+          />
           <p>Enter your nickname:</p>
-          <input placeholder="Example: jackson11!" required="required" maxLength="60" value={answerNicknameInput} onChange={(e) => setAnswerNicknameInput(e.target.value)} />
+          <input
+            placeholder="Example: jackson11!"
+            required="required" maxLength="60"
+            value={answerNicknameInput}
+            onChange={(e) => setAnswerNicknameInput(e.target.value)}
+          />
           <p>For privacy reasons, do not use your full name or email address.</p>
           <p>Enter your E-Mail:</p>
-          <input placeholder="youremail@address.com" required="required" maxLength="60" value={answerEmailInput} onChange={(e) => setAnswerEmailInput(e.target.value)} />
+          <input
+            placeholder="youremail@address.com"
+            required="required"
+            maxLength="60"
+            value={answerEmailInput}
+            onChange={(e) => setAnswerEmailInput(e.target.value)}
+          />
           <p>For authentication reasons, you will not be emailed.</p>
-          <input type="file" name="photo" onChange={onPhotoUpload} />
-          <img src={imageUpload} alt="Uploaded by user" />
+          <input
+            type="file"
+            name="photo"
+            onChange={onPhotoUpload}
+          />
+          <img
+            src={imageUpload}
+            alt="Uploaded by user"
+          />
           <br />
-          <input type="submit" name="submit" />
+          <input
+            type="submit"
+            name="submit"
+          />
         </form>
       </QAModal>
     );
@@ -79,17 +105,52 @@ const QAndA = () => {
         <QAModal isOpenModal={isQuestionModalOpen} onDismiss={onQuestionModalDismiss}>
           <form onSubmit={handleQuestionSubmit}>
             <div>
-              <label htmlFor="question" title="question" maxLength="1000">Add your Question:</label>
+              <label
+                htmlFor="question"
+                title="question"
+                maxLength="1000"
+              >
+                Add your Question:
+              </label>
               <br />
-              <textarea required="required" value={questionInput} onChange={(e) => setQuestionInput(e.target.value)} />
+              <textarea
+                required="required"
+                value={questionInput}
+                onChange={(e) => setQuestionInput(e.target.value)}
+              />
               <br />
-              <label htmlFor="nickname" title="nickname" maxLength="60">Add your Nickname:</label>
-              <input placeholder="Example: jackson11!" required="required" value={questionNicknameInput} onChange={(e) => setQuestionNicknameInput(e.target.value)} />
+              <label
+                htmlFor="nickname"
+                title="nickname"
+                maxLength="60"
+              >
+                Add your Nickname:
+              </label>
+              <input
+                placeholder="Example: jackson11!"
+                required="required"
+                value={questionNicknameInput}
+                onChange={(e) => setQuestionNicknameInput(e.target.value)}
+              />
               <p>For privacy reasons, do not use your full name or email address.</p>
-              <label htmlFor="email" title="email" maxLength="60">Add your Email:</label>
-              <input placeholder="youremail@address.com" required="required" value={questionEmailInput} onChange={(e) => setQuestionEmailInput(e.target.value)} />
+              <label
+                htmlFor="email"
+                title="email"
+                maxLength="60"
+              >
+                Add your Email:
+              </label>
+              <input
+                placeholder="youremail@address.com"
+                required="required"
+                value={questionEmailInput}
+                onChange={(e) => setQuestionEmailInput(e.target.value)}
+              />
               <p>For authentication reasons, you will not be emailed.</p>
-              <input type="submit" name="submit" />
+              <input
+                type="submit"
+                name="submit"
+              />
             </div>
           </form>
         </QAModal>
