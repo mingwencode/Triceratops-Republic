@@ -1,12 +1,14 @@
 import React from 'react';
-// import logo from 'Client/src/images/logoFEC.png';
+import styled from 'styled-components';
 
-// const logo = path.join(__dirname, '..', 'images');
-// console.log(__dirname)
-const logo = "Client/src/images/logoFEC.png"
+const logo = 'Client/src/images/logoFEC.png';
+
+const TPBody = styled.div`
+  color: purple;
+`;
 
 const OverviewTopBar = () => (
-  <div>
+  <TPBody>
     <div>
       <img src={logo} alt="logo" />
       <h4>Triceratop Republic</h4>
@@ -17,7 +19,7 @@ const OverviewTopBar = () => (
       </form>
       <button className="search-bar-btn" type="submit">Search</button>
     </div>
-  </div>
+  </TPBody>
 );
 
 export default OverviewTopBar;

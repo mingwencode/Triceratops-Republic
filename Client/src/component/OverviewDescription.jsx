@@ -1,16 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const OverviewDescription = () => {
-  const someData = 'some data';
+const OverviewDescription = ({ bullets }) => {
+  const placeholder = '';
   return (
     <div>
       <div>Catch Phrase</div>
       <p>Once we get the data in from the API there will be some non hardcoded description here.</p>
       <ul>
-        <li>GMO and pesticide free</li>
-        <li>Some other crap</li>
-        <li>Probably untrue</li>
-        <li>Other information</li>
+        {bullets.map((bullet, idx) => (
+        <li key={idx}>{bullet}</li>
+        ))}
       </ul>
     </div>
   );

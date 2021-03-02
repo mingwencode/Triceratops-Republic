@@ -1,8 +1,11 @@
 import React from 'react';
+import styled from 'styled-components';
+
+
 
 const OverviewProductInfo = ({ styles }) => {
   let styleList = styles.map((style, idx) => (
-    <div>{style}</div>
+    <div key={idx}>{style}</div>
   ));
   return (
     <div>
@@ -12,7 +15,13 @@ const OverviewProductInfo = ({ styles }) => {
       </form>
       <div>Category</div>
       <div className="price">$300</div>
-      <div><strong>Style {'> '}</strong>{'Some Style'}</div>
+      <div>
+        <strong>
+          Style
+          {'> '}
+        </strong>
+        Some Style
+      </div>
       <div>{styleList}</div>
     </div>
   )
