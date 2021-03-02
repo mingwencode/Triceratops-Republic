@@ -5,7 +5,6 @@ import RatingsAndReviews from './RatingsAndReviews';
 import QAndA from './QAndA';
 import RelatedProducts from './RelatedProducts';
 
-
 const App = () => {
   const [todos, setTodos] = useState([{ text: 'Learn Hooks' }]);
 
