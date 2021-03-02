@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable arrow-body-style */
@@ -27,7 +28,7 @@ const qa = [{
 const QuestionAnswerList = ({ onShowAnswerModal, onOpenAnswerModal }) => {
   return (
     <div>
-      {qa.map((question, index) => <QuestionAnswer question={question} index={index} onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} />)}
+      {qa.map((question, index) => <QuestionAnswer question={question} key={index} onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} />)}
     </div>
   );
 };
