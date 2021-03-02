@@ -2024,12 +2024,12 @@ var NewReviewForm = function NewReviewForm(_ref) {
   };
 
   var renderTableData = function renderTableData() {
-    return characterObj.map(function (characteristic, index) {
+    return characterObj.map(function (characteristic) {
       return (
         /*#__PURE__*/
         // eslint-disable-next-line react/no-array-index-key
         react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", {
-          key: index + characteristic
+          key: characteristic[0]
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
           type: "button"
         }, characteristic[0])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
@@ -2096,7 +2096,7 @@ var NewReviewForm = function NewReviewForm(_ref) {
     style: MODAL_STYLES
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, " Write a New Review"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "rating"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("legend", null, "Please rate:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("legend", null, "Overall Rating*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "radio",
     id: "star5",
     name: "rating",
@@ -2137,7 +2137,7 @@ var NewReviewForm = function NewReviewForm(_ref) {
     onClick: function onClick() {
       return clickStar(1);
     }
-  }), starRatingTextOne()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("legend", null, "Would You Recommend:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  }), starRatingTextOne()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("legend", null, "Do You Recommend?*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     defaultChecked: true,
     type: "radio",
     id: "yes",
@@ -2160,9 +2160,9 @@ var NewReviewForm = function NewReviewForm(_ref) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "no",
     title: "notRecommended"
-  }, "No")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+  }, "No")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     id: "charTitle"
-  }, "Characteristics"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("table", {
+  }, "Characteristics*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("table", {
     id: "characteristics"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, renderTableHeader()), renderTableData()))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "Summary",
@@ -2177,7 +2177,7 @@ var NewReviewForm = function NewReviewForm(_ref) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "Review",
     title: "ReviewBody"
-  }, "Review Body"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+  }, "Review Body*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
     placeholder: "Why did you like the product or not?",
     minLength: "50",
     maxLength: "1000",
@@ -2196,7 +2196,7 @@ var NewReviewForm = function NewReviewForm(_ref) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "nickname",
     title: "nickname"
-  }, "What Is Your Nickname?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  }, "What Is Your Nickname?*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "textbox",
     placeholder: "Example: jackson11!",
     required: "required",
@@ -2211,7 +2211,7 @@ var NewReviewForm = function NewReviewForm(_ref) {
     title: "email",
     required: "required",
     maxLength: "60"
-  }, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  }, "Email*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "email",
     placeholder: "Example: jackson11@email.com"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "For authentication reasons, you will not be emailed")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {

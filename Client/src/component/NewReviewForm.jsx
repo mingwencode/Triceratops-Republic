@@ -88,9 +88,9 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
     const header = Object.keys(characterObj[0]);
     return header.map((key) => <th key={key + 1}>{key.toUpperCase()}</th>);
   };
-  const renderTableData = () => characterObj.map((characteristic, index) => (
+  const renderTableData = () => characterObj.map((characteristic) => (
     // eslint-disable-next-line react/no-array-index-key
-    <tr key={index + characteristic}>
+    <tr key={characteristic[0]}>
       <td />
       <td>
         <button
@@ -192,7 +192,7 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
         <form>
           <h2> Write a New Review</h2>
           <div className="rating">
-            <legend>Please rate:</legend>
+            <legend>Overall Rating*</legend>
             <input
               type="radio"
               id="star5"
@@ -236,7 +236,7 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
             {starRatingTextOne()}
           </div>
           <div>
-            <legend>Would You Recommend:</legend>
+            <legend>Do You Recommend?*</legend>
             <input
               defaultChecked
               type="radio"
@@ -266,7 +266,7 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
             </label>
           </div>
           <div>
-            <h3 id="charTitle">Characteristics</h3>
+            <label id="charTitle">Characteristics*</label>
             <table id="characteristics">
               <tbody>
                 <tr>
@@ -295,7 +295,7 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
               htmlFor="Review"
               title="ReviewBody"
             >
-              Review Body
+              Review Body*
             </label>
             <textarea
               placeholder="Why did you like the product or not?"
@@ -322,7 +322,7 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
               htmlFor="nickname"
               title="nickname"
             >
-              What Is Your Nickname?
+              What Is Your Nickname?*
             </label>
             <input
               type="textbox"
@@ -344,7 +344,7 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
               required="required"
               maxLength="60"
             >
-              Email
+              Email*
             </label>
             <input
               type="email"
