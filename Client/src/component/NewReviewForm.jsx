@@ -190,7 +190,8 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
       <div style={OVERLAY_STYLES} />
       <div style={MODAL_STYLES}>
         <form>
-          <h2> Write a New Review</h2>
+          <h2> Write Your Review</h2>
+          <h3> About the [Product Name Here] </h3>
           <div className="rating">
             <legend>Overall Rating*</legend>
             <input
