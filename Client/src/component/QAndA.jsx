@@ -4,9 +4,10 @@
 import React, { useState } from 'react';
 import AddNewQuestion from './AddNewQuestion';
 import QuestionAnswerList from './QuestionAnswerList';
+import QAModal from './QAModal';
 
 const QAndA = () => {
-  const [addQuestionModal, setAddQuestionModal] = useState(false);
+  // const [addQuestionModal, setAddQuestionModal] = useState(false);
   // const [addAnswerModal, setAddAnswerModal] = useState(false);
   const [questionInput, setQuestionInput] = useState('');
   const [questionNicknameInput, setQuestionNicknameInput] = useState('');
@@ -15,9 +16,10 @@ const QAndA = () => {
   const [answerNicknameInput, setAnswerNicknameInput] = useState('');
   const [answerEmailInput, setAnswerEmailInput] = useState('');
   const [imageUpload, setImageUpload] = useState(null);
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const addQuestionButtonClick = () => {
-    setAddQuestionModal(true);
+    setIsOpenModal(true);
   };
 
   const questionInputChange = (e) => {
@@ -32,21 +34,21 @@ const QAndA = () => {
     setQuestionEmailInput(e.target.value);
   };
 
-  const showQuestionForm = () => {
-    if (addQuestionModal === true) {
-      return (
-        <div>
-          <p>Type your question:</p>
-          <textarea value={questionInput} onChange={questionInputChange} />
-          <p>Enter your nickname:</p>
-          <input placeholder="Example: jackson11!" value={questionNicknameInput} onChange={questionNicknameInputChange} />
-          <p>Enter your E-Mail:</p>
-          <input placeholder="youremail@address.com”" value={questionEmailInput} onChange={questionEmailInputChange} />
-          <button type="button">Submit</button>
-        </div>
-      );
-    }
-  };
+  // const showQuestionForm = () => {
+  //   if (addQuestionModal === true) {
+  //     return (
+  //       <div>
+  //         <p>Type your question:</p>
+  //         <textarea value={questionInput} onChange={questionInputChange} />
+  //         <p>Enter your nickname:</p>
+  //         <input placeholder="Example: jackson11!" value={questionNicknameInput} onChange={questionNicknameInputChange} />
+  //         <p>Enter your E-Mail:</p>
+  //         <input placeholder="youremail@address.com”" value={questionEmailInput} onChange={questionEmailInputChange} />
+  //         <button type="button">Submit</button>
+  //       </div>
+  //     );
+  //   }
+  // };
 
   const answerInputChange = (e) => {
     setAnswerInput(e.target.value);
@@ -80,13 +82,28 @@ const QAndA = () => {
     );
   };
 
+  const onDismiss = () => {
+    setIsOpenModal(false);
+  };
+
   return (
     <div>
       <textarea placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
       <span>
         <QuestionAnswerList onShowAnswerModal={onShowAnswerModal} />
         <button type="button">More Answered Questions</button>
-        <AddNewQuestion addQuestionButtonClick={addQuestionButtonClick} addQuestionModal={addQuestionModal} showQuestionForm={showQuestionForm} />
+        <AddNewQuestion addQuestionButtonClick={addQuestionButtonClick} />
+        <QAModal isOpenModal={isOpenModal} onDismiss={onDismiss}>
+          <div>
+            <p>Type your question:</p>
+            <textarea value={questionInput} onChange={questionInputChange} />
+            <p>Enter your nickname:</p>
+            <input placeholder="Example: jackson11!" value={questionNicknameInput} onChange={questionNicknameInputChange} />
+            <p>Enter your E-Mail:</p>
+            <input placeholder="youremail@address.com”" value={questionEmailInput} onChange={questionEmailInputChange} />
+            <button type="button">Submit</button>
+          </div>
+        </QAModal>
       </span>
     </div>
   );

@@ -1852,20 +1852,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AddNewQuestion = function AddNewQuestion(_ref) {
-  var addQuestionButtonClick = _ref.addQuestionButtonClick,
-      showQuestionForm = _ref.showQuestionForm;
+  var addQuestionButtonClick = _ref.addQuestionButtonClick;
   //   const [todos, setTodos] = useState([{ text: 'Learn Hooks' }]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "button",
     onClick: function onClick() {
       return addQuestionButtonClick();
     }
-  }, "Add A Question +"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, showQuestionForm()));
+  }, "Add A Question +"));
 };
 
 AddNewQuestion.propTypes = {
-  addQuestionButtonClick: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().func.isRequired),
-  showQuestionForm: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().func.isRequired)
+  addQuestionButtonClick: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().func.isRequired)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AddNewQuestion);
 
@@ -1964,6 +1962,60 @@ var Overview = function Overview() {
 
 /***/ }),
 
+/***/ "./client/src/component/QAModal.jsx":
+/*!******************************************!*\
+  !*** ./client/src/component/QAModal.jsx ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* eslint-disable react/prop-types */
+
+/* eslint-disable arrow-body-style */
+
+var ModalStyles = {
+  position: 'fixed',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  backgroundColor: '#FFF',
+  padding: '50px',
+  zIndex: 1000
+};
+var OverlayStyles = {
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  backgroundColor: 'rgba(0, 0, 0, .7)',
+  zIndex: 1000
+};
+
+var QAModal = function QAModal(_ref) {
+  var isOpenModal = _ref.isOpenModal,
+      onDismiss = _ref.onDismiss,
+      children = _ref.children;
+  if (!isOpenModal) return null;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: OverlayStyles
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: ModalStyles
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
+    onClick: onDismiss
+  }, "X"), children));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QAModal);
+
+/***/ }),
+
 /***/ "./client/src/component/QAndA.jsx":
 /*!****************************************!*\
   !*** ./client/src/component/QAndA.jsx ***!
@@ -1978,6 +2030,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _AddNewQuestion__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddNewQuestion */ "./client/src/component/AddNewQuestion.jsx");
 /* harmony import */ var _QuestionAnswerList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./QuestionAnswerList */ "./client/src/component/QuestionAnswerList.jsx");
+/* harmony import */ var _QAModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./QAModal */ "./client/src/component/QAModal.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1999,50 +2052,52 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var QAndA = function QAndA() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      addQuestionModal = _useState2[0],
-      setAddQuestionModal = _useState2[1]; // const [addAnswerModal, setAddAnswerModal] = useState(false);
 
+var QAndA = function QAndA() {
+  // const [addQuestionModal, setAddQuestionModal] = useState(false);
+  // const [addAnswerModal, setAddAnswerModal] = useState(false);
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      questionInput = _useState2[0],
+      setQuestionInput = _useState2[1];
 
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
-      questionInput = _useState4[0],
-      setQuestionInput = _useState4[1];
+      questionNicknameInput = _useState4[0],
+      setQuestionNicknameInput = _useState4[1];
 
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState6 = _slicedToArray(_useState5, 2),
-      questionNicknameInput = _useState6[0],
-      setQuestionNicknameInput = _useState6[1];
+      questionEmailInput = _useState6[0],
+      setQuestionEmailInput = _useState6[1];
 
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState8 = _slicedToArray(_useState7, 2),
-      questionEmailInput = _useState8[0],
-      setQuestionEmailInput = _useState8[1];
+      answerInput = _useState8[0],
+      setAnswerInput = _useState8[1];
 
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState10 = _slicedToArray(_useState9, 2),
-      answerInput = _useState10[0],
-      setAnswerInput = _useState10[1];
+      answerNicknameInput = _useState10[0],
+      setAnswerNicknameInput = _useState10[1];
 
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState12 = _slicedToArray(_useState11, 2),
-      answerNicknameInput = _useState12[0],
-      setAnswerNicknameInput = _useState12[1];
+      answerEmailInput = _useState12[0],
+      setAnswerEmailInput = _useState12[1];
 
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
       _useState14 = _slicedToArray(_useState13, 2),
-      answerEmailInput = _useState14[0],
-      setAnswerEmailInput = _useState14[1];
+      imageUpload = _useState14[0],
+      setImageUpload = _useState14[1];
 
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState16 = _slicedToArray(_useState15, 2),
-      imageUpload = _useState16[0],
-      setImageUpload = _useState16[1];
+      isOpenModal = _useState16[0],
+      setIsOpenModal = _useState16[1];
 
   var addQuestionButtonClick = function addQuestionButtonClick() {
-    setAddQuestionModal(true);
+    setIsOpenModal(true);
   };
 
   var questionInputChange = function questionInputChange(e) {
@@ -2055,26 +2110,22 @@ var QAndA = function QAndA() {
 
   var questionEmailInputChange = function questionEmailInputChange(e) {
     setQuestionEmailInput(e.target.value);
-  };
+  }; // const showQuestionForm = () => {
+  //   if (addQuestionModal === true) {
+  //     return (
+  //       <div>
+  //         <p>Type your question:</p>
+  //         <textarea value={questionInput} onChange={questionInputChange} />
+  //         <p>Enter your nickname:</p>
+  //         <input placeholder="Example: jackson11!" value={questionNicknameInput} onChange={questionNicknameInputChange} />
+  //         <p>Enter your E-Mail:</p>
+  //         <input placeholder="youremail@address.com”" value={questionEmailInput} onChange={questionEmailInputChange} />
+  //         <button type="button">Submit</button>
+  //       </div>
+  //     );
+  //   }
+  // };
 
-  var showQuestionForm = function showQuestionForm() {
-    if (addQuestionModal === true) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Type your question:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
-        value: questionInput,
-        onChange: questionInputChange
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Enter your nickname:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        placeholder: "Example: jackson11!",
-        value: questionNicknameInput,
-        onChange: questionNicknameInputChange
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Enter your E-Mail:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        placeholder: "youremail@address.com\u201D",
-        value: questionEmailInput,
-        onChange: questionEmailInputChange
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        type: "button"
-      }, "Submit"));
-    }
-  };
 
   var answerInputChange = function answerInputChange(e) {
     setAnswerInput(e.target.value);
@@ -2116,6 +2167,10 @@ var QAndA = function QAndA() {
     }, "Submit"));
   };
 
+  var onDismiss = function onDismiss() {
+    setIsOpenModal(false);
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
     placeholder: "HAVE A QUESTION? SEARCH FOR ANSWERS..."
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_QuestionAnswerList__WEBPACK_IMPORTED_MODULE_2__.default, {
@@ -2123,10 +2178,24 @@ var QAndA = function QAndA() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "button"
   }, "More Answered Questions"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_AddNewQuestion__WEBPACK_IMPORTED_MODULE_1__.default, {
-    addQuestionButtonClick: addQuestionButtonClick,
-    addQuestionModal: addQuestionModal,
-    showQuestionForm: showQuestionForm
-  })));
+    addQuestionButtonClick: addQuestionButtonClick
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_QAModal__WEBPACK_IMPORTED_MODULE_3__.default, {
+    isOpenModal: isOpenModal,
+    onDismiss: onDismiss
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Type your question:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+    value: questionInput,
+    onChange: questionInputChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Enter your nickname:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    placeholder: "Example: jackson11!",
+    value: questionNicknameInput,
+    onChange: questionNicknameInputChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Enter your E-Mail:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    placeholder: "youremail@address.com\u201D",
+    value: questionEmailInput,
+    onChange: questionEmailInputChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button"
+  }, "Submit")))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QAndA);
