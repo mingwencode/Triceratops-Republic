@@ -7,12 +7,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const QuestionAnswer = ({ question, onShowAnswerModal }) => {
+const QuestionAnswer = ({ question, onShowAnswerModal, onOpenAnswerModal }) => {
   const [showAnswerModal, setShowAnswerModal] = useState(false);
   const [report, setReport] = useState('Report');
 
   const onAddAnswerButtonClick = () => {
     setShowAnswerModal(true);
+    return onOpenAnswerModal();
   };
 
   const renderAnswerModal = () => {
@@ -44,6 +45,7 @@ const QuestionAnswer = ({ question, onShowAnswerModal }) => {
 QuestionAnswer.propTypes = {
   question: PropTypes.objectOf(PropTypes.string).isRequired,
   onShowAnswerModal: PropTypes.func.isRequired,
+  onOpenAnswerModal: PropTypes.func.isRequired,
 };
 
 export default QuestionAnswer;

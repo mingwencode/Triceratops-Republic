@@ -16,91 +16,64 @@ const QAndA = () => {
   const [answerNicknameInput, setAnswerNicknameInput] = useState('');
   const [answerEmailInput, setAnswerEmailInput] = useState('');
   const [imageUpload, setImageUpload] = useState(null);
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isQuestionModalOpen, setIsQuestionModalOpen] = useState(false);
+  const [isAnswerModalOpen, setIsAnswerModalOpen] = useState(false);
 
   const addQuestionButtonClick = () => {
-    setIsOpenModal(true);
-  };
-
-  const questionInputChange = (e) => {
-    setQuestionInput(e.target.value);
-  };
-
-  const questionNicknameInputChange = (e) => {
-    setQuestionNicknameInput(e.target.value);
-  };
-
-  const questionEmailInputChange = (e) => {
-    setQuestionEmailInput(e.target.value);
-  };
-
-  // const showQuestionForm = () => {
-  //   if (addQuestionModal === true) {
-  //     return (
-  //       <div>
-  //         <p>Type your question:</p>
-  //         <textarea value={questionInput} onChange={questionInputChange} />
-  //         <p>Enter your nickname:</p>
-  //         <input placeholder="Example: jackson11!" value={questionNicknameInput} onChange={questionNicknameInputChange} />
-  //         <p>Enter your E-Mail:</p>
-  //         <input placeholder="youremail@address.com”" value={questionEmailInput} onChange={questionEmailInputChange} />
-  //         <button type="button">Submit</button>
-  //       </div>
-  //     );
-  //   }
-  // };
-
-  const answerInputChange = (e) => {
-    setAnswerInput(e.target.value);
-  };
-
-  const answerNicknameInputChange = (e) => {
-    setAnswerNicknameInput(e.target.value);
-  };
-
-  const answerEmailInputChange = (e) => {
-    setAnswerEmailInput(e.target.value);
+    setIsQuestionModalOpen(true);
   };
 
   const onPhotoUpload = (e) => {
     setImageUpload(URL.createObjectURL(e.target.files[0]));
-  }
+  };
+
+  const onAnswerDismiss = () => {
+    setIsAnswerModalOpen(false);
+  };
+
+  const onOpenAnswerModal = () => {
+    setIsAnswerModalOpen(true);
+  };
 
   const onShowAnswerModal = () => {
     return (
-      <div>
+      <QAModal isOpenModal={isAnswerModalOpen} onDismiss={onAnswerDismiss}>
         <p>Type your answer:</p>
-        <textarea value={answerInput} onChange={answerInputChange} />
+        <textarea required="required" maxLength="1000" value={answerInput} onChange={(e) => setAnswerInput(e.target.value)} />
         <p>Enter your nickname:</p>
-        <input placeholder="Example: jackson11!" value={answerNicknameInput} onChange={answerNicknameInputChange} />
+        <input placeholder="Example: jackson11!" required="required" maxLength="60" value={answerNicknameInput} onChange={(e) => setAnswerNicknameInput(e.target.value)} />
+        <p>For privacy reasons, do not use your full name or email address.</p>
         <p>Enter your E-Mail:</p>
-        <input placeholder="youremail@address.com”" value={answerEmailInput} onChange={answerEmailInputChange} />
+        <input placeholder="youremail@address.com" required="required" maxLength="60" value={answerEmailInput} onChange={(e) => setAnswerEmailInput(e.target.value)} />
+        <p>For authentication reasons, you will not be emailed.</p>
         <input type="file" name="photo" onChange={onPhotoUpload} />
         <img src={imageUpload} alt="Uploaded by user" />
         <button type="button">Submit</button>
-      </div>
+      </QAModal>
     );
   };
 
-  const onDismiss = () => {
-    setIsOpenModal(false);
+  const onQuestionModalDismiss = () => {
+    setIsQuestionModalOpen(false);
   };
 
   return (
     <div>
       <textarea placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
       <span>
-        <QuestionAnswerList onShowAnswerModal={onShowAnswerModal} />
+        <QuestionAnswerList onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} />
         <button type="button">More Answered Questions</button>
         <AddNewQuestion addQuestionButtonClick={addQuestionButtonClick} />
-        <QAModal isOpenModal={isOpenModal} onDismiss={onDismiss}>
+        <QAModal isOpenModal={isQuestionModalOpen} onDismiss={onQuestionModalDismiss}>
           <div>
             <p>Type your question:</p>
-            <textarea value={questionInput} onChange={questionInputChange} />
+            <textarea value={questionInput} required="required" maxLength="1000" onChange={(e) => setQuestionInput(e.target.value)} />
             <p>Enter your nickname:</p>
-            <input placeholder="Example: jackson11!" value={questionNicknameInput} onChange={questionNicknameInputChange} />
+            <input placeholder="Example: jackson11!" required="required" maxLength="60" value={questionNicknameInput} onChange={(e) => setQuestionNicknameInput(e.target.value)} />
+            <p>For privacy reasons, do not use your full name or email address.</p>
             <p>Enter your E-Mail:</p>
-            <input placeholder="youremail@address.com”" value={questionEmailInput} onChange={questionEmailInputChange} />
+            <input placeholder="youremail@address.com" required="required" maxLength="60" value={questionEmailInput} onChange={(e) => setQuestionEmailInput(e.target.value)} />
+            <p>For authentication reasons, you will not be emailed.</p>
             <button type="button">Submit</button>
           </div>
         </QAModal>

@@ -24,16 +24,17 @@ const qa = [{
   date: 'October 28, 2017',
 }];
 
-const QuestionAnswerList = ({ onShowAnswerModal }) => {
+const QuestionAnswerList = ({ onShowAnswerModal, onOpenAnswerModal }) => {
   return (
     <div>
-      {qa.map((question, index) => <QuestionAnswer question={question} index={index} onShowAnswerModal={onShowAnswerModal} />)}
+      {qa.map((question, index) => <QuestionAnswer question={question} index={index} onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} />)}
     </div>
   );
 };
 
 QuestionAnswerList.propTypes = {
   onShowAnswerModal: PropTypes.func.isRequired,
+  onOpenAnswerModal: PropTypes.func.isRequired,
 };
 
 export default QuestionAnswerList;

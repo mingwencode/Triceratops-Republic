@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable arrow-body-style */
 import React from 'react';
+import ReactDom from 'react-dom';
 
 const ModalStyles = {
   position: 'fixed',
@@ -25,14 +26,15 @@ const OverlayStyles = {
 const QAModal = ({ isOpenModal, onDismiss, children }) => {
   if (!isOpenModal) return null;
 
-  return (
+  return ReactDom.createPortal(
     <>
       <div style={OverlayStyles} />
       <div style={ModalStyles}>
         <button type="button" onClick={onDismiss}>X</button>
         {children}
       </div>
-    </>
+    </>,
+    document.getElementById('portal'),
   );
 };
 
