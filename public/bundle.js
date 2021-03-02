@@ -1897,27 +1897,336 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* eslint-disable consistent-return */
+
+/* eslint-disable jsx-a11y/label-has-associated-control */
+ // import PropTypes from 'prop-types';
+
+
+var MODAL_STYLES = {
+  position: 'fixed',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  backgroundColor: '#FFF',
+  padding: '50px',
+  zIndex: 1000
+};
+var OVERLAY_STYLES = {
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  backgroundColor: 'rgba(0, 0, 0, .7)',
+  zIndex: 1000
+};
 
 var NewReviewForm = function NewReviewForm(_ref) {
   var showNewReviewModal = _ref.showNewReviewModal,
       setNewReviewModal = _ref.setNewReviewModal;
 
-  var onClose = function onClose() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(5),
+      _useState2 = _slicedToArray(_useState, 2),
+      rating = _useState2[0],
+      clickStar = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(undefined),
+      _useState4 = _slicedToArray(_useState3, 2),
+      recommend = _useState4[0],
+      isRecomnended = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      summary = _useState6[0],
+      changeSummary = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState8 = _slicedToArray(_useState7, 2),
+      body = _useState8[0],
+      changeReview = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState10 = _slicedToArray(_useState9, 2),
+      photos = _useState10[0],
+      uploadPhoto = _useState10[1]; // eslint-disable-next-line camelcase
+
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState12 = _slicedToArray(_useState11, 2),
+      reviewer_name = _useState12[0],
+      inputNickname = _useState12[1];
+
+  var characterObj = [{
+    0: 'Size',
+    1: 'A size too small',
+    2: '½ a size too small',
+    3: 'Perfect',
+    4: '½ a size too big',
+    5: 'A size too wide'
+  }, {
+    0: 'Width',
+    1: 'Too narrow',
+    2: 'Slightly narrow',
+    3: 'Perfect',
+    4: 'Slightly wide',
+    5: 'Too wide'
+  }, {
+    0: 'Comfort',
+    1: 'Uncomfortable',
+    2: 'Slightly uncomfortable',
+    3: 'Ok',
+    4: 'Comfortable',
+    5: 'Perfect'
+  }, {
+    0: 'Quality',
+    1: 'Poor',
+    2: 'Below average',
+    3: 'What I expected',
+    4: 'Pretty great',
+    5: 'Perfect'
+  }, {
+    0: 'Length',
+    1: 'Runs short',
+    2: 'Runs slightly short',
+    3: 'Perfect',
+    4: 'Runs slightly long',
+    5: 'Runs long'
+  }, {
+    0: 'Fit',
+    1: 'Runs tight',
+    2: 'Runs slightly tight',
+    3: 'Perfect',
+    4: 'Runs slightly long',
+    5: 'Runs long'
+  }];
+
+  var renderTableHeader = function renderTableHeader() {
+    var header = Object.keys(characterObj[0]);
+    return header.map(function (key) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
+        key: key + 1
+      }, key.toUpperCase());
+    });
+  };
+
+  var renderTableData = function renderTableData() {
+    return characterObj.map(function (characteristic, index) {
+      return (
+        /*#__PURE__*/
+        // eslint-disable-next-line react/no-array-index-key
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", {
+          key: index + characteristic
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          type: "button"
+        }, characteristic[0])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          type: "button"
+        }, characteristic[1])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          type: "button"
+        }, characteristic[2])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          type: "button"
+        }, characteristic[3])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          type: "button"
+        }, characteristic[4])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          type: "button"
+        }, characteristic[5])))
+      );
+    });
+  };
+
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
     setNewReviewModal(false);
+  };
+
+  var onPhotoUpload = function onPhotoUpload(event) {
+    uploadPhoto(URL.createObjectURL(event.target.files[0]));
+  };
+
+  var starRatingTextOne = function starRatingTextOne() {
+    if (rating === 1) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Poor");
+    }
+  };
+
+  var starRatingTextTwo = function starRatingTextTwo() {
+    if (rating === 2) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Fair");
+    }
+  };
+
+  var starRatingTextThree = function starRatingTextThree() {
+    if (rating === 3) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Average");
+    }
+  };
+
+  var starRatingTextFour = function starRatingTextFour() {
+    if (rating === 4) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Good");
+    }
+  };
+
+  var starRatingTextFive = function starRatingTextFive() {
+    if (rating === 5) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Great");
+    }
   };
 
   if (!showNewReviewModal) {
     return null;
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, " Write a New Review"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    type: "submit",
+  return /*#__PURE__*/react_dom__WEBPACK_IMPORTED_MODULE_1__.createPortal( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: OVERLAY_STYLES
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: MODAL_STYLES
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, " Write a New Review"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "rating"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("legend", null, "Please rate:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "radio",
+    id: "star5",
+    name: "rating",
+    value: "5",
+    defaultChecked: true,
     onClick: function onClick() {
-      onClose();
+      return clickStar(5);
     }
-  }, "Close")));
-};
+  }), starRatingTextFive(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "radio",
+    id: "star4",
+    name: "rating",
+    value: "4",
+    onClick: function onClick() {
+      return clickStar(4);
+    }
+  }), starRatingTextFour(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "radio",
+    id: "star3",
+    name: "rating",
+    value: "3",
+    onClick: function onClick() {
+      return clickStar(3);
+    }
+  }), starRatingTextThree(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "radio",
+    id: "star2",
+    name: "rating",
+    value: "2",
+    onClick: function onClick() {
+      return clickStar(2);
+    }
+  }), starRatingTextTwo(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "radio",
+    id: "star1",
+    name: "rating",
+    value: "1",
+    onClick: function onClick() {
+      return clickStar(1);
+    }
+  }), starRatingTextOne()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("legend", null, "Would You Recommend:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    defaultChecked: true,
+    type: "radio",
+    id: "yes",
+    name: "Recommend",
+    value: "yes",
+    onChange: function onChange() {
+      return isRecomnended(true);
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+    htmlFor: "yes",
+    title: "Recommended"
+  }, "Yes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "radio",
+    id: "no",
+    name: "Recommend",
+    value: "no",
+    onChange: function onChange() {
+      return isRecomnended(false);
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+    htmlFor: "no",
+    title: "notRecommended"
+  }, "No")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
+    id: "charTitle"
+  }, "Characteristics"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("table", {
+    id: "characteristics"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, renderTableHeader()), renderTableData()))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+    htmlFor: "Summary",
+    title: "ReviewSummary"
+  }, "Review Summary"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+    placeholder: "Example: Best Purchase ever",
+    maxLength: "60",
+    value: summary,
+    onChange: function onChange(event) {
+      return changeSummary(event.target.value);
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+    htmlFor: "Review",
+    title: "ReviewBody"
+  }, "Review Body"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+    placeholder: "Why did you like the product or not?",
+    minLength: "50",
+    maxLength: "1000",
+    required: "required",
+    value: body,
+    onChange: function onChange(event) {
+      return changeReview(event.target.value);
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "file",
+    name: "photo",
+    onChange: onPhotoUpload
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: photos,
+    alt: "User uploaded"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+    htmlFor: "nickname",
+    title: "nickname"
+  }, "What Is Your Nickname?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "textbox",
+    placeholder: "Example: jackson11!",
+    required: "required",
+    maxLength: "60" // eslint-disable-next-line camelcase
+    ,
+    value: reviewer_name,
+    onChange: function onChange(event) {
+      return inputNickname(event.target.value);
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "For privacy reasons, do not use your full name or email address")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+    htmlFor: "email",
+    title: "email",
+    required: "required",
+    maxLength: "60"
+  }, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "email",
+    placeholder: "Example: jackson11@email.com"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "For authentication reasons, you will not be emailed")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "submit",
+    onSubmit: function onSubmit(event) {
+      handleSubmit(event);
+    }
+  }, "Submit Review")))), document.getElementById('portal'));
+}; // NewReviewForm.propTypes = {
+//   rating: PropTypes.number.isRequired,
+//   recommend: PropTypes.string.isRequired,
+//   reviewSummary: PropTypes.string.isRequired,
+//   reviewBody: PropTypes.string.isRequired,
+// };
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NewReviewForm);
 
@@ -2039,7 +2348,7 @@ var RatingsAndReviews = function RatingsAndReviews() {
       showNewMReviewModal = _useState2[0],
       setNewReviewModal = _useState2[1];
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Hello Beautiful World!!!", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "button",
     onClick: function onClick() {
       setNewReviewModal(!showNewMReviewModal);

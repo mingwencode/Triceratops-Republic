@@ -6,7 +6,6 @@ const RatingsAndReviews = () => {
 
   return (
     <div>
-      Hello Beautiful World!!!
       <button
         type="button"
         onClick={() => { setNewReviewModal(!showNewMReviewModal); }}
