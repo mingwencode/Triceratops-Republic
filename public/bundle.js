@@ -1999,7 +1999,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var QAndA = function QAndA(props) {
+var QAndA = function QAndA() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       addQuestionModal = _useState2[0],
@@ -2035,6 +2035,11 @@ var QAndA = function QAndA(props) {
       _useState14 = _slicedToArray(_useState13, 2),
       answerEmailInput = _useState14[0],
       setAnswerEmailInput = _useState14[1];
+
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState16 = _slicedToArray(_useState15, 2),
+      imageUpload = _useState16[0],
+      setImageUpload = _useState16[1];
 
   var addQuestionButtonClick = function addQuestionButtonClick() {
     setAddQuestionModal(true);
@@ -2083,8 +2088,11 @@ var QAndA = function QAndA(props) {
     setAnswerEmailInput(e.target.value);
   };
 
+  var onPhotoUpload = function onPhotoUpload(e) {
+    setImageUpload(URL.createObjectURL(e.target.files[0]));
+  };
+
   var onShowAnswerModal = function onShowAnswerModal() {
-    console.log('clicked');
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Type your answer:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
       value: answerInput,
       onChange: answerInputChange
@@ -2096,9 +2104,14 @@ var QAndA = function QAndA(props) {
       placeholder: "youremail@address.com\u201D",
       value: answerEmailInput,
       onChange: answerEmailInputChange
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      type: "file",
+      name: "photo",
+      onChange: onPhotoUpload
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+      src: imageUpload,
+      alt: "Uploaded by user"
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      type: "button"
-    }, "Add Pictures"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       type: "button"
     }, "Submit"));
   };
@@ -2146,6 +2159,8 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+/* eslint-disable consistent-return */
+
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -2178,15 +2193,7 @@ var QuestionAnswer = function QuestionAnswer(_ref) {
 
   var renderAnswerModal = function renderAnswerModal() {
     if (showAnswerModal === true) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Type your answer:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Enter your nickname:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        placeholder: "Example: jackson11!"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Enter your E-Mail:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        placeholder: "youremail@address.com\u201D"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        type: "button"
-      }, "Add Pictures"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        type: "button"
-      }, "Submit"));
+      return onShowAnswerModal();
     }
   };
 

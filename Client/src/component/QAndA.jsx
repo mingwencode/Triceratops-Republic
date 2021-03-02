@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import AddNewQuestion from './AddNewQuestion';
 import QuestionAnswerList from './QuestionAnswerList';
 
-const QAndA = (props) => {
+const QAndA = () => {
   const [addQuestionModal, setAddQuestionModal] = useState(false);
   // const [addAnswerModal, setAddAnswerModal] = useState(false);
   const [questionInput, setQuestionInput] = useState('');
@@ -14,6 +14,7 @@ const QAndA = (props) => {
   const [answerInput, setAnswerInput] = useState('');
   const [answerNicknameInput, setAnswerNicknameInput] = useState('');
   const [answerEmailInput, setAnswerEmailInput] = useState('');
+  const [imageUpload, setImageUpload] = useState(null);
 
   const addQuestionButtonClick = () => {
     setAddQuestionModal(true);
@@ -59,8 +60,11 @@ const QAndA = (props) => {
     setAnswerEmailInput(e.target.value);
   };
 
+  const onPhotoUpload = (e) => {
+    setImageUpload(URL.createObjectURL(e.target.files[0]));
+  }
+
   const onShowAnswerModal = () => {
-    console.log('clicked');
     return (
       <div>
         <p>Type your answer:</p>
@@ -69,7 +73,8 @@ const QAndA = (props) => {
         <input placeholder="Example: jackson11!" value={answerNicknameInput} onChange={answerNicknameInputChange} />
         <p>Enter your E-Mail:</p>
         <input placeholder="youremail@address.com”" value={answerEmailInput} onChange={answerEmailInputChange} />
-        <button type="button">Add Pictures</button>
+        <input type="file" name="photo" onChange={onPhotoUpload} />
+        <img src={imageUpload} alt="Uploaded by user" />
         <button type="button">Submit</button>
       </div>
     );

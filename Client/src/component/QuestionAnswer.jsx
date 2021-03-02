@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -16,18 +17,7 @@ const QuestionAnswer = ({ question, onShowAnswerModal }) => {
 
   const renderAnswerModal = () => {
     if (showAnswerModal === true) {
-      return (
-        <div>
-          <p>Type your answer:</p>
-          <textarea />
-          <p>Enter your nickname:</p>
-          <input placeholder="Example: jackson11!" />
-          <p>Enter your E-Mail:</p>
-          <input placeholder="youremail@address.com”" />
-          <button type="button">Add Pictures</button>
-          <button type="button">Submit</button>
-        </div>
-      );
+      return onShowAnswerModal();
     }
   };
 
