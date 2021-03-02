@@ -24,13 +24,13 @@ const OVERLAY_STYLES = {
 };
 
 const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
-  const [rating, clickStar] = useState(5);
-  const [recommend, isRecomnended] = useState(undefined);
-  const [summary, changeSummary] = useState('');
-  const [body, changeReview] = useState('');
-  const [photos, uploadPhoto] = useState(null);
+  const [rating, setStarRating] = useState(5);
+  const [recommend, setIsRecommended] = useState(undefined);
+  const [summary, setChangeSummary] = useState('');
+  const [body, setChangeReview] = useState('');
+  const [photos, setUploadPhoto] = useState(null);
   // eslint-disable-next-line camelcase
-  const [reviewer_name, inputNickname] = useState('');
+  const [reviewer_name, setNickname] = useState('');
 
 
   const characterObj = [
@@ -143,7 +143,7 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
     setNewReviewModal(false);
   };
   const onPhotoUpload = (event) => {
-    uploadPhoto(URL.createObjectURL(event.target.files[0]));
+    setUploadPhoto(URL.createObjectURL(event.target.files[0]));
   };
 
   const starRatingTextOne = () => {
@@ -200,7 +200,7 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
               name="rating"
               value="5"
               defaultChecked
-              onClick={() => clickStar(5)}
+              onClick={() => setStarRating(5)}
             />
             {starRatingTextFive()}
             <input
@@ -208,7 +208,7 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
               id="star4"
               name="rating"
               value="4"
-              onClick={() => clickStar(4)}
+              onClick={() => setStarRating(4)}
             />
             {starRatingTextFour()}
             <input
@@ -216,7 +216,7 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
               id="star3"
               name="rating"
               value="3"
-              onClick={() => clickStar(3)}
+              onClick={() => setStarRating(3)}
             />
             {starRatingTextThree()}
             <input
@@ -224,7 +224,7 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
               id="star2"
               name="rating"
               value="2"
-              onClick={() => clickStar(2)}
+              onClick={() => setStarRating(2)}
             />
             {starRatingTextTwo()}
             <input
@@ -232,7 +232,7 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
               id="star1"
               name="rating"
               value="1"
-              onClick={() => clickStar(1)}
+              onClick={() => setStarRating(1)}
             />
             {starRatingTextOne()}
           </div>
@@ -244,7 +244,7 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
               id="yes"
               name="Recommend"
               value="yes"
-              onChange={() => isRecomnended(true)}
+              onChange={() => setIsRecommended(true)}
             />
             <label
               htmlFor="yes"
@@ -257,7 +257,7 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
               id="no"
               name="Recommend"
               value="no"
-              onChange={() => isRecomnended(false)}
+              onChange={() => setIsRecommended(false)}
             />
             <label
               htmlFor="no"
@@ -288,7 +288,7 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
               placeholder="Example: Best Purchase ever"
               maxLength="60"
               value={summary}
-              onChange={(event) => changeSummary(event.target.value)}
+              onChange={(event) => setChangeSummary(event.target.value)}
             />
           </div>
           <div>
@@ -304,7 +304,7 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
               maxLength="1000"
               required="required"
               value={body}
-              onChange={(event) => changeReview(event.target.value)}
+              onChange={(event) => setChangeReview(event.target.value)}
             />
           </div>
           <div>
@@ -332,7 +332,7 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
               maxLength="60"
               // eslint-disable-next-line camelcase
               value={reviewer_name}
-              onChange={(event) => inputNickname(event.target.value)}
+              onChange={(event) => setNickname(event.target.value)}
             />
             <span>
               For privacy reasons, do not use your full name or email address

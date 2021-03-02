@@ -1878,7 +1878,50 @@ var App = function App() {
       todos = _useState2[0],
       setTodos = _useState2[1];
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Overview__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RatingsAndReviews__WEBPACK_IMPORTED_MODULE_3__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_QAndA__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedProducts__WEBPACK_IMPORTED_MODULE_5__.default, null));
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
+    "product": "2",
+    "page": 0,
+    "count": 5,
+    "results": [{
+      "review_id": 5,
+      "rating": 3,
+      "summary": "I'm enjoying wearing these shades",
+      "recommend": false,
+      "response": null,
+      "body": "Comfortable and practical.",
+      "date": "2019-04-14T00:00:00.000Z",
+      "reviewer_name": "shortandsweeet",
+      "helpfulness": 5,
+      "photos": [{
+        "id": 1,
+        "url": "urlplaceholder/review_5_photo_number_1.jpg"
+      }, {
+        "id": 2,
+        "url": "urlplaceholder/review_5_photo_number_2.jpg"
+      } // ...
+      ]
+    }, {
+      "review_id": 3,
+      "rating": 4,
+      "summary": "I am liking these glasses",
+      "recommend": false,
+      "response": "Glad you're enjoying the product!",
+      "body": "They are very dark. But that's good because I'm in very sunny spots",
+      "date": "2019-06-23T00:00:00.000Z",
+      "reviewer_name": "bigbrotherbenjamin",
+      "helpfulness": 5,
+      "photos": []
+    } // ...
+    ]
+  }]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      reviewArray = _useState4[0],
+      setReviewArray = _useState4[1];
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Overview__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_QAndA__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedProducts__WEBPACK_IMPORTED_MODULE_5__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RatingsAndReviews__WEBPACK_IMPORTED_MODULE_3__.default, {
+    reviewArray: reviewArray,
+    setReviewArray: setReviewArray
+  }));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
@@ -1942,33 +1985,33 @@ var NewReviewForm = function NewReviewForm(_ref) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(5),
       _useState2 = _slicedToArray(_useState, 2),
       rating = _useState2[0],
-      clickStar = _useState2[1];
+      setStarRating = _useState2[1];
 
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(undefined),
       _useState4 = _slicedToArray(_useState3, 2),
       recommend = _useState4[0],
-      isRecomnended = _useState4[1];
+      setIsRecommended = _useState4[1];
 
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState6 = _slicedToArray(_useState5, 2),
       summary = _useState6[0],
-      changeSummary = _useState6[1];
+      setChangeSummary = _useState6[1];
 
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState8 = _slicedToArray(_useState7, 2),
       body = _useState8[0],
-      changeReview = _useState8[1];
+      setChangeReview = _useState8[1];
 
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
       _useState10 = _slicedToArray(_useState9, 2),
       photos = _useState10[0],
-      uploadPhoto = _useState10[1]; // eslint-disable-next-line camelcase
+      setUploadPhoto = _useState10[1]; // eslint-disable-next-line camelcase
 
 
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
       _useState12 = _slicedToArray(_useState11, 2),
       reviewer_name = _useState12[0],
-      inputNickname = _useState12[1];
+      setNickname = _useState12[1];
 
   var characterObj = [{
     0: 'Size',
@@ -2053,7 +2096,7 @@ var NewReviewForm = function NewReviewForm(_ref) {
   };
 
   var onPhotoUpload = function onPhotoUpload(event) {
-    uploadPhoto(URL.createObjectURL(event.target.files[0]));
+    setUploadPhoto(URL.createObjectURL(event.target.files[0]));
   };
 
   var starRatingTextOne = function starRatingTextOne() {
@@ -2103,7 +2146,7 @@ var NewReviewForm = function NewReviewForm(_ref) {
     value: "5",
     defaultChecked: true,
     onClick: function onClick() {
-      return clickStar(5);
+      return setStarRating(5);
     }
   }), starRatingTextFive(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "radio",
@@ -2111,7 +2154,7 @@ var NewReviewForm = function NewReviewForm(_ref) {
     name: "rating",
     value: "4",
     onClick: function onClick() {
-      return clickStar(4);
+      return setStarRating(4);
     }
   }), starRatingTextFour(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "radio",
@@ -2119,7 +2162,7 @@ var NewReviewForm = function NewReviewForm(_ref) {
     name: "rating",
     value: "3",
     onClick: function onClick() {
-      return clickStar(3);
+      return setStarRating(3);
     }
   }), starRatingTextThree(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "radio",
@@ -2127,7 +2170,7 @@ var NewReviewForm = function NewReviewForm(_ref) {
     name: "rating",
     value: "2",
     onClick: function onClick() {
-      return clickStar(2);
+      return setStarRating(2);
     }
   }), starRatingTextTwo(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "radio",
@@ -2135,7 +2178,7 @@ var NewReviewForm = function NewReviewForm(_ref) {
     name: "rating",
     value: "1",
     onClick: function onClick() {
-      return clickStar(1);
+      return setStarRating(1);
     }
   }), starRatingTextOne()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("legend", null, "Do You Recommend?*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     defaultChecked: true,
@@ -2144,7 +2187,7 @@ var NewReviewForm = function NewReviewForm(_ref) {
     name: "Recommend",
     value: "yes",
     onChange: function onChange() {
-      return isRecomnended(true);
+      return setIsRecommended(true);
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "yes",
@@ -2155,7 +2198,7 @@ var NewReviewForm = function NewReviewForm(_ref) {
     name: "Recommend",
     value: "no",
     onChange: function onChange() {
-      return isRecomnended(false);
+      return setIsRecommended(false);
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "no",
@@ -2172,7 +2215,7 @@ var NewReviewForm = function NewReviewForm(_ref) {
     maxLength: "60",
     value: summary,
     onChange: function onChange(event) {
-      return changeSummary(event.target.value);
+      return setChangeSummary(event.target.value);
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "Review",
@@ -2184,7 +2227,7 @@ var NewReviewForm = function NewReviewForm(_ref) {
     required: "required",
     value: body,
     onChange: function onChange(event) {
-      return changeReview(event.target.value);
+      return setChangeReview(event.target.value);
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "file",
@@ -2204,7 +2247,7 @@ var NewReviewForm = function NewReviewForm(_ref) {
     ,
     value: reviewer_name,
     onChange: function onChange(event) {
-      return inputNickname(event.target.value);
+      return setNickname(event.target.value);
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "For privacy reasons, do not use your full name or email address")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "email",
@@ -2327,6 +2370,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _NewReviewForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NewReviewForm */ "./client/src/component/NewReviewForm.jsx");
+/* harmony import */ var _ReviewList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ReviewList */ "./client/src/component/ReviewList.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2342,18 +2386,26 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var RatingsAndReviews = function RatingsAndReviews() {
+
+var RatingsAndReviews = function RatingsAndReviews(_ref) {
+  var reviewArray = _ref.reviewArray,
+      setReviewArray = _ref.setReviewArray;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       showNewMReviewModal = _useState2[0],
       setNewReviewModal = _useState2[1];
 
+  console.log(reviewArray);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "button",
     onClick: function onClick() {
       setNewReviewModal(!showNewMReviewModal);
     }
-  }, "New Message"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_NewReviewForm__WEBPACK_IMPORTED_MODULE_1__.default, {
+  }, "New Review"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ReviewList__WEBPACK_IMPORTED_MODULE_2__.default, {
+    setReviewArray: setReviewArray,
+    reviewArray: reviewArray
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_NewReviewForm__WEBPACK_IMPORTED_MODULE_1__.default, {
     showNewReviewModal: showNewMReviewModal,
     setNewReviewModal: setNewReviewModal
   }));
@@ -2401,6 +2453,72 @@ var RelatedProducts = function RelatedProducts() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RelatedProducts);
+
+/***/ }),
+
+/***/ "./client/src/component/ReviewList.jsx":
+/*!*********************************************!*\
+  !*** ./client/src/component/ReviewList.jsx ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _ReviewTile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ReviewTile */ "./client/src/component/ReviewTile.jsx");
+
+
+
+var ReviewList = function ReviewList(_ref) {
+  var reviewArray = _ref.reviewArray,
+      setReviewArray = _ref.setReviewArray;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, reviewArray[0].results.map(function (review) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ReviewTile__WEBPACK_IMPORTED_MODULE_1__.default, {
+      key: review.review_id,
+      review: review
+    });
+  })));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ReviewList);
+
+/***/ }),
+
+/***/ "./client/src/component/ReviewTile.jsx":
+/*!*********************************************!*\
+  !*** ./client/src/component/ReviewTile.jsx ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var ReviewTile = function ReviewTile(_ref) {
+  var key = _ref.key,
+      review = _ref.review;
+  console.log('Key ', key);
+  console.log('review ', review);
+
+  var starsInReview = function starsInReview() {
+    for (var i = 0; i < review.review_id; i++) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("i", {
+        className: "fas fa-star"
+      });
+    }
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, starsInReview()));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ReviewTile);
 
 /***/ }),
 
