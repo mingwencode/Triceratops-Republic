@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import CompareModal from './CompareModal';
+//import CompareModal from './CompareModal';
 //import PropTypes from 'prop-types';
 
 const SlideImg = styled.img`
@@ -14,16 +14,11 @@ const SlideImg = styled.img`
 
 const ProductCard = ({ product }) => {
   const [productCard, setProductCard] = useState([]);
-  const [showModal, setShowModal] = useState(false);
 
-  const openModal = () => {
-    setShowModal(prev => !prev);
-  }
   return (
     <div>
       <SlideImg src={product.url} alt="" />
-      <button type="button" onClick={openModal} >compare</button>
-      <CompareModal showModal={showModal} setShowModal={setShowModal} />
+
     </div>
 
   );

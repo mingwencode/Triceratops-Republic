@@ -8,7 +8,6 @@ const Title = styled.div`
 `;
 
 const Slider = styled.div`
-  postition: relative;
   height: 30vh;
   display: flex;
   justify-content: center;

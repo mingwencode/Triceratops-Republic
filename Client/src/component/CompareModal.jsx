@@ -3,8 +3,10 @@ import styled from 'styled-components';
 //import PropTypes from 'prop-types';
 
 const Background = styled.div`
-  width: 100%;
-  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background: rgba(0, 0, 0, 0.8);
   position: fixed;
   display: flex;
@@ -25,12 +27,6 @@ const ModalWrapper = styled.div`
   border-radius: 10px;
 `;
 
-const ModalImg = styled.img`
-  width: 100%;
-  height: 100%;
-  border-radius: 10px 0 0 10px;
-  background: #000;
-`;
 
 const CloseModalButton = styled.button`
   cursor: pointer;
@@ -40,8 +36,59 @@ const CloseModalButton = styled.button`
   width: 32px;
   height: 32px;
   padding: 0;
-  z-index: 10;
+  z-index: 100;
 `;
+
+const TableHeader = styled.th`
+  border: 1px solid #dddddd;
+`;
+
+const TableCell = styled.td`
+  border: 1px solid #dddddd;
+`;
+
+const currentProduct = {
+  name: 'Karli Shirt',
+  price: 430.00,
+  features: [
+    { feature: 'Non-GMO', value: 'null' },
+    { feature: 'Cut', value: 'Straight' },
+    { feature: 'Fabric', value: 'Cool Fit' }
+  ]
+};
+
+const compareProduct = {
+  name: 'Murl Dress',
+  price: 817.00,
+  features: [
+    { feature: 'Non-GMO', value: 'null' },
+    { feature: 'Cut', value: 'Skinny' },
+    { feature: 'Lens', value: '100% UV Protective' },
+    { feature: 'Fair Trade Certified', value: 'null'}
+  ]
+};
+
+
+const renderTable = () => {
+  let moreFeatures, lessFeatures;
+
+  if (currentProduct.features.length > compareProduct.features.length) {
+    moreFeatures = currentProduct.features;
+    lessFeatures = compareProduct.features;
+  } else {
+    moreFeatures = compareProduct.features;
+    lessFeatures = currentProduct.features;
+  }
+
+  return moreFeatures.map((feature, index) => (
+    <tr>
+      <TableCell>$100</TableCell>
+      <TableCell>{feature.feature}</TableCell>
+      <TableCell>$80</TableCell>
+    </tr>
+
+  ))
+}
 
 const CompareModal = ({ showModal, setShowModal}) => {
   const [productCard, setProductCard] = useState([]);
@@ -51,7 +98,20 @@ const CompareModal = ({ showModal, setShowModal}) => {
       {showModal ? (
         <Background>
           <ModalWrapper showModal={showModal}>
-            <ModalImg src="../public/images/test_related_3.jpg" alt="" />
+            <table>
+              <tr>
+                <TableHeader>{currentProduct.name}</TableHeader>
+                <TableHeader>                      </TableHeader>
+                <TableHeader>{compareProduct.name}</TableHeader>
+              </tr>
+              <tr>
+                <TableCell>{`$${currentProduct.price}`}</TableCell>
+                <TableCell>price</TableCell>
+                <TableCell>{`$${compareProduct.price}`}</TableCell>
+              </tr>
+
+              {renderTable()}
+            </table>
             <CloseModalButton onClick={() => setShowModal(prev => !prev)} />
           </ModalWrapper>
         </Background>
