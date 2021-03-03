@@ -57,7 +57,6 @@ const ReviewList = ({ reviewArray, setReviewArray }) => {
           }}
         >
           More Reviews?
-          {console.log(reviews.length)}
         </button>
       );
     }

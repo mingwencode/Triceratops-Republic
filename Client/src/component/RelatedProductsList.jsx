@@ -25,7 +25,6 @@ const RelatedProductsList = (props) => {
   const [current, setCurrent] = useState(0);
   const len = products.length;
 
-
   const prevSilde = (e) => {
     setCurrent(current === 0 ? len - 1 : current - 1);
   };
