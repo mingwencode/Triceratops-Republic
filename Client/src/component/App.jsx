@@ -8,6 +8,8 @@ import RelatedProducts from './RelatedProducts';
 const App = () => {
   const [todos, setTodos] = useState([{ text: 'Learn Hooks' }]);
 
+  //useEffect takes two arguments
+
   return (
     <div>
       <Overview />

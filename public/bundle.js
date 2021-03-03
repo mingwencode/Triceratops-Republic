@@ -2661,7 +2661,8 @@ var App = function App() {
   }]),
       _useState2 = _slicedToArray(_useState, 2),
       todos = _useState2[0],
-      setTodos = _useState2[1];
+      setTodos = _useState2[1]; //useEffect takes two arguments
+
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Overview__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RatingsAndReviews__WEBPACK_IMPORTED_MODULE_3__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_QAndA__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedProducts__WEBPACK_IMPORTED_MODULE_5__.default, null));
 };
@@ -3142,6 +3143,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _OverviewTopBar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OverviewTopBar */ "./client/src/component/OverviewTopBar.jsx");
+/* harmony import */ var _OverviewImageGallery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./OverviewImageGallery */ "./client/src/component/OverviewImageGallery.jsx");
+/* harmony import */ var _OverviewProductInfo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./OverviewProductInfo */ "./client/src/component/OverviewProductInfo.jsx");
+/* harmony import */ var _OverviewAddToBag__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./OverviewAddToBag */ "./client/src/component/OverviewAddToBag.jsx");
+/* harmony import */ var _OverviewDescription__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./OverviewDescription */ "./client/src/component/OverviewDescription.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3156,18 +3162,302 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var Overview = function Overview() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
-    text: 'Learn Hooks'
-  }]),
-      _useState2 = _slicedToArray(_useState, 2),
-      todos = _useState2[0],
-      setTodos = _useState2[1];
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Hello Beautiful World!!!");
+
+
+
+ // let Body = styled.div`
+//   .item1 { grid-area: top-bar; };
+//   .item2 { grid-area: image-gallery; };
+//   .item3 { grid-area: product-info; };
+//   .item4 { grid-area: add-to-bag; };
+//   .item5 { grid-area: description; };
+//   .grid-container {
+//     display: grid;
+//     grid-template-areas:
+//       'top-bar top-bar top-bar top-bar top-bar top-bar'
+//       'image-gallery image-gallery image-gallery product-info product-info product-info'
+//       'description description description description description description'
+//   }
+//   .grid-container > div {
+//   background-color: rgba(255, 255, 255, 0.8);
+//   text-align: center;
+//   padding: 20px 0;
+//   font-size: 20px;
+// }
+// `;
+
+var images = ['https://s7d5.scene7.com/is/image/Anthropologie/32869075_025_a?$a15-pdp-detail-shot$=&fit=constrain&fmt=webp&qlt=80&wid=1080', 'https://s7d5.scene7.com/is/image/Anthropologie/4130231803171_001_b?$a15-pdp-detail-shot$=&fit=constrain&fmt=webp&qlt=80&wid=1080', 'https://cdn-2.jjshouse.com/upimg/s400/14/e8/1d7f95ba39b8185247fae73928c414e8.jpg', 'https://www.lulus.com/images/product/xlarge/4445090_247570.jpg?w=375&hdpi=1', 'https://media.tedbaker.com/t_m_pdp_primary,q_auto:best,f_auto/Product/Womens/242843_BABY-PINK_1'];
+var styles = ['style1', 'style2', 'style3', 'style4'];
+var sizes = ['small', 'medium', 'large', 'x-large'];
+var descriptionBullets = ['GMO and pesticide free', 'Some other crap', 'Probably untrue', 'Other information'];
+
+var Overview = function Overview() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState2 = _slicedToArray(_useState, 2),
+      currentImageIndex = _useState2[0],
+      setImageIndex = _useState2[1];
+
+  var len = images.length - 1;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "grid-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_OverviewTopBar__WEBPACK_IMPORTED_MODULE_1__.default, {
+    className: "item1 top-bar"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_OverviewImageGallery__WEBPACK_IMPORTED_MODULE_2__.default, {
+    className: "item2 image-gallery",
+    images: images,
+    prevSlide: function prevSlide() {
+      return setImageIndex(console.log('prevSlide clicked'), currentImageIndex < 1 ? len : currentImageIndex - 1);
+    },
+    nextSlide: function nextSlide() {
+      return setImageIndex(currentImageIndex === len ? 0 : currentImageIndex + 1);
+    },
+    currentImageIndex: currentImageIndex
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_OverviewProductInfo__WEBPACK_IMPORTED_MODULE_3__.default, {
+    className: "item3 product-info",
+    styles: styles
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_OverviewAddToBag__WEBPACK_IMPORTED_MODULE_4__.default, {
+    className: "item4 add-to-bag",
+    sizes: sizes
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_OverviewDescription__WEBPACK_IMPORTED_MODULE_5__.default, {
+    className: "item5 description",
+    bullets: descriptionBullets
+  })));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Overview);
+
+/***/ }),
+
+/***/ "./client/src/component/OverviewAddToBag.jsx":
+/*!***************************************************!*\
+  !*** ./client/src/component/OverviewAddToBag.jsx ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var OverviewAddToBag = function OverviewAddToBag(_ref) {
+  var sizes = _ref.sizes;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      sizeSelected = _useState.sizeSelected,
+      setSize = _useState.setSize;
+
+  var _useState2 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+      qty = _useState2.qty,
+      setQty = _useState2.setQty;
+
+  var sizeList = sizes.map(function (size, idx) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+      key: idx
+    }, size);
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+    name: "sizes",
+    value: "",
+    onChange: function onChange() {
+      return console.log('size selected!');
+    }
+  }, sizeList), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", null, qty))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button"
+  }, "Add To Bag")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    type: "button",
+    className: "favorite-outfit"
+  }, "+")));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OverviewAddToBag);
+
+/***/ }),
+
+/***/ "./client/src/component/OverviewDescription.jsx":
+/*!******************************************************!*\
+  !*** ./client/src/component/OverviewDescription.jsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+
+var OverviewDescription = function OverviewDescription(_ref) {
+  var bullets = _ref.bullets;
+  var placeholder = '';
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Catch Phrase"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Once we get the data in from the API there will be some non hardcoded description here."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null, bullets.map(function (bullet, idx) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+      key: idx
+    }, bullet);
+  })));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OverviewDescription);
+
+/***/ }),
+
+/***/ "./client/src/component/OverviewImageGallery.jsx":
+/*!*******************************************************!*\
+  !*** ./client/src/component/OverviewImageGallery.jsx ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+ // import PropTypes from 'prop-types';
+
+
+
+var OverviewImageGallery = function OverviewImageGallery(_ref) {
+  var images = _ref.images,
+      prevSlide = _ref.prevSlide,
+      nextSlide = _ref.nextSlide,
+      currentImageIndex = _ref.currentImageIndex;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState2 = _slicedToArray(_useState, 2),
+      currentImage = _useState2[0],
+      setImage = _useState2[1];
+
+  var onThumbnailClick = function onThumbnailClick(e, idx) {
+    e.preventDefault();
+    setImage(idx);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "arrows",
+    onClick: prevSlide
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    className: "prev"
+  }, "\uD821\uDEFE")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, images.map(function (image, idx) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+      key: idx,
+      src: image,
+      alt: "gallery carousel",
+      width: "75",
+      height: "100",
+      onClick: function onClick(e) {
+        return onThumbnailClick(e, idx);
+      }
+    });
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "arrows",
+    onClick: nextSlide
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    className: "next"
+  }, "\uD821\uDEFF")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "main-image",
+    src: images[currentImage],
+    alt: "main diplay"
+  })));
+}; // OverviewImageGallery.propTypes = {
+//   images: PropTypes.array
+// };
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OverviewImageGallery);
+
+/***/ }),
+
+/***/ "./client/src/component/OverviewProductInfo.jsx":
+/*!******************************************************!*\
+  !*** ./client/src/component/OverviewProductInfo.jsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+
+var OverviewProductInfo = function OverviewProductInfo(_ref) {
+  var styles = _ref.styles;
+  var styleList = styles.map(function (style, idx) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      key: idx
+    }, style);
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Star Rating"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    className: "reviews-a",
+    onClick: function onClick() {
+      return console.log('Read all reviews clicked!');
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("u", null, "Read all reviews"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Category"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "price"
+  }, "$300"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("strong", null, "Style", '> '), "Some Style"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, styleList));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OverviewProductInfo);
+
+/***/ }),
+
+/***/ "./client/src/component/OverviewTopBar.jsx":
+/*!*************************************************!*\
+  !*** ./client/src/component/OverviewTopBar.jsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+var _templateObject;
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
+
+var logo = 'Client/src/images/logoFEC.png';
+var TPBody = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  color: purple;\n"])));
+
+var OverviewTopBar = function OverviewTopBar() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(TPBody, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    src: logo,
+    alt: "logo"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", null, "Triceratop Republic")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    name: "seachBar",
+    className: "search-bar",
+    placeholder: "Search"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    className: "search-bar-btn",
+    type: "submit"
+  }, "Search")));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OverviewTopBar);
 
 /***/ }),
 
