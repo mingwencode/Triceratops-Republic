@@ -4103,11 +4103,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+Object(function webpackMissingModule() { var e = new Error("Cannot find module './ShadedStarRatingBreakDown'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+
  // eslint-disable-next-line arrow-body-style
 
 var RatingsAndReviewsBreakDown = function RatingsAndReviewsBreakDown(_ref) {
-  var reviewArray = _ref.reviewArray,
-      setReviewArray = _ref.setReviewArray;
+  var reviewArray = _ref.reviewArray;
   var productReviewArray = reviewArray[0].results;
   console.log(productReviewArray);
 
@@ -4122,7 +4123,7 @@ var RatingsAndReviewsBreakDown = function RatingsAndReviewsBreakDown(_ref) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, averageRounded);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Ratings & Reviews "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, averageRating()));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Ratings & Reviews "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, averageRating()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Object(function webpackMissingModule() { var e = new Error("Cannot find module './ShadedStarRatingBreakDown'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()), null));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RatingsAndReviewsBreakDown);
