@@ -33,6 +33,9 @@ const RelatedProductsList = (props) => {
     setCurrent(current === len - 1 ? 0 : current + 1);
   };
 
+
+
+
   return (
     <div className="list_container">
       <Title>RELATED PRODUCTS</Title>
