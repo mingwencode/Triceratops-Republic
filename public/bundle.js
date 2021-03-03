@@ -2618,6 +2618,78 @@ AddNewQuestion.propTypes = {
 
 /***/ }),
 
+/***/ "./client/src/component/Answer.jsx":
+/*!*****************************************!*\
+  !*** ./client/src/component/Answer.jsx ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
+/* eslint-disable react/jsx-one-expression-per-line */
+
+/* eslint-disable react/prop-types */
+
+/* eslint-disable camelcase */
+
+
+var Answer = function Answer(_ref) {
+  var answer = _ref.answer;
+  var body = answer.body,
+      answerer_name = answer.answerer_name,
+      date = answer.date,
+      id = answer.id,
+      helpfulness = answer.helpfulness,
+      photos = answer.photos;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Report'),
+      _useState2 = _slicedToArray(_useState, 2),
+      report = _useState2[0],
+      setReport = _useState2[1];
+
+  var getProperDate = function getProperDate(longDate) {
+    var dateArray = longDate.slice(0, longDate.indexOf('T')).split('-');
+    var year = dateArray.shift();
+    dateArray.push(year);
+    return dateArray.join('-');
+  };
+
+  var onReportButtonClick = function onReportButtonClick(e) {
+    e.preventDefault();
+    setReport('Reported');
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "A:", ' ', body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "by", answerer_name, ",", getProperDate(date), ' ', "|", ' ', "Helpful?", ' '), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Yes (", helpfulness, ")"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    onClick: function onClick(e) {
+      return onReportButtonClick(e);
+    }
+  }, ' ', report));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Answer);
+
+/***/ }),
+
 /***/ "./client/src/component/App.jsx":
 /*!**************************************!*\
   !*** ./client/src/component/App.jsx ***!
@@ -3616,38 +3688,189 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+ // const qa = [{
+//   question: 'Am I a question?',
+//   answer: 'You are a question',
+//   user: 'Louisa',
+//   date: 'August 20, 2019',
+// },
+// {
+//   question: 'Pancakes or Waffles?',
+//   answer: 'Waffles',
+//   user: 'Jorge',
+//   date: 'June 14, 2016',
+// },
+// {
+//   question: 'Orange juice or Apple juice?',
+//   answer: 'Apple juice',
+//   user: 'Miko',
+//   date: 'October 28, 2017',
+// },
+// {
+//   question: 'Is this sweater warm?',
+//   answer: 'yes, it is',
+//   user: 'Sam',
+//   date: 'May 2, 2020',
+// },
+// {
+//   question: 'Is this shirt true to size?',
+//   answer: 'It runs a little large',
+//   user: 'Gabe',
+//   date: 'December 22, 2015',
+// },
+// {
+//   question: 'Are these sunglasses good quality?',
+//   answer: 'They do feel very sturdy',
+//   user: 'Ming',
+//   date: 'March 10, 2019',
+// }];
 
-var qa = [{
-  question: 'Am I a question?',
-  answer: 'You are a question',
-  user: 'Louisa',
-  date: 'August 20, 2019'
-}, {
-  question: 'Pancakes or Waffles?',
-  answer: 'Waffles',
-  user: 'Jorge',
-  date: 'June 14, 2016'
-}, {
-  question: 'Orange juice or Apple juice?',
-  answer: 'Apple juice',
-  user: 'Miko',
-  date: 'October 28, 2017'
-}, {
-  question: 'Is this sweater warm?',
-  answer: 'yes, it is',
-  user: 'Sam',
-  date: 'May 2, 2020'
-}, {
-  question: 'Is this shirt true to size?',
-  answer: 'It runs a little large',
-  user: 'Gabe',
-  date: 'December 22, 2015'
-}, {
-  question: 'Are these sunglasses good quality?',
-  answer: 'They do feel very sturdy',
-  user: 'Ming',
-  date: 'March 10, 2019'
-}];
+var qa = {
+  product_id: '5',
+  results: [{
+    question_id: 37,
+    question_body: 'Why is this product cheaper here than other sites?',
+    question_date: '2018-10-18T00:00:00.000Z',
+    asker_name: 'williamsmith',
+    question_helpfulness: 4,
+    reported: false,
+    answers: {
+      68: {
+        id: 68,
+        body: 'We are selling it here without any markup from the middleman!',
+        date: '2018-08-18T00:00:00.000Z',
+        answerer_name: 'Seller',
+        helpfulness: 4,
+        photos: []
+      }
+    }
+  }, {
+    question_id: 38,
+    question_body: 'How long does it last?',
+    question_date: '2019-06-28T00:00:00.000Z',
+    asker_name: 'funnygirl',
+    question_helpfulness: 2,
+    reported: false,
+    answers: {
+      70: {
+        id: 70,
+        body: 'Some of the seams started splitting the first time I wore it!',
+        date: '2019-11-28T00:00:00.000Z',
+        answerer_name: 'sillyguy',
+        helpfulness: 6,
+        photos: []
+      },
+      78: {
+        id: 78,
+        body: '9 lives',
+        date: '2019-11-12T00:00:00.000Z',
+        answerer_name: 'iluvdogz',
+        helpfulness: 31,
+        photos: []
+      }
+    }
+  }, {
+    question_id: 38,
+    question_body: 'How long does it last?',
+    question_date: '2019-06-28T00:00:00.000Z',
+    asker_name: 'funnygirl',
+    question_helpfulness: 2,
+    reported: false,
+    answers: {
+      70: {
+        id: 70,
+        body: 'Some of the seams started splitting the first time I wore it!',
+        date: '2019-11-28T00:00:00.000Z',
+        answerer_name: 'sillyguy',
+        helpfulness: 6,
+        photos: []
+      },
+      78: {
+        id: 78,
+        body: '9 lives',
+        date: '2019-11-12T00:00:00.000Z',
+        answerer_name: 'iluvdogz',
+        helpfulness: 31,
+        photos: []
+      }
+    }
+  }, {
+    question_id: 38,
+    question_body: 'How long does it last?',
+    question_date: '2019-06-28T00:00:00.000Z',
+    asker_name: 'funnygirl',
+    question_helpfulness: 2,
+    reported: false,
+    answers: {
+      70: {
+        id: 70,
+        body: 'Some of the seams started splitting the first time I wore it!',
+        date: '2019-11-28T00:00:00.000Z',
+        answerer_name: 'sillyguy',
+        helpfulness: 6,
+        photos: []
+      },
+      78: {
+        id: 78,
+        body: '9 lives',
+        date: '2019-11-12T00:00:00.000Z',
+        answerer_name: 'iluvdogz',
+        helpfulness: 31,
+        photos: []
+      }
+    }
+  }, {
+    question_id: 38,
+    question_body: 'How long does it last?',
+    question_date: '2019-06-28T00:00:00.000Z',
+    asker_name: 'funnygirl',
+    question_helpfulness: 2,
+    reported: false,
+    answers: {
+      70: {
+        id: 70,
+        body: 'Some of the seams started splitting the first time I wore it!',
+        date: '2019-11-28T00:00:00.000Z',
+        answerer_name: 'sillyguy',
+        helpfulness: 6,
+        photos: []
+      },
+      78: {
+        id: 78,
+        body: '9 lives',
+        date: '2019-11-12T00:00:00.000Z',
+        answerer_name: 'iluvdogz',
+        helpfulness: 31,
+        photos: []
+      }
+    }
+  }, {
+    question_id: 38,
+    question_body: 'How long does it last?',
+    question_date: '2019-06-28T00:00:00.000Z',
+    asker_name: 'funnygirl',
+    question_helpfulness: 2,
+    reported: false,
+    answers: {
+      70: {
+        id: 70,
+        body: 'Some of the seams started splitting the first time I wore it!',
+        date: '2019-11-28T00:00:00.000Z',
+        answerer_name: 'sillyguy',
+        helpfulness: 6,
+        photos: []
+      },
+      78: {
+        id: 78,
+        body: '9 lives',
+        date: '2019-11-12T00:00:00.000Z',
+        answerer_name: 'iluvdogz',
+        helpfulness: 31,
+        photos: []
+      }
+    }
+  }]
+};
 
 var QAndA = function QAndA() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
@@ -3796,7 +4019,7 @@ var QAndA = function QAndA() {
   };
 
   var showMoreQuestionsButton = function showMoreQuestionsButton() {
-    if (qa.length > questionAnswersShown) {
+    if (qa.results.length > questionAnswersShown) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         type: "button",
         onClick: function onClick(e) {
@@ -3862,10 +4085,10 @@ var QAndA = function QAndA() {
 
 /***/ }),
 
-/***/ "./client/src/component/QuestionAnswer.jsx":
-/*!*************************************************!*\
-  !*** ./client/src/component/QuestionAnswer.jsx ***!
-  \*************************************************/
+/***/ "./client/src/component/Question.jsx":
+/*!*******************************************!*\
+  !*** ./client/src/component/Question.jsx ***!
+  \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3874,8 +4097,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Answer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Answer */ "./client/src/component/Answer.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3887,6 +4109,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* eslint-disable react/prop-types */
+
+/* eslint-disable camelcase */
 
 /* eslint-disable consistent-return */
 
@@ -3902,7 +4128,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var QuestionAnswer = function QuestionAnswer(_ref) {
+var Question = function Question(_ref) {
   var question = _ref.question,
       onShowAnswerModal = _ref.onShowAnswerModal,
       onOpenAnswerModal = _ref.onOpenAnswerModal;
@@ -3912,10 +4138,11 @@ var QuestionAnswer = function QuestionAnswer(_ref) {
       showAnswerModal = _useState2[0],
       setShowAnswerModal = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Report'),
-      _useState4 = _slicedToArray(_useState3, 2),
-      report = _useState4[0],
-      setReport = _useState4[1];
+  var question_body = question.question_body,
+      answers = question.answers,
+      question_id = question.question_id,
+      question_helpfulness = question.question_helpfulness;
+  var answerArray = Object.values(answers);
 
   var onAddAnswerButtonClick = function onAddAnswerButtonClick() {
     setShowAnswerModal(true);
@@ -3928,26 +4155,17 @@ var QuestionAnswer = function QuestionAnswer(_ref) {
     }
   };
 
-  var onReportButtonClick = function onReportButtonClick(e) {
-    e.preventDefault();
-    setReport('Reported');
-  };
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Q: ", question.question, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, " Helpful? "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, " Yes () "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Q: ", question_body, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, " Helpful? "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, " Yes (", question_helpfulness, ") "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
     onClick: onAddAnswerButtonClick
-  }, " | Add an Answer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, renderAnswerModal()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "A: ", question.answer), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "by ", question.user, ", ", question.date, " | Helpful? "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, " Yes () "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    onClick: function onClick(e) {
-      return onReportButtonClick(e);
-    }
-  }, " ", report));
+  }, " | Add an Answer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, renderAnswerModal()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, answerArray.map(function (answer, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Answer__WEBPACK_IMPORTED_MODULE_1__.default, {
+      key: index,
+      answer: answer
+    });
+  })));
 };
 
-QuestionAnswer.propTypes = {
-  question: prop_types__WEBPACK_IMPORTED_MODULE_1___default().objectOf((prop_types__WEBPACK_IMPORTED_MODULE_1___default().string)).isRequired,
-  onShowAnswerModal: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().func.isRequired),
-  onOpenAnswerModal: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().func.isRequired)
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QuestionAnswer);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Question);
 
 /***/ }),
 
@@ -3963,9 +4181,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _QuestionAnswer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./QuestionAnswer */ "./client/src/component/QuestionAnswer.jsx");
+/* harmony import */ var _Question__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Question */ "./client/src/component/Question.jsx");
+/* eslint-disable react/prop-types */
+
 /* eslint-disable react/no-array-index-key */
 
 /* eslint-disable max-len */
@@ -3973,7 +4191,6 @@ __webpack_require__.r(__webpack_exports__);
 /* eslint-disable react/jsx-one-expression-per-line */
 
 /* eslint-disable arrow-body-style */
-
 
 
 
@@ -3985,11 +4202,11 @@ var QuestionAnswerList = function QuestionAnswerList(_ref) {
   var newQaArray = [];
 
   for (var i = 0; i < questionAnswersShown; i += 1) {
-    newQaArray.push(qa[i]);
+    newQaArray.push(qa.results[i]);
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, newQaArray.map(function (question, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_QuestionAnswer__WEBPACK_IMPORTED_MODULE_2__.default, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Question__WEBPACK_IMPORTED_MODULE_1__.default, {
       question: question,
       key: index,
       onShowAnswerModal: onShowAnswerModal,
@@ -3998,12 +4215,6 @@ var QuestionAnswerList = function QuestionAnswerList(_ref) {
   }));
 };
 
-QuestionAnswerList.propTypes = {
-  onShowAnswerModal: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().func.isRequired),
-  onOpenAnswerModal: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().func.isRequired),
-  questionAnswersShown: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number.isRequired),
-  qa: prop_types__WEBPACK_IMPORTED_MODULE_1___default().arrayOf((prop_types__WEBPACK_IMPORTED_MODULE_1___default().object)).isRequired
-};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QuestionAnswerList);
 
 /***/ }),
