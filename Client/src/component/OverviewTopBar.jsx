@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const logo = 'Client/src/images/logoFEC.png';
+// const logo = './logoFEC.png';
 
 const TPBody = styled.div`
   color: purple;
@@ -10,7 +10,7 @@ const TPBody = styled.div`
 const OverviewTopBar = () => (
   <TPBody>
     <div>
-      <img src={logo} alt="logo" />
+      <img src="../images/logoFEC.png" alt="logo" height="50" width="50" />
       <h4>Triceratop Republic</h4>
     </div>
     <div>

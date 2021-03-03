@@ -105,3 +105,7 @@ dist
 
 # API key config.js
 config.js
+
+# webpack
+public/bundle.js
+public/bundle.js.map

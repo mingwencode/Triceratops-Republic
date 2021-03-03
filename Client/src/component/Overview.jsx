@@ -17,10 +17,8 @@ import OverviewDescription from './OverviewDescription';
 //     display: grid;
 //     grid-template-areas:
 //       'top-bar top-bar top-bar top-bar top-bar top-bar'
-
 //       'image-gallery image-gallery image-gallery product-info product-info product-info'
-
-//       'description description description description description description'
+//       'description description description description description description';
 //   }
 
 //   .grid-container > div {

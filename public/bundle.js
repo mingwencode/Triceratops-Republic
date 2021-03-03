@@ -2664,7 +2664,7 @@ var App = function App() {
       setTodos = _useState2[1]; //useEffect takes two arguments
 
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Overview__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RatingsAndReviews__WEBPACK_IMPORTED_MODULE_3__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_QAndA__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedProducts__WEBPACK_IMPORTED_MODULE_5__.default, null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Overview__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedProducts__WEBPACK_IMPORTED_MODULE_5__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_QAndA__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RatingsAndReviews__WEBPACK_IMPORTED_MODULE_3__.default, null));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
@@ -3177,7 +3177,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 //     grid-template-areas:
 //       'top-bar top-bar top-bar top-bar top-bar top-bar'
 //       'image-gallery image-gallery image-gallery product-info product-info product-info'
-//       'description description description description description description'
+//       'description description description description description description';
 //   }
 //   .grid-container > div {
 //   background-color: rgba(255, 255, 255, 0.8);
@@ -3318,6 +3318,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _OverviewThumbnails__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OverviewThumbnails */ "./client/src/component/OverviewThumbnails.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3329,6 +3330,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+/* eslint-disable comma-dangle */
+
+/* eslint-disable camelcase */
+
+/* eslint-disable no-use-before-define */
+
+/* eslint-disable react/prop-types */
+
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 
  // import PropTypes from 'prop-types';
 
@@ -3345,41 +3358,88 @@ var OverviewImageGallery = function OverviewImageGallery(_ref) {
       currentImage = _useState2[0],
       setImage = _useState2[1];
 
+  var thumbContainer = react__WEBPACK_IMPORTED_MODULE_0__.useRef();
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+      _useState4 = _slicedToArray(_useState3, 2),
+      temp = _useState4[0],
+      setTemp = _useState4[1];
+
   var onThumbnailClick = function onThumbnailClick(e, idx) {
     e.preventDefault();
     setImage(idx);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "arrows",
-    onClick: prevSlide
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-    className: "prev"
-  }, "\uD821\uDEFE")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, images.map(function (image, idx) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-      key: idx,
-      src: image,
-      alt: "gallery carousel",
-      width: "75",
-      height: "100",
-      onClick: function onClick(e) {
-        return onThumbnailClick(e, idx);
-      }
-    });
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "arrows",
-    onClick: nextSlide
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-    className: "next"
-  }, "\uD821\uDEFF")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    thumbContainer.current.style.transitionDuration = '0.5s';
+    thumbContainer.current.style.transform = "translate(-".concat(350 * currentImage, "px)");
+    var firstThumbClone = thumbContainer.current.children[0].cloneNode(true);
+    var lastThumbClone = thumbContainer.current.children[thumbContainer.current.children.length - 1].cloneNode(true);
+    thumbContainer.current.insertBefore(lastThumbClone, thumbContainer.current.children[0]);
+    thumbContainer.current.append(firstThumbClone);
+  }, [currentImage]);
+
+  var handleNext = function handleNext() {
+    if (currentImage < thumbContainer.current.children.length - 1) {
+      setImage(currentImage + 1);
+    }
+  };
+
+  var handlePrevious = function handlePrevious() {
+    if (currentImage !== 0) {
+      setImage(currentImage - 1);
+    }
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, console.log(thumbContainer), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: handlePrevious
+  }, "Previous"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "view-port",
+    style: styles.view_port
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    ref: thumbContainer,
+    className: "thumbnail-container",
+    style: styles.thumbnail_container
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_OverviewThumbnails__WEBPACK_IMPORTED_MODULE_1__.default, {
+    thumbnail_num: "0" // images={images}
+    // onThumbnailClick={onThumbnailClick}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_OverviewThumbnails__WEBPACK_IMPORTED_MODULE_1__.default, {
+    thumbnail_num: "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_OverviewThumbnails__WEBPACK_IMPORTED_MODULE_1__.default, {
+    thumbnail_num: "2"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_OverviewThumbnails__WEBPACK_IMPORTED_MODULE_1__.default, {
+    thumbnail_num: "3"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: handleNext
+  }, "Next"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "main-image",
     src: images[currentImage],
-    alt: "main diplay"
+    alt: "main diplay",
+    height: "300",
+    width: "225"
   })));
+};
+
+var styles = {
+  view_port: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '350px',
+    height: '200px',
+    backgroundColor: 'red',
+    overflow: 'hidden'
+  },
+  thumbnail_container: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: 'fit-content'
+  }
 }; // OverviewImageGallery.propTypes = {
 //   images: PropTypes.array
 // };
-
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OverviewImageGallery);
 
@@ -3421,6 +3481,58 @@ var OverviewProductInfo = function OverviewProductInfo(_ref) {
 
 /***/ }),
 
+/***/ "./client/src/component/OverviewThumbnails.jsx":
+/*!*****************************************************!*\
+  !*** ./client/src/component/OverviewThumbnails.jsx ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
+
+var Thumbnails = function Thumbnails(_ref) {
+  var thumbnail_num = _ref.thumbnail_num,
+      images = _ref.images,
+      onThumbnailClick = _ref.onThumbnailClick;
+  // const [currentImage, setImage] = useState(0);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: styles.thumbnails
+  }, thumbnail_num);
+};
+
+var styles = {
+  thumbnails: {
+    width: '350px',
+    height: '200px',
+    backgroundColor: 'blue',
+    border: '2px solid black',
+    borderSizing: 'border-box',
+    fontSize: '2.5em',
+    color: 'white'
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Thumbnails); // { thumbnail_num, images, onThumbnailClick }
+// {images.map((image, idx) => (
+//         <img
+//           key={idx}
+//           src={image}
+//           alt="gallery carousel"
+//           width="70"
+//           height="90"
+//           onClick={(e) => onThumbnailClick(e, idx)}
+//         />
+//       ))}
+
+/***/ }),
+
 /***/ "./client/src/component/OverviewTopBar.jsx":
 /*!*************************************************!*\
   !*** ./client/src/component/OverviewTopBar.jsx ***!
@@ -3439,14 +3551,16 @@ var _templateObject;
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
+ // const logo = './logoFEC.png';
 
-var logo = 'Client/src/images/logoFEC.png';
 var TPBody = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  color: purple;\n"])));
 
 var OverviewTopBar = function OverviewTopBar() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(TPBody, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: logo,
-    alt: "logo"
+    src: "../images/logoFEC.png",
+    alt: "logo",
+    height: "50",
+    width: "50"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", null, "Triceratop Republic")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     name: "seachBar",
     className: "search-bar",
@@ -4100,19 +4214,19 @@ var Title = styled_components__WEBPACK_IMPORTED_MODULE_2__.default.div(_template
 var Slider = styled_components__WEBPACK_IMPORTED_MODULE_2__.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  height: 30vh;\n  display: flex;\n  justify-content: center;\n  background: #FED7D7\n"])));
 var products = [{
   name: 'pic1',
-  url: '../public/images/test_related_1.jpg'
+  url: '../images/test_related_1.jpg'
 }, {
   name: 'pic2',
-  url: '../public/images/test_related_2.jpg'
+  url: '../images/test_related_2.jpg'
 }, {
   name: 'pic3',
-  url: '../public/images/test_related_3.jpg'
+  url: '../images/test_related_3.jpg'
 }, {
   name: 'pic4',
-  url: '../public/images/test_related_1.jpg'
+  url: '../images/test_related_1.jpg'
 }, {
   name: 'pic5',
-  url: '../public/images/test_related_2.jpg'
+  url: '../images/test_related_2.jpg'
 }];
 
 var RelatedProductsList = function RelatedProductsList(props) {
