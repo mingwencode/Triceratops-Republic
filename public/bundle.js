@@ -2680,7 +2680,7 @@ var App = function App() {
       ]
     }, {
       "review_id": 3,
-      "rating": 4,
+      "rating": 2,
       "summary": "I am liking these glasses",
       "recommend": false,
       "response": "Glad you're enjoying the product!",
@@ -2691,7 +2691,7 @@ var App = function App() {
       "photos": []
     }, {
       "review_id": 3,
-      "rating": 4,
+      "rating": 3,
       "summary": "I am liking these glasses",
       "recommend": false,
       "response": "Glad you're enjoying the product!",
@@ -4033,6 +4033,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _NewReviewForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NewReviewForm */ "./client/src/component/NewReviewForm.jsx");
 /* harmony import */ var _ReviewList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ReviewList */ "./client/src/component/ReviewList.jsx");
+/* harmony import */ var _RatingsAndReviewsHeader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RatingsAndReviewsHeader */ "./client/src/component/RatingsAndReviewsHeader.jsx");
+/* harmony import */ var _RatingsAndReviewsBreakDown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./RatingsAndReviewsBreakDown */ "./client/src/component/RatingsAndReviewsBreakDown.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -4049,6 +4051,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 var RatingsAndReviews = function RatingsAndReviews(_ref) {
   var reviewArray = _ref.reviewArray,
       setReviewArray = _ref.setReviewArray;
@@ -4058,21 +4062,109 @@ var RatingsAndReviews = function RatingsAndReviews(_ref) {
       showNewMReviewModal = _useState2[0],
       setNewReviewModal = _useState2[1];
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Helpful'),
+      _useState4 = _slicedToArray(_useState3, 2),
+      dropDownselect = _useState4[0],
+      setDropDownSelect = _useState4[1];
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RatingsAndReviewsBreakDown__WEBPACK_IMPORTED_MODULE_4__.default, {
+    reviewArray: reviewArray
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RatingsAndReviewsHeader__WEBPACK_IMPORTED_MODULE_3__.default, {
+    reviewArray: reviewArray,
+    setDropDownSelect: setDropDownSelect
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ReviewList__WEBPACK_IMPORTED_MODULE_2__.default, {
+    setReviewArray: setReviewArray,
+    reviewArray: reviewArray,
+    dropDownSelect: dropDownselect
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_NewReviewForm__WEBPACK_IMPORTED_MODULE_1__.default, {
+    showNewReviewModal: showNewMReviewModal,
+    setNewReviewModal: setNewReviewModal
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "button",
     onClick: function onClick() {
       setNewReviewModal(!showNewMReviewModal);
     }
-  }, "New Review"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ReviewList__WEBPACK_IMPORTED_MODULE_2__.default, {
-    setReviewArray: setReviewArray,
-    reviewArray: reviewArray
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_NewReviewForm__WEBPACK_IMPORTED_MODULE_1__.default, {
-    showNewReviewModal: showNewMReviewModal,
-    setNewReviewModal: setNewReviewModal
-  }));
+  }, "New Review"));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RatingsAndReviews);
+
+/***/ }),
+
+/***/ "./client/src/component/RatingsAndReviewsBreakDown.jsx":
+/*!*************************************************************!*\
+  !*** ./client/src/component/RatingsAndReviewsBreakDown.jsx ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+ // eslint-disable-next-line arrow-body-style
+
+var RatingsAndReviewsBreakDown = function RatingsAndReviewsBreakDown(_ref) {
+  var reviewArray = _ref.reviewArray,
+      setReviewArray = _ref.setReviewArray;
+  var productReviewArray = reviewArray[0].results;
+  console.log(productReviewArray);
+
+  var averageRating = function averageRating() {
+    var count = 0; // eslint-disable-next-line no-return-assign
+
+    productReviewArray.forEach(function (review) {
+      return count += review.rating;
+    });
+    var average = count / productReviewArray.length;
+    var averageRounded = Math.round(average * 10) / 10;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, averageRounded);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", null, "Ratings & Reviews "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, averageRating()));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RatingsAndReviewsBreakDown);
+
+/***/ }),
+
+/***/ "./client/src/component/RatingsAndReviewsHeader.jsx":
+/*!**********************************************************!*\
+  !*** ./client/src/component/RatingsAndReviewsHeader.jsx ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* eslint-disable padded-blocks */
+
+/* eslint-disable react/prop-types */
+ // eslint-disable-next-line arrow-body-style
+
+var RatingsAndReviewsHeader = function RatingsAndReviewsHeader(_ref) {
+  var reviewArray = _ref.reviewArray,
+      setDropDownSelect = _ref.setDropDownSelect;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "wrapper-dropdown"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, reviewArray[0].results.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "reviews, sorted by"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("select", {
+    onChange: function onChange(e) {
+      return setDropDownSelect(e.target.value);
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+    value: "Helpful"
+  }, "Helpful"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+    value: "Price"
+  }, "Price"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("option", {
+    value: "Relevent"
+  }, "Relevent"))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RatingsAndReviewsHeader);
 
 /***/ }),
 
@@ -4257,6 +4349,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _ReviewTile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ReviewTile */ "./client/src/component/ReviewTile.jsx");
+/* harmony import */ var _RatingsAndReviewsHeader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RatingsAndReviewsHeader */ "./client/src/component/RatingsAndReviewsHeader.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -4274,6 +4367,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /* eslint-disable padded-blocks */
 
 /* eslint-disable react/prop-types */
+
 
 
 
@@ -4340,7 +4434,7 @@ var ReviewList = function ReviewList(_ref) {
         onClick: function onClick() {
           setReviewCount(reviewCount + 2);
         }
-      }, "More Reviews?", console.log(reviews.length));
+      }, "More Reviews?");
     }
   };
 

@@ -4,6 +4,7 @@
 import React, { useState } from 'react';
 import ReactDom from 'react-dom';
 import ReviewTile from './ReviewTile';
+import RatingsAndReviewsHeader from './RatingsAndReviewsHeader';
 
 const MODAL_STYLES = {
   position: 'fixed',
@@ -57,7 +58,6 @@ const ReviewList = ({ reviewArray, setReviewArray }) => {
           }}
         >
           More Reviews?
-          {console.log(reviews.length)}
         </button>
       );
     }
