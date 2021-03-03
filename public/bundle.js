@@ -2664,7 +2664,7 @@ var App = function App() {
       setTodos = _useState2[1]; //useEffect takes two arguments
 
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Overview__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RatingsAndReviews__WEBPACK_IMPORTED_MODULE_3__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_QAndA__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedProducts__WEBPACK_IMPORTED_MODULE_5__.default, null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Overview__WEBPACK_IMPORTED_MODULE_2__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedProducts__WEBPACK_IMPORTED_MODULE_5__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_QAndA__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RatingsAndReviews__WEBPACK_IMPORTED_MODULE_3__.default, null));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
@@ -3374,7 +3374,9 @@ var OverviewImageGallery = function OverviewImageGallery(_ref) {
   }, "\uD821\uDEFF")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
     className: "main-image",
     src: images[currentImage],
-    alt: "main diplay"
+    alt: "main diplay",
+    height: "300",
+    width: "225"
   })));
 }; // OverviewImageGallery.propTypes = {
 //   images: PropTypes.array
@@ -3440,13 +3442,14 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
-var logo = 'Client/src/images/logoFEC.png';
 var TPBody = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  color: purple;\n"])));
 
 var OverviewTopBar = function OverviewTopBar() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(TPBody, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-    src: logo,
-    alt: "logo"
+    src: "../images/logoFEC.png",
+    alt: "logo",
+    height: "50",
+    width: "50"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", null, "Triceratop Republic")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     name: "seachBar",
     className: "search-bar",
@@ -3601,6 +3604,8 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+/* eslint-disable react/no-array-index-key */
+
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
 /* eslint-disable arrow-body-style */
@@ -3612,6 +3617,37 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+var qa = [{
+  question: 'Am I a question?',
+  answer: 'You are a question',
+  user: 'Louisa',
+  date: 'August 20, 2019'
+}, {
+  question: 'Pancakes or Waffles?',
+  answer: 'Waffles',
+  user: 'Jorge',
+  date: 'June 14, 2016'
+}, {
+  question: 'Orange juice or Apple juice?',
+  answer: 'Apple juice',
+  user: 'Miko',
+  date: 'October 28, 2017'
+}, {
+  question: 'Is this sweater warm?',
+  answer: 'yes, it is',
+  user: 'Sam',
+  date: 'May 2, 2020'
+}, {
+  question: 'Is this shirt true to size?',
+  answer: 'It runs a little large',
+  user: 'Gabe',
+  date: 'December 22, 2015'
+}, {
+  question: 'Are these sunglasses good quality?',
+  answer: 'They do feel very sturdy',
+  user: 'Ming',
+  date: 'March 10, 2019'
+}];
 
 var QAndA = function QAndA() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
@@ -3644,7 +3680,7 @@ var QAndA = function QAndA() {
       answerEmailInput = _useState12[0],
       setAnswerEmailInput = _useState12[1];
 
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState14 = _slicedToArray(_useState13, 2),
       imageUpload = _useState14[0],
       setImageUpload = _useState14[1];
@@ -3659,12 +3695,29 @@ var QAndA = function QAndA() {
       isAnswerModalOpen = _useState18[0],
       setIsAnswerModalOpen = _useState18[1];
 
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(2),
+      _useState20 = _slicedToArray(_useState19, 2),
+      questionAnswersShown = _useState20[0],
+      setQuestionAnswersShown = _useState20[1];
+
   var addQuestionButtonClick = function addQuestionButtonClick() {
     setIsQuestionModalOpen(true);
   };
 
+  var onMoreQuestionsButtonClick = function onMoreQuestionsButtonClick(e) {
+    e.preventDefault();
+    setQuestionAnswersShown(questionAnswersShown + 2);
+  };
+
   var onPhotoUpload = function onPhotoUpload(e) {
-    setImageUpload(URL.createObjectURL(e.target.files[0]));
+    var imageArray = [];
+
+    for (var i = 0; i < imageUpload.length; i += 1) {
+      imageArray.push(imageUpload[i]);
+    }
+
+    imageArray.push(URL.createObjectURL(e.target.files[0]));
+    setImageUpload(imageArray);
   };
 
   var onAnswerDismiss = function onAnswerDismiss() {
@@ -3678,6 +3731,16 @@ var QAndA = function QAndA() {
   var handleAnswerSubmit = function handleAnswerSubmit(e) {
     e.preventDefault();
     setIsAnswerModalOpen(false);
+  };
+
+  var showUploadFileButton = function showUploadFileButton() {
+    if (imageUpload.length < 5) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        type: "file",
+        name: "photo",
+        onChange: onPhotoUpload
+      });
+    }
   };
 
   var onShowAnswerModal = function onShowAnswerModal() {
@@ -3709,13 +3772,14 @@ var QAndA = function QAndA() {
       onChange: function onChange(e) {
         return setAnswerEmailInput(e.target.value);
       }
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "For authentication reasons, you will not be emailed."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-      type: "file",
-      name: "photo",
-      onChange: onPhotoUpload
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-      src: imageUpload,
-      alt: "Uploaded by user"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "For authentication reasons, you will not be emailed."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, showUploadFileButton()), imageUpload.map(function (image, index) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: image,
+        key: index,
+        alt: "uploaded by user",
+        height: "50",
+        width: "50"
+      });
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
       type: "submit",
       name: "submit"
@@ -3731,14 +3795,25 @@ var QAndA = function QAndA() {
     setIsQuestionModalOpen(false);
   };
 
+  var showMoreQuestionsButton = function showMoreQuestionsButton() {
+    if (qa.length > questionAnswersShown) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        type: "button",
+        onClick: function onClick(e) {
+          return onMoreQuestionsButtonClick(e);
+        }
+      }, "More Answered Questions");
+    }
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
     placeholder: "HAVE A QUESTION? SEARCH FOR ANSWERS..."
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_QuestionAnswerList__WEBPACK_IMPORTED_MODULE_2__.default, {
     onShowAnswerModal: onShowAnswerModal,
-    onOpenAnswerModal: onOpenAnswerModal
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-    type: "button"
-  }, "More Answered Questions"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_AddNewQuestion__WEBPACK_IMPORTED_MODULE_1__.default, {
+    onOpenAnswerModal: onOpenAnswerModal,
+    qa: qa,
+    questionAnswersShown: questionAnswersShown
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, showMoreQuestionsButton()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_AddNewQuestion__WEBPACK_IMPORTED_MODULE_1__.default, {
     addQuestionButtonClick: addQuestionButtonClick
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_QAModal__WEBPACK_IMPORTED_MODULE_3__.default, {
     isOpenModal: isQuestionModalOpen,
@@ -3901,27 +3976,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var qa = [{
-  question: 'Am I a question?',
-  answer: 'You are a question',
-  user: 'Louisa',
-  date: 'August 20, 2019'
-}, {
-  question: 'Pancakes or Waffles?',
-  answer: 'Waffles',
-  user: 'Jorge',
-  date: 'June 14, 2016'
-}, {
-  question: 'Orange juice or Apple juice?',
-  answer: 'Apple juice',
-  user: 'Miko',
-  date: 'October 28, 2017'
-}];
 
 var QuestionAnswerList = function QuestionAnswerList(_ref) {
   var onShowAnswerModal = _ref.onShowAnswerModal,
-      onOpenAnswerModal = _ref.onOpenAnswerModal;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, qa.map(function (question, index) {
+      onOpenAnswerModal = _ref.onOpenAnswerModal,
+      questionAnswersShown = _ref.questionAnswersShown,
+      qa = _ref.qa;
+  var newQaArray = [];
+
+  for (var i = 0; i < questionAnswersShown; i += 1) {
+    newQaArray.push(qa[i]);
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, newQaArray.map(function (question, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_QuestionAnswer__WEBPACK_IMPORTED_MODULE_2__.default, {
       question: question,
       key: index,
@@ -3933,7 +4000,9 @@ var QuestionAnswerList = function QuestionAnswerList(_ref) {
 
 QuestionAnswerList.propTypes = {
   onShowAnswerModal: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().func.isRequired),
-  onOpenAnswerModal: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().func.isRequired)
+  onOpenAnswerModal: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().func.isRequired),
+  questionAnswersShown: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().number.isRequired),
+  qa: prop_types__WEBPACK_IMPORTED_MODULE_1___default().arrayOf((prop_types__WEBPACK_IMPORTED_MODULE_1___default().object)).isRequired
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QuestionAnswerList);
 
@@ -4100,19 +4169,19 @@ var Title = styled_components__WEBPACK_IMPORTED_MODULE_2__.default.div(_template
 var Slider = styled_components__WEBPACK_IMPORTED_MODULE_2__.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  height: 30vh;\n  display: flex;\n  justify-content: center;\n  background: #FED7D7\n"])));
 var products = [{
   name: 'pic1',
-  url: '../public/images/test_related_1.jpg'
+  url: '../images/test_related_1.jpg'
 }, {
   name: 'pic2',
-  url: '../public/images/test_related_2.jpg'
+  url: '../images/test_related_2.jpg'
 }, {
   name: 'pic3',
-  url: '../public/images/test_related_3.jpg'
+  url: '../images/test_related_3.jpg'
 }, {
   name: 'pic4',
-  url: '../public/images/test_related_1.jpg'
+  url: '../images/test_related_1.jpg'
 }, {
   name: 'pic5',
-  url: '../public/images/test_related_2.jpg'
+  url: '../images/test_related_2.jpg'
 }];
 
 var RelatedProductsList = function RelatedProductsList(props) {
@@ -4124,16 +4193,13 @@ var RelatedProductsList = function RelatedProductsList(props) {
   var len = products.length;
 
   var prevSilde = function prevSilde(e) {
-    console.log('pre' + current);
     setCurrent(current === 0 ? len - 1 : current - 1);
   };
 
   var nextSlide = function nextSlide(e) {
-    console.log('next' + current);
     setCurrent(current === len - 1 ? 0 : current + 1);
   };
 
-  console.log(current);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "list_container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Title, null, "RELATED PRODUCTS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {

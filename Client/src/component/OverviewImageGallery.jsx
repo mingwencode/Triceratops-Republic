@@ -24,7 +24,7 @@ const OverviewImageGallery = ({ images, prevSlide, nextSlide, currentImageIndex 
         <span className="next">&#100095;</span>
       </div>
       <div>
-        <img className="main-image" src={images[currentImage]} alt="main diplay" />
+        <img className="main-image" src={images[currentImage]} alt="main diplay" height="300" width="225" />
       </div>
     </div>
   );

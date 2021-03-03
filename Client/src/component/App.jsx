@@ -13,9 +13,9 @@ const App = () => {
   return (
     <div>
       <Overview />
-      <RatingsAndReviews />
-      <QAndA />
       <RelatedProducts />
+      <QAndA />
+      <RatingsAndReviews />
     </div>
   );
 };

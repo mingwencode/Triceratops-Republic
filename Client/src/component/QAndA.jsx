@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable arrow-body-style */
 /* eslint-disable max-len */
@@ -7,6 +8,43 @@ import AddNewQuestion from './AddNewQuestion';
 import QuestionAnswerList from './QuestionAnswerList';
 import QAModal from './QAModal';
 
+const qa = [{
+  question: 'Am I a question?',
+  answer: 'You are a question',
+  user: 'Louisa',
+  date: 'August 20, 2019',
+},
+{
+  question: 'Pancakes or Waffles?',
+  answer: 'Waffles',
+  user: 'Jorge',
+  date: 'June 14, 2016',
+},
+{
+  question: 'Orange juice or Apple juice?',
+  answer: 'Apple juice',
+  user: 'Miko',
+  date: 'October 28, 2017',
+},
+{
+  question: 'Is this sweater warm?',
+  answer: 'yes, it is',
+  user: 'Sam',
+  date: 'May 2, 2020',
+},
+{
+  question: 'Is this shirt true to size?',
+  answer: 'It runs a little large',
+  user: 'Gabe',
+  date: 'December 22, 2015',
+},
+{
+  question: 'Are these sunglasses good quality?',
+  answer: 'They do feel very sturdy',
+  user: 'Ming',
+  date: 'March 10, 2019',
+}];
+
 const QAndA = () => {
   const [questionInput, setQuestionInput] = useState('');
   const [questionNicknameInput, setQuestionNicknameInput] = useState('');
@@ -14,16 +52,27 @@ const QAndA = () => {
   const [answerInput, setAnswerInput] = useState('');
   const [answerNicknameInput, setAnswerNicknameInput] = useState('');
   const [answerEmailInput, setAnswerEmailInput] = useState('');
-  const [imageUpload, setImageUpload] = useState(null);
+  const [imageUpload, setImageUpload] = useState([]);
   const [isQuestionModalOpen, setIsQuestionModalOpen] = useState(false);
   const [isAnswerModalOpen, setIsAnswerModalOpen] = useState(false);
+  const [questionAnswersShown, setQuestionAnswersShown] = useState(2);
 
   const addQuestionButtonClick = () => {
     setIsQuestionModalOpen(true);
   };
 
+  const onMoreQuestionsButtonClick = (e) => {
+    e.preventDefault();
+    setQuestionAnswersShown(questionAnswersShown + 2);
+  };
+
   const onPhotoUpload = (e) => {
-    setImageUpload(URL.createObjectURL(e.target.files[0]));
+    const imageArray = [];
+    for (let i = 0; i < imageUpload.length; i += 1) {
+      imageArray.push(imageUpload[i]);
+    }
+    imageArray.push(URL.createObjectURL(e.target.files[0]));
+    setImageUpload(imageArray);
   };
 
   const onAnswerDismiss = () => {
@@ -37,6 +86,14 @@ const QAndA = () => {
   const handleAnswerSubmit = (e) => {
     e.preventDefault();
     setIsAnswerModalOpen(false);
+  };
+
+  const showUploadFileButton = () => {
+    if (imageUpload.length < 5) {
+      return (
+        <input type="file" name="photo" onChange={onPhotoUpload} />
+      );
+    }
   };
 
   const onShowAnswerModal = () => {
@@ -53,7 +110,8 @@ const QAndA = () => {
           <p>Enter your nickname:</p>
           <input
             placeholder="Example: jackson11!"
-            required="required" maxLength="60"
+            required="required"
+            maxLength="60"
             value={answerNicknameInput}
             onChange={(e) => setAnswerNicknameInput(e.target.value)}
           />
@@ -67,15 +125,8 @@ const QAndA = () => {
             onChange={(e) => setAnswerEmailInput(e.target.value)}
           />
           <p>For authentication reasons, you will not be emailed.</p>
-          <input
-            type="file"
-            name="photo"
-            onChange={onPhotoUpload}
-          />
-          <img
-            src={imageUpload}
-            alt="Uploaded by user"
-          />
+          <p>{showUploadFileButton()}</p>
+          {imageUpload.map((image, index) => <img src={image} key={index} alt="uploaded by user" height="50" width="50" />)}
           <br />
           <input
             type="submit"
@@ -95,12 +146,20 @@ const QAndA = () => {
     setIsQuestionModalOpen(false);
   };
 
+  const showMoreQuestionsButton = () => {
+    if (qa.length > questionAnswersShown) {
+      return (
+        <button type="button" onClick={(e) => onMoreQuestionsButtonClick(e)}>More Answered Questions</button>
+      );
+    }
+  };
+
   return (
     <div>
       <textarea placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
       <span>
-        <QuestionAnswerList onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} />
-        <button type="button">More Answered Questions</button>
+        <QuestionAnswerList onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} qa={qa} questionAnswersShown={questionAnswersShown} />
+        <p>{showMoreQuestionsButton()}</p>
         <AddNewQuestion addQuestionButtonClick={addQuestionButtonClick} />
         <QAModal isOpenModal={isQuestionModalOpen} onDismiss={onQuestionModalDismiss}>
           <form onSubmit={handleQuestionSubmit}>

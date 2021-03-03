@@ -15,29 +15,23 @@ const Slider = styled.div`
 `;
 
 const products = [
-  { name: 'pic1', url: '../public/images/test_related_1.jpg' },
-  { name: 'pic2', url: '../public/images/test_related_2.jpg' },
-  { name: 'pic3', url: '../public/images/test_related_3.jpg' },
-  { name: 'pic4', url: '../public/images/test_related_1.jpg' },
-  { name: 'pic5', url: '../public/images/test_related_2.jpg' }];
+  { name: 'pic1', url: '../images/test_related_1.jpg' },
+  { name: 'pic2', url: '../images/test_related_2.jpg' },
+  { name: 'pic3', url: '../images/test_related_3.jpg' },
+  { name: 'pic4', url: '../images/test_related_1.jpg' },
+  { name: 'pic5', url: '../images/test_related_2.jpg' }];
 
 const RelatedProductsList = (props) => {
   const [current, setCurrent] = useState(0);
   const len = products.length;
 
-
   const prevSilde = (e) => {
-    console.log('pre' + current);
     setCurrent(current === 0 ? len - 1 : current - 1);
   };
 
   const nextSlide = (e) => {
-    console.log('next' + current);
     setCurrent(current === len - 1 ? 0 : current + 1);
   };
-
-  console.log(current)
-
 
   return (
     <div className="list_container">
