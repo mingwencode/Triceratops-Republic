@@ -49,6 +49,8 @@ const App = () => {
     ]
   }]);
 
+  //useEffect takes two arguments
+
   return (
     <div>
       <Overview />
