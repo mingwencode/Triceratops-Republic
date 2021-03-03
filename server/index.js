@@ -16,8 +16,8 @@ app.use(express.json());
 const options = {
   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/',
   headers: {
-    Authorization: token
-  }
+    Authorization: token,
+  },
 };
 
 app.get('/products', (req, res) => {
