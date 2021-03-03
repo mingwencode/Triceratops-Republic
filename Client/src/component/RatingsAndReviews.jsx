@@ -5,7 +5,6 @@ import ReviewList from './ReviewList';
 
 const RatingsAndReviews = ({reviewArray, setReviewArray}) => {
   const [showNewMReviewModal, setNewReviewModal] = useState(false);
-   console.log(reviewArray)
   return (
     <div>
       <button

@@ -190,6 +190,12 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
       <div style={OVERLAY_STYLES} />
       <div style={MODAL_STYLES}>
         <form>
+          <button
+            type="button"
+            onClick={() => setNewReviewModal(!showNewReviewModal)}
+        >
+          Close
+          </button>
           <h2> Write Your Review</h2>
           <h3> About the [Product Name Here] </h3>
           <div className="rating">
@@ -315,6 +321,8 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
             />
             <img
               src={photos}
+              height="50"
+              width="50"
               alt="User uploaded"
             />
           </div>

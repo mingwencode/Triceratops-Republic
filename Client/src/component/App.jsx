@@ -6,8 +6,7 @@ import QAndA from './QAndA';
 import RelatedProducts from './RelatedProducts';
 
 const App = () => {
-  const [todos, setTodos] = useState([{ text: 'Learn Hooks' }]);
-  const [reviewArray, setReviewArray] = useState([{
+  const [productArray, setProductArray] = useState([{
     "product": "2",
     "page": 0,
     "count": 5,
@@ -16,7 +15,7 @@ const App = () => {
         "review_id": 5,
         "rating": 3,
         "summary": "I'm enjoying wearing these shades",
-        "recommend": false,
+        "recommend": true,
         "response": null,
         "body": "Comfortable and practical.",
         "date": "2019-04-14T00:00:00.000Z",
@@ -45,6 +44,42 @@ const App = () => {
         "helpfulness": 5,
         "photos": [],
       },
+      {
+        "review_id": 3,
+        "rating": 4,
+        "summary": "I am liking these glasses",
+        "recommend": false,
+        "response": "Glad you're enjoying the product!",
+        "body": "They are very dark. But that's good because I'm in very sunny spots",
+        "date": "2019-06-23T00:00:00.000Z",
+        "reviewer_name": "bigbrotherbenjamin",
+        "helpfulness": 5,
+        "photos": [],
+      },
+      {
+        "review_id": 3,
+        "rating": 4,
+        "summary": "I am liking these glasses",
+        "recommend": false,
+        "response": "Glad you're enjoying the product!",
+        "body": "They are very dark. But that's good because I'm in very sunny spots",
+        "date": "2019-06-23T00:00:00.000Z",
+        "reviewer_name": "bigbrotherbenjamin",
+        "helpfulness": 5,
+        "photos": [],
+      },
+      {
+        "review_id": 3,
+        "rating": 4,
+        "summary": "I am liking these glasses",
+        "recommend": false,
+        "response": "Glad you're enjoying the product!",
+        "body": "They are very dark. But that's good because I'm in very sunny spots",
+        "date": "2019-06-23T00:00:00.000Z",
+        "reviewer_name": "bigbrotherbenjamin",
+        "helpfulness": 5,
+        "photos": [],
+      },
       // ...
     ]
   }]);
@@ -54,11 +89,11 @@ const App = () => {
   return (
     <div>
       <Overview />
-      <QAndA />
       <RelatedProducts />
+      <QAndA />
       <RatingsAndReviews
-        reviewArray={reviewArray}
-        setReviewArray={setReviewArray}
+        reviewArray={productArray}
+        setReviewArray={setProductArray}
       />
 
     </div>
