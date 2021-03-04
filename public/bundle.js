@@ -4820,7 +4820,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _ProductCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductCard */ "./client/src/component/ProductCard.jsx");
-var _templateObject, _templateObject2, _templateObject3, _templateObject4;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6;
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -4840,55 +4840,67 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 var Title = styled_components__WEBPACK_IMPORTED_MODULE_2__.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  font-size: 1.5em;\n  color: palevioletred;\n"])));
-var OutfitViewPort = styled_components__WEBPACK_IMPORTED_MODULE_2__.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  margin: 0 auto;\n  width: 840px;\n  height: 250px;\n  background: rgba(255, 255, 255, 0.5);\n  overflow: hidden;\n"])));
+var OutfitViewPort = styled_components__WEBPACK_IMPORTED_MODULE_2__.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  width: 620px;\n  height: 250px;\n  background: rgba(255, 255, 255, 0.5);\n  overflow: hidden;\n"])));
 var CardContainer = styled_components__WEBPACK_IMPORTED_MODULE_2__.default.div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  display: flex;\n  flexDirection: row;\n  width: fit-content;\n"])));
-var SlideDivOne = styled_components__WEBPACK_IMPORTED_MODULE_2__.default.div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  margin: 0 auto;\n"])));
+var Card = styled_components__WEBPACK_IMPORTED_MODULE_2__.default.div(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  width: 180px;\n  height: 250px;\n  background: blue;\n  font-size: 0.8em;\n  color: white;\n  margin: 0 40px 0 0;\n"])));
+var SlideDivOne = styled_components__WEBPACK_IMPORTED_MODULE_2__.default.div(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  margin: 0 auto;\n"])));
+var Grid = styled_components__WEBPACK_IMPORTED_MODULE_2__.default.div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  display: flex;\n"])));
 var products = [{
+  id: 1,
   name: 'pic1',
   category: 'dress',
   price: '80',
   url: '../images/test_related_1.jpg'
 }, {
+  id: 2,
   name: 'pic2',
   category: 'shirt',
   price: '100',
   url: '../images/test_related_2.jpg'
 }, {
+  id: 3,
   name: 'pic3',
   category: 'skirt',
   price: '200',
   url: '../images/test_related_3.jpg'
 }, {
+  id: 4,
   name: 'pic4',
   category: 'pants',
   price: '999',
   url: '../images/test_related_1.jpg'
 }, {
+  id: 5,
   name: 'pic5',
   category: 'dress',
   price: '88',
   url: '../images/test_related_2.jpg'
 }, {
+  id: 6,
   name: 'pic6',
   category: 'glasses',
   price: '22',
   url: '../images/test_related_3.jpg'
 }, {
+  id: 7,
   name: 'pic7',
   category: 'dress',
   price: '33',
   url: '../images/test_related_2.jpg'
 }, {
+  id: 8,
   name: 'pic8',
   category: 'whatever',
   price: '490',
   url: '../images/test_related_1.jpg'
 }, {
+  id: 9,
   name: 'pic9',
   category: 'idontknow',
   price: '500',
   url: '../images/test_related_2.jpg'
 }, {
+  id: 10,
   name: 'pic10',
   category: 'lastone',
   price: '102',
@@ -4899,7 +4911,9 @@ var YourOutfitList = function YourOutfitList() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
       _useState2 = _slicedToArray(_useState, 2),
       current = _useState2[0],
-      setCurrent = _useState2[1];
+      setCurrent = _useState2[1]; //const [addCurrentProduct, setAddCurrentProduct] = useState(0);
+  //const [outfitArray, setOutfitArray] = useState([]);
+
 
   var cardContainer = react__WEBPACK_IMPORTED_MODULE_0__.useRef();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -4917,9 +4931,13 @@ var YourOutfitList = function YourOutfitList() {
     if (current < cardContainer.current.children.length - 1) {
       setCurrent(current + 1);
     }
-  };
+  }; // const addOutFit = (productId) => {
+  //   setOutfitArray([...outfitArray, products[productId]]);
+  //   setAddCurrentProduct(productId + 1);
+  // }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(SlideDivOne, {
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Grid, {
     className: "list_container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Title, null, "YOUR OUTFIT"), current === 0 ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     name: "prev_btn",

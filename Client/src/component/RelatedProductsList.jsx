@@ -26,16 +26,36 @@ const SlideDivOne = styled.div`
 `;
 
 const products = [
-  { name: 'pic1', category: 'dress', price: '80', url: '../images/test_related_1.jpg' },
-  { name: 'pic2', category: 'shirt', price: '100', url: '../images/test_related_2.jpg' },
-  { name: 'pic3', category: 'skirt', price: '200', url: '../images/test_related_3.jpg' },
-  { name: 'pic4', category: 'pants', price: '999', url: '../images/test_related_1.jpg' },
-  { name: 'pic5', category: 'dress', price: '88', url: '../images/test_related_2.jpg' },
-  { name: 'pic6', category: 'glasses', price: '22', url: '../images/test_related_3.jpg' },
-  { name: 'pic7', category: 'dress', price: '33', url: '../images/test_related_2.jpg' },
-  { name: 'pic8', category: 'whatever', price: '490', url: '../images/test_related_1.jpg' },
-  { name: 'pic9', category: 'idontknow', price: '500', url: '../images/test_related_2.jpg' },
-  { name: 'pic10', category: 'lastone', price: '102', url: '../images/test_related_3.jpg' }];
+  {
+    name: 'pic1', category: 'dress', price: '80', url: '../images/test_related_1.jpg',
+  },
+  {
+    name: 'pic2', category: 'shirt', price: '100', url: '../images/test_related_2.jpg',
+  },
+  {
+    name: 'pic3', category: 'skirt', price: '200', url: '../images/test_related_3.jpg',
+  },
+  {
+    name: 'pic4', category: 'pants', price: '999', url: '../images/test_related_1.jpg',
+  },
+  {
+    name: 'pic5', category: 'dress', price: '88', url: '../images/test_related_2.jpg',
+  },
+  {
+    name: 'pic6', category: 'glasses', price: '22', url: '../images/test_related_3.jpg',
+  },
+  {
+    name: 'pic7', category: 'dress', price: '33', url: '../images/test_related_2.jpg',
+  },
+  {
+    name: 'pic8', category: 'whatever', price: '490', url: '../images/test_related_1.jpg',
+  },
+  {
+    name: 'pic9', category: 'idontknow', price: '500', url: '../images/test_related_2.jpg',
+  },
+  {
+    name: 'pic10', category: 'lastone', price: '102', url: '../images/test_related_3.jpg',
+  }];
 
 const RelatedProductsList = () => {
   const [current, setCurrent] = useState(0);
@@ -63,7 +83,6 @@ const RelatedProductsList = () => {
       <Title>RELATED PRODUCTS</Title>
       {current === 0 ? null : <button name="prev_btn" type="button" onClick={prevSilde}>Previous</button>}
       {current === products.length - 4 ? null : <button name="next_btn" type="button" onClick={nextSlide}>Next</button>}
-
 
       <div>
         <ViewPort className="view-port">
