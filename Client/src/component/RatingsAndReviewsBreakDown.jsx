@@ -1,10 +1,10 @@
 import React from 'react';
-import ShadedStarRatingBreakDown from './ShadedStarRatingBreakDown';
+import ShadedStarRating from './ShadedStarRating';
 // eslint-disable-next-line arrow-body-style
 const RatingsAndReviewsBreakDown = ({reviewArray}) => {
   const productReviewArray = reviewArray[0].results;
   console.log(productReviewArray);
-  const averageRating = ()=> {
+  const averageRating = () => {
     let count = 0;
     // eslint-disable-next-line no-return-assign
     productReviewArray.forEach((review) => count += review.rating);
@@ -20,7 +20,7 @@ const RatingsAndReviewsBreakDown = ({reviewArray}) => {
     <div>
       <h3>Ratings &amp; Reviews </h3>
       <span>{averageRating()}</span>
-      <ShadedStarRatingBreakDown />
+      <ShadedStarRating />
     </div>
   );
 };
