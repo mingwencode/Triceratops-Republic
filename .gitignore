@@ -106,6 +106,13 @@ dist
 # API key config.js
 config.js
 
+<<<<<<< HEAD
 # webpack
+=======
+<<<<<<< HEAD
+=======
+# jsx files in js
+>>>>>>> d81970a4824352b026a507743c63bc0a218a0b6c
+>>>>>>> 9866def13ba2886807d1e1c83a6cf43e4417f936
 public/bundle.js
 public/bundle.js.map

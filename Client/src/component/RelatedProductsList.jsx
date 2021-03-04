@@ -25,18 +25,15 @@ const RelatedProductsList = (props) => {
   const [current, setCurrent] = useState(0);
   const len = products.length;
 
-
   const prevSilde = (e) => {
-    console.log('pre' + current);
     setCurrent(current === 0 ? len - 1 : current - 1);
   };
 
   const nextSlide = (e) => {
-    console.log('next' + current);
     setCurrent(current === len - 1 ? 0 : current + 1);
   };
 
-  console.log(current)
+
 
 
   return (
