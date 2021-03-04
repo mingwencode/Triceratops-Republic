@@ -7,7 +7,7 @@ const STAR_RATING = {
   height: '21px',
   lineHeight: 0,
   overflow: 'hidden',
-  textIndent: -'999em',
+  textIndent: '-999em',
   width: '110px',
 
 
