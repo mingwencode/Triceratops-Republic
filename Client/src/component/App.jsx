@@ -42,7 +42,7 @@ const App = () => {
       },
       {
         "review_id": 3,
-        "rating": 4,
+        "rating": 2,
         "summary": "I am liking these glasses",
         "recommend": false,
         "response": "Glad you're enjoying the product!",
@@ -54,7 +54,7 @@ const App = () => {
       },
       {
         "review_id": 3,
-        "rating": 4,
+        "rating": 3,
         "summary": "I am liking these glasses",
         "recommend": false,
         "response": "Glad you're enjoying the product!",

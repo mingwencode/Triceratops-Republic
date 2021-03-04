@@ -108,6 +108,7 @@ config.js
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 # webpack
 =======
 public/bundle.js
@@ -119,6 +120,8 @@ public/bundle.js
 # jsx files in js
 >>>>>>> d81970a4824352b026a507743c63bc0a218a0b6c
 >>>>>>> 9866def13ba2886807d1e1c83a6cf43e4417f936
+=======
+# jsx files in js
+>>>>>>> 4a1d38d7a9b9358ab061dd2fb4ca4b0f7b23339f
 public/bundle.js
->>>>>>> 9866def13ba2886807d1e1c83a6cf43e4417f936
 public/bundle.js.map
