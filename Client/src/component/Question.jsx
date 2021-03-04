@@ -12,6 +12,7 @@ import Answer from './Answer';
 const Question = ({ question, onShowAnswerModal, onOpenAnswerModal }) => {
   const [showAnswerModal, setShowAnswerModal] = useState(false);
   const { question_body, answers, question_id, question_helpfulness } = question;
+  const [isQuestionHelpful, setIsQuestionHelpful] = useState(question_helpfulness);
   const answerArray = Object.values(answers);
 
   const onAddAnswerButtonClick = () => {
@@ -25,11 +26,15 @@ const Question = ({ question, onShowAnswerModal, onOpenAnswerModal }) => {
     }
   };
 
+  const handleQuestionHelpfulnessClick = () => {
+    setIsQuestionHelpful(isQuestionHelpful + 1);
+  };
+
   return (
     <div>
       <span>Q: {question_body} </span>
       <span> Helpful? </span>
-      <span> Yes ({question_helpfulness}) </span>
+      <span onClick={handleQuestionHelpfulnessClick}> Yes ({isQuestionHelpful}) </span>
       <a onClick={onAddAnswerButtonClick}> | Add an Answer</a>
       <span>{renderAnswerModal()}</span>
       <div>

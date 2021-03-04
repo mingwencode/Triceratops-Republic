@@ -2667,6 +2667,11 @@ var Answer = function Answer(_ref) {
       report = _useState2[0],
       setReport = _useState2[1];
 
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(helpfulness),
+      _useState4 = _slicedToArray(_useState3, 2),
+      isHelpful = _useState4[0],
+      setIsHelpful = _useState4[1];
+
   var getProperDate = function getProperDate(longDate) {
     var dateArray = longDate.slice(0, longDate.indexOf('T')).split('-');
     var year = dateArray.shift();
@@ -2679,7 +2684,13 @@ var Answer = function Answer(_ref) {
     setReport('Reported');
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "A:", ' ', body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "by", answerer_name, ",", getProperDate(date), ' ', "|", ' ', "Helpful?", ' '), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Yes (", helpfulness, ")"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+  var handleHelpfulnessClick = function handleHelpfulnessClick() {
+    setIsHelpful(isHelpful + 1);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "A:", ' ', body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "by", answerer_name, ",", getProperDate(date), ' ', "|", ' ', "Helpful?", ' '), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    onClick: handleHelpfulnessClick
+  }, "Yes (", isHelpful, ")"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     onClick: function onClick(e) {
       return onReportButtonClick(e);
     }
@@ -3712,14 +3723,14 @@ var QAModal = function QAModal(_ref) {
       onDismiss = _ref.onDismiss,
       children = _ref.children;
   if (!isOpenModal) return null;
-  return /*#__PURE__*/react_dom__WEBPACK_IMPORTED_MODULE_1__.createPortal( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     style: OverlayStyles
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     style: ModalStyles
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "button",
     onClick: onDismiss
-  }, "X"), children)), document.getElementById('portal'));
+  }, "X"), children));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QAModal);
@@ -3765,42 +3776,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
- // const qa = [{
-//   question: 'Am I a question?',
-//   answer: 'You are a question',
-//   user: 'Louisa',
-//   date: 'August 20, 2019',
-// },
-// {
-//   question: 'Pancakes or Waffles?',
-//   answer: 'Waffles',
-//   user: 'Jorge',
-//   date: 'June 14, 2016',
-// },
-// {
-//   question: 'Orange juice or Apple juice?',
-//   answer: 'Apple juice',
-//   user: 'Miko',
-//   date: 'October 28, 2017',
-// },
-// {
-//   question: 'Is this sweater warm?',
-//   answer: 'yes, it is',
-//   user: 'Sam',
-//   date: 'May 2, 2020',
-// },
-// {
-//   question: 'Is this shirt true to size?',
-//   answer: 'It runs a little large',
-//   user: 'Gabe',
-//   date: 'December 22, 2015',
-// },
-// {
-//   question: 'Are these sunglasses good quality?',
-//   answer: 'They do feel very sturdy',
-//   user: 'Ming',
-//   date: 'March 10, 2019',
-// }];
 
 var qa = {
   product_id: '5',
@@ -4000,6 +3975,18 @@ var QAndA = function QAndA() {
       questionAnswersShown = _useState20[0],
       setQuestionAnswersShown = _useState20[1];
 
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState22 = _slicedToArray(_useState21, 2),
+      searchText = _useState22[0],
+      setSearchText = _useState22[1];
+
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState24 = _slicedToArray(_useState23, 2),
+      error = _useState24[0],
+      setError = _useState24[1];
+
+  var validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+
   var addQuestionButtonClick = function addQuestionButtonClick() {
     setIsQuestionModalOpen(true);
   };
@@ -4028,8 +4015,14 @@ var QAndA = function QAndA() {
     setIsAnswerModalOpen(true);
   };
 
-  var handleAnswerSubmit = function handleAnswerSubmit(e) {
+  var handleAnswerSubmit = function handleAnswerSubmit(e, email) {
     e.preventDefault();
+
+    if (!validEmailRegex.test(email)) {
+      setError('You must enter email in proper format!');
+      return;
+    }
+
     setIsAnswerModalOpen(false);
   };
 
@@ -4048,7 +4041,9 @@ var QAndA = function QAndA() {
       isOpenModal: isAnswerModalOpen,
       onDismiss: onAnswerDismiss
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
-      onSubmit: handleAnswerSubmit
+      onSubmit: function onSubmit(e) {
+        return handleAnswerSubmit(e, answerEmailInput);
+      }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Type your answer:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
       required: "required",
       maxLength: "1000",
@@ -4080,7 +4075,7 @@ var QAndA = function QAndA() {
         height: "50",
         width: "50"
       });
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
       type: "submit",
       name: "submit"
     })));
@@ -4090,8 +4085,14 @@ var QAndA = function QAndA() {
     setIsQuestionModalOpen(false);
   };
 
-  var handleQuestionSubmit = function handleQuestionSubmit(e) {
+  var handleQuestionSubmit = function handleQuestionSubmit(e, email) {
     e.preventDefault();
+
+    if (!validEmailRegex.test(email)) {
+      setError('You must enter email in proper format!');
+      return;
+    }
+
     setIsQuestionModalOpen(false);
   };
 
@@ -4107,6 +4108,10 @@ var QAndA = function QAndA() {
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+    value: searchText,
+    onChange: function onChange(e) {
+      return setSearchText(e.target.value);
+    },
     placeholder: "HAVE A QUESTION? SEARCH FOR ANSWERS..."
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_QuestionAnswerList__WEBPACK_IMPORTED_MODULE_2__.default, {
     onShowAnswerModal: onShowAnswerModal,
@@ -4119,7 +4124,9 @@ var QAndA = function QAndA() {
     isOpenModal: isQuestionModalOpen,
     onDismiss: onQuestionModalDismiss
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
-    onSubmit: handleQuestionSubmit
+    onSubmit: function onSubmit(e) {
+      return handleQuestionSubmit(e, questionEmailInput);
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
     htmlFor: "question",
     title: "question",
@@ -4152,7 +4159,7 @@ var QAndA = function QAndA() {
     onChange: function onChange(e) {
       return setQuestionEmailInput(e.target.value);
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "For authentication reasons, you will not be emailed."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "For authentication reasons, you will not be emailed."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, error), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     type: "submit",
     name: "submit"
   }))))));
@@ -4219,6 +4226,12 @@ var Question = function Question(_ref) {
       answers = question.answers,
       question_id = question.question_id,
       question_helpfulness = question.question_helpfulness;
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(question_helpfulness),
+      _useState4 = _slicedToArray(_useState3, 2),
+      isQuestionHelpful = _useState4[0],
+      setIsQuestionHelpful = _useState4[1];
+
   var answerArray = Object.values(answers);
 
   var onAddAnswerButtonClick = function onAddAnswerButtonClick() {
@@ -4232,7 +4245,13 @@ var Question = function Question(_ref) {
     }
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Q: ", question_body, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, " Helpful? "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, " Yes (", question_helpfulness, ") "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+  var handleQuestionHelpfulnessClick = function handleQuestionHelpfulnessClick() {
+    setIsQuestionHelpful(isQuestionHelpful + 1);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, "Q: ", question_body, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, " Helpful? "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    onClick: handleQuestionHelpfulnessClick
+  }, " Yes (", isQuestionHelpful, ") "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
     onClick: onAddAnswerButtonClick
   }, " | Add an Answer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, renderAnswerModal()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, answerArray.map(function (answer, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Answer__WEBPACK_IMPORTED_MODULE_1__.default, {
@@ -4270,6 +4289,10 @@ __webpack_require__.r(__webpack_exports__);
 /* eslint-disable arrow-body-style */
 
 
+var questionStyles = {
+  maxHeight: '500px',
+  overflow: 'auto'
+};
 
 var QuestionAnswerList = function QuestionAnswerList(_ref) {
   var onShowAnswerModal = _ref.onShowAnswerModal,
@@ -4282,7 +4305,9 @@ var QuestionAnswerList = function QuestionAnswerList(_ref) {
     newQaArray.push(qa.results[i]);
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, newQaArray.map(function (question, index) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    style: questionStyles
+  }, newQaArray.map(function (question, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Question__WEBPACK_IMPORTED_MODULE_1__.default, {
       question: question,
       key: index,

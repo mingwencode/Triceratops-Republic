@@ -8,43 +8,6 @@ import AddNewQuestion from './AddNewQuestion';
 import QuestionAnswerList from './QuestionAnswerList';
 import QAModal from './QAModal';
 
-// const qa = [{
-//   question: 'Am I a question?',
-//   answer: 'You are a question',
-//   user: 'Louisa',
-//   date: 'August 20, 2019',
-// },
-// {
-//   question: 'Pancakes or Waffles?',
-//   answer: 'Waffles',
-//   user: 'Jorge',
-//   date: 'June 14, 2016',
-// },
-// {
-//   question: 'Orange juice or Apple juice?',
-//   answer: 'Apple juice',
-//   user: 'Miko',
-//   date: 'October 28, 2017',
-// },
-// {
-//   question: 'Is this sweater warm?',
-//   answer: 'yes, it is',
-//   user: 'Sam',
-//   date: 'May 2, 2020',
-// },
-// {
-//   question: 'Is this shirt true to size?',
-//   answer: 'It runs a little large',
-//   user: 'Gabe',
-//   date: 'December 22, 2015',
-// },
-// {
-//   question: 'Are these sunglasses good quality?',
-//   answer: 'They do feel very sturdy',
-//   user: 'Ming',
-//   date: 'March 10, 2019',
-// }];
-
 const qa = {
   product_id: '5',
   results: [{
@@ -209,6 +172,12 @@ const QAndA = () => {
   const [isQuestionModalOpen, setIsQuestionModalOpen] = useState(false);
   const [isAnswerModalOpen, setIsAnswerModalOpen] = useState(false);
   const [questionAnswersShown, setQuestionAnswersShown] = useState(2);
+  const [searchText, setSearchText] = useState('');
+  const [error, setError] = useState('');
+
+  const validEmailRegex = RegExp(
+    /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+  );
 
   const addQuestionButtonClick = () => {
     setIsQuestionModalOpen(true);
@@ -236,8 +205,12 @@ const QAndA = () => {
     setIsAnswerModalOpen(true);
   };
 
-  const handleAnswerSubmit = (e) => {
+  const handleAnswerSubmit = (e, email) => {
     e.preventDefault();
+    if (!validEmailRegex.test(email)) {
+      setError('You must enter email in proper format!');
+      return;
+    }
     setIsAnswerModalOpen(false);
   };
 
@@ -252,7 +225,7 @@ const QAndA = () => {
   const onShowAnswerModal = () => {
     return (
       <QAModal isOpenModal={isAnswerModalOpen} onDismiss={onAnswerDismiss}>
-        <form onSubmit={handleAnswerSubmit}>
+        <form onSubmit={(e) => handleAnswerSubmit(e, answerEmailInput)}>
           <p>Type your answer:</p>
           <textarea
             required="required"
@@ -281,6 +254,8 @@ const QAndA = () => {
           <p>{showUploadFileButton()}</p>
           {imageUpload.map((image, index) => <img src={image} key={index} alt="uploaded by user" height="50" width="50" />)}
           <br />
+          <p>{error}</p>
+          <br />
           <input
             type="submit"
             name="submit"
@@ -294,8 +269,12 @@ const QAndA = () => {
     setIsQuestionModalOpen(false);
   };
 
-  const handleQuestionSubmit = (e) => {
+  const handleQuestionSubmit = (e, email) => {
     e.preventDefault();
+    if (!validEmailRegex.test(email)) {
+      setError('You must enter email in proper format!');
+      return;
+    }
     setIsQuestionModalOpen(false);
   };
 
@@ -309,13 +288,13 @@ const QAndA = () => {
 
   return (
     <div>
-      <textarea placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
+      <textarea value={searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
       <span>
         <QuestionAnswerList onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} qa={qa} questionAnswersShown={questionAnswersShown} />
         <p>{showMoreQuestionsButton()}</p>
         <AddNewQuestion addQuestionButtonClick={addQuestionButtonClick} />
         <QAModal isOpenModal={isQuestionModalOpen} onDismiss={onQuestionModalDismiss}>
-          <form onSubmit={handleQuestionSubmit}>
+          <form onSubmit={(e) => handleQuestionSubmit(e, questionEmailInput)}>
             <div>
               <label
                 htmlFor="question"
@@ -359,6 +338,7 @@ const QAndA = () => {
                 onChange={(e) => setQuestionEmailInput(e.target.value)}
               />
               <p>For authentication reasons, you will not be emailed.</p>
+              <p>{error}</p>
               <input
                 type="submit"
                 name="submit"
