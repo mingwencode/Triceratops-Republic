@@ -107,7 +107,12 @@ dist
 config.js
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # webpack
+=======
+public/bundle.js
+
+>>>>>>> 5eaecab77920bb1379ae9bb04594957fe68e1019
 =======
 <<<<<<< HEAD
 =======
@@ -115,4 +120,5 @@ config.js
 >>>>>>> d81970a4824352b026a507743c63bc0a218a0b6c
 >>>>>>> 9866def13ba2886807d1e1c83a6cf43e4417f936
 public/bundle.js
+>>>>>>> 9866def13ba2886807d1e1c83a6cf43e4417f936
 public/bundle.js.map

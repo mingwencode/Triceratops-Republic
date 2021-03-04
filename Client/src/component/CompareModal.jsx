@@ -68,27 +68,31 @@ const compareProduct = {
   ]
 };
 
-
-const renderTable = () => {
-  let moreFeatures, lessFeatures;
-
-  if (currentProduct.features.length > compareProduct.features.length) {
-    moreFeatures = currentProduct.features;
-    lessFeatures = compareProduct.features;
-  } else {
-    moreFeatures = compareProduct.features;
-    lessFeatures = currentProduct.features;
+const compareTableCol = (product, feature) => {
+  for (let i = 0; i < product.length; i += 1) {
+    if(product[i].feature === feature) {
+      if (product[i].value === 'null') {
+        return null;
+      }
+      return product[i].value;
+    }
   }
+  return null;
+};
 
-  return moreFeatures.map((feature, index) => (
+const renderTable = (current, compare) => {
+  const currentFeatures = current.features.map((item) => item.feature);
+  const compareFeatures = compare.features.map((item) => item.feature);
+  const allFeatures = [...new Set(currentFeatures.concat(compareFeatures))];
+
+  return allFeatures.map((feature) => (
     <tr>
-      <TableCell>$100</TableCell>
-      <TableCell>{feature.feature}</TableCell>
-      <TableCell>$80</TableCell>
+      <TableCell key="current_col">{compareTableCol(current.features, feature)}</TableCell>
+      <TableCell key="feature_col">{feature}</TableCell>
+      <TableCell key="compare_col">{compareTableCol(compare.features, feature)}</TableCell>
     </tr>
-
-  ))
-}
+  ));
+};
 
 const CompareModal = ({ showModal, setShowModal}) => {
   const [productCard, setProductCard] = useState([]);
@@ -99,18 +103,21 @@ const CompareModal = ({ showModal, setShowModal}) => {
         <Background>
           <ModalWrapper showModal={showModal}>
             <table>
-              <tr>
-                <TableHeader>{currentProduct.name}</TableHeader>
-                <TableHeader>                      </TableHeader>
-                <TableHeader>{compareProduct.name}</TableHeader>
-              </tr>
-              <tr>
-                <TableCell>{`$${currentProduct.price}`}</TableCell>
-                <TableCell>price</TableCell>
-                <TableCell>{`$${compareProduct.price}`}</TableCell>
-              </tr>
-
-              {renderTable()}
+              <thead>
+                <tr>
+                  <TableHeader>{currentProduct.name}</TableHeader>
+                  <TableHeader>                      </TableHeader>
+                  <TableHeader>{compareProduct.name}</TableHeader>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <TableCell>{`$${currentProduct.price}`}</TableCell>
+                  <TableCell>price</TableCell>
+                  <TableCell>{`$${compareProduct.price}`}</TableCell>
+                </tr>
+                {renderTable(currentProduct, compareProduct)}
+              </tbody>
             </table>
             <CloseModalButton onClick={() => setShowModal(prev => !prev)} />
           </ModalWrapper>
