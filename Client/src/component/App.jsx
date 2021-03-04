@@ -4,6 +4,14 @@ import Overview from './Overview';
 import RatingsAndReviews from './RatingsAndReviews';
 import QAndA from './QAndA';
 import RelatedProducts from './RelatedProducts';
+import styled from 'styled-components';
+
+const appStyle = {
+  maxWidth: '1000px',
+  margin: 'auto',
+  background: 'white',
+  padding: '10px'
+}
 
 const App = () => {
   const [productArray, setProductArray] = useState([{
@@ -89,13 +97,14 @@ const App = () => {
   return (
     <div>
       <Overview />
-      <RelatedProducts />
-      <QAndA />
-      <RatingsAndReviews
-        reviewArray={productArray}
-        setReviewArray={setProductArray}
-      />
-
+      <div style={appStyle}>
+        <RelatedProducts />
+        <QAndA />
+        <RatingsAndReviews
+          reviewArray={productArray}
+          setReviewArray={setProductArray}
+        />
+      </div>
     </div>
   );
 };

@@ -2,31 +2,29 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 
-const Thumbnails = ({ thumbnail_num, images, onThumbnailClick }) => {
-  // const [currentImage, setImage] = useState(0);
+const Thumbnails = ({ thumbnail_num, image, onThumbnailClick }) => {
+  const [currentImage, setImage] = useState(0);
 
   return (
     <div style={styles.thumbnails}>
-      {thumbnail_num}
+      <img src={image} alt="" height="70px" width="60px" />
     </div>
   );
 };
 
 const styles = {
   thumbnails: {
-    width: '350px',
-    height: '200px',
+    width: '60px',
+    height: '70px',
     backgroundColor: 'blue',
     border: '2px solid black',
-    borderSizing: 'border-box',
+    boxSizing: 'border-box',
     fontSize: '2.5em',
     color: 'white'
   }
 };
 
 export default Thumbnails;
-
-// { thumbnail_num, images, onThumbnailClick }
 
 // {images.map((image, idx) => (
 //         <img

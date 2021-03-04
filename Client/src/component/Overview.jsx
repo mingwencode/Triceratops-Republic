@@ -29,6 +29,13 @@ import OverviewDescription from './OverviewDescription';
 // }
 // `;
 
+const ovStyle = {
+  maxWidth: '1000px',
+  margin: 'auto',
+  background: 'white',
+  padding: '10px'
+}
+
 const images = [
   'https://s7d5.scene7.com/is/image/Anthropologie/32869075_025_a?$a15-pdp-detail-shot$=&fit=constrain&fmt=webp&qlt=80&wid=1080',
   'https://s7d5.scene7.com/is/image/Anthropologie/4130231803171_001_b?$a15-pdp-detail-shot$=&fit=constrain&fmt=webp&qlt=80&wid=1080',
@@ -48,19 +55,21 @@ const Overview = () => {
     <div>
       <div className="grid-container">
         <OverviewTopBar className="item1 top-bar" />
-        <OverviewImageGallery
-          className="item2 image-gallery"
-          images={images}
-          prevSlide={() => setImageIndex(
-            console.log('prevSlide clicked'),
-            currentImageIndex < 1 ? len : currentImageIndex - 1
-          )}
-          nextSlide={() => setImageIndex(currentImageIndex === len ? 0 : currentImageIndex + 1)}
-          currentImageIndex={currentImageIndex}
-        />
-        <OverviewProductInfo className="item3 product-info" styles={styles} />
-        <OverviewAddToBag className="item4 add-to-bag" sizes={sizes} />
-        <OverviewDescription className="item5 description" bullets={descriptionBullets} />
+        <div style={ovStyle}>
+          <OverviewImageGallery
+            className="item2 image-gallery"
+            images={images}
+            prevSlide={() => setImageIndex(
+              console.log('prevSlide clicked'),
+              currentImageIndex < 1 ? len : currentImageIndex - 1
+            )}
+            nextSlide={() => setImageIndex(currentImageIndex === len ? 0 : currentImageIndex + 1)}
+            currentImageIndex={currentImageIndex}
+          />
+          <OverviewProductInfo className="item3 product-info" styles={styles} />
+          <OverviewAddToBag className="item4 add-to-bag" sizes={sizes} />
+          <OverviewDescription className="item5 description" bullets={descriptionBullets} />
+        </div>
       </div>
     </div>
   );

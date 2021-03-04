@@ -11,8 +11,8 @@ import styled from 'styled-components';
 
 const OverviewImageGallery = ({ images, prevSlide, nextSlide, currentImageIndex }) => {
   const [currentImage, setImage] = useState(0);
+  const [mainImageIndex, setMainImageIndex] = useState(0);
   const thumbContainer = React.useRef();
-  const [temp, setTemp] = useState();
 
   const onThumbnailClick = (e, idx) => {
     e.preventDefault();
@@ -21,52 +21,53 @@ const OverviewImageGallery = ({ images, prevSlide, nextSlide, currentImageIndex 
 
   useEffect(() => {
     thumbContainer.current.style.transitionDuration = '0.5s';
-    thumbContainer.current.style.transform = `translate(-${350 * currentImage}px)`;
-    let firstThumbClone = thumbContainer.current.children[0].cloneNode(true);
-    let lastThumbClone = thumbContainer.current.children[thumbContainer.current.children.length - 1].cloneNode(true);
-
-    thumbContainer.current.insertBefore(lastThumbClone, thumbContainer.current.children[0]);
-    thumbContainer.current.append(firstThumbClone);
+    thumbContainer.current.style.transform = `translate(0, -${70 * currentImage}px)`;
   }, [currentImage]);
-
 
   const handleNext = () => {
     if (currentImage < thumbContainer.current.children.length - 1) {
-      setImage((currentImage + 1));
+      setImage(((prevImage) => prevImage + 1));
     }
   };
 
   const handlePrevious = () => {
-    if (currentImage !== 0) {
-      setImage(currentImage - 1);
+    if (currentImage > 0) {
+      setImage((nextImage) => nextImage - 1);
+    }
+  };
+
+  const handleMainNext = () => {
+    if (mainImageIndex < images.length - 1) {
+      setMainImageIndex((prevImage) => prevImage + 1);
+    }
+  };
+
+  const handleMainPrev = () => {
+    if (mainImageIndex > 0) {
+      setMainImageIndex((nextImage) => nextImage - 1);
     }
   };
 
   return (
     <div>
-      {console.log(thumbContainer)}
-      {/* <div className="arrows" onClick={prevSlide}>
-        <span className="prev">&#100094;</span>
-      </div> */}
-      <button onClick={handlePrevious}>Previous</button>
+      <button id="prev" type="button" onClick={handlePrevious}>Previous</button>
       <div className="view-port" style={styles.view_port}>
         <div ref={thumbContainer} className="thumbnail-container" style={styles.thumbnail_container}>
-          <Thumbnails
-            thumbnail_num="0"
-            // images={images}
-            // onThumbnailClick={onThumbnailClick}
-          />
-          <Thumbnails thumbnail_num="1" />
-          <Thumbnails thumbnail_num="2" />
-          <Thumbnails thumbnail_num="3" />
+          {images.map((images, idx) => (
+            <div key={idx}>
+              <Thumbnails
+                image={images}
+                onThumbnailClick={onThumbnailClick}
+              />
+            </div>
+          ))}
         </div>
       </div>
-      {/* <div className="arrows" onClick={nextSlide}>
-        <span className="next">&#100095;</span>
-      </div> */}
-      <button onClick={handleNext}>Next</button>
+      <button id="next" type="button" onClick={handleNext}>Next</button>
       <div>
-        <img className="main-image" src={images[currentImage]} alt="main diplay" height="300" width="225" />
+        <button type="button" onClick={handleMainPrev}>{'<'}</button>
+        <img className="main-image" src={images[mainImageIndex]} alt="main diplay" height="300" width="225" />
+        <button type="button" onClick={handleMainNext}>{'>'}</button>
       </div>
     </div>
   );
@@ -75,17 +76,17 @@ const OverviewImageGallery = ({ images, prevSlide, nextSlide, currentImageIndex 
 const styles = {
   view_port: {
     position: 'absolute',
-    top: '50%',
-    left: '50%',
+    top: '25%',
+    left: '30%',
     transform: 'translate(-50%, -50%)',
-    width: '350px',
-    height: '200px',
+    width: '60px',
+    height: '350px',
     backgroundColor: 'red',
     overflow: 'hidden'
   },
   thumbnail_container: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     width: 'fit-content'
   }
 };
