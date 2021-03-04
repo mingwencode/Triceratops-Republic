@@ -106,14 +106,8 @@ dist
 # API key config.js
 config.js
 
-<<<<<<< HEAD
+# jsx files in js
+
 public/bundle.js
 
-=======
-<<<<<<< HEAD
-=======
-# jsx files in js
->>>>>>> d81970a4824352b026a507743c63bc0a218a0b6c
-public/bundle.js
->>>>>>> 9866def13ba2886807d1e1c83a6cf43e4417f936
 public/bundle.js.map

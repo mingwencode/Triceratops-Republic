@@ -7,30 +7,23 @@ const Title = styled.div`
   color: palevioletred;
 `;
 
-// const Slider = styled.div`
-//   height: 30vh;
-//   display: flex;
-//   justify-content: center;
-//   background: #FED7D7
-// `;
+const ViewPort = styled.div`
+  margin: 0 auto;
+  width: 840px;
+  height: 250px;
+  background: rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+`;
 
-const styles = {
-  view_port: {
-    position: 'absolute',
-    top: '80%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '750px',
-    height: '200px',
-    //background: 'rgba(255, 255, 255, 0.5)',
-    overflow: 'hidden'
-  },
-  card_container: {
-    display: 'flex',
-    flexDirection: 'row',
-    width: 'fit-content',
-  },
-};
+const CardContainer = styled.div`
+  display: flex;
+  flexDirection: row;
+  width: fit-content;
+`;
+
+const SlideDivOne = styled.div`
+  margin: 0 auto;
+`;
 
 const products = [
   { name: 'pic1', category: 'dress', price: '80', url: '../images/test_related_1.jpg' },
@@ -50,45 +43,41 @@ const RelatedProductsList = () => {
 
   useEffect(() => {
     cardContainer.current.style.transitionDuration = '0.5s';
-    cardContainer.current.style.transform = `translate(-${200 * current}px)`;
+    cardContainer.current.style.transform = `translate(-${220 * current}px)`;
   }, [current]);
 
   const prevSilde = () => {
     if (current > 0) {
       setCurrent(current - 1);
-    } else {
-      // eslint-disable-next-line no-useless-return
-      return;
     }
   };
 
   const nextSlide = () => {
     if (current < cardContainer.current.children.length - 1) {
       setCurrent(current + 1);
-    } else {
-      return;
     }
   };
 
   return (
-    <div className="list_container">
+    <SlideDivOne className="list_container">
       <Title>RELATED PRODUCTS</Title>
       {current === 0 ? null : <button name="prev_btn" type="button" onClick={prevSilde}>Previous</button>}
-      {current === 6 ? null : <button name="next_btn" type="button" onClick={nextSlide}>Next</button>}
+      {current === products.length - 4 ? null : <button name="next_btn" type="button" onClick={nextSlide}>Next</button>}
+
 
       <div>
-        <div className="view-port" style={styles.view_port}>
-          <div ref={cardContainer} className="card-container" style={styles.card_container}>
+        <ViewPort className="view-port">
+          <CardContainer ref={cardContainer} className="card-container">
             {products.map((product, index) => (
               // eslint-disable-next-line react/no-array-index-key
               <div key={index}>
                 <ProductCard key={product.name} product={product} />
               </div>
             ))}
-          </div>
-        </div>
+          </CardContainer>
+        </ViewPort>
       </div>
-    </div>
+    </SlideDivOne>
 
   );
 };
