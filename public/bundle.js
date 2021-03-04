@@ -4117,7 +4117,8 @@ var QAndA = function QAndA() {
     onShowAnswerModal: onShowAnswerModal,
     onOpenAnswerModal: onOpenAnswerModal,
     qa: qa,
-    questionAnswersShown: questionAnswersShown
+    questionAnswersShown: questionAnswersShown,
+    searchText: searchText
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, showMoreQuestionsButton()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_AddNewQuestion__WEBPACK_IMPORTED_MODULE_1__.default, {
     addQuestionButtonClick: addQuestionButtonClick
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_QAModal__WEBPACK_IMPORTED_MODULE_3__.default, {
@@ -4298,11 +4299,26 @@ var QuestionAnswerList = function QuestionAnswerList(_ref) {
   var onShowAnswerModal = _ref.onShowAnswerModal,
       onOpenAnswerModal = _ref.onOpenAnswerModal,
       questionAnswersShown = _ref.questionAnswersShown,
-      qa = _ref.qa;
+      qa = _ref.qa,
+      searchText = _ref.searchText;
   var newQaArray = [];
 
-  for (var i = 0; i < questionAnswersShown; i += 1) {
-    newQaArray.push(qa.results[i]);
+  if (searchText.length >= 3) {
+    var searchArray = [];
+
+    for (var i = 0; i < qa.results.length; i += 1) {
+      if (qa.results[i].question_body.includes(searchText)) {
+        searchArray.push(qa.results[i]);
+      }
+    }
+
+    for (var _i = 0; _i < Math.min(questionAnswersShown, searchArray.length); _i += 1) {
+      newQaArray.push(searchArray[_i]);
+    }
+  } else {
+    for (var _i2 = 0; _i2 < Math.min(questionAnswersShown, qa.results.length); _i2 += 1) {
+      newQaArray.push(qa.results[_i2]);
+    }
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {

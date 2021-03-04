@@ -290,7 +290,7 @@ const QAndA = () => {
     <div>
       <textarea value={searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
       <span>
-        <QuestionAnswerList onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} qa={qa} questionAnswersShown={questionAnswersShown} />
+        <QuestionAnswerList onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} qa={qa} questionAnswersShown={questionAnswersShown} searchText={searchText} />
         <p>{showMoreQuestionsButton()}</p>
         <AddNewQuestion addQuestionButtonClick={addQuestionButtonClick} />
         <QAModal isOpenModal={isQuestionModalOpen} onDismiss={onQuestionModalDismiss}>
