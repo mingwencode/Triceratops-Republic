@@ -6,13 +6,30 @@
 import React from 'react';
 import Question from './Question';
 
-const QuestionAnswerList = ({ onShowAnswerModal, onOpenAnswerModal, questionAnswersShown, qa }) => {
+const questionStyles = {
+  maxHeight: '500px',
+  overflow: 'auto',
+};
+
+const QuestionAnswerList = ({ onShowAnswerModal, onOpenAnswerModal, questionAnswersShown, productQuestions, searchText }) => {
   const newQaArray = [];
-  for (let i = 0; i < questionAnswersShown; i += 1) {
-    newQaArray.push(qa.results[i]);
+  if (searchText.length >= 3) {
+    const searchArray = [];
+    for (let i = 0; i < productQuestions.results.length; i += 1) {
+      if (productQuestions.results[i].question_body.includes(searchText)) {
+        searchArray.push(productQuestions.results[i]);
+      }
+    }
+    for (let i = 0; i < Math.min(questionAnswersShown, searchArray.length); i += 1) {
+      newQaArray.push(searchArray[i]);
+    }
+  } else {
+    for (let i = 0; i < Math.min(questionAnswersShown, productQuestions.results.length); i += 1) {
+      newQaArray.push(productQuestions.results[i]);
+    }
   }
   return (
-    <div>
+    <div style={questionStyles}>
       {newQaArray.map((question, index) => <Question question={question} key={index} onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} />)}
     </div>
   );

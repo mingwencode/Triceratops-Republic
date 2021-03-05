@@ -15,21 +15,17 @@ const appStyle = {
 
 const App = () => {
   const [productArray, setProductArray] = useState([]);
-  const [currentProductId, setCurrentProductId] = useState(20111);
+  const [currentProductId, setCurrentProductId] = useState(20102);
   const [productReviewArray, setProductReviewArray] = useState();
-  const [productQuestions, setProductQuestions] = useState();
   const [relatedProductIds, setRelatedProductIds] = useState();
   const [reviewMetaData, setReviewMetaData] = useState();
-  const [answers, setAnswers] = useState();
   const [productStyles, setProductStyles] = useState();
 
   useEffect(() => {
     getProducts();
     getReviews(currentProductId);
-    getQuestions(currentProductId);
     getRelatedProductIds(currentProductId);
     getReviewsMeta(currentProductId);
-    getAnswers(133176); // need to find out what id is
     getProductStyles(currentProductId);
   }, []);
   // OVERVIEW
@@ -89,71 +85,6 @@ const App = () => {
       .catch((err) => console.log('post review ', err));
   };
 
-  // QUESTIONS & ANSWERS
-  const getQuestions = (id) => {
-    axios.get(`/qa/questions/${id}`)
-      .then((res) => (
-        setProductQuestions(res.data)
-      ))
-      .catch((err) => console.log('get questions: ', err));
-  };
-
-  const getAnswers = (question_id) => {
-    axios.get(`/qa/questions/${question_id}/answers`)
-      .then((res) => (
-        setAnswers(res.data)
-      ))
-      .catch((err) => console.log('get questions: ', err));
-  };
-
-  const postQuestion = (question) => {
-    axios.post('/qa/questions', question)
-      .then(() => getQuestions())
-      .catch((err) => console.log('post question ', err));
-  };
-
-  const postAnswer = (answer, question_id) => {
-    axios.post(`/qa/questions/${question_id}/answers`, answer, question_id)
-      .then(() => getQuestions())
-      .catch((err) => console.log('post question ', err));
-  };
-
-  const putQuestionHelpful = (question_id) => {
-    axios.put(`/qa/questions/${question_id}/helpful`)
-      .then(() => {
-        console.log('putQuestionsHelpful works!!');
-        getQuestions();
-      })
-      .catch((err) => console.log('put questions helpful ', err));
-  };
-
-  const putQuestionReport = (question_id) => {
-    axios.put(`/qa/questions/${question_id}/report`)
-      .then(() => {
-        console.log('putQuestionsReport works!!');
-        getQuestions();
-      })
-      .catch((err) => console.log('put questions report ', err));
-  };
-
-  const putAnswersHelpful = (answer_id) => {
-    axios.put(`/qa/questions/${answer_id}/helpful`)
-      .then(() => {
-        console.log('putAnswersHelpful works!!');
-        getAnswers();
-      })
-      .catch((err) => console.log('put questions helpful ', err));
-  };
-
-  const putAnswersReport = (answer_id) => {
-    axios.put(`/qa/questions/${answer_id}/report`)
-      .then(() => {
-        console.log('putAnswersReport works!!');
-        getAnswers();
-      })
-      .catch((err) => console.log('put questions report ', err));
-  };
-
   // RELATED PRODUCTS
   const getRelatedProductIds = (id) => {
     axios.get(`/products/${id}/related`)
@@ -169,7 +100,7 @@ const App = () => {
         <Overview products={productArray} />
         <div style={appStyle}>
           <RelatedProducts />
-          <QAndA />
+          <QAndA currentProductId={currentProductId} />
           <RatingsAndReviews
             reviewArray={productReviewArray}
             setReviewArray={productReviewArray}

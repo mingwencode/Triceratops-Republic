@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 const Answer = ({ answer }) => {
   const { body, answerer_name, date, id, helpfulness, photos } = answer;
   const [report, setReport] = useState('Report');
+  const [isHelpful, setIsHelpful] = useState(helpfulness);
 
   const getProperDate = (longDate) => {
     const dateArray = longDate.slice(0, longDate.indexOf('T')).split('-');
@@ -19,6 +20,10 @@ const Answer = ({ answer }) => {
   const onReportButtonClick = (e) => {
     e.preventDefault();
     setReport('Reported');
+  };
+
+  const handleHelpfulnessClick = () => {
+    setIsHelpful(isHelpful + 1);
   };
 
   return (
@@ -38,9 +43,9 @@ const Answer = ({ answer }) => {
         Helpful?
         {' '}
       </span>
-      <span>
+      <span onClick={handleHelpfulnessClick}>
         Yes
-        ({helpfulness})
+        ({isHelpful})
       </span>
       <span
         onClick={(e) => onReportButtonClick(e)}

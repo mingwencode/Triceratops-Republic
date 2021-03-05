@@ -26,15 +26,14 @@ const OverlayStyles = {
 const QAModal = ({ isOpenModal, onDismiss, children }) => {
   if (!isOpenModal) return null;
 
-  return ReactDom.createPortal(
+  return (
     <>
       <div style={OverlayStyles} />
       <div style={ModalStyles}>
         <button type="button" onClick={onDismiss}>X</button>
         {children}
       </div>
-    </>,
-    document.getElementById('portal'),
+    </>
   );
 };
 
