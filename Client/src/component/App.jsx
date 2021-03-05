@@ -101,16 +101,19 @@ const App = () => {
   if (productReviewArray) {
     return (
       <div>
-        {console.log("this is styles, ", productStyles)}
+        {console.log('this is styles, ', productStyles)}
         <Overview
-          products={productArray}
           productStyles={productStyles}
           currentProductId={currentProductId}
           getProductStyles={getProductStyles}
         />
         <div style={appStyle}>
-          <RelatedProducts setCurrentProductId={setCurrentProductId}/>
-          <QAndA currentProductId={currentProductId} />
+          <RelatedProducts
+            setCurrentProductId={setCurrentProductId}
+          />
+          <QAndA
+            currentProductId={currentProductId}
+          />
           <RatingsAndReviews
             reviewArray={productReviewArray}
             setReviewArray={productReviewArray}
