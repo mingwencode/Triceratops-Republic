@@ -2,8 +2,8 @@
 /* eslint-disable padded-blocks */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import ReviewTile from './ReviewTile';
-
 
 const MODAL_STYLES = {
   position: 'fixed',
@@ -26,7 +26,7 @@ const OVERLAY_STYLES = {
   zIndex: 1000,
 };
 
-const ReviewList = ({ reviewArray, setReviewArray, starPercent}) => {
+const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect }) => {
   const [reviewCount, setReviewCount] = useState(2);
   const [reviewModalBoolean, setReviewModalBoolean] = useState(false);
   const [moreReviewsBoolean, setMoreReview] = useState(true);
@@ -36,10 +36,35 @@ const ReviewList = ({ reviewArray, setReviewArray, starPercent}) => {
   if (reviews.length < 2) setMoreReview(false);
 
 
+  const putReviewHelpful = (review_id) => {
+    axios.put(`/reviews/${review_id}/helpful`)
+      .then(() => {
+        getReviews();
+      })
+      .catch((err) => console.log('put reviews ', err));
+  };
+
+  const putReviewReport = (review_id) => {
+    axios.put(`/reviews/${review_id}/report`)
+      .then(() => {
+        getReviews();
+      })
+      .catch((err) => console.log('put reviews ', err));
+  };
+
   const intitialReviewRender = () => {
     return reviews.slice(0, reviewCount).map((review) => {
 
-      return <ReviewTile starPercent={starPercent} key={review.review_id} review={review} />;
+      return (
+        <ReviewTile
+          putReviewHelpful={putReviewHelpful}
+          review={review}
+          putReviewReport={putReviewReport}
+          getReviews={getReviews}
+          currentProductId={currentProductId}
+          dropDownselect={dropDownselect}
+        />
+      );
 
     });
   };
@@ -62,7 +87,6 @@ const ReviewList = ({ reviewArray, setReviewArray, starPercent}) => {
       );
     }
   };
-
 
   if (!reviewModalBoolean) {
     return (

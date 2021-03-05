@@ -1,34 +1,58 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-plusplus */
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import NewReviewForm from './NewReviewForm';
 import ReviewList from './ReviewList';
 import RatingsAndReviewsHeader from './RatingsAndReviewsHeader';
 import RatingsAndReviewsBreakDown from './RatingsAndReviewsBreakDown';
 
-const RatingsAndReviews = ({ reviewArray, setReviewArray, setDropDownSelect }) => {
+const RatingsAndReviews = ({
+  currentProductId,
+}) => {
+  const [reviewArray, setProductReviewArray] = useState();
   const [showNewMReviewModal, setNewReviewModal] = useState(false);
-  const [starPercent, setStarPercent] = useState(0);
-  const reviews = reviewArray.results;
+  const [dropDownselect, setDropDownSelect] = useState('newest');
+  const [reviewMetaData, setReviewMetaData] = useState();
 
-  const factorStarPecent = () => {
-    let count = 0;
-    // eslint-disable-next-line no-return-assign
-    reviews.forEach((review) => count += review.rating);
-    const average = count / reviews.length;
-    setStarPercent((average / 5) * 100);
+
+  const getReviews = (id, sortOption) => {
+    axios.get(`/reviews/${id}&sort=${sortOption}`)
+      .then((res) => (setProductReviewArray(res.data)))
+      .catch((err) => console.log('get reviews ', err));
+  };
+
+  const getReviewsMeta = (id) => {
+    axios.get(`/reviews/meta/${id}`)
+      .then((res) => (
+        setReviewMetaData(res.data)
+      ))
+      .catch((err) => console.log('get review meta ', err));
+  };
+
+  const postReviews = (review) => {
+    axios.post('/reviews', review)
+      .then(() => getReviews())
+      .catch((err) => console.log('post review ', err));
   };
 
   useEffect(() => {
-    factorStarPecent();
+    getReviews(currentProductId, dropDownselect);
   }, []);
 
+  useEffect(() => {
+    getReviews(currentProductId, dropDownselect);
+  }, [dropDownselect]);
+
+
+if (reviewArray) {
+  const reviews = reviewArray.results;
+  console.log(reviewArray.results.length)
   return (
     <div>
       <div>
         <RatingsAndReviewsBreakDown
           reviewArray={reviewArray}
-          starPercent={starPercent}
         />
       </div>
       <div>
@@ -39,9 +63,11 @@ const RatingsAndReviews = ({ reviewArray, setReviewArray, setDropDownSelect }) =
       </div>
       <div>
         <ReviewList
-          setReviewArray={setReviewArray}
           reviewArray={reviewArray}
-          starPercent={starPercent}
+          getReviews={getReviews}
+          currentProductId={currentProductId}
+          dropDownselect={dropDownselect}
+
         />
       </div>
       <div>
@@ -58,6 +84,8 @@ const RatingsAndReviews = ({ reviewArray, setReviewArray, setDropDownSelect }) =
       </button>
     </div>
   );
+}
+  return <div> hello</div>
 };
 
 export default RatingsAndReviews;
