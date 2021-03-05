@@ -35,8 +35,8 @@ app.get('/products/:id/styles', (req, res) => {
 
 // RATING & REVIEWS
 app.get('/reviews/:id', (req, res) => {
-  const { id } = req.params;
-  axios.get(`${options.url}reviews/?product_id=${id}`, options)
+  const { id, sortOption } = req.params;
+  axios.get(`${options.url}reviews/?product_id=${id}&sort=${sortOption}`, options)
     .then((datas) => res.send(datas.data))
     .catch((error) => console.log('server review GET err'));
 });
@@ -84,14 +84,14 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
 });
 
 app.post('/qa/questions', (req, res) => {
-  axios.post(`${options.url}qa/questions`, options)
+  axios.post(`${options.url}qa/questions`, req.body, options)
     .then(() => res.send(201))
     .catch((error) => console.log('server questions POST err', error.data));
 });
 
 app.post('/qa/questions/:question_id/answers', (req, res) => {
   const { question_id } = req.params;
-  axios.post(`${options.url}qa/questions/${question_id}/answers`, options)
+  axios.post(`${options.url}qa/questions/${question_id}/answers`, req.body, options)
     .then(() => res.send(201))
     .catch((error) => console.log('server answers POST err', error.data));
 });

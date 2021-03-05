@@ -11,7 +11,7 @@ const questionStyles = {
   overflow: 'auto',
 };
 
-const QuestionAnswerList = ({ onShowAnswerModal, onOpenAnswerModal, questionAnswersShown, productQuestions, searchText }) => {
+const QuestionAnswerList = ({ onShowAnswerModal, onOpenAnswerModal, questionAnswersShown, productQuestions, searchText, putQuestionHelpful, putQuestionReport, putAnswersHelpful, putAnswersReport, setQuestionID }) => {
   const newQaArray = [];
   if (searchText.length >= 3) {
     const searchArray = [];
@@ -30,7 +30,7 @@ const QuestionAnswerList = ({ onShowAnswerModal, onOpenAnswerModal, questionAnsw
   }
   return (
     <div style={questionStyles}>
-      {newQaArray.map((question, index) => <Question question={question} key={index} onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} questionAnswersShown={questionAnswersShown} />)}
+      {newQaArray.map((question, index) => <Question question={question} key={index} onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} questionAnswersShown={questionAnswersShown} putQuestionHelpful={putQuestionHelpful} putQuestionReport={putQuestionReport} putAnswersHelpful={putAnswersHelpful} putAnswersReport={putAnswersReport} setQuestionID={setQuestionID} />)}
     </div>
   );
 };

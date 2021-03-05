@@ -1,9 +1,10 @@
-/* eslint-disable react/prop-types */
-import React from 'react';
+/* esdivnt-disable react/prop-types */
+import React, { useState, useEffect } from 'react';
+import ShadedStarRating from './ShadedStarRating';
 
 const ReviewTile = ({ review }) => {
-  const starsInReview = () => Array.from(Array(review.rating), () => (<i className="fas fa-star" />));
-
+  const [starRating, setStarRating] = useState(26);
+  useEffect(() => { setStarRating((review.rating / 5) * 100); }, []);
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
@@ -11,21 +12,21 @@ const ReviewTile = ({ review }) => {
   const isRecomended = () => {
     if (review.recommend) {
       return (
-        <li>
+        <div>
           <i
             className="fas fa-check"
           />
           <span>
             I Recommend This Product
           </span>
-        </li>
+        </div>
       );
     }
   };
   const generateResponse = () => {
     if (review.response) {
       return (
-        <li>
+        <div>
           <span>
             Response:
           </span>
@@ -33,16 +34,16 @@ const ReviewTile = ({ review }) => {
           <span>
             {review.response}
           </span>
-        </li>
+        </div>
       );
     }
   };
 
   return (
-    <li>
+    <div>
       <ul>
-        <li className="reviews">{starsInReview()}</li>
-        <li>
+        <ShadedStarRating starPercent={starRating} />
+        <div key="reviewName">
           <span
             className="reviewName"
           >
@@ -53,21 +54,21 @@ const ReviewTile = ({ review }) => {
           >
             {formatDate(review.date)}
           </span>
-        </li>
-        <li>
+        </div>
+        <div key="reviewSummary">
           <span
             className="reviewSummary"
           >
             {review.summary}
           </span>
-        </li>
-        <li
-          className="reviewBody"
+        </div>
+        <div
+          key="reviewBody"
         >
           <p>
             {review.body}
           </p>
-        </li>
+        </div>
         {isRecomended()}
         {generateResponse()}
         <br />
@@ -88,7 +89,7 @@ const ReviewTile = ({ review }) => {
           Report
         </button>
       </ul>
-    </li>
+    </div>
 
   );
 };
