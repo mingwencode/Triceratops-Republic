@@ -30,7 +30,7 @@ const ProductCard = ({ product, list, removeOutFit, setCurrentProductId}) => {
 
   return (
     <Card>
-      <SlideImg src={product.url} alt="" onClick={() => setCurrentProductId(20886)}/>
+      <SlideImg src={product.url} alt="" onClick={() => setCurrentProductId(20886)} />
       <span>{product.category}</span>
       <br />
       <span>{product.name}</span>
