@@ -2,7 +2,7 @@ import React from 'react';
 import ShadedStarRating from './ShadedStarRating';
 // eslint-disable-next-line arrow-body-style
 const RatingsAndReviewsBreakDown = ({reviewArray}) => {
-  const productReviewArray = reviewArray[0].results;
+  const productReviewArray = reviewArray.results;
   const averageRating = () => {
     let count = 0;
     // eslint-disable-next-line no-return-assign

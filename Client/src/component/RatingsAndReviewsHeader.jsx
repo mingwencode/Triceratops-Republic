@@ -8,7 +8,7 @@ const RatingsAndReviewsHeader = ({ reviewArray, setDropDownSelect }) => {
   return (
     <div className="wrapper-dropdown">
       <span>
-        {reviewArray[0].results.length}
+        {reviewArray.results.length}
       </span>
       <span>
         reviews, sorted by
