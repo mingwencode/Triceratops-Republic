@@ -22,9 +22,6 @@ const App = () => {
   const [productStyles, setProductStyles] = useState();
   const [dropDownselect, setDropDownSelect] = useState('Helpful');
 
-  useEffect(() => {
-    getProducts();
-  }, [currentProductId]);
 
   // OVERVIEW
   const getProducts = () => {
@@ -95,6 +92,15 @@ const App = () => {
       ))
       .catch(err => console.log('get related product ids ', err));
   };
+
+  useEffect(() => {
+    getProducts();
+  }, [currentProductId]);
+
+  useEffect(() => {
+    getReviews();
+  }, [dropDownselect]);
+
 
   if (productReviewArray) {
     return (
