@@ -3,7 +3,7 @@
 import React from 'react';
 import ShadedStarRating from './ShadedStarRating';
 // eslint-disable-next-line arrow-body-style
-const RatingsAndReviewsBreakDown = ({reviewArray, starPercent, ImAFunction}) => {
+const RatingsAndReviewsBreakDown = ({reviewArray, starPercent}) => {
   const productReviewArray = reviewArray.results;
 
   const percentRecommended = () => {
@@ -61,7 +61,6 @@ const RatingsAndReviewsBreakDown = ({reviewArray, starPercent, ImAFunction}) => 
       <div>
         <span>{averageRating()}</span>
         <ShadedStarRating starPercent={starPercent} />
-        {ImAFunction()}
       </div>
       <span>
         {percentRecommended()}

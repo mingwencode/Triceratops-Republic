@@ -35,8 +35,8 @@ app.get('/products/:id/styles', (req, res) => {
 
 // RATING & REVIEWS
 app.get('/reviews/:id', (req, res) => {
-  const { id } = req.params;
-  axios.get(`${options.url}reviews/?product_id=${id}`, options)
+  const { id, sortOption } = req.params;
+  axios.get(`${options.url}reviews/?product_id=${id}&sort=${sortOption}`, options)
     .then((datas) => res.send(datas.data))
     .catch((error) => console.log('server review GET err'));
 });

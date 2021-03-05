@@ -26,31 +26,12 @@ const OVERLAY_STYLES = {
   zIndex: 1000,
 };
 
-const ReviewList = ({ reviewArray, setReviewArray, starPercent, dropDownSelect}) => {
+const ReviewList = ({ reviewArray, setReviewArray, starPercent}) => {
   const [reviewCount, setReviewCount] = useState(2);
   const [reviewModalBoolean, setReviewModalBoolean] = useState(false);
   const [moreReviewsBoolean, setMoreReview] = useState(true);
-  const [reviews, setOrganizedReviewAray] = useState(reviewArray.results);
 
-
-  useEffect(() => {
-    if (dropDownSelect === 'Helpful') {
-      setOrganizedReviewAray(reviews.sort((a, b) => {
-         return b.helpfulness - a.helpfulness;
-       })
-       )
-    }
-    if (dropDownSelect === 'Relevent') {
-
-   }
-    if (dropDownSelect === 'Newest') {
-      setOrganizedReviewAray(reviews.sort((a, b) => {
-        return new Date(b.date) - new Date(a.date)
-      })
-      )
-   }
- }, [dropDownSelect]);
-
+  const reviews = reviewArray.results;
 
   if (reviews.length < 2) setMoreReview(false);
 

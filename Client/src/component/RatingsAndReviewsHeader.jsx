@@ -5,9 +5,6 @@ import React from 'react';
 // eslint-disable-next-line arrow-body-style
 const RatingsAndReviewsHeader = ({ reviewArray, setDropDownSelect }) => {
 
-
-
-
   return (
     <div className="wrapper-dropdown">
           <form>
