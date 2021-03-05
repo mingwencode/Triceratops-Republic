@@ -59,11 +59,6 @@ const Overview = () => {
           <OverviewImageGallery
             className="item2 image-gallery"
             images={images}
-            prevSlide={() => setImageIndex(
-              console.log('prevSlide clicked'),
-              currentImageIndex < 1 ? len : currentImageIndex - 1
-            )}
-            nextSlide={() => setImageIndex(currentImageIndex === len ? 0 : currentImageIndex + 1)}
             currentImageIndex={currentImageIndex}
           />
           <OverviewProductInfo className="item3 product-info" styles={styles} />

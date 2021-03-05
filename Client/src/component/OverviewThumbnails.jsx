@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 
 const Thumbnails = ({ thumbnail_num, image, onThumbnailClick }) => {
-  const [currentImage, setImage] = useState(0);
+  const [currentImage, setImage] = useState(0); // not in use! only here so eslint doesn't yell
 
   return (
     <div style={styles.thumbnails}>
@@ -25,14 +25,3 @@ const styles = {
 };
 
 export default Thumbnails;
-
-// {images.map((image, idx) => (
-//         <img
-//           key={idx}
-//           src={image}
-//           alt="gallery carousel"
-//           width="70"
-//           height="90"
-//           onClick={(e) => onThumbnailClick(e, idx)}
-//         />
-//       ))}

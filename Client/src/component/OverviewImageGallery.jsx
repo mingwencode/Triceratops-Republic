@@ -53,10 +53,10 @@ const OverviewImageGallery = ({ images, prevSlide, nextSlide, currentImageIndex 
       <button id="prev" type="button" onClick={handlePrevious}>Previous</button>
       <div className="view-port" style={styles.view_port}>
         <div ref={thumbContainer} className="thumbnail-container" style={styles.thumbnail_container}>
-          {images.map((images, idx) => (
+          {images.map((image, idx) => (
             <div key={idx}>
               <Thumbnails
-                image={images}
+                image={image}
                 onThumbnailClick={onThumbnailClick}
               />
             </div>
@@ -66,7 +66,9 @@ const OverviewImageGallery = ({ images, prevSlide, nextSlide, currentImageIndex 
       <button id="next" type="button" onClick={handleNext}>Next</button>
       <div>
         <button type="button" onClick={handleMainPrev}>{'<'}</button>
-        <img className="main-image" src={images[mainImageIndex]} alt="main diplay" height="300" width="225" />
+        <div>
+          <img className="main-image" src={images[mainImageIndex]} alt="main diplay" height="300" width="225" />
+        </div>
         <button type="button" onClick={handleMainNext}>{'>'}</button>
       </div>
     </div>
@@ -77,7 +79,7 @@ const styles = {
   view_port: {
     position: 'absolute',
     top: '25%',
-    left: '30%',
+    left: '29%',
     transform: 'translate(-50%, -50%)',
     width: '60px',
     height: '350px',
