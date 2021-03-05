@@ -3,7 +3,7 @@
 import React from 'react';
 import ShadedStarRating from './ShadedStarRating';
 // eslint-disable-next-line arrow-body-style
-const RatingsAndReviewsBreakDown = ({reviewArray}) => {
+const RatingsAndReviewsBreakDown = ({reviewArray, starPercent}) => {
   const productReviewArray = reviewArray.results;
 
   const percentRecommended = () => {
@@ -11,9 +11,10 @@ const RatingsAndReviewsBreakDown = ({reviewArray}) => {
     for (let i = 0; i < productReviewArray.length; i++) {
       if (productReviewArray[i].recommend) numberRecommended++;
     }
-    let asPercent = (numberRecommended/productReviewArray.length) * 100;
+    const asPercent = (numberRecommended/productReviewArray.length) * 100;
+
     return asPercent;
-  }
+  };
 
   // eslint-disable-next-line arrow-body-style
   const generateStarBar = () => {
@@ -26,17 +27,17 @@ const RatingsAndReviewsBreakDown = ({reviewArray}) => {
     };
     productReviewArray.forEach((review) => {numberOfStarsObj[review.rating] += 1; });
     return Object.keys(numberOfStarsObj).map((key) => {
-
+      const asPercentForBars = (numberOfStarsObj[key]/productReviewArray.length) * 100;
       return (
-        <li>
+        <div>
           {key}
           stars
           <progress
             id="star"
             max="100"
-            value={key}
+            value={asPercentForBars}
           />
-        </li>
+        </div>
       );
     });
   };
@@ -57,9 +58,9 @@ const RatingsAndReviewsBreakDown = ({reviewArray}) => {
   return (
     <div>
       <h3>Ratings &amp; Reviews </h3>
-      <span>{averageRating()}</span>
       <div>
-        <ShadedStarRating />
+        <span>{averageRating()}</span>
+        <ShadedStarRating starPercent={starPercent} />
       </div>
       <span>
         {percentRecommended()}

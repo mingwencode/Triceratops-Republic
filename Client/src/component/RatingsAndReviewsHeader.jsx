@@ -5,15 +5,17 @@ import React from 'react';
 // eslint-disable-next-line arrow-body-style
 const RatingsAndReviewsHeader = ({ reviewArray, setDropDownSelect }) => {
 
+
+
+
   return (
     <div className="wrapper-dropdown">
+          <form>
+
       <span>
-        {reviewArray.results.length}
+      {reviewArray.results.length} reviews, sorted by
       </span>
-      <span>
-        reviews, sorted by
-      </span>
-      <form>
+
         <select onChange={(e) => setDropDownSelect(e.target.value)}>
           <option
             value="Helpful"
@@ -21,9 +23,9 @@ const RatingsAndReviewsHeader = ({ reviewArray, setDropDownSelect }) => {
             Helpful
           </option>
           <option
-            value="Price"
+            value="Newest"
           >
-            Price
+            Newest
           </option>
           <option
             value="Relevent"

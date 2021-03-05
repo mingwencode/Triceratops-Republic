@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+/* eslint-disable react/prop-types */
+/* eslint-disable no-plusplus */
+import React, { useState, useEffect } from 'react';
 import NewReviewForm from './NewReviewForm';
 import ReviewList from './ReviewList';
 import RatingsAndReviewsHeader from './RatingsAndReviewsHeader';
@@ -7,11 +9,28 @@ import RatingsAndReviewsBreakDown from './RatingsAndReviewsBreakDown';
 const RatingsAndReviews = ({ reviewArray, setReviewArray }) => {
   const [showNewMReviewModal, setNewReviewModal] = useState(false);
   const [dropDownselect, setDropDownSelect] = useState('Helpful');
+  const [starPercent, setStarPercent] = useState(0);
+  const reviews = reviewArray.results;
+
+  const factorStarPecent = () => {
+    let count = 0;
+    // eslint-disable-next-line no-return-assign
+    reviews.forEach((review) => count += review.rating);
+    const average = count / reviews.length;
+    setStarPercent((average/5) * 100);
+  };
+
+  useEffect(() => {
+    factorStarPecent();
+  }, []);
+
+
   return (
     <div>
       <div>
         <RatingsAndReviewsBreakDown
           reviewArray={reviewArray}
+          starPercent={starPercent}
         />
       </div>
       <div>
@@ -25,6 +44,7 @@ const RatingsAndReviews = ({ reviewArray, setReviewArray }) => {
           setReviewArray={setReviewArray}
           reviewArray={reviewArray}
           dropDownSelect={dropDownselect}
+          starPercent={starPercent}
         />
       </div>
       <div>
