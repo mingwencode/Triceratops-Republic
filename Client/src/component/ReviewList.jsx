@@ -1,10 +1,9 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable padded-blocks */
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
-import ReactDom from 'react-dom';
+import React, { useState, useEffect } from 'react';
 import ReviewTile from './ReviewTile';
-import RatingsAndReviewsHeader from './RatingsAndReviewsHeader';
+
 
 const MODAL_STYLES = {
   position: 'fixed',
@@ -27,19 +26,20 @@ const OVERLAY_STYLES = {
   zIndex: 1000,
 };
 
-const ReviewList = ({ reviewArray, setReviewArray }) => {
+const ReviewList = ({ reviewArray, setReviewArray, starPercent}) => {
   const [reviewCount, setReviewCount] = useState(2);
   const [reviewModalBoolean, setReviewModalBoolean] = useState(false);
   const [moreReviewsBoolean, setMoreReview] = useState(true);
 
   const reviews = reviewArray.results;
+
   if (reviews.length < 2) setMoreReview(false);
 
 
   const intitialReviewRender = () => {
     return reviews.slice(0, reviewCount).map((review) => {
 
-      return <ReviewTile key={review.review_id} review={review} />;
+      return <ReviewTile starPercent={starPercent} key={review.review_id} review={review} />;
 
     });
   };
@@ -63,6 +63,7 @@ const ReviewList = ({ reviewArray, setReviewArray }) => {
     }
   };
 
+
   if (!reviewModalBoolean) {
     return (
       <div>
@@ -77,9 +78,11 @@ const ReviewList = ({ reviewArray, setReviewArray }) => {
   }
 
   if (reviewModalBoolean) {
-    return ReactDom.createPortal(
+    return (
       <>
+
         <div style={OVERLAY_STYLES} />
+
         <div style={MODAL_STYLES}>
           <button
             type="button"
@@ -95,8 +98,7 @@ const ReviewList = ({ reviewArray, setReviewArray }) => {
           </ul>
           {moreReviews()}
         </div>
-      </>,
-      document.getElementById('portal'),
+      </>
     );
   }
 };

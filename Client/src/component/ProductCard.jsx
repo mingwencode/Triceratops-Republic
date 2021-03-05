@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import CompareModal from './CompareModal';
+import ShadedStarRating from './ShadedStarRating';
 
 const SlideImg = styled.img`
   width: 180px;
@@ -20,8 +21,12 @@ const Card = styled.div`
   color: white;
   margin: 0 40px 0 0;
 `;
+const Star = styled.div`
+  height: 10px;
+  width: 10px;
+`
 
-const ProductCard = ({ product, list, removeOutFit, setCurrentProductId}) => {
+const ProductCard = ({ product, list, removeOutFit, setCurrentProductId, starPercent}) => {
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
@@ -32,13 +37,12 @@ const ProductCard = ({ product, list, removeOutFit, setCurrentProductId}) => {
     <Card>
       <SlideImg src={product.url} alt="" onClick={() => setCurrentProductId(20886)} />
       <span>{product.category}</span>
-      <br />
       <span>{product.name}</span>
-      <br />
+      <Star><ShadedStarRating starPercent={starPercent} /></Star>
       <span>{`$${product.price}`}</span>
       {list === 'related' ? (
         <div>
-          <button type="button" onClick={openModal}>⭐</button>
+          <button type="button" onClick={() => openModal()}>⭐</button>
           <CompareModal isOpenModal={showModal} onDismiss={setShowModal} />
         </div>
       )

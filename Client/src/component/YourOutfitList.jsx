@@ -95,8 +95,8 @@ const YourOutfitList = () => {
     <Grid className="list_container">
       <Title>YOUR OUTFIT</Title>
       <button name="add_btn" type="button" onClick={() => addOutFit(1)}>Add</button>
-      {current === 0 ? null : <button name="prev_btn" type="button" onClick={prevSilde}>Previous</button>}
-      {current === products.length - 4 ? null : <button name="next_btn" type="button" onClick={nextSlide}>Next</button>}
+      {current === 0 ? null : <button name="prev_btn" type="button" onClick={() => prevSilde()}>Previous</button>}
+      {current === products.length - 4 ? null : <button name="next_btn" type="button" onClick={() => nextSlide()}>Next</button>}
 
       <div>
         <OutfitViewPort className="view-port">
