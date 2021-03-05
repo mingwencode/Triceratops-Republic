@@ -32,7 +32,6 @@ const ReviewList = ({ reviewArray, setReviewArray, starPercent, dropDownSelect})
   const [moreReviewsBoolean, setMoreReview] = useState(true);
   const [reviews, setOrganizedReviewAray] = useState(reviewArray.results);
 
-console.log(reviewArray.results)
 
   useEffect(() => {
     if (dropDownSelect === 'Helpful') {
