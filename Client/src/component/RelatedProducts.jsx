@@ -2,47 +2,42 @@ import React, { useState, useEffect } from 'react';
 import RelatedProductsList from './RelatedProductsList';
 import YourOutfitList from './YourOutfitList';
 import styled from 'styled-components';
-import CompareModal from './CompareModal';
 
 const Container = styled.div`
   background: #AFFDFD;
   disply: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
-  height: 600px;
+  width: 70%;
+  height: 800px;
+  margin: 0 auto;
 `;
-const ListDiv = styled.div`
-  width : 90%;
-  left: 5%;
-
+const ProductsListDiv = styled.div`
+  width : 94%;
+  top: 5%;
   position: relative;
   background: #5EFDE0;
-  height: 60%;
+  height: 40%;
+  margin: 0 auto;
+  display: flex;
+`;
 
+const OutFitListDiv = styled(ProductsListDiv)`
+  margin-top: 7%;
 `;
 
 const RelatedProducts = () => {
   const [relatedList, setRelatedList] = useState([]);
   const [outfitList, setOutfitList] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-
-  const openModal = () => {
-    setShowModal(prev => !prev);
-  }
 
   return (
     <Container>
-      <ListDiv>
+      <ProductsListDiv>
         <RelatedProductsList />
-        <button type="button" onClick={openModal} >compare</button>
-        <CompareModal showModal={showModal} setShowModal={setShowModal} />
-
-        <br />
-      </ListDiv>
-      <div>
+      </ProductsListDiv>
+      <OutFitListDiv>
         <YourOutfitList />
-      </div>
+      </OutFitListDiv>
     </Container>
   );
 };
