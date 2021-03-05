@@ -19,6 +19,7 @@ const ShadedStarRating = ({ starPercent }) => {
   const RATING_SHADE = {
     background: 'url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png")',
     backgroundRepear: 'repeat-x',
+    fontSize: 0,
     backgroundPosition: '0 100%',
     float: 'left',
     height: '21px',

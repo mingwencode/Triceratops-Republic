@@ -1,10 +1,23 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ShadedStarRating from './ShadedStarRating';
 // eslint-disable-next-line arrow-body-style
-const RatingsAndReviewsBreakDown = ({reviewArray, starPercent}) => {
+const RatingsAndReviewsBreakDown = ({reviewArray}) => {
+  const [starPercent, setStarPercent] = useState()
   const productReviewArray = reviewArray.results;
+
+  const factorStarPecent = () => {
+    let count = 0;
+    // eslint-disable-next-line no-return-assign
+    reviewArray.results.forEach((review) => count += review.rating);
+    const average = count / reviewArray.results.length;
+    setStarPercent((average / 5) * 100);
+  };
+
+  useEffect(() => {
+    factorStarPecent();
+  }, []);
 
   const percentRecommended = () => {
     let numberRecommended = 0;
