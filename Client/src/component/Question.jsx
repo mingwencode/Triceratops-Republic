@@ -9,7 +9,7 @@
 import React, { useState } from 'react';
 import Answer from './Answer';
 
-const Question = ({ question, onShowAnswerModal, onOpenAnswerModal }) => {
+const Question = ({ question, onShowAnswerModal, onOpenAnswerModal, questionAnswersShown }) => {
   const [showAnswerModal, setShowAnswerModal] = useState(false);
   const { question_body, answers, question_id, question_helpfulness } = question;
   const [isQuestionHelpful, setIsQuestionHelpful] = useState(question_helpfulness);
@@ -30,6 +30,11 @@ const Question = ({ question, onShowAnswerModal, onOpenAnswerModal }) => {
     setIsQuestionHelpful(isQuestionHelpful + 1);
   };
 
+  const newAnswerArray = [];
+  for (let i = 0; i < Math.min(questionAnswersShown, answerArray.length); i += 1) {
+    newAnswerArray.push(answerArray[i]);
+  }
+
   return (
     <div>
       <span>Q: {question_body} </span>
@@ -38,7 +43,7 @@ const Question = ({ question, onShowAnswerModal, onOpenAnswerModal }) => {
       <a onClick={onAddAnswerButtonClick}> | Add an Answer</a>
       <span>{renderAnswerModal()}</span>
       <div>
-        {answerArray.map((answer, index) => <Answer key={index} answer={answer} />)}
+        {newAnswerArray.map((answer, index) => <Answer key={index} answer={answer} />)}
       </div>
     </div>
   );

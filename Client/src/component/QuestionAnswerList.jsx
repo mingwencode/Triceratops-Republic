@@ -30,7 +30,7 @@ const QuestionAnswerList = ({ onShowAnswerModal, onOpenAnswerModal, questionAnsw
   }
   return (
     <div style={questionStyles}>
-      {newQaArray.map((question, index) => <Question question={question} key={index} onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} />)}
+      {newQaArray.map((question, index) => <Question question={question} key={index} onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} questionAnswersShown={questionAnswersShown} />)}
     </div>
   );
 };
