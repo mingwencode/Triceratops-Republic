@@ -8,7 +8,7 @@ const Container = styled.div`
   disply: flex;
   justify-content: center;
   align-items: center;
-  width: 70%;
+  width: 100%;
   height: 800px;
   margin: 0 auto;
 `;
@@ -26,14 +26,14 @@ const OutFitListDiv = styled(ProductsListDiv)`
   margin-top: 7%;
 `;
 
-const RelatedProducts = () => {
+const RelatedProducts = ({setCurrentProductId}) => {
   const [relatedList, setRelatedList] = useState([]);
   const [outfitList, setOutfitList] = useState([]);
 
   return (
     <Container>
       <ProductsListDiv>
-        <RelatedProductsList />
+        <RelatedProductsList setCurrentProductId={setCurrentProductId} />
       </ProductsListDiv>
       <OutFitListDiv>
         <YourOutfitList />

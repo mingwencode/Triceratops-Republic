@@ -31,6 +31,10 @@ const QAndA = ({ currentProductId }) => {
     getQuestions(currentProductId);
   }, []);
 
+  useEffect(() => {
+    getQuestions(currentProductId);
+  }, [currentProductId]);
+
   // API CALLS
   const getQuestions = (id) => {
     axios.get(`/qa/questions/${id}`)
