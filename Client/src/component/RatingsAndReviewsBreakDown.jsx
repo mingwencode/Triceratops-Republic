@@ -4,8 +4,7 @@ import React from 'react';
 import ShadedStarRating from './ShadedStarRating';
 // eslint-disable-next-line arrow-body-style
 const RatingsAndReviewsBreakDown = ({reviewArray}) => {
-<<<<<<< HEAD
-  const productReviewArray = reviewArray[0].results;
+  const productReviewArray = reviewArray.results;
 
   const percentRecommended = () => {
     let numberRecommended = 0;
@@ -42,9 +41,6 @@ const RatingsAndReviewsBreakDown = ({reviewArray}) => {
     });
   };
 
-=======
-  const productReviewArray = reviewArray.results;
->>>>>>> 0197a4c80eade636cb587f1d72b98e1046636125
   const averageRating = () => {
     let count = 0;
     // eslint-disable-next-line no-return-assign
