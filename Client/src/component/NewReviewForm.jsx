@@ -185,7 +185,7 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
   if (!showNewReviewModal) {
     return null;
   }
-  return ReactDom.createPortal(
+  return (
     <>
       <div style={OVERLAY_STYLES} />
       <div style={MODAL_STYLES}>
@@ -373,9 +373,8 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
           </button>
         </form>
       </div>
-    </>,
-    document.getElementById('portal'),
-  );
+    </>
+  )
 };
 // NewReviewForm.propTypes = {
 //   rating: PropTypes.number.isRequired,

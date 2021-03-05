@@ -19,7 +19,7 @@ const RATING_SHADE = {
   float: 'left',
   height: '21px',
   display: 'block',
-  width: '85%',
+  width: '50%',
 };
 
 // eslint-disable-next-line arrow-body-style

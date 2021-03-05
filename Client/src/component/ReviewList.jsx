@@ -37,7 +37,7 @@ const ReviewList = ({ reviewArray, setReviewArray }) => {
 
 
   const intitialReviewRender = () => {
-    return reviews.slice(0, reviewCount).map((review) => {
+    return reviews.slice(0, reviewCount).map((review,) => {
 
       return <ReviewTile key={review.review_id} review={review} />;
 
@@ -77,7 +77,7 @@ const ReviewList = ({ reviewArray, setReviewArray }) => {
   }
 
   if (reviewModalBoolean) {
-    return ReactDom.createPortal(
+    return (
       <>
         <div style={OVERLAY_STYLES} />
         <div style={MODAL_STYLES}>
@@ -95,8 +95,7 @@ const ReviewList = ({ reviewArray, setReviewArray }) => {
           </ul>
           {moreReviews()}
         </div>
-      </>,
-      document.getElementById('portal'),
+      </>
     );
   }
 };
