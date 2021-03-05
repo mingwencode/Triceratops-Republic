@@ -109,5 +109,4 @@ config.js
 # jsx files in js
 
 public/bundle.js
-
 public/bundle.js.map

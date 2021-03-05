@@ -66,9 +66,9 @@ const RatingsAndReviewsBreakDown = ({reviewArray, starPercent}) => {
         {percentRecommended()}
         % of reviews recommend this product
       </span>
-      <ul>
+      <div>
         {generateStarBar()}
-      </ul>
+      </div>
 
     </div>
   );

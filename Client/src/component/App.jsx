@@ -15,7 +15,7 @@ const appStyle = {
 
 const App = () => {
   const [productArray, setProductArray] = useState([]);
-  const [currentProductId, setCurrentProductId] = useState(20112);
+  const [currentProductId, setCurrentProductId] = useState(20103);
   const [productReviewArray, setProductReviewArray] = useState();
   const [relatedProductIds, setRelatedProductIds] = useState();
   const [reviewMetaData, setReviewMetaData] = useState();
@@ -24,11 +24,7 @@ const App = () => {
 
   useEffect(() => {
     getProducts();
-    getReviews(currentProductId, dropDownselect);
-    getRelatedProductIds(currentProductId);
-    getReviewsMeta(currentProductId);
-    getProductStyles(currentProductId);
-  }, []);
+  }, [currentProductId]);
 
   // OVERVIEW
   const getProducts = () => {
@@ -36,6 +32,10 @@ const App = () => {
       .then((res) => (
         setProductArray(res.data)
       ))
+      .then(() => getReviews(currentProductId, dropDownselect))
+      .then(() => getRelatedProductIds(currentProductId))
+      .then(() => getReviewsMeta(currentProductId))
+      .then(() =>getProductStyles(currentProductId))
       .catch((err) => console.log('initial products ', err));
   };
 
@@ -101,7 +101,7 @@ const App = () => {
       <div>
         <Overview products={productArray} />
         <div style={appStyle}>
-          <RelatedProducts />
+          <RelatedProducts setCurrentProductId={setCurrentProductId}/>
           <QAndA currentProductId={currentProductId} />
           <RatingsAndReviews
             reviewArray={productReviewArray}
