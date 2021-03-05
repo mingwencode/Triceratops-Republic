@@ -4,6 +4,7 @@
 import React, { useState } from 'react';
 import ReactDom from 'react-dom';
 import ReviewTile from './ReviewTile';
+import RatingsAndReviewsHeader from './RatingsAndReviewsHeader';
 
 const MODAL_STYLES = {
   position: 'fixed',
@@ -31,7 +32,7 @@ const ReviewList = ({ reviewArray, setReviewArray }) => {
   const [reviewModalBoolean, setReviewModalBoolean] = useState(false);
   const [moreReviewsBoolean, setMoreReview] = useState(true);
 
-  const reviews = reviewArray[0].results;
+  const reviews = reviewArray.results;
   if (reviews.length < 2) setMoreReview(false);
 
 
