@@ -14,12 +14,12 @@ const Container = styled.div`
 `;
 const ListDiv = styled.div`
   width : 90%;
-  display: flex;
+  left: 5%;
+
   position: relative;
   background: #5EFDE0;
-  height: 40%;
-  justify-content: center;
-  align-items: center;
+  height: 60%;
+
 `;
 
 const RelatedProducts = () => {
@@ -34,9 +34,10 @@ const RelatedProducts = () => {
   return (
     <Container>
       <ListDiv>
+        <RelatedProductsList />
         <button type="button" onClick={openModal} >compare</button>
         <CompareModal showModal={showModal} setShowModal={setShowModal} />
-        <RelatedProductsList />
+
         <br />
       </ListDiv>
       <div>
