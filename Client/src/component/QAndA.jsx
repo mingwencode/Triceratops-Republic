@@ -4,6 +4,7 @@
 /* eslint-disable max-len */
 /* eslint-disable consistent-return */
 import React, { useState } from 'react';
+// import styled from 'styled-components'
 import AddNewQuestion from './AddNewQuestion';
 import QuestionAnswerList from './QuestionAnswerList';
 import QAModal from './QAModal';
@@ -226,14 +227,14 @@ const QAndA = () => {
     return (
       <QAModal isOpenModal={isAnswerModalOpen} onDismiss={onAnswerDismiss}>
         <form onSubmit={(e) => handleAnswerSubmit(e, answerEmailInput)}>
-          <p>Type your answer:</p>
+          <p>Type your answer:*</p>
           <textarea
             required="required"
             maxLength="1000"
             value={answerInput}
             onChange={(e) => setAnswerInput(e.target.value)}
           />
-          <p>Enter your nickname:</p>
+          <p>Enter your nickname:*</p>
           <input
             placeholder="Example: jackson11!"
             required="required"
@@ -242,7 +243,7 @@ const QAndA = () => {
             onChange={(e) => setAnswerNicknameInput(e.target.value)}
           />
           <p>For privacy reasons, do not use your full name or email address.</p>
-          <p>Enter your E-Mail:</p>
+          <p>Enter your E-Mail:*</p>
           <input
             placeholder="youremail@address.com"
             required="required"
@@ -301,7 +302,7 @@ const QAndA = () => {
                 title="question"
                 maxLength="1000"
               >
-                Add your Question:
+                Type your Question:*
               </label>
               <br />
               <textarea
@@ -315,7 +316,7 @@ const QAndA = () => {
                 title="nickname"
                 maxLength="60"
               >
-                Add your Nickname:
+                Enter your Nickname:*
               </label>
               <input
                 placeholder="Example: jackson11!"
@@ -329,7 +330,7 @@ const QAndA = () => {
                 title="email"
                 maxLength="60"
               >
-                Add your Email:
+                Enter your Email:*
               </label>
               <input
                 placeholder="youremail@address.com"

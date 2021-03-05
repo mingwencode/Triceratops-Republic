@@ -2597,13 +2597,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+var _templateObject;
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
 /* eslint-disable arrow-body-style */
 
 
 
+var Button = styled_components__WEBPACK_IMPORTED_MODULE_2__.default.button(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    color: rosewood;\n    font-size: 1em;\n    margin: 1em;\n    padding: 0.25em 1em;\n    border: 2px solid rosewood;\n    border-radius: 3px;\n "])));
+
 var AddNewQuestion = function AddNewQuestion(_ref) {
   var addQuestionButtonClick = _ref.addQuestionButtonClick;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Button, {
     type: "button",
     onClick: function onClick() {
       return addQuestionButtonClick();
@@ -3773,6 +3780,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /* eslint-disable max-len */
 
 /* eslint-disable consistent-return */
+ // import styled from 'styled-components'
 
 
 
@@ -4044,14 +4052,14 @@ var QAndA = function QAndA() {
       onSubmit: function onSubmit(e) {
         return handleAnswerSubmit(e, answerEmailInput);
       }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Type your answer:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Type your answer:*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
       required: "required",
       maxLength: "1000",
       value: answerInput,
       onChange: function onChange(e) {
         return setAnswerInput(e.target.value);
       }
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Enter your nickname:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Enter your nickname:*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
       placeholder: "Example: jackson11!",
       required: "required",
       maxLength: "60",
@@ -4059,7 +4067,7 @@ var QAndA = function QAndA() {
       onChange: function onChange(e) {
         return setAnswerNicknameInput(e.target.value);
       }
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "For privacy reasons, do not use your full name or email address."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Enter your E-Mail:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "For privacy reasons, do not use your full name or email address."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "Enter your E-Mail:*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
       placeholder: "youremail@address.com",
       required: "required",
       maxLength: "60",
@@ -4132,7 +4140,7 @@ var QAndA = function QAndA() {
     htmlFor: "question",
     title: "question",
     maxLength: "1000"
-  }, "Add your Question:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
+  }, "Type your Question:*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("textarea", {
     required: "required",
     value: questionInput,
     onChange: function onChange(e) {
@@ -4142,7 +4150,7 @@ var QAndA = function QAndA() {
     htmlFor: "nickname",
     title: "nickname",
     maxLength: "60"
-  }, "Add your Nickname:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  }, "Enter your Nickname:*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     placeholder: "Example: jackson11!",
     required: "required",
     value: questionNicknameInput,
@@ -4153,7 +4161,7 @@ var QAndA = function QAndA() {
     htmlFor: "email",
     title: "email",
     maxLength: "60"
-  }, "Add your Email:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+  }, "Enter your Email:*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
     placeholder: "youremail@address.com",
     required: "required",
     value: questionEmailInput,
