@@ -11,21 +11,21 @@ const questionStyles = {
   overflow: 'auto',
 };
 
-const QuestionAnswerList = ({ onShowAnswerModal, onOpenAnswerModal, questionAnswersShown, qa, searchText }) => {
+const QuestionAnswerList = ({ onShowAnswerModal, onOpenAnswerModal, questionAnswersShown, productQuestions, searchText }) => {
   const newQaArray = [];
   if (searchText.length >= 3) {
     const searchArray = [];
-    for (let i = 0; i < qa.results.length; i += 1) {
-      if (qa.results[i].question_body.includes(searchText)) {
-        searchArray.push(qa.results[i]);
+    for (let i = 0; i < productQuestions.results.length; i += 1) {
+      if (productQuestions.results[i].question_body.includes(searchText)) {
+        searchArray.push(productQuestions.results[i]);
       }
     }
     for (let i = 0; i < Math.min(questionAnswersShown, searchArray.length); i += 1) {
       newQaArray.push(searchArray[i]);
     }
   } else {
-    for (let i = 0; i < Math.min(questionAnswersShown, qa.results.length); i += 1) {
-      newQaArray.push(qa.results[i]);
+    for (let i = 0; i < Math.min(questionAnswersShown, productQuestions.results.length); i += 1) {
+      newQaArray.push(productQuestions.results[i]);
     }
   }
   return (
