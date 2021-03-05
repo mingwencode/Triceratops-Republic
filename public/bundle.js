@@ -4442,7 +4442,6 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
- //import CompareModal from './CompareModal';
 
 var Container = styled_components__WEBPACK_IMPORTED_MODULE_3__.default.div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  background: #AFFDFD;\n  disply: flex;\n  justify-content: center;\n  align-items: center;\n  width: 70%;\n  height: 800px;\n  margin: 0 auto;\n"])));
 var ProductsListDiv = styled_components__WEBPACK_IMPORTED_MODULE_3__.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  width : 94%;\n  top: 5%;\n  position: relative;\n  background: #5EFDE0;\n  height: 40%;\n  margin: 0 auto;\n  display: flex;\n"])));
@@ -4906,14 +4905,19 @@ var products = [{
   price: '102',
   url: '../images/test_related_3.jpg'
 }];
+var outfitList = [];
 
 var YourOutfitList = function YourOutfitList() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
       _useState2 = _slicedToArray(_useState, 2),
       current = _useState2[0],
       setCurrent = _useState2[1]; //const [addCurrentProduct, setAddCurrentProduct] = useState(0);
-  //const [outfitArray, setOutfitArray] = useState([]);
 
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      outfitArray = _useState4[0],
+      setOutfitArray = _useState4[1];
 
   var cardContainer = react__WEBPACK_IMPORTED_MODULE_0__.useRef();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -4931,15 +4935,27 @@ var YourOutfitList = function YourOutfitList() {
     if (current < cardContainer.current.children.length - 1) {
       setCurrent(current + 1);
     }
-  }; // const addOutFit = (productId) => {
-  //   setOutfitArray([...outfitArray, products[productId]]);
-  //   setAddCurrentProduct(productId + 1);
-  // }
+  };
 
+  var addOutFit = function addOutFit(productId) {
+    outfitList.push(products[productId]);
+    setOutfitArray(outfitList);
+  };
+
+  var removeOutFit = function removeOutFit() {
+    outfitList.pop();
+    setOutfitArray(outfitList);
+  };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Grid, {
     className: "list_container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Title, null, "YOUR OUTFIT"), current === 0 ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Title, null, "YOUR OUTFIT"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    name: "add_btn",
+    type: "button",
+    onClick: function onClick() {
+      return addOutFit(1);
+    }
+  }, "Add"), current === 0 ? null : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     name: "prev_btn",
     type: "button",
     onClick: prevSilde
@@ -4952,17 +4968,12 @@ var YourOutfitList = function YourOutfitList() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(CardContainer, {
     ref: cardContainer,
     className: "card-container"
-  }, products.map(function (product, index) {
-    return (
-      /*#__PURE__*/
-      // eslint-disable-next-line react/no-array-index-key
-      react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        key: index
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ProductCard__WEBPACK_IMPORTED_MODULE_1__.default, {
-        key: product.name,
-        product: product
-      }))
-    );
+  }, outfitArray.length === 0 ? null : outfitArray.map(function (product, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      key: index
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ProductCard__WEBPACK_IMPORTED_MODULE_1__.default, {
+      product: product
+    }));
   })))));
 };
 

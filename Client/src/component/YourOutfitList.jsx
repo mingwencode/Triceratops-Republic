@@ -49,10 +49,12 @@ const products = [
   { id: 9, name: 'pic9', category: 'idontknow', price: '500', url: '../images/test_related_2.jpg' },
   { id: 10, name: 'pic10', category: 'lastone', price: '102', url: '../images/test_related_3.jpg' }];
 
+const outfitList = [];
+
 const YourOutfitList = () => {
   const [current, setCurrent] = useState(0);
   //const [addCurrentProduct, setAddCurrentProduct] = useState(0);
-  //const [outfitArray, setOutfitArray] = useState([]);
+  const [outfitArray, setOutfitArray] = useState([]);
   const cardContainer = React.useRef();
 
   useEffect(() => {
@@ -72,27 +74,31 @@ const YourOutfitList = () => {
     }
   };
 
-  // const addOutFit = (productId) => {
-  //   setOutfitArray([...outfitArray, products[productId]]);
-  //   setAddCurrentProduct(productId + 1);
-  // }
+  const addOutFit = (productId) => {
+    outfitList.push(products[productId]);
+    setOutfitArray(outfitList);
+  };
+
+  const removeOutFit = () => {
+    outfitList.pop();
+    setOutfitArray(outfitList);
+  }
 
   return (
     <Grid className="list_container">
       <Title>YOUR OUTFIT</Title>
-      {/* <button type="button" onClick={addOutFit(addCurrentProduct)}>Add</button> */}
+      <button name="add_btn" type="button" onClick={() => addOutFit(1)}>Add</button>
       {current === 0 ? null : <button name="prev_btn" type="button" onClick={prevSilde}>Previous</button>}
       {current === products.length - 4 ? null : <button name="next_btn" type="button" onClick={nextSlide}>Next</button>}
 
       <div>
         <OutfitViewPort className="view-port">
           <CardContainer ref={cardContainer} className="card-container">
-            {products.map((product, index) => (
-              // eslint-disable-next-line react/no-array-index-key
+            {(outfitArray.length === 0) ? null : (outfitArray.map((product, index) => (
               <div key={index}>
-                <ProductCard key={product.name} product={product} />
+                <ProductCard product={product} />
               </div>
-            ))}
+            )))}
           </CardContainer>
         </OutfitViewPort>
       </div>

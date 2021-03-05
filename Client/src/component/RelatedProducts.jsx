@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import RelatedProductsList from './RelatedProductsList';
 import YourOutfitList from './YourOutfitList';
 import styled from 'styled-components';
-//import CompareModal from './CompareModal';
 
 const Container = styled.div`
   background: #AFFDFD;
