@@ -3,12 +3,14 @@ import styled from 'styled-components';
 
 const logo = '../images/logoFEC.png';
 
-const TPBody = styled.div`
-  color: purple;
-`;
+const topBarStyle = {
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space around'
+}
 
 const OverviewTopBar = () => (
-  <TPBody>
+  <div style={topBarStyle}>
     <div>
       <img src={logo} alt="logo" height="50" width="50" />
       <h4>Triceratop Republic</h4>
@@ -19,7 +21,7 @@ const OverviewTopBar = () => (
       </form>
       <button className="search-bar-btn" type="submit">Search</button>
     </div>
-  </TPBody>
+  </div>
 );
 
 export default OverviewTopBar;

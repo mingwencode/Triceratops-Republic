@@ -32,7 +32,7 @@ const ReviewList = ({ reviewArray, setReviewArray }) => {
   const [reviewModalBoolean, setReviewModalBoolean] = useState(false);
   const [moreReviewsBoolean, setMoreReview] = useState(true);
 
-  const reviews = reviewArray[0].results;
+  const reviews = reviewArray.results;
   if (reviews.length < 2) setMoreReview(false);
 
 
