@@ -53,7 +53,7 @@ const outfitList = [];
 
 const YourOutfitList = () => {
   const [current, setCurrent] = useState(0);
-  //const [addCurrentProduct, setAddCurrentProduct] = useState(0);
+  const [product, setAddCurrentProduct] = useState(products);
   const [outfitArray, setOutfitArray] = useState([]);
   const cardContainer = React.useRef();
 
@@ -61,6 +61,10 @@ const YourOutfitList = () => {
     cardContainer.current.style.transitionDuration = '0.5s';
     cardContainer.current.style.transform = `translate(-${220 * current}px)`;
   }, [current]);
+
+  // useEffect(()=> {
+  //   setOutfitArray(products[1]);
+  // }, []);
 
   const prevSilde = () => {
     if (current > 0) {
@@ -74,15 +78,18 @@ const YourOutfitList = () => {
     }
   };
 
-  const addOutFit = (productId) => {
-    outfitList.push(products[productId]);
-    setOutfitArray(outfitList);
+  const addOutFit = (id) => {
+    const newList = products.filter((item) => (item.id === id));
+    setOutfitArray(newList);
   };
 
-  const removeOutFit = () => {
-    outfitList.pop();
-    setOutfitArray(outfitList);
+  const removeOutFit = (id) => {
+    console.log(id)
+    const newList = outfitArray.filter((item) => (item.id !== id));
+    console.log(newList);
+    setOutfitArray(newList)
   }
+
 
   return (
     <Grid className="list_container">
@@ -96,7 +103,7 @@ const YourOutfitList = () => {
           <CardContainer ref={cardContainer} className="card-container">
             {(outfitArray.length === 0) ? null : (outfitArray.map((product, index) => (
               <div key={index}>
-                <ProductCard product={product} />
+                <ProductCard product={product} removeOutFit={removeOutFit} />
               </div>
             )))}
           </CardContainer>

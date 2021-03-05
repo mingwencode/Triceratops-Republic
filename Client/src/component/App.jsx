@@ -23,17 +23,18 @@ const App = () => {
 
   useEffect(() => {
     getProducts();
-    getReviews(currentProductId);
-    getRelatedProductIds(currentProductId);
-    getReviewsMeta(currentProductId);
-    getProductStyles(currentProductId);
-  }, []);
+  }, [currentProductId]);
+
   // OVERVIEW
   const getProducts = () => {
     axios.get('/products')
       .then((res) => (
         setProductArray(res.data)
       ))
+      .then(() => getReviews(currentProductId))
+      .then(() => getRelatedProductIds(currentProductId))
+      .then(() => getReviewsMeta(currentProductId))
+      .then(() =>getProductStyles(currentProductId))
       .catch((err) => console.log('initial products ', err));
   };
 
@@ -99,7 +100,7 @@ const App = () => {
       <div>
         <Overview products={productArray} />
         <div style={appStyle}>
-          <RelatedProducts />
+          <RelatedProducts setCurrentProductId={setCurrentProductId}/>
           <QAndA currentProductId={currentProductId} />
           <RatingsAndReviews
             reviewArray={productReviewArray}
