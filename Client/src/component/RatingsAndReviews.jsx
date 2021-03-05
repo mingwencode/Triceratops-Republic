@@ -7,9 +7,7 @@ import ReviewList from './ReviewList';
 import RatingsAndReviewsHeader from './RatingsAndReviewsHeader';
 import RatingsAndReviewsBreakDown from './RatingsAndReviewsBreakDown';
 
-const RatingsAndReviews = ({
-  currentProductId,
-}) => {
+const RatingsAndReviews = ({ currentProductId }) => {
   const [reviewArray, setProductReviewArray] = useState();
   const [showNewMReviewModal, setNewReviewModal] = useState(false);
   const [dropDownselect, setDropDownSelect] = useState('newest');
@@ -38,6 +36,7 @@ const RatingsAndReviews = ({
 
   useEffect(() => {
     getReviews(currentProductId, dropDownselect);
+    getReviewsMeta(currentProductId)
   }, []);
 
   useEffect(() => {
