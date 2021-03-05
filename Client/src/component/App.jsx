@@ -1,10 +1,12 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-use-before-define */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import Overview from './Overview';
 import RatingsAndReviews from './RatingsAndReviews';
 import QAndA from './QAndA';
 import RelatedProducts from './RelatedProducts';
-import styled from 'styled-components';
 
 const appStyle = {
   maxWidth: '1000px',
@@ -15,23 +17,24 @@ const appStyle = {
 
 const App = () => {
   const [productArray, setProductArray] = useState([]);
+  const [productStyles, setProductStyles] = useState();
   const [currentProductId, setCurrentProductId] = useState(20111);
   const [productReviewArray, setProductReviewArray] = useState();
   const [productQuestions, setProductQuestions] = useState();
   const [relatedProductIds, setRelatedProductIds] = useState();
   const [reviewMetaData, setReviewMetaData] = useState();
   const [answers, setAnswers] = useState();
-  const [productStyles, setProductStyles] = useState();
 
   useEffect(() => {
+    getProductStyles(currentProductId);
     getProducts();
     getReviews(currentProductId);
     getQuestions(currentProductId);
     getRelatedProductIds(currentProductId);
     getReviewsMeta(currentProductId);
     getAnswers(133176); // need to find out what id is
-    getProductStyles(currentProductId);
   }, []);
+
   // OVERVIEW
   const getProducts = () => {
     axios.get('/products')
@@ -46,7 +49,7 @@ const App = () => {
       .then((res) => (
         setProductStyles(res.data)
       ))
-      .catch(err => console.log('get product styles ', err));
+      .catch((err) => console.log('get product styles ', err));
   };
 
   // RATINGS & REVIEWS
@@ -166,7 +169,13 @@ const App = () => {
   if (productReviewArray) {
     return (
       <div>
-        <Overview products={productArray} />
+        {console.log("this is styles, ", productStyles)}
+        <Overview
+          products={productArray}
+          productStyles={productStyles}
+          currentProductId={currentProductId}
+          getProductStyles={getProductStyles}
+        />
         <div style={appStyle}>
           <RelatedProducts />
           <QAndA />

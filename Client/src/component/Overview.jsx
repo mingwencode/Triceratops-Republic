@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import OverviewTopBar from './OverviewTopBar';
 import OverviewImageGallery from './OverviewImageGallery';
@@ -47,10 +47,14 @@ const styles = ['style1', 'style2', 'style3', 'style4'];
 const sizes = ['small', 'medium', 'large', 'x-large'];
 const descriptionBullets = ['GMO and pesticide free', 'Some other crap', 'Probably untrue', 'Other information'];
 
-const Overview = () => {
+const Overview = ({ productStyles }) => {
   const [currentImageIndex, setImageIndex] = useState(0);
+  const [proStyles, setProStyles] = useState();
+  useEffect(() => {
+    setProStyles(productStyles);
+  }, []);
+  // const images = styles.results
   const len = images.length - 1;
-
   return (
     <div>
       <div className="grid-container">
@@ -58,11 +62,19 @@ const Overview = () => {
         <div style={ovStyle}>
           <OverviewImageGallery
             className="item2 image-gallery"
+            productStyles={productStyles}
             images={images}
             currentImageIndex={currentImageIndex}
           />
-          <OverviewProductInfo className="item3 product-info" styles={styles} />
-          <OverviewAddToBag className="item4 add-to-bag" sizes={sizes} />
+          <OverviewProductInfo
+            className="item3 product-info"
+            proStyles={proStyles}
+            styles={styles}
+          />
+          <OverviewAddToBag
+            className="item4 add-to-bag"
+            sizes={sizes}
+          />
           <OverviewDescription className="item5 description" bullets={descriptionBullets} />
         </div>
       </div>
