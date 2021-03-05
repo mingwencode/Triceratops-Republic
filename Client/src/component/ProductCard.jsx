@@ -21,7 +21,7 @@ const Card = styled.div`
   margin: 0 40px 0 0;
 `;
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, list, removeOutFit, setCurrentProductId}) => {
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
@@ -30,14 +30,19 @@ const ProductCard = ({ product }) => {
 
   return (
     <Card>
-      <SlideImg src={product.url} alt="" />
+      <SlideImg src={product.url} alt="" onClick={() => setCurrentProductId(20886)}/>
       <span>{product.category}</span>
       <br />
       <span>{product.name}</span>
       <br />
       <span>{`$${product.price}`}</span>
-      <button type="button" onClick={openModal}>⭐</button>
-      <CompareModal isOpenModal={showModal} onDismiss={setShowModal} />
+      {list === 'related' ? (
+        <div>
+          <button type="button" onClick={openModal}>⭐</button>
+          <CompareModal isOpenModal={showModal} onDismiss={setShowModal} />
+        </div>
+      )
+        : <button type="button" onClick={()=> removeOutFit(product.id)}>X</button>}
     </Card>
 
   );
