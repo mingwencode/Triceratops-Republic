@@ -47,7 +47,6 @@ const RatingsAndReviews = ({
 
 if (reviewArray) {
   const reviews = reviewArray.results;
-  console.log(reviewArray.results.length)
   return (
     <div>
       <div>
