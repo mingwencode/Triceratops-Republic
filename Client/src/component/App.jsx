@@ -20,10 +20,8 @@ const App = () => {
   const [relatedProductIds, setRelatedProductIds] = useState();
   const [reviewMetaData, setReviewMetaData] = useState();
   const [productStyles, setProductStyles] = useState();
+  const [dropDownselect, setDropDownSelect] = useState('Helpful');
 
-  useEffect(() => {
-    getProducts();
-  }, [currentProductId]);
 
   // OVERVIEW
   const getProducts = () => {
@@ -31,7 +29,7 @@ const App = () => {
       .then((res) => (
         setProductArray(res.data)
       ))
-      .then(() => getReviews(currentProductId))
+      .then(() => getReviews(currentProductId, dropDownselect))
       .then(() => getRelatedProductIds(currentProductId))
       .then(() => getReviewsMeta(currentProductId))
       .then(() =>getProductStyles(currentProductId))
@@ -47,8 +45,8 @@ const App = () => {
   };
 
   // RATINGS & REVIEWS
-  const getReviews = (id) => {
-    axios.get(`/reviews/${id}`)
+  const getReviews = (id, sortOption) => {
+    axios.get(`/reviews/${id}&${sortOption}`)
       .then((res) => (
         setProductReviewArray(res.data)
       ))
@@ -95,6 +93,15 @@ const App = () => {
       .catch(err => console.log('get related product ids ', err));
   };
 
+  useEffect(() => {
+    getProducts();
+  }, [currentProductId]);
+
+  useEffect(() => {
+    getReviews();
+  }, [dropDownselect]);
+
+
   if (productReviewArray) {
     return (
       <div>
@@ -105,6 +112,8 @@ const App = () => {
           <RatingsAndReviews
             reviewArray={productReviewArray}
             setReviewArray={productReviewArray}
+            dropDownselect={dropDownselect}
+            setDropDownSelect={setDropDownSelect}
           />
         </div>
       </div>
