@@ -21,6 +21,7 @@ const QAndA = ({ currentProductId }) => {
   const [answerNicknameInput, setAnswerNicknameInput] = useState('');
   const [answerEmailInput, setAnswerEmailInput] = useState('');
   const [imageUpload, setImageUpload] = useState([]);
+  const [thumbnail, setThumbnail] = useState([]);
   const [isQuestionModalOpen, setIsQuestionModalOpen] = useState(false);
   const [isAnswerModalOpen, setIsAnswerModalOpen] = useState(false);
   const [questionAnswersShown, setQuestionAnswersShown] = useState(2);
@@ -35,6 +36,21 @@ const QAndA = ({ currentProductId }) => {
   useEffect(() => {
     getQuestions(currentProductId);
   }, [currentProductId]);
+
+  const clearForm = () => {
+    setAnswerInput('');
+    setAnswerNicknameInput('');
+    setAnswerEmailInput('');
+    setImageUpload([]);
+    setThumbnail([]);
+  };
+
+  const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+});
 
   // API CALLS
   const getQuestions = (id) => {
@@ -62,14 +78,14 @@ const QAndA = ({ currentProductId }) => {
       .catch((err) => console.log('post question ', err));
   };
 
-  const postAnswer = (answer, question_id) => {
-    axios.post(`/qa/questions/${question_id}/answers`, answer)
-      .then(() => {
-        console.log('posting answers works!!');
-        getQuestions(currentProductId);
-      })
-      .catch((err) => console.log('post question ', err));
-  };
+  // const postAnswer = (answer, question_id) => {
+  //   axios.post(`/qa/questions/${question_id}/answers`, answer)
+  //     .then(() => {
+  //       console.log('posting answers works!!');
+  //       getQuestions(currentProductId);
+  //     })
+  //     .catch((err) => console.log('post question ', err));
+  // };
 
   const putQuestionHelpful = (question_id) => {
     axios.put(`/qa/questions/${question_id}/helpful`)
@@ -125,8 +141,15 @@ const QAndA = ({ currentProductId }) => {
     for (let i = 0; i < imageUpload.length; i += 1) {
       imageArray.push(imageUpload[i]);
     }
-    imageArray.push(URL.createObjectURL(e.target.files[0]));
+    imageArray.push(e.target.files[0]);
     setImageUpload(imageArray);
+
+    const thumbnailArray = [];
+    for (let i = 0; i < thumbnail.length; i += 1) {
+      thumbnailArray.push(thumbnail[i]);
+    }
+    thumbnailArray.push(URL.createObjectURL(e.target.files[0]));
+    setThumbnail(thumbnailArray);
   };
 
   const onAnswerDismiss = () => {
@@ -143,14 +166,39 @@ const QAndA = ({ currentProductId }) => {
       setError('You must enter email in proper format!');
       return;
     }
-    let answerObj = {
+    const answerObj = {
       body: answerInput,
       name: answerNicknameInput,
       email: answerEmailInput,
-      photos: imageUpload,
+      photos: [],
     };
-    postAnswer(answerObj, questionID)
-    setIsAnswerModalOpen(false);
+
+    const promises = [];
+
+    for (const photo of imageUpload) {
+      const payload = {
+        name: photo.name,
+        data: '',
+      } 
+      const promise = toBase64(photo)
+        .then((result) => payload.data = result.split(',')[1])
+        .then(() => axios.post(`/upload_images`, payload))
+        .then(({data}) => {return data})
+        .catch(console.log);
+      promises.push(promise);
+    }
+    Promise.all(promises)
+    .then((results) => answerObj.photos = results)
+    .then(() => {
+      return axios.post(`/qa/questions/${questionID}/answers`, answerObj)
+    })
+    .then(() => getQuestions(currentProductId))
+    .then(() => clearForm())
+    .then(() => setIsAnswerModalOpen(false))
+    .catch(console.log);
+
+    
+    
   };
 
   const showUploadFileButton = () => {
@@ -191,7 +239,7 @@ const QAndA = ({ currentProductId }) => {
           />
           <p>For authentication reasons, you will not be emailed.</p>
           <p>{showUploadFileButton()}</p>
-          {imageUpload.map((image, index) => <img src={image} key={index} alt="uploaded by user" height="50" width="50" />)}
+          {thumbnail.map((image, index) => <img src={image} key={index} alt="uploaded by user" height="50" width="50" />)}
           <br />
           <p>{error}</p>
           <br />
