@@ -11,26 +11,29 @@ const questionStyles = {
   overflow: 'auto',
 };
 
-const QuestionAnswerList = ({ onShowAnswerModal, onOpenAnswerModal, questionAnswersShown, productQuestions, searchText }) => {
+const QuestionAnswerList = ({ onShowAnswerModal, onOpenAnswerModal, questionAnswersShown, productQuestions, searchText, putQuestionHelpful, putQuestionReport, putAnswersHelpful, putAnswersReport, setQuestionID }) => {
+  const sortedArray = productQuestions.results.sort((a, b) => {
+    return (a.question_helpfulness < b.question_helpfulness) ? 1 : -1;
+  });
   const newQaArray = [];
   if (searchText.length >= 3) {
     const searchArray = [];
-    for (let i = 0; i < productQuestions.results.length; i += 1) {
-      if (productQuestions.results[i].question_body.includes(searchText)) {
-        searchArray.push(productQuestions.results[i]);
+    for (let i = 0; i < sortedArray.length; i += 1) {
+      if (sortedArray[i].question_body.includes(searchText)) {
+        searchArray.push(sortedArray);
       }
     }
     for (let i = 0; i < Math.min(questionAnswersShown, searchArray.length); i += 1) {
       newQaArray.push(searchArray[i]);
     }
   } else {
-    for (let i = 0; i < Math.min(questionAnswersShown, productQuestions.results.length); i += 1) {
-      newQaArray.push(productQuestions.results[i]);
+    for (let i = 0; i < Math.min(questionAnswersShown, sortedArray.length); i += 1) {
+      newQaArray.push(sortedArray[i]);
     }
   }
   return (
     <div style={questionStyles}>
-      {newQaArray.map((question, index) => <Question question={question} key={index} onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} />)}
+      {newQaArray.map((question, index) => <Question question={question} key={index} onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} questionAnswersShown={questionAnswersShown} putQuestionHelpful={putQuestionHelpful} putQuestionReport={putQuestionReport} putAnswersHelpful={putAnswersHelpful} putAnswersReport={putAnswersReport} setQuestionID={setQuestionID} />)}
     </div>
   );
 };

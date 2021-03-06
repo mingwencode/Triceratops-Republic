@@ -48,7 +48,11 @@ const images = [
 const sizes = ['small', 'medium', 'large', 'x-large'];
 const descriptionBullets = ['GMO and pesticide free', 'Some other crap', 'Probably untrue', 'Other information'];
 
+<<<<<<< HEAD
 const Overview = ({ currentProductId }) => {
+=======
+const Overview = ({currentItem, productStyles}) => {
+>>>>>>> fb76c9a594ce3ac1d26eab8ae17f66f9cbb7c24b
   const [currentImageIndex, setImageIndex] = useState(0);
   const [styleResultsIndex, setStyleResultsIndex] = useState(0);
   const [currentProductIndex, setCurrentProductIndex] = useState();

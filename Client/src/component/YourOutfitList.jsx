@@ -51,7 +51,7 @@ const products = [
 
 const outfitList = [];
 
-const YourOutfitList = () => {
+const YourOutfitList = ({currentItem}) => {
   const [current, setCurrent] = useState(0);
   const [product, setAddCurrentProduct] = useState(products);
   const [outfitArray, setOutfitArray] = useState([]);
@@ -61,10 +61,6 @@ const YourOutfitList = () => {
     cardContainer.current.style.transitionDuration = '0.5s';
     cardContainer.current.style.transform = `translate(-${220 * current}px)`;
   }, [current]);
-
-  // useEffect(()=> {
-  //   setOutfitArray(products[1]);
-  // }, []);
 
   const prevSilde = () => {
     if (current > 0) {
@@ -78,15 +74,14 @@ const YourOutfitList = () => {
     }
   };
 
-  const addOutFit = (id) => {
-    const newList = products.filter((item) => (item.id === id));
-    setOutfitArray(newList);
+  const addOutFit = (item) => {
+    let addedList = [...outfitArray];
+    addedList.push(item);
+    setOutfitArray(addedList);
   };
 
   const removeOutFit = (id) => {
-    console.log(id)
     const newList = outfitArray.filter((item) => (item.id !== id));
-    console.log(newList);
     setOutfitArray(newList)
   }
 
@@ -94,9 +89,9 @@ const YourOutfitList = () => {
   return (
     <Grid className="list_container">
       <Title>YOUR OUTFIT</Title>
-      <button name="add_btn" type="button" onClick={() => addOutFit(1)}>Add</button>
+      <button name="add_btn" type="button" onClick={() => addOutFit(currentItem)}>Add</button>
       {current === 0 ? null : <button name="prev_btn" type="button" onClick={() => prevSilde()}>Previous</button>}
-      {current === products.length - 4 ? null : <button name="next_btn" type="button" onClick={() => nextSlide()}>Next</button>}
+      {current === outfitArray.length - 4 ? null : <button name="next_btn" type="button" onClick={() => nextSlide()}>Next</button>}
 
       <div>
         <OutfitViewPort className="view-port">
