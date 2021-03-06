@@ -79,7 +79,7 @@ const renderTable = (current, compare) => {
   ));
 };
 
-const CompareModal = ({ isOpenModal, onDismiss, children }) => {
+const CompareModal = ({ isOpenModal, onDismiss, children, current, compare }) => {
   if (!isOpenModal) return null;
 
   return ReactDom.createPortal(

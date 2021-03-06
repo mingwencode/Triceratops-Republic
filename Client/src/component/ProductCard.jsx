@@ -26,7 +26,7 @@ const Star = styled.div`
   width: 10px;
 `
 
-const ProductCard = ({ product, list, removeOutFit, setCurrentProductId, starPercent}) => {
+const ProductCard = ({ product, list, removeOutFit, setCurrentProductId, starPercent, currentProductId}) => {
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
@@ -38,12 +38,12 @@ const ProductCard = ({ product, list, removeOutFit, setCurrentProductId, starPer
       <SlideImg src={product.url} alt="" onClick={() => setCurrentProductId(product.id)} />
       <span>{product.category}</span>
       <span>{product.name}</span>
-      <Star><ShadedStarRating starPercent={starPercent} /></Star>
+      <Star><ShadedStarRating starPercent={product.starPercent} /></Star>
       <span>{`$${product.price}`}</span>
       {list === 'related' ? (
         <div>
           <button type="button" onClick={() => openModal()}>⭐</button>
-          <CompareModal isOpenModal={showModal} onDismiss={setShowModal} />
+          <CompareModal isOpenModal={showModal} onDismiss={setShowModal} current={currentProductId} compare={product} />
         </div>
       )
         : <button type="button" onClick={()=> removeOutFit(product.id)}>X</button>}

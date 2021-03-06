@@ -26,6 +26,7 @@ const QAndA = ({ currentProductId }) => {
   const [questionAnswersShown, setQuestionAnswersShown] = useState(2);
   const [searchText, setSearchText] = useState('');
   const [error, setError] = useState('');
+  const [questionID, setQuestionID] = useState();
 
   useEffect(() => {
     getQuestions(currentProductId);
@@ -54,13 +55,19 @@ const QAndA = ({ currentProductId }) => {
 
   const postQuestion = (question) => {
     axios.post('/qa/questions', question)
-      .then(() => getQuestions())
+      .then(() => {
+        console.log('posting question works!!');
+        getQuestions(currentProductId);
+      })
       .catch((err) => console.log('post question ', err));
   };
 
   const postAnswer = (answer, question_id) => {
-    axios.post(`/qa/questions/${question_id}/answers`, answer, question_id)
-      .then(() => getQuestions())
+    axios.post(`/qa/questions/${question_id}/answers`, answer)
+      .then(() => {
+        console.log('posting answers works!!');
+        getQuestions(currentProductId);
+      })
       .catch((err) => console.log('post question ', err));
   };
 
@@ -68,7 +75,7 @@ const QAndA = ({ currentProductId }) => {
     axios.put(`/qa/questions/${question_id}/helpful`)
       .then(() => {
         console.log('putQuestionsHelpful works!!');
-        getQuestions();
+        getQuestions(currentProductId);
       })
       .catch((err) => console.log('put questions helpful ', err));
   };
@@ -77,27 +84,27 @@ const QAndA = ({ currentProductId }) => {
     axios.put(`/qa/questions/${question_id}/report`)
       .then(() => {
         console.log('putQuestionsReport works!!');
-        getQuestions();
+        getQuestions(currentProductId);
       })
       .catch((err) => console.log('put questions report ', err));
   };
 
   const putAnswersHelpful = (answer_id) => {
-    axios.put(`/qa/questions/${answer_id}/helpful`)
+    axios.put(`/qa/answers/${answer_id}/helpful`)
       .then(() => {
         console.log('putAnswersHelpful works!!');
-        getAnswers();
+        getQuestions(currentProductId);
       })
-      .catch((err) => console.log('put questions helpful ', err));
+      .catch((err) => console.log('put answers helpful ', err));
   };
 
   const putAnswersReport = (answer_id) => {
-    axios.put(`/qa/questions/${answer_id}/report`)
+    axios.put(`/qa/answers/${answer_id}/report`)
       .then(() => {
         console.log('putAnswersReport works!!');
-        getAnswers();
+        getQuestions(currentProductId);
       })
-      .catch((err) => console.log('put questions report ', err));
+      .catch((err) => console.log('put answers report ', err));
   };
 
   const validEmailRegex = RegExp(
@@ -136,6 +143,13 @@ const QAndA = ({ currentProductId }) => {
       setError('You must enter email in proper format!');
       return;
     }
+    let answerObj = {
+      body: answerInput,
+      name: answerNicknameInput,
+      email: answerEmailInput,
+      photos: imageUpload,
+    };
+    postAnswer(answerObj, questionID)
     setIsAnswerModalOpen(false);
   };
 
@@ -200,6 +214,13 @@ const QAndA = ({ currentProductId }) => {
       setError('You must enter email in proper format!');
       return;
     }
+    const questionObj = {
+      body: questionInput,
+      name: questionNicknameInput,
+      email: questionEmailInput,
+      product_id: currentProductId,
+    };
+    postQuestion(questionObj);
     setIsQuestionModalOpen(false);
   };
 
@@ -216,7 +237,7 @@ const QAndA = ({ currentProductId }) => {
       <div>
         <textarea value={searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
         <span>
-          <QuestionAnswerList onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} productQuestions={productQuestions} questionAnswersShown={questionAnswersShown} searchText={searchText} />
+          <QuestionAnswerList onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} productQuestions={productQuestions} questionAnswersShown={questionAnswersShown} searchText={searchText} putQuestionHelpful={putQuestionHelpful} putQuestionReport={putQuestionReport} putAnswersHelpful={putAnswersHelpful} putAnswersReport={putAnswersReport} setQuestionID={setQuestionID} />
           <p>{showMoreQuestionsButton()}</p>
           <AddNewQuestion addQuestionButtonClick={addQuestionButtonClick} />
           <QAModal isOpenModal={isQuestionModalOpen} onDismiss={onQuestionModalDismiss}>

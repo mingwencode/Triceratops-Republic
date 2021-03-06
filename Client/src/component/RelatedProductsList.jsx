@@ -25,11 +25,9 @@ const SlideDivOne = styled.div`
   margin: 0 auto;
 `;
 
-const RelatedProductsList = ({ setCurrentProductId, relatedList }) => {
+const RelatedProductsList = ({ setCurrentProductId, currentProductId, relatedList, len }) => {
   const [current, setCurrent] = useState(0);
   const cardContainer = React.useRef();
-  const [loading, setLoading] = useState(false);
-  // const products = relatedList;
 
   useEffect(() => {
     cardContainer.current.style.transitionDuration = '0.5s';
@@ -55,19 +53,18 @@ const RelatedProductsList = ({ setCurrentProductId, relatedList }) => {
   // }, [loading])
 
   // setLoading(true)
-
   return (
     <SlideDivOne className="list_container">
       <Title>RELATED PRODUCTS</Title>
       {current === 0 ? null : <button name="prev_btn" type="button" onClick={() => prevSilde()}>Previous</button>}
-      {current === relatedList.length - 4 ? null : <button name="next_btn" type="button" onClick={() => nextSlide()}>Next</button>}
+      {current === len - 4 || len - 4 < 0 ? null : <button name="next_btn" type="button" onClick={() => nextSlide()}>Next</button>}
 
       <div>
         <ViewPort className="view-port">
           <CardContainer ref={cardContainer} className="card-container">
-            {relatedList.map((product, index) => (
+            {relatedList.length === len && relatedList.map((product, index) => (
               <div key={index}>
-                <ProductCard product={product} list="related" setCurrentProductId={setCurrentProductId} starPercent={100} />
+                <ProductCard product={product} list="related" setCurrentProductId={setCurrentProductId} currentProductId={currentProductId}/>
               </div>
             ))}
           </CardContainer>
