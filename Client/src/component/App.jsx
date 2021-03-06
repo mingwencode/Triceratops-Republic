@@ -14,8 +14,8 @@ const appStyle = {
 };
 
 const App = () => {
-  const [productArray, setProductArray] = useState([]);
-  const [currentProductId, setCurrentProductId] = useState(20865);
+  const [productArray, setProductArray] = useState();
+  const [currentProductId, setCurrentProductId] = useState(20970);
   const [relatedProductIds, setRelatedProductIds] = useState();
   const [productStyles, setProductStyles] = useState();
 
@@ -53,8 +53,6 @@ const App = () => {
   useEffect(() => {
     getProducts();
   }, [currentProductId]);
-
-
 
   if (relatedProductIds) {
     return (

@@ -1,7 +1,12 @@
+/* eslint-disable arrow-body-style */
 /* eslint-disable no-plusplus */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import ShadedStarRating from './ShadedStarRating';
+
+
+
+
 // eslint-disable-next-line arrow-body-style
 const RatingsAndReviewsBreakDown = ({reviewArray}) => {
   const [starPercent, setStarPercent] = useState()
@@ -44,7 +49,9 @@ const RatingsAndReviewsBreakDown = ({reviewArray}) => {
       return (
         <div>
           {key}
+          {' '}
           stars
+          {' '}
           <progress
             id="star"
             max="100"
@@ -68,6 +75,39 @@ const RatingsAndReviewsBreakDown = ({reviewArray}) => {
     );
   };
 
+
+  const CHAR_RATING = {
+    background: 'lightgrey',
+    height: '7px',
+    width: '220px',
+    position: 'relative',
+
+  };
+  const ARROW_SLIDE_SIZE= {
+    fontSize: 15,
+    left: '0%',
+    position: 'absolute',
+
+  };
+  const ARROW_SLIDE_COMFORT= {
+    fontSize: 15,
+    left: '0%',
+    position: 'absolute',
+
+  };
+
+  const characteristicRating = () => {
+    return (
+      <div>
+        <div
+          style={CHAR_RATING}
+        >
+          <i style={ARROW_SLIDE_SIZE} className="fas fa-arrow-up" />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <h3>Ratings &amp; Reviews </h3>
@@ -82,6 +122,11 @@ const RatingsAndReviewsBreakDown = ({reviewArray}) => {
       <div>
         {generateStarBar()}
       </div>
+      <br />
+      <div>
+        {characteristicRating()}
+      </div>
+      <br />
 
     </div>
   );

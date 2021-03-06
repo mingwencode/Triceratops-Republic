@@ -34,6 +34,8 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
 
 
   const characterObj = [
+
+
     {
       0: 'Size',
       1: 'A size too small',
@@ -82,6 +84,7 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
       4: 'Runs slightly long',
       5: 'Runs long',
     },
+
   ];
 
   const renderTableHeader = () => {
