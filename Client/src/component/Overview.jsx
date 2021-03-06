@@ -47,7 +47,7 @@ const styles = ['style1', 'style2', 'style3', 'style4'];
 const sizes = ['small', 'medium', 'large', 'x-large'];
 const descriptionBullets = ['GMO and pesticide free', 'Some other crap', 'Probably untrue', 'Other information'];
 
-const Overview = () => {
+const Overview = ({currentItem, productStyles}) => {
   const [currentImageIndex, setImageIndex] = useState(0);
   const len = images.length - 1;
 
