@@ -53,10 +53,11 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect 
   };
 
   const intitialReviewRender = () => {
-    return reviews.slice(0, reviewCount).map((review) => {
+    return reviews.slice(0, reviewCount).map((review, index) => {
 
       return (
         <ReviewTile
+          key={index}
           putReviewHelpful={putReviewHelpful}
           review={review}
           putReviewReport={putReviewReport}
