@@ -81,7 +81,7 @@ const RelatedProducts = ({setCurrentProductId, relatedProductIds, currentItem}) 
         <RelatedProductsList setCurrentProductId={setCurrentProductId} currentItem={currentItem} relatedList={relatedList} len={len}/>
       </ProductsListDiv>
       <OutFitListDiv>
-        <YourOutfitList />
+        <YourOutfitList currentItem={currentItem} />
       </OutFitListDiv>
     </Container>
   );
