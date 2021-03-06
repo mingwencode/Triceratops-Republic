@@ -5,10 +5,9 @@
 /* eslint-disable camelcase */
 import React, { useState } from 'react';
 
-const Answer = ({ answer }) => {
+const Answer = ({ answer, putAnswersHelpful, putAnswersReport }) => {
   const { body, answerer_name, date, id, helpfulness, photos } = answer;
   const [report, setReport] = useState('Report');
-  const [isHelpful, setIsHelpful] = useState(helpfulness);
 
   const getProperDate = (longDate) => {
     const dateArray = longDate.slice(0, longDate.indexOf('T')).split('-');
@@ -19,19 +18,28 @@ const Answer = ({ answer }) => {
 
   const onReportButtonClick = (e) => {
     e.preventDefault();
-    setReport('Reported');
+    setReport('Reported')
+    putAnswersReport(id);
   };
 
   const handleHelpfulnessClick = () => {
-    setIsHelpful(isHelpful + 1);
+    putAnswersHelpful(id);
   };
 
+  const renderPhotos = () => {
+    if (photos.length !== 0) {
+      return (
+        <p>{photos.map((photo, index) => <img src={photo} key={index} alt="answer posted" height="50" width="50" />)}</p>
+      )
+    }
+  }
   return (
     <div>
       <p>A:
         {' '}
         {body}
       </p>
+      {renderPhotos()}
       <span>
         by
         {answerer_name}
@@ -45,7 +53,7 @@ const Answer = ({ answer }) => {
       </span>
       <span onClick={handleHelpfulnessClick}>
         Yes
-        ({isHelpful})
+        ({helpfulness})
       </span>
       <span
         onClick={(e) => onReportButtonClick(e)}

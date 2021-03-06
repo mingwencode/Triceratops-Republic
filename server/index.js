@@ -84,14 +84,14 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
 });
 
 app.post('/qa/questions', (req, res) => {
-  axios.post(`${options.url}qa/questions`, options)
+  axios.post(`${options.url}qa/questions`, req.body, options)
     .then(() => res.send(201))
     .catch((error) => console.log('server questions POST err', error.data));
 });
 
 app.post('/qa/questions/:question_id/answers', (req, res) => {
   const { question_id } = req.params;
-  axios.post(`${options.url}qa/questions/${question_id}/answers`, options)
+  axios.post(`${options.url}qa/questions/${question_id}/answers`, req.body, options)
     .then(() => res.send(201))
     .catch((error) => console.log('server answers POST err', error.data));
 });
