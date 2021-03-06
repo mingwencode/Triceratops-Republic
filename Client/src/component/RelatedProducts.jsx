@@ -27,55 +27,31 @@ const OutFitListDiv = styled(ProductsListDiv)`
   margin-top: 7%;
 `;
 
-const products = [
-  {
-    id: 1, name: 'pic1', category: 'dress', price: '80', url: '../images/test_related_1.jpg',
-  },
-  {
-    id: 2, name: 'pic2', category: 'shirt', price: '100', url: '../images/test_related_2.jpg',
-  },
-  {
-    id: 3, name: 'pic3', category: 'skirt', price: '200', url: '../images/test_related_3.jpg',
-  },
-  {
-    id: 4, name: 'pic4', category: 'pants', price: '999', url: '../images/test_related_1.jpg',
-  },
-  {
-    id: 5, name: 'pic5', category: 'dress', price: '88', url: '../images/test_related_2.jpg',
-  },
-  {
-    id: 6, name: 'pic6', category: 'glasses', price: '22', url: '../images/test_related_3.jpg',
-  },
-  {
-    id: 7, name: 'pic7', category: 'dress', price: '33', url: '../images/test_related_2.jpg',
-  },
-  {
-    id: 8, name: 'pic8', category: 'whatever', price: '490', url: '../images/test_related_1.jpg',
-  },
-  {
-    id: 9, name: 'pic9', category: 'idontknow', price: '500', url: '../images/test_related_2.jpg',
-  },
-  {
-    id: 10, name: 'pic10', category: 'lastone', price: '102', url: '../images/test_related_3.jpg',
-  }];
-
-const RelatedProducts = ({setCurrentProductId, relatedProductIds}) => {
+const RelatedProducts = ({setCurrentProductId, relatedProductIds, currentItem}) => {
   const [relatedList, setRelatedList] = useState([]);
+  const [len, setLen] = useState(0);
   const [outfitList, setOutfitList] = useState([]);
-  const [productById, setProductById] = useState({});
 
   const getProductById = (ids) => {
     const list = [];
-    ids.forEach((id) => {
-      const requestOne = axios.get(`/products/${id}`);
-      const requestTwo = axios.get(`/products/${id}/styles`);
+    ids.forEach((pId) => {
+      const requestOne = axios.get(`/products/${pId}`);
+      const requestTwo = axios.get(`/products/${pId}/styles`);
+      const requestThree = axios.get(`/reviews/${pId}`);
 
-      axios.all([requestOne, requestTwo])
+      axios.all([requestOne, requestTwo, requestThree])
         .then((res) => {
           const { id, name, category, default_price, features } = res[0].data;
           const styleResult = res[1].data.results;
           let url = '';
           let object = {};
+
+          let count = 0;
+          let starPercent = 0;
+          res[2].data.results.forEach((review) => count += review.rating);
+          const average = count / res[2].data.results.length;
+          starPercent = ((average / 5) * 100);
+
           for (let i = 0; i < styleResult.length; i++) {
             if (styleResult[i]['default?']) {
               url = styleResult[i].photos[0].thumbnail_url;
@@ -83,11 +59,14 @@ const RelatedProducts = ({setCurrentProductId, relatedProductIds}) => {
             }
           }
           object = {
-            id, name, category, price: default_price, features, url,
+            id, name, category, price: default_price, features, url, starPercent,
           };
           list.push(object);
         })
-        .then(() => setRelatedList(list))
+        .then(() => {
+          setRelatedList(list);
+          setLen(list.length);
+        })
         .catch((err) => console.log('get product by ids ', err));
     });
   };
@@ -96,11 +75,10 @@ const RelatedProducts = ({setCurrentProductId, relatedProductIds}) => {
     getProductById(relatedProductIds);
   }, [relatedProductIds]);
 
-
   return (
     <Container>
       <ProductsListDiv>
-        <RelatedProductsList setCurrentProductId={setCurrentProductId} relatedList={relatedList} />
+        <RelatedProductsList setCurrentProductId={setCurrentProductId} currentItem={currentItem} relatedList={relatedList} len={len}/>
       </ProductsListDiv>
       <OutFitListDiv>
         <YourOutfitList />
