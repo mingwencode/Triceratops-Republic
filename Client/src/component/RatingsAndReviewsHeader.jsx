@@ -7,27 +7,29 @@ const RatingsAndReviewsHeader = ({ reviewArray, setDropDownSelect }) => {
 
   return (
     <div className="wrapper-dropdown">
-          <form>
+      <form>
 
-      <span>
-      {reviewArray.results.length} reviews, sorted by
-      </span>
+        <span>
+          {reviewArray.results.length}
+          {' '}
+          reviews, sorted by
+        </span>
 
         <select onChange={(e) => setDropDownSelect(e.target.value)}>
           <option
-            value="Helpful"
+            value="helpful"
           >
             Helpful
           </option>
           <option
-            value="Newest"
+            value="newest"
           >
             Newest
           </option>
           <option
-            value="Relevent"
+            value="relevant"
           >
-            Relevent
+            Relevant
           </option>
         </select>
       </form>
