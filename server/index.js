@@ -35,8 +35,8 @@ app.get('/products/:id/styles', (req, res) => {
 
 // RATING & REVIEWS
 app.get('/reviews/:id', (req, res) => {
-  const { id, sortOption } = req.params;
-  axios.get(`${options.url}reviews/?product_id=${id}&sort=${sortOption}`, options)
+  const { id } = req.params;
+  axios.get(`${options.url}reviews/?product_id=${id}`, options)
     .then((datas) => res.send(datas.data))
     .catch((error) => console.log('server review GET err'));
 });
@@ -137,7 +137,13 @@ app.get('/cart', (req, res) => {
     .then((datas) => res.send(datas.data))
     .catch((error) => console.log(error));
 });
-// https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/products/20111/related
+
+app.get('/products/:id', (req, res) => {
+  const { id } = req.params;
+  axios.get(`${options.url}products/${id}`, options)
+    .then((datas) => res.send(datas.data))
+    .catch((error) => console.log(error));
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
