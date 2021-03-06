@@ -16,10 +16,8 @@ const appStyle = {
 const App = () => {
   const [productArray, setProductArray] = useState([]);
   const [currentProductId, setCurrentProductId] = useState(20865);
-  const [relatedProductIds, setRelatedProductIds] = useState();
+  const [relatedProductIds, setRelatedProductIds] = useState([]);
   const [productStyles, setProductStyles] = useState();
-
-
 
   // OVERVIEW
   const getProducts = () => {
@@ -50,6 +48,7 @@ const App = () => {
       .catch(err => console.log('get related product ids ', err));
   };
 
+
   useEffect(() => {
     getProducts();
   }, [currentProductId]);
@@ -61,7 +60,7 @@ const App = () => {
       <div>
         <Overview products={productArray} />
         <div style={appStyle}>
-          <RelatedProducts setCurrentProductId={setCurrentProductId}/>
+          <RelatedProducts setCurrentProductId={setCurrentProductId} relatedProductIds={relatedProductIds} />
           <QAndA currentProductId={currentProductId} />
           <RatingsAndReviews
             currentProductId={currentProductId}
