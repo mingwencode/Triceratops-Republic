@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable arrow-body-style */
 /* eslint-disable no-plusplus */
 /* eslint-disable react/prop-types */
@@ -5,11 +6,9 @@ import React, { useState, useEffect } from 'react';
 import ShadedStarRating from './ShadedStarRating';
 
 
-
-
 // eslint-disable-next-line arrow-body-style
-const RatingsAndReviewsBreakDown = ({reviewArray}) => {
-  const [starPercent, setStarPercent] = useState()
+const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharacterObj }) => {
+  const [starPercent, setStarPercent] = useState();
   const productReviewArray = reviewArray.results;
 
   const factorStarPecent = () => {
@@ -83,30 +82,42 @@ const RatingsAndReviewsBreakDown = ({reviewArray}) => {
     position: 'relative',
 
   };
-  const ARROW_SLIDE_SIZE= {
-    fontSize: 15,
-    left: '0%',
-    position: 'absolute',
 
-  };
-  const ARROW_SLIDE_COMFORT= {
-    fontSize: 15,
-    left: '0%',
-    position: 'absolute',
 
-  };
 
   const characteristicRating = () => {
-    return (
-      <div>
-        <div
-          style={CHAR_RATING}
-        >
-          <i style={ARROW_SLIDE_SIZE} className="fas fa-arrow-up" />
-        </div>
-      </div>
-    );
-  }
+    if (reviewMetaData) {
+      const reviewChars = reviewMetaData.characteristics;
+      // eslint-disable-next-line no-restricted-syntax
+      const charObjKeys = Object.keys(sampleCharacterObj);
+      // eslint-disable-next-line consistent-return
+      return charObjKeys.map((key, index) => {
+        if (reviewChars[key]) {
+          const arrowPlacement = (reviewChars[key].value / 5) * 100;
+          const ARROW_SLIDE_SIZE = {
+            fontSize: 15,
+            left: arrowPlacement,
+            position: 'absolute',
+          };
+
+          return (
+            <div key={index}>
+              <span>{key}</span>
+              <br />
+              <div
+                style={CHAR_RATING}
+              >
+                <i style={ARROW_SLIDE_SIZE} className="fas fa-arrow-up" />
+              </div>
+              <span style={{fontSize: '12px'}}>{sampleCharacterObj[key][1]}</span>
+              <span style={{fontSize: '12px'}}>{sampleCharacterObj[key][5]}</span>
+              <br />
+            </div>
+          );
+        }
+      })
+    }
+  };
 
   return (
     <div>

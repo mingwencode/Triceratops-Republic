@@ -22,8 +22,10 @@ const OVERLAY_STYLES = {
   backgroundColor: 'rgba(0, 0, 0, .7)',
   zIndex: 1000,
 };
-
-const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
+const TABLE = {border: '1px solid black'}
+const NewReviewForm = ({
+  showNewReviewModal, setNewReviewModal, sampleCharacterObj, reviewMetaData,
+}) => {
   const [rating, setStarRating] = useState(5);
   const [recommend, setIsRecommended] = useState(undefined);
   const [summary, setChangeSummary] = useState('');
@@ -32,9 +34,7 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
   // eslint-disable-next-line camelcase
   const [reviewer_name, setNickname] = useState('');
 
-
   const characterObj = [
-
 
     {
       0: 'Size',
@@ -87,59 +87,71 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
 
   ];
 
-  const renderTableHeader = () => {
-    const header = Object.keys(characterObj[0]);
-    return header.map((key) => <th key={key + 1}>{key.toUpperCase()}</th>);
-  };
-  const renderTableData = () => characterObj.map((characteristic) => (
-    // eslint-disable-next-line react/no-array-index-key
-    <tr key={characteristic[0]}>
-      <td />
-      <td>
-        <button
-          type="button"
-        >
-          {characteristic[0]}
-        </button>
-      </td>
-      <td>
-        <button
-          type="button"
-        >
-          {characteristic[1]}
-        </button>
-      </td>
-      <td>
-        <button
-          type="button"
-        >
-          {characteristic[2]}
-        </button>
-      </td>
-      <td>
-        <button
-          type="button"
-        >
-          {characteristic[3]}
-        </button>
-      </td>
-      <td>
-        <button
-          type="button"
-        >
-          {characteristic[4]}
-        </button>
-      </td>
-      <td>
-        <button
-          type="button"
-        >
-          {characteristic[5]}
-        </button>
-      </td>
+  const renderCharacteristics = () => {
+    if (reviewMetaData) {
+      const reviewChars = reviewMetaData.characteristics;
+      // eslint-disable-next-line no-restricted-syntax
+      const charObjKeys = Object.keys(sampleCharacterObj);
+      // eslint-disable-next-line consistent-return
+      return charObjKeys.map((key, index) => {
+        if (reviewChars[key]) {
+          return (
+            <tr style={TABLE} key={index}>
+              <td />
+              <td>
+                <button
+                  type="button"
+                >
+                  {key}
+                </button>
+              </td>
+              <td>
+                <button
+                  type="button"
+                >
+                  {sampleCharacterObj[key][1]}
+                </button>
+              </td>
+              <td>
+                <button
+                  type="button"
+                >
+                  {sampleCharacterObj[key][2]}
+                </button>
+              </td>
+              <td>
+                <button
+                  type="button"
+                >
+                  {sampleCharacterObj[key][3]}
+                </button>
+              </td>
+              <td>
+                <button
+                  type="button"
+                >
+                  {sampleCharacterObj[key][4]}
+                </button>
+              </td>
+              <td>
+                <button
+                  type="button"
+                >
+                  {sampleCharacterObj[key][5]}
+                </button>
+              </td>
 
-    </tr>
-  ));
+            </tr>
+          );
+        }
+      });
+    }
+  };
+
+  const renderTableHeader = () => {
+    const header = Object.keys(sampleCharacterObj);
+    return header.map((key, index) => <th key={key + 1}>{index}</th>);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -196,8 +208,8 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
           <button
             type="button"
             onClick={() => setNewReviewModal(!showNewReviewModal)}
-        >
-          Close
+          >
+            Close
           </button>
           <h2> Write Your Review</h2>
           <h3> About the [Product Name Here] </h3>
@@ -277,12 +289,12 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
           </div>
           <div>
             <label id="charTitle">Characteristics*</label>
-            <table id="characteristics">
-              <tbody>
-                <tr>
+            <table id="characteristics" style={TABLE}>
+              <tbody style={TABLE}>
+                <tr style={TABLE}>
                   {renderTableHeader()}
                 </tr>
-                {renderTableData()}
+                {renderCharacteristics()}
               </tbody>
             </table>
           </div>
@@ -377,7 +389,7 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
         </form>
       </div>
     </>
-  )
+  );
 };
 // NewReviewForm.propTypes = {
 //   rating: PropTypes.number.isRequired,
