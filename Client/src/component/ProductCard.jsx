@@ -35,7 +35,7 @@ const ProductCard = ({ product, list, removeOutFit, setCurrentProductId, starPer
 
   return (
     <Card>
-      <SlideImg src={product.url} alt="" onClick={() => setCurrentProductId(20886)} />
+      <SlideImg src={product.url} alt="" onClick={() => setCurrentProductId(product.id)} />
       <span>{product.category}</span>
       <span>{product.name}</span>
       <Star><ShadedStarRating starPercent={starPercent} /></Star>

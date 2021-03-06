@@ -63,6 +63,8 @@ const RelatedProducts = ({setCurrentProductId, relatedProductIds}) => {
   const [relatedList, setRelatedList] = useState([]);
   const [outfitList, setOutfitList] = useState([]);
   const [productById, setProductById] = useState({});
+  const [loading, setLoading] = useState(true);
+
 
   const getProductById = (ids) => {
     const list = [];
@@ -95,7 +97,6 @@ const RelatedProducts = ({setCurrentProductId, relatedProductIds}) => {
   useEffect(() => {
     getProductById(relatedProductIds);
   }, [relatedProductIds]);
-
 
   return (
     <Container>

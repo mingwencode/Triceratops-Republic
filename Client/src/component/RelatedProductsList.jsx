@@ -25,10 +25,11 @@ const SlideDivOne = styled.div`
   margin: 0 auto;
 `;
 
-
 const RelatedProductsList = ({ setCurrentProductId, relatedList }) => {
   const [current, setCurrent] = useState(0);
   const cardContainer = React.useRef();
+  const [loading, setLoading] = useState(false);
+  // const products = relatedList;
 
   useEffect(() => {
     cardContainer.current.style.transitionDuration = '0.5s';
@@ -47,6 +48,14 @@ const RelatedProductsList = ({ setCurrentProductId, relatedList }) => {
     }
   };
 
+  // const getProduct = () => products.concat(relatedList);
+
+  // useEffect(() => {
+  //   getProduct();
+  // }, [loading])
+
+  // setLoading(true)
+
   return (
     <SlideDivOne className="list_container">
       <Title>RELATED PRODUCTS</Title>
@@ -57,7 +66,6 @@ const RelatedProductsList = ({ setCurrentProductId, relatedList }) => {
         <ViewPort className="view-port">
           <CardContainer ref={cardContainer} className="card-container">
             {relatedList.map((product, index) => (
-              // eslint-disable-next-line react/no-array-index-key
               <div key={index}>
                 <ProductCard product={product} list="related" setCurrentProductId={setCurrentProductId} starPercent={100} />
               </div>
@@ -66,7 +74,6 @@ const RelatedProductsList = ({ setCurrentProductId, relatedList }) => {
         </ViewPort>
       </div>
     </SlideDivOne>
-
   );
 };
 
