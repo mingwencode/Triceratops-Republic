@@ -26,7 +26,7 @@ const SlideDivOne = styled.div`
 `;
 
 
-const RelatedProductsList = ({setCurrentProductId, products}) => {
+const RelatedProductsList = ({ setCurrentProductId, relatedList }) => {
   const [current, setCurrent] = useState(0);
   const cardContainer = React.useRef();
 
@@ -51,12 +51,12 @@ const RelatedProductsList = ({setCurrentProductId, products}) => {
     <SlideDivOne className="list_container">
       <Title>RELATED PRODUCTS</Title>
       {current === 0 ? null : <button name="prev_btn" type="button" onClick={() => prevSilde()}>Previous</button>}
-      {current === products.length - 4 ? null : <button name="next_btn" type="button" onClick={() => nextSlide()}>Next</button>}
+      {current === relatedList.length - 4 ? null : <button name="next_btn" type="button" onClick={() => nextSlide()}>Next</button>}
 
       <div>
         <ViewPort className="view-port">
           <CardContainer ref={cardContainer} className="card-container">
-            {products.map((product, index) => (
+            {relatedList.map((product, index) => (
               // eslint-disable-next-line react/no-array-index-key
               <div key={index}>
                 <ProductCard product={product} list="related" setCurrentProductId={setCurrentProductId} starPercent={100} />

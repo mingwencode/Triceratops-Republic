@@ -2,13 +2,35 @@
 import React, { useState, useEffect } from 'react';
 import ShadedStarRating from './ShadedStarRating';
 
-const ReviewTile = ({ review }) => {
-  const [starRating, setStarRating] = useState(26);
+const ReviewTile = ({
+// eslint-disable-next-line react/prop-types
+  review, putReviewReport, putReviewHelpful, currentProductId, getReviews, dropDownselect
+}) => {
+  const [starRating, setStarRating] = useState();
+  const [helpfulClick, setHelpfulClick] = useState(true);
+  const [reportCLick, setReportClick] = useState(true);
+
   useEffect(() => { setStarRating((review.rating / 5) * 100); }, []);
+
+  const submitHelpful = () => {
+    if (helpfulClick) {
+      putReviewHelpful(review.review_id)
+      getReviews(currentProductId, dropDownselect)
+      setHelpfulClick(false)
+    }
+  }
+  const submitReport = () => {
+    if(reportCLick) {
+      putReviewReport(review.review_id)
+      setReportClick(false)
+    }
+  }
+
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
+
   const isRecomended = () => {
     if (review.recommend) {
       return (
@@ -17,12 +39,14 @@ const ReviewTile = ({ review }) => {
             className="fas fa-check"
           />
           <span>
+            {' '}
             I Recommend This Product
           </span>
         </div>
       );
     }
   };
+
   const generateResponse = () => {
     if (review.response) {
       return (
@@ -38,7 +62,6 @@ const ReviewTile = ({ review }) => {
       );
     }
   };
-
   return (
     <div>
       <ul>
@@ -76,7 +99,8 @@ const ReviewTile = ({ review }) => {
           helpful?
         </span>
         <button
-          type="submit"
+          type="button"
+          onClick={() => submitHelpful()}
         >
           Yes
         </button>
@@ -84,7 +108,8 @@ const ReviewTile = ({ review }) => {
           {review.helpfulness}
         </span>
         <button
-          type="submit"
+          type="button"
+          onClick={() => submitReport()}
         >
           Report
         </button>
