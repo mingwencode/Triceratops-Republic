@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ProductCard from './ProductCard';
+import axios from 'axios';
 
 const Title = styled.div`
   font-size: 1.5em;
@@ -25,7 +26,7 @@ const SlideDivOne = styled.div`
   margin: 0 auto;
 `;
 
-const RelatedProductsList = ({ setCurrentProductId, currentProductId, relatedList, len }) => {
+const RelatedProductsList = ({ setCurrentProductId, currentItem, relatedList, len }) => {
   const [current, setCurrent] = useState(0);
   const cardContainer = React.useRef();
 
@@ -46,13 +47,6 @@ const RelatedProductsList = ({ setCurrentProductId, currentProductId, relatedLis
     }
   };
 
-  // const getProduct = () => products.concat(relatedList);
-
-  // useEffect(() => {
-  //   getProduct();
-  // }, [loading])
-
-  // setLoading(true)
   return (
     <SlideDivOne className="list_container">
       <Title>RELATED PRODUCTS</Title>
@@ -64,7 +58,7 @@ const RelatedProductsList = ({ setCurrentProductId, currentProductId, relatedLis
           <CardContainer ref={cardContainer} className="card-container">
             {relatedList.length === len && relatedList.map((product, index) => (
               <div key={index}>
-                <ProductCard product={product} list="related" setCurrentProductId={setCurrentProductId} currentProductId={currentProductId}/>
+                <ProductCard product={product} list="related" setCurrentProductId={setCurrentProductId} currentItem={currentItem} />
               </div>
             ))}
           </CardContainer>

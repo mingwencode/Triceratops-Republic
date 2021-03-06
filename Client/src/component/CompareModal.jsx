@@ -32,31 +32,10 @@ const TableCell = styled.td`
   border: 1px solid #dddddd;
 `;
 
-const currentProduct = {
-  name: 'Karli Shirt',
-  price: 430.00,
-  features: [
-    { feature: 'Non-GMO', value: 'null' },
-    { feature: 'Cut', value: 'Straight' },
-    { feature: 'Fabric', value: 'Cool Fit' },
-  ],
-};
-
-const compareProduct = {
-  name: 'Murl Dress',
-  price: 817.00,
-  features: [
-    { feature: 'Non-GMO', value: 'null' },
-    { feature: 'Cut', value: 'Skinny' },
-    { feature: 'Lens', value: '100% UV Protective' },
-    { feature: 'Fair Trade Certified', value: 'null' },
-  ],
-};
-
 const compareTableCol = (product, feature) => {
   for (let i = 0; i < product.length; i += 1) {
     if(product[i].feature === feature) {
-      if (product[i].value === 'null') {
+      if (product[i].value === null) {
         return null;
       }
       return product[i].value;
@@ -66,8 +45,12 @@ const compareTableCol = (product, feature) => {
 };
 
 const renderTable = (current, compare) => {
-  const currentFeatures = current.features.map((item) => item.feature);
-  const compareFeatures = compare.features.map((item) => item.feature);
+  const currentFeatures = current.features.map((item) => (
+    item.value !== null ? item.feature : null
+  ));
+  const compareFeatures = compare.features.map((item) => (
+    item.value !== null ? item.feature : null
+  ));
   const allFeatures = [...new Set(currentFeatures.concat(compareFeatures))];
 
   return allFeatures.map((feature) => (
@@ -79,7 +62,7 @@ const renderTable = (current, compare) => {
   ));
 };
 
-const CompareModal = ({ isOpenModal, onDismiss, children, current, compare }) => {
+const CompareModal = ({ isOpenModal, onDismiss, children, currentItem, compare }) => {
   if (!isOpenModal) return null;
 
   return ReactDom.createPortal(
@@ -90,18 +73,18 @@ const CompareModal = ({ isOpenModal, onDismiss, children, current, compare }) =>
         <table>
           <thead>
             <tr>
-              <TableHeader>{currentProduct.name}</TableHeader>
+              <TableHeader>{currentItem.name}</TableHeader>
               <TableHeader>                      </TableHeader>
-              <TableHeader>{compareProduct.name}</TableHeader>
+              <TableHeader>{compare.name}</TableHeader>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <TableCell>{`$${currentProduct.price}`}</TableCell>
+              <TableCell>{`$${currentItem.default_price}`}</TableCell>
               <TableCell>price</TableCell>
-              <TableCell>{`$${compareProduct.price}`}</TableCell>
+              <TableCell>{`$${compare.price}`}</TableCell>
             </tr>
-            {renderTable(currentProduct, compareProduct)}
+            {renderTable(currentItem, compare)}
           </tbody>
         </table>
 

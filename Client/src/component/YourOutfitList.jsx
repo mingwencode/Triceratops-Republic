@@ -84,9 +84,7 @@ const YourOutfitList = () => {
   };
 
   const removeOutFit = (id) => {
-    console.log(id)
     const newList = outfitArray.filter((item) => (item.id !== id));
-    console.log(newList);
     setOutfitArray(newList)
   }
 

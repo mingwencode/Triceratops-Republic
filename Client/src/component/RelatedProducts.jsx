@@ -27,11 +27,10 @@ const OutFitListDiv = styled(ProductsListDiv)`
   margin-top: 7%;
 `;
 
-const RelatedProducts = ({setCurrentProductId, relatedProductIds, currentProductId}) => {
+const RelatedProducts = ({setCurrentProductId, relatedProductIds, currentItem}) => {
   const [relatedList, setRelatedList] = useState([]);
   const [len, setLen] = useState(0);
   const [outfitList, setOutfitList] = useState([]);
-  const [currentProduct, setCurrentProduct] = useState({});
 
   const getProductById = (ids) => {
     const list = [];
@@ -66,8 +65,8 @@ const RelatedProducts = ({setCurrentProductId, relatedProductIds, currentProduct
         })
         .then(() => {
           setRelatedList(list);
-          setLen(list.length)
-          })
+          setLen(list.length);
+        })
         .catch((err) => console.log('get product by ids ', err));
     });
   };
@@ -79,7 +78,7 @@ const RelatedProducts = ({setCurrentProductId, relatedProductIds, currentProduct
   return (
     <Container>
       <ProductsListDiv>
-        <RelatedProductsList setCurrentProductId={setCurrentProductId} currentProductId={currentProductId} relatedList={relatedList} len={len}/>
+        <RelatedProductsList setCurrentProductId={setCurrentProductId} currentItem={currentItem} relatedList={relatedList} len={len}/>
       </ProductsListDiv>
       <OutFitListDiv>
         <YourOutfitList />

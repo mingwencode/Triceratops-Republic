@@ -1,3 +1,5 @@
+/* eslint-disable prefer-template */
+/* eslint-disable max-len */
 const express = require('express');
 
 const app = express();
@@ -7,6 +9,10 @@ const path = require('path');
 const PUBLIC_DIR = path.resolve(__dirname, '..', 'public');
 const axios = require('axios');
 const config = require('../config.js');
+
+const { BlobServiceClient } = require('@azure/storage-blob');
+const { v1: uuidv1 } = require('uuid');
+
 
 const token = config.TOKEN;
 
@@ -81,6 +87,31 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
   axios.get(`${options.url}qa/questions/${question_id}/answers`, options)
     .then((datas) => res.send(datas.data))
     .catch((error) => console.log(error));
+});
+
+app.post(`/upload_images`, (req, res) => {
+  // Create the BlobServiceClient object which will be used to create a container client
+  const blobServiceClient = BlobServiceClient.fromConnectionString(config.AZURETOKEN);
+  // Create a unique name for the container
+  const containerName = 'louisaandjesse';
+  // console.log('\nCreating container...');
+  // console.log('\t', containerName);
+  // Get a reference to a container
+  const containerClient = blobServiceClient.getContainerClient(containerName);
+  // Create the container
+  // const createContainerResponse = await containerClient.create();
+  // console.log("Container was created successfully. requestId: ", createContainerResponse.requestId);
+  const blobName = 'img' + uuidv1() + `.${req.body.name}`;
+  const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+  // console.log('\nUploading to Azure storage as blob:\n\t', blobName);
+  // Upload data to the blob
+  const data = Buffer.from(req.body.data, 'base64');
+  blockBlobClient.upload(data, data.length)
+    .then((blobUploadResponse) => {
+      console.log("Blob was uploaded successfully. requestId: ", blobUploadResponse);
+      res.send(`https://louisajeseetest.blob.core.windows.net/louisaandjesse/${blobName}`);
+    })
+    .catch(console.log);
 });
 
 app.post('/qa/questions', (req, res) => {
