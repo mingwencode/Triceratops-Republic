@@ -1,3 +1,5 @@
+/* eslint-disable prefer-template */
+/* eslint-disable max-len */
 const express = require('express');
 
 const app = express();
@@ -7,6 +9,10 @@ const path = require('path');
 const PUBLIC_DIR = path.resolve(__dirname, '..', 'public');
 const axios = require('axios');
 const config = require('../config.js');
+
+const { BlobServiceClient } = require('@azure/storage-blob');
+const { v1: uuidv1 } = require('uuid');
+
 
 const token = config.TOKEN;
 
@@ -36,7 +42,6 @@ app.get('/products/:id/styles', (req, res) => {
 // RATING & REVIEWS
 app.get('/reviews/:id', (req, res) => {
   const { id } = req.params;
-  console.log(req.params)
   axios.get(`${options.url}reviews/?product_id=${id}`, options)
     .then((datas) => res.send(datas.data))
     .catch((error) => console.log('server review GET err'));
@@ -84,15 +89,40 @@ app.get('/qa/questions/:question_id/answers', (req, res) => {
     .catch((error) => console.log(error));
 });
 
+app.post(`/upload_images`, (req, res) => {
+  // Create the BlobServiceClient object which will be used to create a container client
+  const blobServiceClient = BlobServiceClient.fromConnectionString(config.AZURETOKEN);
+  // Create a unique name for the container
+  const containerName = 'louisaandjesse';
+  // console.log('\nCreating container...');
+  // console.log('\t', containerName);
+  // Get a reference to a container
+  const containerClient = blobServiceClient.getContainerClient(containerName);
+  // Create the container
+  // const createContainerResponse = await containerClient.create();
+  // console.log("Container was created successfully. requestId: ", createContainerResponse.requestId);
+  const blobName = 'img' + uuidv1() + `.${req.body.name}`;
+  const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+  // console.log('\nUploading to Azure storage as blob:\n\t', blobName);
+  // Upload data to the blob
+  const data = Buffer.from(req.body.data, 'base64');
+  blockBlobClient.upload(data, data.length)
+    .then((blobUploadResponse) => {
+      console.log("Blob was uploaded successfully. requestId: ", blobUploadResponse);
+      res.send(`https://louisajeseetest.blob.core.windows.net/louisaandjesse/${blobName}`);
+    })
+    .catch(console.log);
+});
+
 app.post('/qa/questions', (req, res) => {
-  axios.post(`${options.url}qa/questions`, options)
+  axios.post(`${options.url}qa/questions`, req.body, options)
     .then(() => res.send(201))
     .catch((error) => console.log('server questions POST err', error.data));
 });
 
 app.post('/qa/questions/:question_id/answers', (req, res) => {
   const { question_id } = req.params;
-  axios.post(`${options.url}qa/questions/${question_id}/answers`, options)
+  axios.post(`${options.url}qa/questions/${question_id}/answers`, req.body, options)
     .then(() => res.send(201))
     .catch((error) => console.log('server answers POST err', error.data));
 });
@@ -138,7 +168,13 @@ app.get('/cart', (req, res) => {
     .then((datas) => res.send(datas.data))
     .catch((error) => console.log(error));
 });
-// https://app-hrsei-api.herokuapp.com/api/fec2/hr-sea/products/20111/related
+
+app.get('/products/:id', (req, res) => {
+  const { id } = req.params;
+  axios.get(`${options.url}products/${id}`, options)
+    .then((datas) => res.send(datas.data))
+    .catch((error) => console.log(error));
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

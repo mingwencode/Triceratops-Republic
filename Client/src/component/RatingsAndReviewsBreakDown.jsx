@@ -44,10 +44,10 @@ const RatingsAndReviewsBreakDown = ({reviewArray}) => {
       5: 0,
     };
     productReviewArray.forEach((review) => {numberOfStarsObj[review.rating] += 1; });
-    return Object.keys(numberOfStarsObj).map((key) => {
+    return Object.keys(numberOfStarsObj).map((key, index) => {
       const asPercentForBars = (numberOfStarsObj[key]/productReviewArray.length) * 100;
       return (
-        <div>
+        <div key={index}>
           {key}
           {' '}
           stars

@@ -21,11 +21,13 @@ const QAndA = ({ currentProductId }) => {
   const [answerNicknameInput, setAnswerNicknameInput] = useState('');
   const [answerEmailInput, setAnswerEmailInput] = useState('');
   const [imageUpload, setImageUpload] = useState([]);
+  const [thumbnail, setThumbnail] = useState([]);
   const [isQuestionModalOpen, setIsQuestionModalOpen] = useState(false);
   const [isAnswerModalOpen, setIsAnswerModalOpen] = useState(false);
   const [questionAnswersShown, setQuestionAnswersShown] = useState(2);
   const [searchText, setSearchText] = useState('');
   const [error, setError] = useState('');
+  const [questionID, setQuestionID] = useState();
 
   useEffect(() => {
     getQuestions(currentProductId);
@@ -34,6 +36,21 @@ const QAndA = ({ currentProductId }) => {
   useEffect(() => {
     getQuestions(currentProductId);
   }, [currentProductId]);
+
+  const clearForm = () => {
+    setAnswerInput('');
+    setAnswerNicknameInput('');
+    setAnswerEmailInput('');
+    setImageUpload([]);
+    setThumbnail([]);
+  };
+
+  const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+});
 
   // API CALLS
   const getQuestions = (id) => {
@@ -54,21 +71,27 @@ const QAndA = ({ currentProductId }) => {
 
   const postQuestion = (question) => {
     axios.post('/qa/questions', question)
-      .then(() => getQuestions())
+      .then(() => {
+        console.log('posting question works!!');
+        getQuestions(currentProductId);
+      })
       .catch((err) => console.log('post question ', err));
   };
 
-  const postAnswer = (answer, question_id) => {
-    axios.post(`/qa/questions/${question_id}/answers`, answer, question_id)
-      .then(() => getQuestions())
-      .catch((err) => console.log('post question ', err));
-  };
+  // const postAnswer = (answer, question_id) => {
+  //   axios.post(`/qa/questions/${question_id}/answers`, answer)
+  //     .then(() => {
+  //       console.log('posting answers works!!');
+  //       getQuestions(currentProductId);
+  //     })
+  //     .catch((err) => console.log('post question ', err));
+  // };
 
   const putQuestionHelpful = (question_id) => {
     axios.put(`/qa/questions/${question_id}/helpful`)
       .then(() => {
         console.log('putQuestionsHelpful works!!');
-        getQuestions();
+        getQuestions(currentProductId);
       })
       .catch((err) => console.log('put questions helpful ', err));
   };
@@ -77,27 +100,27 @@ const QAndA = ({ currentProductId }) => {
     axios.put(`/qa/questions/${question_id}/report`)
       .then(() => {
         console.log('putQuestionsReport works!!');
-        getQuestions();
+        getQuestions(currentProductId);
       })
       .catch((err) => console.log('put questions report ', err));
   };
 
   const putAnswersHelpful = (answer_id) => {
-    axios.put(`/qa/questions/${answer_id}/helpful`)
+    axios.put(`/qa/answers/${answer_id}/helpful`)
       .then(() => {
         console.log('putAnswersHelpful works!!');
-        getAnswers();
+        getQuestions(currentProductId);
       })
-      .catch((err) => console.log('put questions helpful ', err));
+      .catch((err) => console.log('put answers helpful ', err));
   };
 
   const putAnswersReport = (answer_id) => {
-    axios.put(`/qa/questions/${answer_id}/report`)
+    axios.put(`/qa/answers/${answer_id}/report`)
       .then(() => {
         console.log('putAnswersReport works!!');
-        getAnswers();
+        getQuestions(currentProductId);
       })
-      .catch((err) => console.log('put questions report ', err));
+      .catch((err) => console.log('put answers report ', err));
   };
 
   const validEmailRegex = RegExp(
@@ -118,8 +141,15 @@ const QAndA = ({ currentProductId }) => {
     for (let i = 0; i < imageUpload.length; i += 1) {
       imageArray.push(imageUpload[i]);
     }
-    imageArray.push(URL.createObjectURL(e.target.files[0]));
+    imageArray.push(e.target.files[0]);
     setImageUpload(imageArray);
+
+    const thumbnailArray = [];
+    for (let i = 0; i < thumbnail.length; i += 1) {
+      thumbnailArray.push(thumbnail[i]);
+    }
+    thumbnailArray.push(URL.createObjectURL(e.target.files[0]));
+    setThumbnail(thumbnailArray);
   };
 
   const onAnswerDismiss = () => {
@@ -136,7 +166,39 @@ const QAndA = ({ currentProductId }) => {
       setError('You must enter email in proper format!');
       return;
     }
-    setIsAnswerModalOpen(false);
+    const answerObj = {
+      body: answerInput,
+      name: answerNicknameInput,
+      email: answerEmailInput,
+      photos: [],
+    };
+
+    const promises = [];
+
+    for (const photo of imageUpload) {
+      const payload = {
+        name: photo.name,
+        data: '',
+      } 
+      const promise = toBase64(photo)
+        .then((result) => payload.data = result.split(',')[1])
+        .then(() => axios.post(`/upload_images`, payload))
+        .then(({data}) => {return data})
+        .catch(console.log);
+      promises.push(promise);
+    }
+    Promise.all(promises)
+    .then((results) => answerObj.photos = results)
+    .then(() => {
+      return axios.post(`/qa/questions/${questionID}/answers`, answerObj)
+    })
+    .then(() => getQuestions(currentProductId))
+    .then(() => clearForm())
+    .then(() => setIsAnswerModalOpen(false))
+    .catch(console.log);
+
+    
+    
   };
 
   const showUploadFileButton = () => {
@@ -177,7 +239,7 @@ const QAndA = ({ currentProductId }) => {
           />
           <p>For authentication reasons, you will not be emailed.</p>
           <p>{showUploadFileButton()}</p>
-          {imageUpload.map((image, index) => <img src={image} key={index} alt="uploaded by user" height="50" width="50" />)}
+          {thumbnail.map((image, index) => <img src={image} key={index} alt="uploaded by user" height="50" width="50" />)}
           <br />
           <p>{error}</p>
           <br />
@@ -200,6 +262,13 @@ const QAndA = ({ currentProductId }) => {
       setError('You must enter email in proper format!');
       return;
     }
+    const questionObj = {
+      body: questionInput,
+      name: questionNicknameInput,
+      email: questionEmailInput,
+      product_id: currentProductId,
+    };
+    postQuestion(questionObj);
     setIsQuestionModalOpen(false);
   };
 
@@ -216,7 +285,7 @@ const QAndA = ({ currentProductId }) => {
       <div>
         <textarea value={searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
         <span>
-          <QuestionAnswerList onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} productQuestions={productQuestions} questionAnswersShown={questionAnswersShown} searchText={searchText} />
+          <QuestionAnswerList onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} productQuestions={productQuestions} questionAnswersShown={questionAnswersShown} searchText={searchText} putQuestionHelpful={putQuestionHelpful} putQuestionReport={putQuestionReport} putAnswersHelpful={putAnswersHelpful} putAnswersReport={putAnswersReport} setQuestionID={setQuestionID} />
           <p>{showMoreQuestionsButton()}</p>
           <AddNewQuestion addQuestionButtonClick={addQuestionButtonClick} />
           <QAModal isOpenModal={isQuestionModalOpen} onDismiss={onQuestionModalDismiss}>
