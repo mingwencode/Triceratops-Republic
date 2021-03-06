@@ -35,7 +35,11 @@ const ProductCard = ({ product, list, removeOutFit, setCurrentProductId, current
 
   return (
     <Card>
-      <SlideImg src={product.url} alt="" onClick={() => setCurrentProductId(product.id)} />
+      {list=== 'related' ? (
+        <SlideImg src={product.url} alt="" onClick={() => setCurrentProductId(product.id)} />
+      )
+       : <SlideImg src={product.url} alt="" />}
+
       <span>{product.category}</span>
       <span>{product.name}</span>
       <Star><ShadedStarRating starPercent={product.starPercent} /></Star>
@@ -46,7 +50,7 @@ const ProductCard = ({ product, list, removeOutFit, setCurrentProductId, current
           <CompareModal isOpenModal={showModal} onDismiss={setShowModal} currentItem={currentItem} compare={product} />
         </div>
       )
-        : <button type="button" onClick={()=> removeOutFit(product.id)}>X</button>}
+        : <button type="button" onClick={() => removeOutFit(product.id)}>X</button>}
     </Card>
 
   );
