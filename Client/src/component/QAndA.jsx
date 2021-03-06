@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -179,26 +180,23 @@ const QAndA = ({ currentProductId }) => {
       const payload = {
         name: photo.name,
         data: '',
-      } 
+      };
       const promise = toBase64(photo)
         .then((result) => payload.data = result.split(',')[1])
-        .then(() => axios.post(`/upload_images`, payload))
-        .then(({data}) => {return data})
+        .then(() => axios.post('/upload_images', payload))
+        .then(({ data }) => { return data; })
         .catch(console.log);
       promises.push(promise);
     }
     Promise.all(promises)
-    .then((results) => answerObj.photos = results)
-    .then(() => {
-      return axios.post(`/qa/questions/${questionID}/answers`, answerObj)
-    })
-    .then(() => getQuestions(currentProductId))
-    .then(() => clearForm())
-    .then(() => setIsAnswerModalOpen(false))
-    .catch(console.log);
-
-    
-    
+      .then((results) => answerObj.photos = results)
+      .then(() => {
+        return axios.post(`/qa/questions/${questionID}/answers`, answerObj)
+      })
+      .then(() => getQuestions(currentProductId))
+      .then(() => clearForm())
+      .then(() => setIsAnswerModalOpen(false))
+      .catch(console.log);
   };
 
   const showUploadFileButton = () => {
@@ -283,6 +281,7 @@ const QAndA = ({ currentProductId }) => {
   if (productQuestions) {
     return (
       <div>
+        <h2>Questions and Answers</h2>
         <textarea value={searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
         <span>
           <QuestionAnswerList onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} productQuestions={productQuestions} questionAnswersShown={questionAnswersShown} searchText={searchText} putQuestionHelpful={putQuestionHelpful} putQuestionReport={putQuestionReport} putAnswersHelpful={putAnswersHelpful} putAnswersReport={putAnswersReport} setQuestionID={setQuestionID} />
