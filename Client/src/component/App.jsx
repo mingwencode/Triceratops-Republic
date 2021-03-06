@@ -17,20 +17,12 @@ const appStyle = {
 
 const App = () => {
   const [productArray, setProductArray] = useState([]);
-  const [currentProductId, setCurrentProductId] = useState(20103);
+  const [currentProductId, setCurrentProductId] = useState(20111);
   const [productReviewArray, setProductReviewArray] = useState();
   const [relatedProductIds, setRelatedProductIds] = useState();
   const [reviewMetaData, setReviewMetaData] = useState();
   const [productStyles, setProductStyles] = useState();
   const [dropDownselect, setDropDownSelect] = useState('Helpful');
-
-<<<<<<< HEAD
-  useEffect(() => {
-    getProductStyles(currentProductId);
-    getProducts();
-  }, [currentProductId]);
-=======
->>>>>>> 49efebf978c0a038f62c288ebaebf27f1b17494f
 
   // OVERVIEW
   const getProducts = () => {
@@ -41,7 +33,7 @@ const App = () => {
       .then(() => getReviews(currentProductId, dropDownselect))
       .then(() => getRelatedProductIds(currentProductId))
       .then(() => getReviewsMeta(currentProductId))
-      .then(() =>getProductStyles(currentProductId))
+      .then(() => getProductStyles(currentProductId))
       .catch((err) => console.log('initial products ', err));
   };
 
@@ -110,15 +102,14 @@ const App = () => {
     getReviews();
   }, [dropDownselect]);
 
-
   if (productReviewArray) {
     return (
       <div>
-        {console.log('this is styles, ', productStyles)}
+        {console.log('this is styles, ', productArray)}
         <Overview
+          productArray={productArray}
           productStyles={productStyles}
           currentProductId={currentProductId}
-          getProductStyles={getProductStyles}
         />
         <div style={appStyle}>
           <RelatedProducts

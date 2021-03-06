@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const OverviewAddToBag = ({ sizes }) => {
-  const { sizeSelected, setSize } = useState('');
-  const { qty, setQty } = useState(1);
+const OverviewAddToBag = ({ sizes, productArray, productStyles, styleResultsIndex, currentProductIndex }) => {
+  const [sizeSelected, setSize] = useState('');
+  const [qty, setQty] = useState(1);
+  const [inStock, setInStock] = useState(true);
+
   const sizeList = sizes.map((size, idx) => (
     <option key={idx}>{size}</option>
   ));
+
+  // console.log('these are the sizes ', skusObj);
 
   return (
     <div>

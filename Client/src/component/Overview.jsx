@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import OverviewTopBar from './OverviewTopBar';
@@ -34,7 +35,7 @@ const ovStyle = {
   margin: 'auto',
   background: 'white',
   padding: '10px'
-}
+};
 
 const images = [
   'https://s7d5.scene7.com/is/image/Anthropologie/32869075_025_a?$a15-pdp-detail-shot$=&fit=constrain&fmt=webp&qlt=80&wid=1080',
@@ -43,20 +44,33 @@ const images = [
   'https://www.lulus.com/images/product/xlarge/4445090_247570.jpg?w=375&hdpi=1',
   'https://media.tedbaker.com/t_m_pdp_primary,q_auto:best,f_auto/Product/Womens/242843_BABY-PINK_1',
 ];
-const styles = ['style1', 'style2', 'style3', 'style4'];
 const sizes = ['small', 'medium', 'large', 'x-large'];
 const descriptionBullets = ['GMO and pesticide free', 'Some other crap', 'Probably untrue', 'Other information'];
 
-const Overview = ({ productStyles }) => {
+const Overview = ({ productArray, productStyles, currentProductId }) => {
   const [currentImageIndex, setImageIndex] = useState(0);
-  const [proStyles, setProStyles] = useState();
+  const [styleResultsIndex, setStyleResultsIndex] = useState(0);
+  const [currentProductIndex, setCurrentProductIndex] = useState();
+  const [skusArray, setSkus] = useState([]);
+
   useEffect(() => {
-    setProStyles(productStyles);
+    productArray.forEach((product, idx) => {
+      if (product.id === currentProductId) {
+        setCurrentProductIndex(idx);
+      }
+    });
+    setSkus([productStyles.results[styleResultsIndex].skus]);
   }, []);
-  // const images = styles.results
-  const len = images.length - 1;
+
+  console.log(skusArray);
+  // OverviewProducInfo
+  const handleStyleClick = (idx) => {
+    setStyleResultsIndex(idx);
+  };
+
   return (
     <div>
+      {console.log(productArray)}
       <div className="grid-container">
         <OverviewTopBar className="item1 top-bar" />
         <div style={ovStyle}>
@@ -68,12 +82,20 @@ const Overview = ({ productStyles }) => {
           />
           <OverviewProductInfo
             className="item3 product-info"
-            proStyles={proStyles}
-            styles={styles}
+            productArray={productArray}
+            productStyles={productStyles}
+            currentProductId={currentProductId}
+            handleStyleClick={handleStyleClick}
+            styleResultsIndex={styleResultsIndex}
+            currentProductIndex={currentProductIndex}
           />
           <OverviewAddToBag
             className="item4 add-to-bag"
             sizes={sizes}
+            productArray={productArray}
+            productStyles={productStyles}
+            styleResultsIndex={styleResultsIndex}
+            currentProductIndex={currentProductIndex}
           />
           <OverviewDescription className="item5 description" bullets={descriptionBullets} />
         </div>
