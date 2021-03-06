@@ -17,18 +17,9 @@ const appStyle = {
 
 const App = () => {
   const [productArray, setProductArray] = useState([]);
-<<<<<<< HEAD
-  const [currentProductId, setCurrentProductId] = useState(20111);
-  const [productReviewArray, setProductReviewArray] = useState();
-  const [relatedProductIds, setRelatedProductIds] = useState();
-  const [reviewMetaData, setReviewMetaData] = useState();
-  const [productStyles, setProductStyles] = useState();
-  const [dropDownselect, setDropDownSelect] = useState('Helpful');
-=======
   const [currentProductId, setCurrentProductId] = useState(20865);
   const [relatedProductIds, setRelatedProductIds] = useState([]);
   const [productStyles, setProductStyles] = useState();
->>>>>>> c4c664067a0ff09fcf8958c0b1fbfdbb277eeabd
 
   // OVERVIEW
   const getProducts = () => {
@@ -37,12 +28,7 @@ const App = () => {
         setProductArray(res.data)
       ))
       .then(() => getRelatedProductIds(currentProductId))
-<<<<<<< HEAD
-      .then(() => getReviewsMeta(currentProductId))
-      .then(() => getProductStyles(currentProductId))
-=======
       .then(() =>getProductStyles(currentProductId))
->>>>>>> c4c664067a0ff09fcf8958c0b1fbfdbb277eeabd
       .catch((err) => console.log('initial products ', err));
   };
 
@@ -70,12 +56,8 @@ const App = () => {
   }, [currentProductId]);
 
 
-<<<<<<< HEAD
-  if (productReviewArray) {
-=======
 
   if (relatedProductIds) {
->>>>>>> c4c664067a0ff09fcf8958c0b1fbfdbb277eeabd
     return (
       <div>
         {console.log('this is styles, ', productArray)}
@@ -85,17 +67,8 @@ const App = () => {
           currentProductId={currentProductId}
         />
         <div style={appStyle}>
-<<<<<<< HEAD
-          <RelatedProducts
-            setCurrentProductId={setCurrentProductId}
-          />
-          <QAndA
-            currentProductId={currentProductId}
-          />
-=======
           <RelatedProducts setCurrentProductId={setCurrentProductId} relatedProductIds={relatedProductIds} />
           <QAndA currentProductId={currentProductId} />
->>>>>>> c4c664067a0ff09fcf8958c0b1fbfdbb277eeabd
           <RatingsAndReviews
             currentProductId={currentProductId}
 

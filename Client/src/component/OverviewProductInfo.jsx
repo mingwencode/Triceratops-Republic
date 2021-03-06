@@ -5,9 +5,9 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const OverviewProductInfo = ({
-  productArray, currentProductId, productStyles, handleStyleClick, styleResultsIndex, currentProductIndex
+  currentProductId, productStyles, handleStyleClick, styleResultsIndex, currentProductIndex
 }) => {
-  console.log('product styles from PRODUCT INFO', productArray);
+  console.log('product styles from PRODUCT INFO');
 
   if (productStyles) {
     return (
@@ -18,13 +18,15 @@ const OverviewProductInfo = ({
           <a className="reviews-a" onClick={() => (console.log('Read all reviews clicked!'))}><u>Read all reviews</u></a>
         </form>
         <div>
-          <span>{productArray[currentProductIndex].category}</span>
+          {/* <span>{productArray[currentProductIndex].category}</span> */}
         </div>
         <div>
-          <span>{productArray[currentProductIndex].name}</span>
+          {/* <span>{productArray[currentProductIndex].name}</span> */}
         </div>
         <div>
-          <span className="price">${productStyles.results[styleResultsIndex].original_price}</span>
+          <span className="price">
+            ${productStyles.results[styleResultsIndex].original_price}
+          </span>
         </div>
         <div>
           <strong>

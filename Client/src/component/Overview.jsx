@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import OverviewTopBar from './OverviewTopBar';
 import OverviewImageGallery from './OverviewImageGallery';
 import OverviewProductInfo from './OverviewProductInfo';
@@ -47,22 +48,18 @@ const images = [
 const sizes = ['small', 'medium', 'large', 'x-large'];
 const descriptionBullets = ['GMO and pesticide free', 'Some other crap', 'Probably untrue', 'Other information'];
 
-const Overview = ({ productArray, productStyles, currentProductId }) => {
+const Overview = ({ currentProductId }) => {
   const [currentImageIndex, setImageIndex] = useState(0);
   const [styleResultsIndex, setStyleResultsIndex] = useState(0);
   const [currentProductIndex, setCurrentProductIndex] = useState();
+  const [productStyles, setProductStyles] = useState();
   const [skusArray, setSkus] = useState([]);
 
   useEffect(() => {
-    productArray.forEach((product, idx) => {
-      if (product.id === currentProductId) {
-        setCurrentProductIndex(idx);
-      }
-    });
-    setSkus([productStyles.results[styleResultsIndex].skus]);
+    // setSkus([productStyles.results[styleResultsIndex].skus]);
   }, []);
 
-  console.log(skusArray);
+  // console.log(skusArray);
   // OverviewProducInfo
   const handleStyleClick = (idx) => {
     setStyleResultsIndex(idx);
@@ -70,7 +67,6 @@ const Overview = ({ productArray, productStyles, currentProductId }) => {
 
   return (
     <div>
-      {console.log(productArray)}
       <div className="grid-container">
         <OverviewTopBar className="item1 top-bar" />
         <div style={ovStyle}>
@@ -82,7 +78,6 @@ const Overview = ({ productArray, productStyles, currentProductId }) => {
           />
           <OverviewProductInfo
             className="item3 product-info"
-            productArray={productArray}
             productStyles={productStyles}
             currentProductId={currentProductId}
             handleStyleClick={handleStyleClick}
@@ -92,7 +87,6 @@ const Overview = ({ productArray, productStyles, currentProductId }) => {
           <OverviewAddToBag
             className="item4 add-to-bag"
             sizes={sizes}
-            productArray={productArray}
             productStyles={productStyles}
             styleResultsIndex={styleResultsIndex}
             currentProductIndex={currentProductIndex}

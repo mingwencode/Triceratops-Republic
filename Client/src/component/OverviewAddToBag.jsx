@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const OverviewAddToBag = ({ sizes, productArray, productStyles, styleResultsIndex, currentProductIndex }) => {
+const OverviewAddToBag = ({ sizes, productStyles, styleResultsIndex, currentProductIndex }) => {
   const [sizeSelected, setSize] = useState('');
   const [qty, setQty] = useState(1);
   const [inStock, setInStock] = useState(true);
