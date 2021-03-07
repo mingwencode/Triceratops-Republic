@@ -9,7 +9,7 @@ import Thumbnails from './OverviewThumbnails';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const OverviewImageGallery = ({ images, prevSlide, nextSlide, currentImageIndex }) => {
+const OverviewImageGallery = ({ images, currentImageIndex }) => {
   const [currentImage, setImage] = useState(0);
   const [mainImageIndex, setMainImageIndex] = useState(0);
   const thumbContainer = React.useRef();

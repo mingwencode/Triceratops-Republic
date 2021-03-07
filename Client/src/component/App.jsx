@@ -1,10 +1,12 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-use-before-define */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import Overview from './Overview';
 import RatingsAndReviews from './RatingsAndReviews';
 import QAndA from './QAndA';
 import RelatedProducts from './RelatedProducts';
-import styled from 'styled-components';
 
 const appStyle = {
   maxWidth: '1000px',
@@ -15,9 +17,15 @@ const appStyle = {
 
 const App = () => {
   //const [productArray, setProductArray] = useState([]);
+<<<<<<< HEAD
   const [currentProductId, setCurrentProductId] = useState(20130);
   const [relatedProductIds, setRelatedProductIds] = useState();
   const [productStyles, setProductStyles] = useState({});
+=======
+  const [currentProductId, setCurrentProductId] = useState(20111);
+  const [relatedProductIds, setRelatedProductIds] = useState([]);
+  const [productStyles, setProductStyles] = useState();
+>>>>>>> e0cab50ca69c60f42ab6ac7c7d166df11d95cc42
   const [currentItem, setCurrentItem] = useState({});
 
 
@@ -78,7 +86,10 @@ const App = () => {
   if (relatedProductIds) {
     return (
       <div>
-        <Overview currentItem={currentItem} productStyles={productStyles} />
+        <Overview
+          currentItem={currentItem}
+          productStyles={productStyles}
+        />
         <div style={appStyle}>
           <RelatedProducts setCurrentProductId={setCurrentProductId} relatedProductIds={relatedProductIds} currentItem={currentItem} />
           <QAndA currentProductId={currentProductId} />
