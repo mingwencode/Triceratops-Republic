@@ -30,7 +30,6 @@ const OutFitListDiv = styled(ProductsListDiv)`
 const RelatedProducts = ({setCurrentProductId, relatedProductIds, currentItem}) => {
   const [relatedList, setRelatedList] = useState([]);
   const [len, setLen] = useState(0);
-  const [outfitList, setOutfitList] = useState([]);
 
   const getProductById = (ids) => {
     const list = [];
