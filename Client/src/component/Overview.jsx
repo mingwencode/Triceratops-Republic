@@ -24,19 +24,12 @@ import OverviewDescription from './OverviewDescription';
 //   }
 
 //   .grid-container > div {
-//   background-color: rgba(255, 255, 255, 0.8);
+//   background-color: rgba(94, 161, 122, 0.959);
 //   text-align: center;
 //   padding: 20px 0;
 //   font-size: 20px;
 // }
 // `;
-
-const ovStyle = {
-  maxWidth: '1000px',
-  margin: 'auto',
-  background: 'white',
-  padding: '10px'
-};
 
 const images = [
   'https://s7d5.scene7.com/is/image/Anthropologie/32869075_025_a?$a15-pdp-detail-shot$=&fit=constrain&fmt=webp&qlt=80&wid=1080',
@@ -51,7 +44,7 @@ const Overview = ({ currentItem, productStyles, currentProductId }) => {
   const [currentImageIndex, setImageIndex] = useState(0);
   const [styleResultsIndex, setStyleResultsIndex] = useState(0);
   const [currentProductIndex, setCurrentProductIndex] = useState();
-  
+
   const handleStyleClick = (idx) => {
     setStyleResultsIndex(idx);
   };
@@ -61,7 +54,7 @@ const Overview = ({ currentItem, productStyles, currentProductId }) => {
       <div>
         <div className="grid-container">
           <OverviewTopBar className="item1 top-bar" />
-          <div style={ovStyle}>
+          <div>
             <OverviewImageGallery
               className="item2 image-gallery"
               productStyles={productStyles}

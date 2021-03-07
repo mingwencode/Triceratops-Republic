@@ -11,22 +11,32 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Answer from './Answer';
 
-const StyledSpan = styled.span`
-font-family: 'Shippori Mincho', serif;
-font-weight: bold;
-padding-right: 10px;
+const StyledDiv = styled.div`
+  &:nth-child(odd){
+    background-color: #D8E2E9;
+  }
 `;
+
+const StyledSpanQ = styled.span`
+  font-family: 'Shippori Mincho', serif;
+  font-weight: bold;
+  padding-right: 8px;
+`;
+const StyledSpan = styled(StyledSpanQ)`
+  font-size: smaller;
+`;
+
 const StyledSpanBt = styled(StyledSpan)`
   text-decoration: underline;
 `;
 
 const StyledButton = styled.button`
-  background-color: #014034;
+  background-color: #344B5B;
   color: white;
   font-family: 'Shippori Mincho', serif;
   font-size: smallest;
   padding: 4px;
-  width: 125px;
+  width: fit-content;
   height: 25px;
   border: none;
   outline: none;
@@ -71,8 +81,8 @@ const Question = ({ question, onShowAnswerModal, onOpenAnswerModal, questionAnsw
   }
 
   return (
-    <div>
-      <StyledSpan>Q: {question_body} </StyledSpan>
+    <StyledDiv>
+      <StyledSpanQ>Q: {question_body} </StyledSpanQ>
       <StyledSpan> Helpful? </StyledSpan>
       <StyledSpanBt onClick={handleQuestionHelpfulnessClick}> Yes ({question_helpfulness}) </StyledSpanBt>
       <StyledSpanBt onClick={(e) => onQuestionReportClick(e)}>{' '} Report</StyledSpanBt>
@@ -81,7 +91,8 @@ const Question = ({ question, onShowAnswerModal, onOpenAnswerModal, questionAnsw
       <div>
         {newAnswerArray.map((answer, index) => <Answer key={index} answer={answer} putAnswersHelpful={putAnswersHelpful} putAnswersReport={putAnswersReport} />)}
       </div>
-    </div>
+      <hr />
+    </StyledDiv>
   );
 };
 

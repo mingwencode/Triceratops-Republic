@@ -9,6 +9,7 @@ import styled from 'styled-components';
 const StyledSpan = styled.span`
   font-family: 'Shippori Mincho', serif;
   padding: 5px;
+  font-size: smaller;
 `;
 
 const StyledSpanBt = styled(StyledSpan)`

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Button = styled.button`
-background-color: #014034;
+background-color: #344B5B;
 color: white;
 font-family: 'Shippori Mincho', serif;
 padding: 10px;
