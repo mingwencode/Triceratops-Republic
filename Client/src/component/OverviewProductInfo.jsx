@@ -7,7 +7,7 @@ import styled from 'styled-components';
 const OverviewProductInfo = ({
   productStyles, currentItem, currentProductId, handleStyleClick, styleResultsIndex
 }) => {
-  console.log('product styles from PRODUCT INFO', productStyles);
+  // console.log('product styles from PRODUCT INFO', productStyles);
 
   if (productStyles) {
     return (
