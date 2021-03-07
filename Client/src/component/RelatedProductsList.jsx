@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ProductCard from './ProductCard';
-import axios from 'axios';
 
 const Title = styled.div`
   font-size: 1.5em;
@@ -24,6 +23,12 @@ const CardContainer = styled.div`
 
 const SlideDivOne = styled.div`
   margin: 0 auto;
+  display:flex;
+`;
+
+const BtnContainer = styled.div`
+  height: 10px;
+  width: 40px;
 `;
 
 const RelatedProductsList = ({ setCurrentProductId, currentItem, relatedList, len }) => {
@@ -48,23 +53,28 @@ const RelatedProductsList = ({ setCurrentProductId, currentItem, relatedList, le
   };
 
   return (
-    <SlideDivOne className="list_container">
+    <div>
       <Title>RELATED PRODUCTS</Title>
-      {current === 0 ? null : <button name="prev_btn" type="button" onClick={() => prevSilde()}>Previous</button>}
-      {current === len - 4 || len - 4 < 0 ? null : <button name="next_btn" type="button" onClick={() => nextSlide()}>Next</button>}
-
-      <div>
-        <ViewPort className="view-port">
-          <CardContainer ref={cardContainer} className="card-container">
-            {relatedList.length === len && relatedList.map((product, index) => (
-              <div key={index}>
-                <ProductCard product={product} list="related" setCurrentProductId={setCurrentProductId} currentItem={currentItem} />
-              </div>
-            ))}
-          </CardContainer>
-        </ViewPort>
-      </div>
-    </SlideDivOne>
+      <SlideDivOne className="list_container">
+        <BtnContainer>
+          {current === 0 ? null: <button name="prev_btn" type="button" onClick={() => prevSilde()}>&#8678;</button>}
+        </BtnContainer>
+        <div>
+          <ViewPort className="view-port">
+            <CardContainer ref={cardContainer} className="card-container">
+              {relatedList.length === len && relatedList.map((product, index) => (
+                <div key={index}>
+                  <ProductCard product={product} list={true} setCurrentProductId={setCurrentProductId} currentItem={currentItem} />
+                </div>
+              ))}
+            </CardContainer>
+          </ViewPort>
+        </div>
+        <BtnContainer>
+          {current === len - 4 || len - 4 < 0 ? null : <button name="next_btn" type="button" onClick={() => nextSlide()}>&#8680;</button>}
+        </BtnContainer>
+      </SlideDivOne>
+    </div>
   );
 };
 
