@@ -5,14 +5,15 @@ import ProductCard from './ProductCard';
 
 const ListContainer = styled.div`
   display: grid;
-  grid-template-columns: 60px 1fr 2fr 60px;
+  grid-template-columns: 60px 180px 1fr 60px;
 `;
 
 const ViewPortContainer = styled.div`
   margin: 0 auto;
   position: relative;
   grid-column : 3 / 4;
-  justify-self: center;
+  justify-self: right;
+  padding-left: 20px;
 `;
 
 const OutfitViewPort = styled.div`
