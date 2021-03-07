@@ -15,7 +15,6 @@ const ReviewTile = ({
   const submitHelpful = () => {
     if (helpfulClick) {
       putReviewHelpful(review.review_id)
-      getReviews(currentProductId, dropDownselect)
       setHelpfulClick(false)
     }
   }
