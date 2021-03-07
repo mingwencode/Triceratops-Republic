@@ -5,9 +5,9 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const OverviewProductInfo = ({
-  currentProductId, productStyles, handleStyleClick, styleResultsIndex, currentProductIndex
+  productStyles, currentItem, currentProductId, handleStyleClick, styleResultsIndex
 }) => {
-  console.log('product styles from PRODUCT INFO');
+  console.log('product styles from PRODUCT INFO', productStyles);
 
   if (productStyles) {
     return (
@@ -18,10 +18,10 @@ const OverviewProductInfo = ({
           <a className="reviews-a" onClick={() => (console.log('Read all reviews clicked!'))}><u>Read all reviews</u></a>
         </form>
         <div>
-          {/* <span>{productArray[currentProductIndex].category}</span> */}
+          <span>{currentItem.category}</span>
         </div>
         <div>
-          {/* <span>{productArray[currentProductIndex].name}</span> */}
+          <span>{currentItem.name}</span>
         </div>
         <div>
           <span className="price">
@@ -41,6 +41,8 @@ const OverviewProductInfo = ({
             src={style.photos[0].thumbnail_url}
             alt=""
             onClick={() => handleStyleClick(idx)}
+            height="80"
+            width="70"
           />
         ))}
       </div>

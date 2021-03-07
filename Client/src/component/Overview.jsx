@@ -48,16 +48,11 @@ const images = [
 const sizes = ['small', 'medium', 'large', 'x-large'];
 const descriptionBullets = ['GMO and pesticide free', 'Some other crap', 'Probably untrue', 'Other information'];
 
-<<<<<<< HEAD
-const Overview = ({ currentProductId }) => {
-=======
-const Overview = ({currentItem, productStyles}) => {
->>>>>>> fb76c9a594ce3ac1d26eab8ae17f66f9cbb7c24b
+const Overview = ({ currentItem, productStyles, currentProductId }) => {
   const [currentImageIndex, setImageIndex] = useState(0);
   const [styleResultsIndex, setStyleResultsIndex] = useState(0);
   const [currentProductIndex, setCurrentProductIndex] = useState();
-  const [productStyles, setProductStyles] = useState();
-  const [skusArray, setSkus] = useState([]);
+  // const [skusArray, setSkus] = useState([]);
 
   useEffect(() => {
     // setSkus([productStyles.results[styleResultsIndex].skus]);
@@ -69,37 +64,42 @@ const Overview = ({currentItem, productStyles}) => {
     setStyleResultsIndex(idx);
   };
 
-  return (
-    <div>
-      <div className="grid-container">
-        <OverviewTopBar className="item1 top-bar" />
-        <div style={ovStyle}>
-          <OverviewImageGallery
-            className="item2 image-gallery"
-            productStyles={productStyles}
-            images={images}
-            currentImageIndex={currentImageIndex}
-          />
-          <OverviewProductInfo
-            className="item3 product-info"
-            productStyles={productStyles}
-            currentProductId={currentProductId}
-            handleStyleClick={handleStyleClick}
-            styleResultsIndex={styleResultsIndex}
-            currentProductIndex={currentProductIndex}
-          />
-          <OverviewAddToBag
-            className="item4 add-to-bag"
-            sizes={sizes}
-            productStyles={productStyles}
-            styleResultsIndex={styleResultsIndex}
-            currentProductIndex={currentProductIndex}
-          />
-          <OverviewDescription className="item5 description" bullets={descriptionBullets} />
+  if (currentItem) {
+    return (
+      <div>
+        <div className="grid-container">
+          <OverviewTopBar className="item1 top-bar" />
+          <div style={ovStyle}>
+            <OverviewImageGallery
+              className="item2 image-gallery"
+              productStyles={productStyles}
+              images={images}
+              currentImageIndex={currentImageIndex}
+            />
+            <OverviewProductInfo
+              className="item3 product-info"
+              currentItem={currentItem}
+              productStyles={productStyles}
+              currentProductId={currentProductId}
+              handleStyleClick={handleStyleClick}
+              styleResultsIndex={styleResultsIndex}
+            />
+            <OverviewAddToBag
+              className="item4 add-to-bag"
+              sizes={sizes}
+              productStyles={productStyles}
+              styleResultsIndex={styleResultsIndex}
+            />
+            <OverviewDescription
+              className="item5 description"
+              currentItem={currentItem}
+              bullets={descriptionBullets}
+            />
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default Overview;

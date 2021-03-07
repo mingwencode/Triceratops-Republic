@@ -19,8 +19,8 @@ const App = () => {
   //const [productArray, setProductArray] = useState([]);
   const [currentProductId, setCurrentProductId] = useState(20119);
   const [relatedProductIds, setRelatedProductIds] = useState([]);
-  const [productStyles, setProductStyles] = useState({});
-  const [currentItem, setCurrentItem] = useState({})
+  const [productStyles, setProductStyles] = useState();
+  const [currentItem, setCurrentItem] = useState({});
 
   // OVERVIEW
   // const getProducts = () => {
@@ -33,15 +33,6 @@ const App = () => {
   //     .catch((err) => console.log('initial products ', err));
   // };
 
-<<<<<<< HEAD
-  const getProductStyles = (id) => {
-    axios.get(`/products/${id}/styles`)
-      .then((res) => (
-        setProductStyles(res.data)
-      ))
-      .catch((err) => console.log('get product styles ', err));
-  };
-=======
   // const getProductStyles = (id) => {
   //   axios.get(`/products/${id}/styles`)
   //     .then((res) => (
@@ -49,7 +40,6 @@ const App = () => {
   //     ))
   //     .catch(err => console.log('get product styles ', err));
   // };
->>>>>>> fb76c9a594ce3ac1d26eab8ae17f66f9cbb7c24b
 
 
   // RELATED PRODUCTS
@@ -118,16 +108,10 @@ const App = () => {
   if (relatedProductIds) {
     return (
       <div>
-<<<<<<< HEAD
-        {console.log('this is styles, ', productArray)}
         <Overview
-          productArray={productArray}
+          currentItem={currentItem}
           productStyles={productStyles}
-          currentProductId={currentProductId}
         />
-=======
-        <Overview currentItem={currentItem} productStyles={productStyles} />
->>>>>>> fb76c9a594ce3ac1d26eab8ae17f66f9cbb7c24b
         <div style={appStyle}>
           <RelatedProducts setCurrentProductId={setCurrentProductId} relatedProductIds={relatedProductIds} currentItem={currentItem} />
           <QAndA currentProductId={currentProductId} />
