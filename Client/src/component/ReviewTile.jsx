@@ -97,15 +97,18 @@ const ReviewTile = ({
         <br />
         <span>
           helpful?
+          {' '}
         </span>
         <button
           type="button"
           onClick={() => submitHelpful()}
         >
           Yes
+          {'  '}
         </button>
         <span>
           {review.helpfulness}
+          {' '}
         </span>
         <button
           type="button"
