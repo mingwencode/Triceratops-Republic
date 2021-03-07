@@ -8,12 +8,37 @@ import RatingsAndReviews from './RatingsAndReviews';
 import QAndA from './QAndA';
 import RelatedProducts from './RelatedProducts';
 
-const appStyle = {
-  maxWidth: '1000px',
-  margin: 'auto',
-  background: 'white',
-  padding: '10px',
-};
+const AppBackground = styled.div`
+  background: rgba(203, 216, 225, 1);
+`;
+
+const AppBody = styled.div`
+  display: grid;
+  grid-template-rows: 29% 20% 25% 26%;
+  border: 5px solid #344B5B;
+  background: rgba(203, 216, 225, 1);
+  max-width: 70%;
+  margin: auto;
+  align-items: center;
+  padding: 10px;
+  font-family: 'Shippori Mincho', serif;
+`;
+
+const OverviewStyle = styled.div`
+  grid-row-start: 1;
+`;
+
+const RelatedProductsStyle = styled.div`
+  grid-row-start: 2;
+`;
+
+const QASyles = styled.div`
+  grid-row-start: 3;
+`;
+
+const ReviewsStyles = styled.div`
+  grid-row-start: 4;
+`;
 
 const App = () => {
   //const [productArray, setProductArray] = useState([]);
@@ -106,17 +131,25 @@ const App = () => {
 
   if (relatedProductIds) {
     return (
-      <div>
-        <Overview
-          currentItem={currentItem}
-          productStyles={productStyles}
-        />
-        <div style={appStyle}>
-          <RelatedProducts setCurrentProductId={setCurrentProductId} relatedProductIds={relatedProductIds} currentItem={currentItem} />
-          <QAndA currentProductId={currentProductId} />
-          <RatingsAndReviews currentProductId={currentProductId} />
-        </div>
-      </div>
+      <AppBackground>
+        <AppBody>
+          <OverviewStyle>
+            <Overview
+              currentItem={currentItem}
+              productStyles={productStyles}
+              />
+          </OverviewStyle>
+          <RelatedProductsStyle>
+            <RelatedProducts setCurrentProductId={setCurrentProductId} relatedProductIds={relatedProductIds} currentItem={currentItem} />
+          </RelatedProductsStyle>
+          <QASyles>
+            <QAndA currentProductId={currentProductId} />
+          </QASyles>
+          <ReviewsStyles>
+            <RatingsAndReviews currentProductId={currentProductId} />
+          </ReviewsStyles>
+        </AppBody>
+      </AppBackground>
     );
   }
   return <div>Loading...</div>;

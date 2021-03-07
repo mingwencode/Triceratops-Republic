@@ -5,26 +5,30 @@ import RelatedProductsList from './RelatedProductsList';
 import YourOutfitList from './YourOutfitList';
 
 const Container = styled.div`
-  background: #AFFDFD;
-  disply: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 800px;
-  margin: 0 auto;
+  display: grid;
+  grid-template-rows: 40px 1fr 40px 1fr;
+  margin: 0;
 `;
+//background: yellow;
+const ProductListTitle = styled.div`
+  grid-row: 1 / 2;
+  font-size: 1.2em;
+  font-weight: bold;
+  justify-items: left;
+  color: #344B5B
+  border: 1px solid #dddddd;
+`;
+
 const ProductsListDiv = styled.div`
-  width : 94%;
-  top: 5%;
-  position: relative;
-  background: #5EFDE0;
-  height: 40%;
-  margin: 0 auto;
-  display: flex;
+  grid-row: 2 / 3;
+`;
+
+const OutfitTitle = styled(ProductListTitle)`
+  grid-row: 3 / 4;
 `;
 
 const OutFitListDiv = styled(ProductsListDiv)`
-  margin-top: 7%;
+  grid-row: 4 / 5;
 `;
 
 const RelatedProducts = ({setCurrentProductId, relatedProductIds, currentItem}) => {
@@ -76,9 +80,11 @@ const RelatedProducts = ({setCurrentProductId, relatedProductIds, currentItem}) 
 
   return (
     <Container>
+      <ProductListTitle>RELATED PRODUCTS</ProductListTitle>
       <ProductsListDiv>
         <RelatedProductsList setCurrentProductId={setCurrentProductId} currentItem={currentItem} relatedList={relatedList} len={len}/>
       </ProductsListDiv>
+      <OutfitTitle>YOUR OUTFIT</OutfitTitle>
       <OutFitListDiv>
         <YourOutfitList currentItem={currentItem} />
       </OutFitListDiv>
