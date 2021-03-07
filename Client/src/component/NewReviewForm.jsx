@@ -393,11 +393,5 @@ const NewReviewForm = ({
     </>
   );
 };
-// NewReviewForm.propTypes = {
-//   rating: PropTypes.number.isRequired,
-//   recommend: PropTypes.string.isRequired,
-//   reviewSummary: PropTypes.string.isRequired,
-//   reviewBody: PropTypes.string.isRequired,
-// };
 
 export default NewReviewForm;

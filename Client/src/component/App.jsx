@@ -17,15 +17,9 @@ const appStyle = {
 
 const App = () => {
   //const [productArray, setProductArray] = useState([]);
-<<<<<<< HEAD
-  const [currentProductId, setCurrentProductId] = useState(20130);
-  const [relatedProductIds, setRelatedProductIds] = useState();
-  const [productStyles, setProductStyles] = useState({});
-=======
   const [currentProductId, setCurrentProductId] = useState(20111);
-  const [relatedProductIds, setRelatedProductIds] = useState([]);
+  const [relatedProductIds, setRelatedProductIds] = useState();
   const [productStyles, setProductStyles] = useState();
->>>>>>> e0cab50ca69c60f42ab6ac7c7d166df11d95cc42
   const [currentItem, setCurrentItem] = useState({});
 
 

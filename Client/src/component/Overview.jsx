@@ -51,7 +51,7 @@ const Overview = ({ currentItem, productStyles, currentProductId }) => {
   const [currentImageIndex, setImageIndex] = useState(0);
   const [styleResultsIndex, setStyleResultsIndex] = useState(0);
   const [currentProductIndex, setCurrentProductIndex] = useState();
-  
+
   const handleStyleClick = (idx) => {
     setStyleResultsIndex(idx);
   };
@@ -78,7 +78,6 @@ const Overview = ({ currentItem, productStyles, currentProductId }) => {
             />
             <OverviewAddToBag
               className="item4 add-to-bag"
-              sizes={sizes}
               productStyles={productStyles}
               styleResultsIndex={styleResultsIndex}
             />
