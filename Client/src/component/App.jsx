@@ -14,8 +14,13 @@ const appStyle = {
 };
 
 const App = () => {
+<<<<<<< HEAD
+  const [productArray, setProductArray] = useState([]);
+  const [currentProductId, setCurrentProductId] = useState(20111);
+=======
   //const [productArray, setProductArray] = useState([]);
   const [currentProductId, setCurrentProductId] = useState(20119);
+>>>>>>> fb76c9a594ce3ac1d26eab8ae17f66f9cbb7c24b
   const [relatedProductIds, setRelatedProductIds] = useState([]);
   const [productStyles, setProductStyles] = useState({});
   const [currentItem, setCurrentItem] = useState({})
@@ -102,7 +107,10 @@ const App = () => {
     getRelatedProductIds(currentProductId);
   }, [currentProductId]);
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> fb76c9a594ce3ac1d26eab8ae17f66f9cbb7c24b
   if (relatedProductIds) {
     return (
       <div>
