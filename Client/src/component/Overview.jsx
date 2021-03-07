@@ -45,21 +45,13 @@ const images = [
   'https://www.lulus.com/images/product/xlarge/4445090_247570.jpg?w=375&hdpi=1',
   'https://media.tedbaker.com/t_m_pdp_primary,q_auto:best,f_auto/Product/Womens/242843_BABY-PINK_1',
 ];
-const sizes = ['small', 'medium', 'large', 'x-large'];
 const descriptionBullets = ['GMO and pesticide free', 'Some other crap', 'Probably untrue', 'Other information'];
 
 const Overview = ({ currentItem, productStyles, currentProductId }) => {
   const [currentImageIndex, setImageIndex] = useState(0);
   const [styleResultsIndex, setStyleResultsIndex] = useState(0);
   const [currentProductIndex, setCurrentProductIndex] = useState();
-  // const [skusArray, setSkus] = useState([]);
-
-  useEffect(() => {
-    // setSkus([productStyles.results[styleResultsIndex].skus]);
-  }, []);
-
-  // console.log(skusArray);
-  // OverviewProducInfo
+  
   const handleStyleClick = (idx) => {
     setStyleResultsIndex(idx);
   };

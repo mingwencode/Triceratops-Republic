@@ -5,7 +5,6 @@ import React, { useState, useEffect } from 'react';
 const OverviewAddToBag = ({ productStyles, styleResultsIndex }) => {
   const [sizeSelected, setSize] = useState('');
   const [qtyState, setQtyState] = useState();
-  // const [inStock, setInStock] = useState(true);
   const skusArray = [];
   let count = 0;
   const qtyArray = [];
