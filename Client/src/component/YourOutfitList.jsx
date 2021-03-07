@@ -2,15 +2,23 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ProductCard from './ProductCard';
 
-const Title = styled.div`
-  font-size: 1.5em;
-  color: palevioletred;
+
+const ListContainer = styled.div`
+  display: grid;
+  grid-template-columns: 60px 180px 1fr 60px;
+`;
+
+const ViewPortContainer = styled.div`
+  margin: 0 auto;
+  position: relative;
+  grid-column : 3 / 4;
+  justify-self: right;
+  padding-left: 20px;
 `;
 
 const OutfitViewPort = styled.div`
   width: 620px;
   height: 250px;
-  background: rgba(255, 255, 255, 0.5);
   overflow: hidden;
 `;
 
@@ -20,9 +28,33 @@ const CardContainer = styled.div`
   width: fit-content;
 `;
 
-const Grid = styled.div`
-  display: grid;
+const BtnContainerOutfitL = styled.div`
+  align-self: center;
+  justify-self: right;
+  grid-column: 1 / 2;
 `;
+
+const BtnContainerOutfitR = styled(BtnContainerOutfitL)`
+  grid-column: 4 / 5;
+  justify-self: left;
+`;
+
+const Button = styled.button`
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: #344B5B;
+  &:focus{
+    outline: none;
+  }
+  &:hover{
+    font-size: 3em;
+  }
+  &:active{
+    font-size: 2em;
+  }
+`;
+
 
 const YourOutfitList = ({currentItem}) => {
   const [current, setCurrent] = useState(0);
@@ -63,13 +95,13 @@ const YourOutfitList = ({currentItem}) => {
   };
 
   return (
-    <Grid className="list_container">
-      <Title>YOUR OUTFIT</Title>
+    <ListContainer className="list_container">
+      <BtnContainerOutfitL>
+        {current === 0 ? null : <Button name="prev_btn" type="button" onClick={() => prevSilde()}>&#8249;</Button>}
+      </BtnContainerOutfitL>
       <button name="add_btn" type="button" onClick={() => addOutFit(currentItem)}>Add</button>
-      {current === 0 ? null : <button name="prev_btn" type="button" onClick={() => prevSilde()}>Previous</button>}
-      {current === outfitArray.length - 3 || outfitArray.length - 3 < 0 ? null : <button name="next_btn" type="button" onClick={() => nextSlide()}>Next</button>}
 
-      <div>
+      <ViewPortContainer>
         <OutfitViewPort className="view-port">
           <CardContainer ref={cardContainer} className="card-container">
             {(outfitArray.length === 0) ? null : (outfitArray.map((product, index) => (
@@ -79,8 +111,11 @@ const YourOutfitList = ({currentItem}) => {
             )))}
           </CardContainer>
         </OutfitViewPort>
-      </div>
-    </Grid>
+      </ViewPortContainer>
+      <BtnContainerOutfitR>
+        {current === outfitArray.length - 3 || outfitArray.length - 3 < 0 ? null : <Button name="next_btn" type="button" onClick={() => nextSlide()}>&#8250;</Button>}
+      </BtnContainerOutfitR>
+    </ListContainer>
 
   );
 };
