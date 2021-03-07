@@ -106,7 +106,7 @@ const ReviewTile = ({
           {'  '}
         </button>
         <span>
-          {review.helpfulness}
+        &#40; {review.helpfulness} &#41;
           {' '}
         </span>
         <button
