@@ -102,7 +102,6 @@ const App = () => {
     getRelatedProductIds(currentProductId);
   }, [currentProductId]);
 
-
   if (relatedProductIds) {
     return (
       <div>

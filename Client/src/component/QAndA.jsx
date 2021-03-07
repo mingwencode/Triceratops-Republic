@@ -28,6 +28,7 @@ const SearchInput = styled(Input)`
 
 const StyledH2 = styled.h2`
   font-family: 'Shippori Mincho', serif;
+  font-weight: bold;
   color: #012626;
 `;
 
