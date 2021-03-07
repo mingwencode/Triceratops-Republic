@@ -78,7 +78,6 @@ const Overview = ({ currentItem, productStyles, currentProductId }) => {
             />
             <OverviewAddToBag
               className="item4 add-to-bag"
-              sizes={sizes}
               productStyles={productStyles}
               styleResultsIndex={styleResultsIndex}
             />
