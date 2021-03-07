@@ -10,15 +10,15 @@ const appStyle = {
   maxWidth: '1000px',
   margin: 'auto',
   background: 'white',
-  padding: '10px'
+  padding: '10px',
 };
 
 const App = () => {
   //const [productArray, setProductArray] = useState([]);
-  const [currentProductId, setCurrentProductId] = useState(20119);
+  const [currentProductId, setCurrentProductId] = useState(20130);
   const [relatedProductIds, setRelatedProductIds] = useState([]);
   const [productStyles, setProductStyles] = useState({});
-  const [currentItem, setCurrentItem] = useState({})
+  const [currentItem, setCurrentItem] = useState({});
 
   // OVERVIEW
   // const getProducts = () => {

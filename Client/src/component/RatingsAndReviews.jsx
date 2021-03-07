@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NewReviewForm from './NewReviewForm';
 import ReviewList from './ReviewList';
-import RatingsAndReviewsHeader from './RatingsAndReviewsHeader';
 import RatingsAndReviewsBreakDown from './RatingsAndReviewsBreakDown';
 
 const RatingsAndReviews = ({ currentProductId }) => {
@@ -73,16 +72,11 @@ const RatingsAndReviews = ({ currentProductId }) => {
       .catch((err) => console.log('get review meta ', err));
   };
 
-  const postReviews = (review) => {
-    axios.post('/reviews', review)
-      .then(() => getReviews())
-      .catch((err) => console.log('post review ', err));
-  };
 
   useEffect(() => {
     getReviews(currentProductId, dropDownselect);
     getReviewsMeta(currentProductId);
-  }, []);
+  }, [currentProductId]);
 
   useEffect(() => {
     getReviews(currentProductId, dropDownselect);
@@ -115,6 +109,8 @@ const RatingsAndReviews = ({ currentProductId }) => {
             setNewReviewModal={setNewReviewModal}
             sampleCharacterObj={sampleCharacterObj}
             reviewMetaData={reviewMetaData}
+            currentProductId={currentProductId}
+            getReviews={getReviews}
           />
         </div>
         <button
@@ -126,7 +122,7 @@ const RatingsAndReviews = ({ currentProductId }) => {
       </div>
     );
   }
-  return <div> hello</div>;
+  return <div />;
 };
 
 export default RatingsAndReviews;

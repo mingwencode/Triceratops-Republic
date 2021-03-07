@@ -55,9 +55,9 @@ app.get('/reviews/meta/:id', (req, res) => {
 });
 
 app.post('/reviews', (req, res) => {
-  axios.post(`${options.url}reviews`, options)
+  axios.post(`${options.url}reviews`, req.body, options)
     .then(() => res.send(201))
-    .catch((error) => console.log('server review post err', error.data));
+    .catch((error) => console.log('server review post err', error));
 });
 
 app.put('/reviews/:review_id/helpful', (req, res) => {
