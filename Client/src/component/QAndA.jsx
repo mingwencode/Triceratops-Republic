@@ -7,10 +7,69 @@
 /* eslint-disable consistent-return */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import styled from 'styled-components'
+import styled from 'styled-components'
 import AddNewQuestion from './AddNewQuestion';
 import QuestionAnswerList from './QuestionAnswerList';
 import QAModal from './QAModal';
+
+const Input = styled.input`
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 3px;
+  margin: 5px;
+  width: 250px;
+  box-sizing: border-box;
+`;
+
+const SearchInput = styled(Input)`
+  width: 500px;
+  padding: 10px;
+`;
+
+const StyledH2 = styled.h2`
+  font-family: 'Shippori Mincho', serif;
+  color: #012626;
+`;
+
+const StyledP = styled.p`
+font-family: 'Shippori Mincho', serif;
+font-weight: bold;
+`;
+
+const StyledPMessage = styled.p`
+  color: red;
+  font-family: 'Shippori Mincho', serif;
+  font-size: small;
+  padding: 2px;
+`;
+
+const StyledInputButton = styled.input`
+  background-color: #014034;
+  color: white;
+  font-family: 'Shippori Mincho', serif;
+  padding: 10px;
+  margin: 5px;
+  width: 150px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  box-sizing: border-box;
+`;
+
+const StyledButton = styled.button`
+  background-color: #014034;
+  color: white;
+  font-family: 'Shippori Mincho', serif;
+  font-size: smallest;
+  padding: 8px;
+  margin: 3px;
+  width: 200px;
+  height: 40px;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+`;
 
 const QAndA = ({ currentProductId }) => {
   const [productQuestions, setProductQuestions] = useState();
@@ -211,37 +270,38 @@ const QAndA = ({ currentProductId }) => {
     return (
       <QAModal isOpenModal={isAnswerModalOpen} onDismiss={onAnswerDismiss}>
         <form onSubmit={(e) => handleAnswerSubmit(e, answerEmailInput)}>
-          <p>Type your answer:*</p>
-          <textarea
+          <StyledP>Type your answer:*</StyledP>
+          <Input
             required="required"
             maxLength="1000"
             value={answerInput}
             onChange={(e) => setAnswerInput(e.target.value)}
           />
-          <p>Enter your nickname:*</p>
-          <input
+          <StyledP>Enter your nickname:*</StyledP>
+          <Input
             placeholder="Example: jackson11!"
             required="required"
             maxLength="60"
             value={answerNicknameInput}
             onChange={(e) => setAnswerNicknameInput(e.target.value)}
           />
-          <p>For privacy reasons, do not use your full name or email address.</p>
-          <p>Enter your E-Mail:*</p>
-          <input
+          <StyledPMessage>For privacy reasons, do not use your full name or email address.</StyledPMessage>
+          <StyledP>Enter your E-Mail:*</StyledP>
+          <Input
             placeholder="youremail@address.com"
             required="required"
             maxLength="60"
             value={answerEmailInput}
             onChange={(e) => setAnswerEmailInput(e.target.value)}
           />
-          <p>For authentication reasons, you will not be emailed.</p>
+          <StyledPMessage>For authentication reasons, you will not be emailed.</StyledPMessage>
+          <StyledP>Upload Images:</StyledP>
           <p>{showUploadFileButton()}</p>
           {thumbnail.map((image, index) => <img src={image} key={index} alt="uploaded by user" height="50" width="50" />)}
           <br />
           <p>{error}</p>
           <br />
-          <input
+          <StyledInputButton
             type="submit"
             name="submit"
           />
@@ -252,6 +312,12 @@ const QAndA = ({ currentProductId }) => {
 
   const onQuestionModalDismiss = () => {
     setIsQuestionModalOpen(false);
+  };
+
+  const clearQuestionForm = () => {
+    setQuestionInput('');
+    setQuestionEmailInput('');
+    setQuestionNicknameInput('');
   };
 
   const handleQuestionSubmit = (e, email) => {
@@ -267,13 +333,14 @@ const QAndA = ({ currentProductId }) => {
       product_id: currentProductId,
     };
     postQuestion(questionObj);
+    clearQuestionForm();
     setIsQuestionModalOpen(false);
   };
 
   const showMoreQuestionsButton = () => {
     if (productQuestions.results.length > questionAnswersShown) {
       return (
-        <button type="button" onClick={(e) => onMoreQuestionsButtonClick(e)}>More Answered Questions</button>
+        <StyledButton type="button" onClick={(e) => onMoreQuestionsButtonClick(e)}>More Answered Questions</StyledButton>
       );
     }
   };
@@ -281,8 +348,8 @@ const QAndA = ({ currentProductId }) => {
   if (productQuestions) {
     return (
       <div>
-        <h2>Questions and Answers</h2>
-        <textarea value={searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
+        <StyledH2>Questions and Answers</StyledH2>
+        <SearchInput value={searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
         <span>
           <QuestionAnswerList onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} productQuestions={productQuestions} questionAnswersShown={questionAnswersShown} searchText={searchText} putQuestionHelpful={putQuestionHelpful} putQuestionReport={putQuestionReport} putAnswersHelpful={putAnswersHelpful} putAnswersReport={putAnswersReport} setQuestionID={setQuestionID} />
           <p>{showMoreQuestionsButton()}</p>
@@ -290,50 +357,50 @@ const QAndA = ({ currentProductId }) => {
           <QAModal isOpenModal={isQuestionModalOpen} onDismiss={onQuestionModalDismiss}>
             <form onSubmit={(e) => handleQuestionSubmit(e, questionEmailInput)}>
               <div>
-                <label
+                <StyledP
                   htmlFor="question"
                   title="question"
                   maxLength="1000"
                 >
                   Type your Question:*
-                </label>
+                </StyledP>
                 <br />
-                <textarea
+                <Input
                   required="required"
                   value={questionInput}
                   onChange={(e) => setQuestionInput(e.target.value)}
                 />
                 <br />
-                <label
+                <StyledP
                   htmlFor="nickname"
                   title="nickname"
                   maxLength="60"
                 >
                   Enter your Nickname:*
-                </label>
-                <input
+                </StyledP>
+                <Input
                   placeholder="Example: jackson11!"
                   required="required"
                   value={questionNicknameInput}
                   onChange={(e) => setQuestionNicknameInput(e.target.value)}
                 />
-                <p>For privacy reasons, do not use your full name or email address.</p>
-                <label
+                <StyledPMessage>For privacy reasons, do not use your full name or email address.</StyledPMessage>
+                <StyledP
                   htmlFor="email"
                   title="email"
                   maxLength="60"
                 >
                   Enter your Email:*
-                </label>
-                <input
+                </StyledP>
+                <Input
                   placeholder="youremail@address.com"
                   required="required"
                   value={questionEmailInput}
                   onChange={(e) => setQuestionEmailInput(e.target.value)}
                 />
-                <p>For authentication reasons, you will not be emailed.</p>
-                <p>{error}</p>
-                <input
+                <StyledPMessage>For authentication reasons, you will not be emailed.</StyledPMessage>
+                <StyledPMessage>{error}</StyledPMessage>
+                <StyledInputButton
                   type="submit"
                   name="submit"
                 />

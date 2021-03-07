@@ -8,7 +8,31 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable arrow-body-style */
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import Answer from './Answer';
+
+const StyledSpan = styled.span`
+font-family: 'Shippori Mincho', serif;
+font-weight: bold;
+padding-right: 10px;
+`;
+const StyledSpanBt = styled(StyledSpan)`
+  text-decoration: underline;
+`;
+
+const StyledButton = styled.button`
+  background-color: #014034;
+  color: white;
+  font-family: 'Shippori Mincho', serif;
+  font-size: smallest;
+  padding: 4px;
+  width: 125px;
+  height: 25px;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+`;
 
 const Question = ({ question, onShowAnswerModal, onOpenAnswerModal, questionAnswersShown, putQuestionHelpful, putQuestionReport, putAnswersHelpful, putAnswersReport, setQuestionID }) => {
   const [showAnswerModal, setShowAnswerModal] = useState(false);
@@ -48,12 +72,12 @@ const Question = ({ question, onShowAnswerModal, onOpenAnswerModal, questionAnsw
 
   return (
     <div>
-      <span>Q: {question_body} </span>
-      <span> Helpful? </span>
-      <span onClick={handleQuestionHelpfulnessClick}> Yes ({question_helpfulness}) </span>
-      <span onClick={(e) => onQuestionReportClick(e)}>{' '} Report</span>
-      <a onClick={onAddAnswerButtonClick}> | Add an Answer</a>
-      <span>{renderAnswerModal()}</span>
+      <StyledSpan>Q: {question_body} </StyledSpan>
+      <StyledSpan> Helpful? </StyledSpan>
+      <StyledSpanBt onClick={handleQuestionHelpfulnessClick}> Yes ({question_helpfulness}) </StyledSpanBt>
+      <StyledSpanBt onClick={(e) => onQuestionReportClick(e)}>{' '} Report</StyledSpanBt>
+      <StyledButton onClick={onAddAnswerButtonClick}> Add an Answer</StyledButton>
+      <StyledSpan>{renderAnswerModal()}</StyledSpan>
       <div>
         {newAnswerArray.map((answer, index) => <Answer key={index} answer={answer} putAnswersHelpful={putAnswersHelpful} putAnswersReport={putAnswersReport} />)}
       </div>

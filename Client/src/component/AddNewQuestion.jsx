@@ -1,15 +1,19 @@
 /* eslint-disable arrow-body-style */
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Button = styled.button`
-    color: rosewood;
-    font-size: 1em;
-    margin: 1em;
-    padding: 0.25em 1em;
-    border: 2px solid rosewood;
-    border-radius: 3px;
+background-color: #014034;
+color: white;
+font-family: 'Shippori Mincho', serif;
+padding: 10px;
+margin: 5px;
+width: 150px;
+border: none;
+outline: none;
+border-radius: 10px;
+box-sizing: border-box;
  `;
 
 const AddNewQuestion = ({ addQuestionButtonClick }) => {

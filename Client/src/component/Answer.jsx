@@ -4,6 +4,21 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable camelcase */
 import React, { useState } from 'react';
+import styled from 'styled-components';
+
+const StyledSpan = styled.span`
+  font-family: 'Shippori Mincho', serif;
+  padding: 5px;
+`;
+
+const StyledSpanBt = styled(StyledSpan)`
+  text-decoration: underline;
+`;
+
+const StyledP = styled.p`
+font-family: 'Shippori Mincho', serif;
+font-weight: bold;
+`;
 
 const Answer = ({ answer, putAnswersHelpful, putAnswersReport }) => {
   const { body, answerer_name, date, id, helpfulness, photos } = answer;
@@ -35,32 +50,33 @@ const Answer = ({ answer, putAnswersHelpful, putAnswersReport }) => {
   }
   return (
     <div>
-      <p>A:
+      <StyledP>A:
         {' '}
         {body}
-      </p>
+      </StyledP>
       {renderPhotos()}
-      <span>
+      <StyledSpan>
         by
+        {' '}
         {answerer_name}
         ,
+      </StyledSpan>
+      <StyledSpan>
         {getProperDate(date)}
-        {' '}
-        |
-        {' '}
+      </StyledSpan>
+      <StyledSpan>
         Helpful?
-        {' '}
-      </span>
-      <span onClick={handleHelpfulnessClick}>
+      </StyledSpan>
+      <StyledSpanBt onClick={handleHelpfulnessClick}>
         Yes
         ({helpfulness})
-      </span>
-      <span
+      </StyledSpanBt>
+      <StyledSpanBt
         onClick={(e) => onReportButtonClick(e)}
       >
         {' '}
         {report}
-      </span>
+      </StyledSpanBt>
     </div>
   );
 };
