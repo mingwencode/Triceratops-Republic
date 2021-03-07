@@ -15,13 +15,15 @@ const AppBackground = styled.div`
 const AppBody = styled.div`
   display: grid;
   grid-template-rows: 29% 20% 25% 26%;
-  border: 5px solid #344B5B;
+  grid-template-columns: auto;
+  border: 10px solid #615e5e;
   background: rgba(203, 216, 225, 1);
   max-width: 70%;
   margin: auto;
-  align-items: center;
+
   padding: 10px;
   font-family: 'Shippori Mincho', serif;
+  overFlow: auto;
 `;
 
 const OverviewStyle = styled.div`
@@ -38,33 +40,15 @@ const QASyles = styled.div`
 
 const ReviewsStyles = styled.div`
   grid-row-start: 4;
+
 `;
 
 const App = () => {
   //const [productArray, setProductArray] = useState([]);
   const [currentProductId, setCurrentProductId] = useState(20111);
-  const [relatedProductIds, setRelatedProductIds] = useState([]);
+  const [relatedProductIds, setRelatedProductIds] = useState();
   const [productStyles, setProductStyles] = useState();
   const [currentItem, setCurrentItem] = useState({});
-
-  // OVERVIEW
-  // const getProducts = () => {
-  //   axios.get('/products')
-  //     .then((res) => (
-  //       setProductArray(res.data)
-  //     ))
-  //     .then(() => getRelatedProductIds(currentProductId))
-  //     .then(() =>getProductStyles(currentProductId))
-  //     .catch((err) => console.log('initial products ', err));
-  // };
-
-  // const getProductStyles = (id) => {
-  //   axios.get(`/products/${id}/styles`)
-  //     .then((res) => (
-  //       setProductStyles(res.data)
-  //     ))
-  //     .catch(err => console.log('get product styles ', err));
-  // };
 
 
   // RELATED PRODUCTS
@@ -76,14 +60,6 @@ const App = () => {
       .catch(err => console.log('get related product ids ', err));
   };
 
-  // const getCurrentProductInfo = (id) => {
-  //   axios.get(`/products/${id}`)
-  //     .then((res) => (
-  //       setCurrentItem(res.data)
-  //     ))
-  //     .then (getRelatedProductIds(id))
-  //     .catch(err => console.log('get product info', err));
-  // };
 
   const getCurrentProductInfo = (pId) => {
     const requestOne = axios.get(`/products/${pId}`);

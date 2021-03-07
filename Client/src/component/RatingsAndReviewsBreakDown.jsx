@@ -21,7 +21,7 @@ const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharact
 
   useEffect(() => {
     factorStarPecent();
-  }, []);
+  }, [reviewArray]);
 
   const percentRecommended = () => {
     let numberRecommended = 0;

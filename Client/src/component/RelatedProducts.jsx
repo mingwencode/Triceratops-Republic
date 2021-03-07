@@ -8,6 +8,7 @@ const Container = styled.div`
   display: grid;
   grid-template-rows: 40px 1fr 40px 1fr;
   margin: 0;
+  background :yellow;
 `;
 //background: yellow;
 const ProductListTitle = styled.div`
