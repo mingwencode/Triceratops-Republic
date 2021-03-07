@@ -25,6 +25,7 @@ const Card = styled.div`
 const Star = styled.div`
   height: 10px;
   width: 10px;
+  transform: scale(0.5, 0.5);
 `
 
 const ProductCard = ({

@@ -40,7 +40,7 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
   const putReviewHelpful = (review_id) => {
     axios.put(`/reviews/${review_id}/helpful`)
       .then(() => {
-        getReviews();
+        getReviews(currentProductId, dropDownselect);
       })
       .catch((err) => console.log('put reviews ', err));
   };
@@ -48,7 +48,7 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
   const putReviewReport = (review_id) => {
     axios.put(`/reviews/${review_id}/report`)
       .then(() => {
-        getReviews();
+        getReviews(currentProductId, dropDownselect);
       })
       .catch((err) => console.log('put reviews ', err));
   };
@@ -66,6 +66,7 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
             getReviews={getReviews}
             currentProductId={currentProductId}
             dropDownselect={dropDownselect}
+
           />
         </div>
       );
