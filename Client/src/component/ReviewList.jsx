@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ReviewTile from './ReviewTile';
+import RatingsAndReviewsHeader from './RatingsAndReviewsHeader';
 
 const MODAL_STYLES = {
   position: 'fixed',
@@ -26,7 +27,7 @@ const OVERLAY_STYLES = {
   zIndex: 1000,
 };
 
-const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect }) => {
+const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect, setDropDownSelect }) => {
   const [reviewCount, setReviewCount] = useState(2);
   const [reviewModalBoolean, setReviewModalBoolean] = useState(false);
   const [moreReviewsBoolean, setMoreReview] = useState(true);
@@ -39,7 +40,7 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect 
   const putReviewHelpful = (review_id) => {
     axios.put(`/reviews/${review_id}/helpful`)
       .then(() => {
-        getReviews();
+        getReviews(currentProductId, dropDownselect);
       })
       .catch((err) => console.log('put reviews ', err));
   };
@@ -47,7 +48,7 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect 
   const putReviewReport = (review_id) => {
     axios.put(`/reviews/${review_id}/report`)
       .then(() => {
-        getReviews();
+        getReviews(currentProductId, dropDownselect);
       })
       .catch((err) => console.log('put reviews ', err));
   };
@@ -56,22 +57,25 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect 
     return reviews.slice(0, reviewCount).map((review, index) => {
 
       return (
-        <ReviewTile
-          key={index}
-          putReviewHelpful={putReviewHelpful}
-          review={review}
-          putReviewReport={putReviewReport}
-          getReviews={getReviews}
-          currentProductId={currentProductId}
-          dropDownselect={dropDownselect}
-        />
+        <div>
+          <ReviewTile
+            key={index}
+            putReviewHelpful={putReviewHelpful}
+            review={review}
+            putReviewReport={putReviewReport}
+            getReviews={getReviews}
+            currentProductId={currentProductId}
+            dropDownselect={dropDownselect}
+
+          />
+        </div>
       );
 
     });
   };
 
   const openModal = () => {
-    if (reviewCount >= 4) setReviewModalBoolean(true);
+    if (reviewCount >= 5) setReviewModalBoolean(true);
   };
 
   const moreReviews = () => {
@@ -92,6 +96,10 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect 
   if (!reviewModalBoolean) {
     return (
       <div>
+        <RatingsAndReviewsHeader
+          reviewArray={reviewArray}
+          setDropDownSelect={setDropDownSelect}
+        />
 
         <ul>
           {intitialReviewRender()}
@@ -118,6 +126,11 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect 
           >
             Close
           </button>
+          <RatingsAndReviewsHeader
+          reviewArray={reviewArray}
+          setDropDownSelect={setDropDownSelect}
+        />
+
           <ul>
             {intitialReviewRender()}
           </ul>

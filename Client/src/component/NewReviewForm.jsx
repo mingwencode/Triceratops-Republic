@@ -1,8 +1,9 @@
+/* eslint-disable max-len */
 /* eslint-disable consistent-return */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
+import axios from 'axios';
 // import PropTypes from 'prop-types';
-import ReactDom from 'react-dom';
 
 const MODAL_STYLES = {
   position: 'fixed',
@@ -22,125 +23,134 @@ const OVERLAY_STYLES = {
   backgroundColor: 'rgba(0, 0, 0, .7)',
   zIndex: 1000,
 };
-
-const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
+const TABLE = { border: '1px solid black' };
+const NewReviewForm = ({
+  showNewReviewModal, currentProductId, setNewReviewModal, sampleCharacterObj, reviewMetaData, getReviews
+}) => {
   const [rating, setStarRating] = useState(5);
-  const [recommend, setIsRecommended] = useState(undefined);
+  const [recommend, setIsRecommended] = useState();
   const [summary, setChangeSummary] = useState('');
   const [body, setChangeReview] = useState('');
   const [photos, setUploadPhoto] = useState(null);
   // eslint-disable-next-line camelcase
   const [reviewer_name, setNickname] = useState('');
+  const [email, setEmail] = useState('');
+  const [characisticsState, setCharacteristicsState] = useState({});
 
-
-  const characterObj = [
-    {
-      0: 'Size',
-      1: 'A size too small',
-      2: '½ a size too small',
-      3: 'Perfect',
-      4: '½ a size too big',
-      5: 'A size too wide',
-    },
-    {
-      0: 'Width',
-      1: 'Too narrow',
-      2: 'Slightly narrow',
-      3: 'Perfect',
-      4: 'Slightly wide',
-      5: 'Too wide',
-    },
-    {
-      0: 'Comfort',
-      1: 'Uncomfortable',
-      2: 'Slightly uncomfortable',
-      3: 'Ok',
-      4: 'Comfortable',
-      5: 'Perfect',
-    },
-    {
-      0: 'Quality',
-      1: 'Poor',
-      2: 'Below average',
-      3: 'What I expected',
-      4: 'Pretty great',
-      5: 'Perfect',
-    },
-    {
-      0: 'Length',
-      1: 'Runs short',
-      2: 'Runs slightly short',
-      3: 'Perfect',
-      4: 'Runs slightly long',
-      5: 'Runs long',
-    },
-    {
-      0: 'Fit',
-      1: 'Runs tight',
-      2: 'Runs slightly tight',
-      3: 'Perfect',
-      4: 'Runs slightly long',
-      5: 'Runs long',
-    },
-  ];
-
-  const renderTableHeader = () => {
-    const header = Object.keys(characterObj[0]);
-    return header.map((key) => <th key={key + 1}>{key.toUpperCase()}</th>);
+  const postReviews = (review) => {
+    axios.post('/reviews', review)
+      .then(() => getReviews(currentProductId))
+      .catch((err) => console.log('post review ', err));
   };
-  const renderTableData = () => characterObj.map((characteristic) => (
-    // eslint-disable-next-line react/no-array-index-key
-    <tr key={characteristic[0]}>
-      <td />
-      <td>
-        <button
-          type="button"
-        >
-          {characteristic[0]}
-        </button>
-      </td>
-      <td>
-        <button
-          type="button"
-        >
-          {characteristic[1]}
-        </button>
-      </td>
-      <td>
-        <button
-          type="button"
-        >
-          {characteristic[2]}
-        </button>
-      </td>
-      <td>
-        <button
-          type="button"
-        >
-          {characteristic[3]}
-        </button>
-      </td>
-      <td>
-        <button
-          type="button"
-        >
-          {characteristic[4]}
-        </button>
-      </td>
-      <td>
-        <button
-          type="button"
-        >
-          {characteristic[5]}
-        </button>
-      </td>
 
-    </tr>
-  ));
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const postCharacteristicsObj = {
+    product_id: currentProductId,
+    rating: rating,
+    summary: summary,
+    body: body,
+    recommend: recommend,
+    name: reviewer_name,
+    email: email,
+    photos: [],
+    characteristics: characisticsState,
+ };
+
+
+  const renderCharacteristics = () => {
+    if (reviewMetaData) {
+      const reviewChars = reviewMetaData.characteristics;
+      // eslint-disable-next-line no-restricted-syntax
+
+      const charObjKeys = Object.keys(sampleCharacterObj);
+      // eslint-disable-next-line consistent-return
+      return charObjKeys.map((key, index) => {
+        if (reviewChars[key]) {
+          let characteristicKey = JSON.stringify(reviewChars[key].id);
+          return (
+            <tr key={index}>
+              <td />
+              <td>
+                <span
+                >
+                  {key}
+                </span>
+              </td>
+              <td>
+                <input
+                  type="radio"
+                  name={key}
+                  required="reduired"
+                  onClick={() => setCharacteristicsState({ ...characisticsState, [characteristicKey]: 1 })}
+                />
+                <label>
+                  {sampleCharacterObj[key][1]}
+                </label>
+              </td>
+              <td>
+                <input
+                  type="radio"
+                  name={key}
+                  onClick={() => setCharacteristicsState({ ...characisticsState, [characteristicKey]: 2 })}
+                />
+                <label>
+                  {sampleCharacterObj[key][2]}
+                </label>
+              </td>
+              <td>
+                <input
+                  type="radio"
+                  name={key}
+                  onClick={() => setCharacteristicsState({ ...characisticsState, [characteristicKey]: 3 })}
+                />
+                <label>
+                  {sampleCharacterObj[key][3]}
+                </label>
+              </td>
+              <td>
+                <input
+                  type="radio"
+                  name={key}
+                  onClick={() => setCharacteristicsState({ ...characisticsState, [characteristicKey]: 4 })}
+                />
+                <label>
+                  {sampleCharacterObj[key][4]}
+                </label>
+              </td>
+              <td>
+                <input
+                  type="radio"
+                  name={key}
+                  onClick={() => setCharacteristicsState({...characisticsState, [characteristicKey]: 5 })}
+                />
+                <label>
+                  {sampleCharacterObj[key][5]}
+                </label>
+              </td>
+
+            </tr>
+          );
+        }
+      });
+    }
+  };
+
+
+  const clearForm = () => {
+    setStarRating();
+    setIsRecommended();
+    setChangeSummary();
+    setChangeReview();
+    setUploadPhoto();
+    setNickname();
+    setEmail();
+    setCharacteristicsState();
+  };
+  const handleSubmit = (e)=> {
+    e.preventDefault();
+    postReviews(postCharacteristicsObj);
     setNewReviewModal(false);
+    clearForm();
   };
   const onPhotoUpload = (event) => {
     setUploadPhoto(URL.createObjectURL(event.target.files[0]));
@@ -189,12 +199,16 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
     <>
       <div style={OVERLAY_STYLES} />
       <div style={MODAL_STYLES}>
-        <form>
+        <form
+          onSubmit={(e) => {
+            handleSubmit(e);
+          }}
+        >
           <button
             type="button"
             onClick={() => setNewReviewModal(!showNewReviewModal)}
-        >
-          Close
+          >
+            Close
           </button>
           <h2> Write Your Review</h2>
           <h3> About the [Product Name Here] </h3>
@@ -205,7 +219,7 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
               id="star5"
               name="rating"
               value="5"
-              defaultChecked
+              required="required"
               onClick={() => setStarRating(5)}
             />
             {starRatingTextFive()}
@@ -245,7 +259,6 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
           <div>
             <legend>Do You Recommend?*</legend>
             <input
-              defaultChecked
               type="radio"
               id="yes"
               name="Recommend"
@@ -264,6 +277,7 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
               name="Recommend"
               value="no"
               onChange={() => setIsRecommended(false)}
+              required="required"
             />
             <label
               htmlFor="no"
@@ -274,12 +288,12 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
           </div>
           <div>
             <label id="charTitle">Characteristics*</label>
-            <table id="characteristics">
-              <tbody>
-                <tr>
-                  {renderTableHeader()}
+            <table id="characteristics" style={TABLE}>
+              <tbody style={TABLE}>
+                <tr style={TABLE}>
+                  {/* {renderTableHeader()} */}
                 </tr>
-                {renderTableData()}
+                {renderCharacteristics()}
               </tbody>
             </table>
           </div>
@@ -358,23 +372,20 @@ const NewReviewForm = ({ showNewReviewModal, setNewReviewModal }) => {
             <input
               type="email"
               placeholder="Example: jackson11@email.com"
+              onChange={(event) => setEmail(event.target.value)}
             />
             <span>
               For authentication reasons, you will not be emailed
             </span>
           </div>
-          <button
+          <input
             type="submit"
-            onSubmit={(event) => {
-              handleSubmit(event);
-            }}
-          >
-            Submit Review
-          </button>
+            name="submit"
+          />
         </form>
       </div>
     </>
-  )
+  );
 };
 // NewReviewForm.propTypes = {
 //   rating: PropTypes.number.isRequired,

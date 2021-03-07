@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NewReviewForm from './NewReviewForm';
 import ReviewList from './ReviewList';
-import RatingsAndReviewsHeader from './RatingsAndReviewsHeader';
 import RatingsAndReviewsBreakDown from './RatingsAndReviewsBreakDown';
 
 const RatingsAndReviews = ({ currentProductId }) => {
@@ -12,7 +11,52 @@ const RatingsAndReviews = ({ currentProductId }) => {
   const [showNewMReviewModal, setNewReviewModal] = useState(false);
   const [dropDownselect, setDropDownSelect] = useState('newest');
   const [reviewMetaData, setReviewMetaData] = useState();
+  const [sampleCharacterObj, setSampleCharcterObj] = useState({
+    Size: {
+      1: 'A size too small',
+      2: '½ a size too small',
+      3: 'Perfect',
+      4: '½ a size too big',
+      5: 'A size too wide',
+    },
+    Width: {
+      1: 'Too narrow',
+      2: 'Slightly narrow',
+      3: 'Perfect',
+      4: 'Slightly wide',
+      5: 'Too wide',
+    },
+    Comfort: {
+      1: 'Uncomfortable',
+      2: 'Slightly uncomfortable',
+      3: 'Ok',
+      4: 'Comfortable',
+      5: 'Perfect',
+    },
+    Quality: {
+      1: 'Poor',
+      2: 'Below average',
+      3: 'What I expected',
+      4: 'Pretty great',
+      5: 'Perfect',
+    },
+    Length: {
+      1: 'Runs short',
+      2: 'Runs slightly short',
+      3: 'Perfect',
+      4: 'Runs slightly long',
+      5: 'Runs long',
+    },
+    Fit: {
 
+      1: 'Runs tight',
+      2: 'Runs slightly tight',
+      3: 'Perfect',
+      4: 'Runs slightly long',
+      5: 'Runs long',
+    },
+
+  });
 
   const getReviews = (id, sortOption) => {
     axios.get(`/reviews/${id}&sort=${sortOption}`)
@@ -28,62 +72,57 @@ const RatingsAndReviews = ({ currentProductId }) => {
       .catch((err) => console.log('get review meta ', err));
   };
 
-  const postReviews = (review) => {
-    axios.post('/reviews', review)
-      .then(() => getReviews())
-      .catch((err) => console.log('post review ', err));
-  };
 
   useEffect(() => {
     getReviews(currentProductId, dropDownselect);
-    getReviewsMeta(currentProductId)
-  }, []);
+    getReviewsMeta(currentProductId);
+  }, [currentProductId]);
 
   useEffect(() => {
     getReviews(currentProductId, dropDownselect);
   }, [dropDownselect]);
 
 
-if (reviewArray) {
-  const reviews = reviewArray.results;
-  return (
-    <div>
+  if (reviewArray) {
+    return (
       <div>
-        <RatingsAndReviewsBreakDown
-          reviewArray={reviewArray}
-        />
+        <div>
+          <RatingsAndReviewsBreakDown
+            reviewArray={reviewArray}
+            sampleCharacterObj={sampleCharacterObj}
+            reviewMetaData={reviewMetaData}
+          />
+        </div>
+        <div>
+          <ReviewList
+            reviewArray={reviewArray}
+            getReviews={getReviews}
+            currentProductId={currentProductId}
+            dropDownselect={dropDownselect}
+            sampleCharacterObj={sampleCharacterObj}
+            setDropDownSelect={setDropDownSelect}
+          />
+        </div>
+        <div>
+          <NewReviewForm
+            showNewReviewModal={showNewMReviewModal}
+            setNewReviewModal={setNewReviewModal}
+            sampleCharacterObj={sampleCharacterObj}
+            reviewMetaData={reviewMetaData}
+            currentProductId={currentProductId}
+            getReviews={getReviews}
+          />
+        </div>
+        <button
+          type="button"
+          onClick={() => { setNewReviewModal(!showNewMReviewModal); }}
+        >
+          New Review
+        </button>
       </div>
-      <div>
-        <RatingsAndReviewsHeader
-          reviewArray={reviewArray}
-          setDropDownSelect={setDropDownSelect}
-        />
-      </div>
-      <div>
-        <ReviewList
-          reviewArray={reviewArray}
-          getReviews={getReviews}
-          currentProductId={currentProductId}
-          dropDownselect={dropDownselect}
-
-        />
-      </div>
-      <div>
-        <NewReviewForm
-          showNewReviewModal={showNewMReviewModal}
-          setNewReviewModal={setNewReviewModal}
-        />
-      </div>
-      <button
-        type="button"
-        onClick={() => { setNewReviewModal(!showNewMReviewModal); }}
-      >
-        New Review
-      </button>
-    </div>
-  );
-}
-  return <div> hello</div>
+    );
+  }
+  return <div />;
 };
 
 export default RatingsAndReviews;

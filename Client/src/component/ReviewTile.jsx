@@ -15,7 +15,6 @@ const ReviewTile = ({
   const submitHelpful = () => {
     if (helpfulClick) {
       putReviewHelpful(review.review_id)
-      getReviews(currentProductId, dropDownselect)
       setHelpfulClick(false)
     }
   }
@@ -97,15 +96,18 @@ const ReviewTile = ({
         <br />
         <span>
           helpful?
+          {' '}
         </span>
         <button
           type="button"
           onClick={() => submitHelpful()}
         >
           Yes
+          {'  '}
         </button>
         <span>
           {review.helpfulness}
+          {' '}
         </span>
         <button
           type="button"
