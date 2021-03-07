@@ -20,7 +20,6 @@ const AppBody = styled.div`
   background: rgba(203, 216, 225, 1);
   max-width: 70%;
   margin: auto;
-  align-items: center;
   padding: 10px;
   font-family: 'Shippori Mincho', serif;
   overFlow: auto;
@@ -40,7 +39,6 @@ const QASyles = styled.div`
 
 const ReviewsStyles = styled.div`
   grid-row-start: 4;
-
 `;
 
 const App = () => {

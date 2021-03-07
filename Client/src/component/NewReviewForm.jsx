@@ -25,7 +25,6 @@ const OVERLAY_STYLES = {
   zIndex: 1000,
 };
 
-
 const Button = styled.button`
 background-color: #344B5B;
 color: white;
@@ -38,7 +37,6 @@ outline: none;
 border-radius: 10px;
 box-sizing: border-box;
  `;
-
 
 const SubmitFormStyle = styled.input`
 background-color: #344B5B;
@@ -93,7 +91,8 @@ const NewReviewForm = ({
   const [recommend, setIsRecommended] = useState();
   const [summary, setChangeSummary] = useState('');
   const [body, setChangeReview] = useState('');
-  const [photos, setUploadPhoto] = useState(null);
+  const [thumbnail, setThumbnail] = useState([]);
+  const [imageUpload, setImageUpload] = useState([]);
   // eslint-disable-next-line camelcase
   const [reviewer_name, setNickname] = useState('');
   const [email, setEmail] = useState('');
@@ -216,8 +215,20 @@ const NewReviewForm = ({
     setNewReviewModal(false);
     clearForm();
   };
-  const onPhotoUpload = (event) => {
-    setUploadPhoto(URL.createObjectURL(event.target.files[0]));
+  const onPhotoUpload = (e) => {
+    const imageArray = [];
+    for (let i = 0; i < imageUpload.length; i += 1) {
+      imageArray.push(imageUpload[i]);
+    }
+    imageArray.push(e.target.files[0]);
+    setImageUpload(imageArray);
+
+    const thumbnailArray = [];
+    for (let i = 0; i < thumbnail.length; i += 1) {
+      thumbnailArray.push(thumbnail[i]);
+    }
+    thumbnailArray.push(URL.createObjectURL(e.target.files[0]));
+    setThumbnail(thumbnailArray);
   };
 
   const starRatingTextOne = () => {
@@ -399,12 +410,7 @@ const NewReviewForm = ({
               name="photo"
               onChange={onPhotoUpload}
             />
-            <img
-              src={photos}
-              height="50"
-              width="50"
-              alt="User uploaded"
-            />
+            {thumbnail.map((image, index) => <img src={image} key={index} alt="uploaded by user" height="50" width="50" />)}
           </div>
           <div>
             <label

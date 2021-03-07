@@ -15,10 +15,24 @@ outline: none;
 border-radius: 10px;
 box-sizing: border-box;
  `;
+const ReviewPhoto = styled.img`
+ padding-left: 10px;
+ `;
+ const StyledA = styled.a`
+  font-family: 'Shippori Mincho', serif;
+  font-weight: bold;
+  padding-right: 8px;
+  text-decoration: underline;
+  font-size: smaller;
+  &:hover {
+    color: #344B5B
+  }
+`;
+
 
 const ReviewTile = ({
 // eslint-disable-next-line react/prop-types
-  review, putReviewReport, putReviewHelpful, currentProductId, getReviews, dropDownselect
+  review, putReviewReport, putReviewHelpful,
 }) => {
   const [starRating, setStarRating] = useState();
   const [helpfulClick, setHelpfulClick] = useState(true);
@@ -43,7 +57,13 @@ const ReviewTile = ({
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
-
+  const renderPhotos = () => {
+    if (review.photos.length !== 0) {
+      return (
+        <p>{review.photos.map((photo, index) => <ReviewPhoto src={photo.url} key={index} alt="review" height="50" width="50" />)}</p>
+      )
+    }
+  }
   const isRecomended = () => {
     if (review.recommend) {
       return (
@@ -105,6 +125,9 @@ const ReviewTile = ({
             {review.body}
           </span>
         </div>
+        <div>
+          {renderPhotos()}
+        </div>
         {isRecomended()}
         {generateResponse()}
         <br />
@@ -112,23 +135,21 @@ const ReviewTile = ({
           helpful?
           {' '}
         </span>
-        <Button
+        <StyledA
           type="button"
           onClick={() => submitHelpful()}
         >
           Yes
           {'  '}
-        </Button>
-        <span>
-        &#40; {review.helpfulness} &#41;
-          {' '}
-        </span>
-        <Button
+          &#40; {review.helpfulness} &#41;
+        </StyledA>
+        {'  '}
+        <StyledA
           type="button"
           onClick={() => submitReport()}
         >
           Report
-        </Button>
+        </StyledA>
       </ul>
     </div>
 

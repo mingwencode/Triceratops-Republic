@@ -134,9 +134,9 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
           />
         </RatingsAndReviewsHeaderStyle>
 
-        <ul>
+        <div>
           {intitialReviewRender()}
-        </ul>
+        </div>
         <MoreReviewsStyle>
         {moreReviews()}
         </MoreReviewsStyle>
@@ -168,9 +168,9 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
             />
           </RatingsAndReviewsHeaderStyle>
 
-          <ul>
+          <div>
             {intitialReviewRender()}
-          </ul>
+          </div>
           {moreReviews()}
         </div>
       </>

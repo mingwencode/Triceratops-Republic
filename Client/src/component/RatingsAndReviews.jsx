@@ -11,7 +11,8 @@ import RatingsAndReviewsBreakDown from './RatingsAndReviewsBreakDown';
 const RatingsStyle = styled.div`
   display: grid;
   grid-template-column: 40%, 60%;
-  margin: auto;
+  padding: 5px;
+  margin: 0;
 `;
 
 const RatingsAndReviewsBreakDownStyle = styled.div`
