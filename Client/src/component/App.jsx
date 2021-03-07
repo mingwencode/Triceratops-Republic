@@ -10,20 +10,15 @@ const appStyle = {
   maxWidth: '1000px',
   margin: 'auto',
   background: 'white',
-  padding: '10px'
+  padding: '10px',
 };
 
 const App = () => {
-<<<<<<< HEAD
-  const [productArray, setProductArray] = useState([]);
-  const [currentProductId, setCurrentProductId] = useState(20111);
-=======
   //const [productArray, setProductArray] = useState([]);
-  const [currentProductId, setCurrentProductId] = useState(20119);
->>>>>>> fb76c9a594ce3ac1d26eab8ae17f66f9cbb7c24b
+  const [currentProductId, setCurrentProductId] = useState(20129);
   const [relatedProductIds, setRelatedProductIds] = useState([]);
   const [productStyles, setProductStyles] = useState({});
-  const [currentItem, setCurrentItem] = useState({})
+  const [currentItem, setCurrentItem] = useState({});
 
   // OVERVIEW
   // const getProducts = () => {
@@ -107,10 +102,6 @@ const App = () => {
     getRelatedProductIds(currentProductId);
   }, [currentProductId]);
 
-<<<<<<< HEAD
-=======
-
->>>>>>> fb76c9a594ce3ac1d26eab8ae17f66f9cbb7c24b
   if (relatedProductIds) {
     return (
       <div>
