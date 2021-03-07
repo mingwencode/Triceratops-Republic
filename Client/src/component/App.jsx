@@ -17,13 +17,9 @@ const appStyle = {
 
 const App = () => {
   //const [productArray, setProductArray] = useState([]);
-  const [currentProductId, setCurrentProductId] = useState(20130);
+  const [currentProductId, setCurrentProductId] = useState(20111);
   const [relatedProductIds, setRelatedProductIds] = useState([]);
-<<<<<<< HEAD
   const [productStyles, setProductStyles] = useState();
-=======
-  const [productStyles, setProductStyles] = useState({});
->>>>>>> d4f30c7b014f9ee420b31d8fb016658d4ef7abe8
   const [currentItem, setCurrentItem] = useState({});
 
   // OVERVIEW

@@ -18,37 +18,40 @@ const OverviewAddToBag = ({ productStyles, styleResultsIndex }) => {
       skusArray.push({ id: skuKey, qty: skus[skuKey].quantity, size: skus[skuKey].size });
     }
 
+    const sizes = () => {
+      if (availabiltyChecker !== 0) {
+        skusArray.map((sku, idx) => {
+          if (sku.qty !== 0) {
+            return <option value={sku.size}>{sku.size}</option>
+          }
+        });
+      }
+    };
+
     const handleSizeChange = (e) => {
       e.preventDefault();
-      for (var i = 0; i < skusArray.length; i++) {
+      for (let i = 0; i < skusArray.length; i++) {
         if (skusArray[i].size === e.target.value) {
           setQtyState(skusArray[i].qty);
+        }
+      }
+      if (qtyState > 0) {
+        for (let i = 0; i <= qtyState; i++) {
+          console.log('this is i ', i)
+          qtyArray.push(i);
         }
       }
     };
 
     const availabiltyChecker = skusArray.reduce((acc, sku) => (acc + sku.qty), 0);
 
-    const numberGenerator = () => {
-      while (count <= qtyState && count < 15) {
-        qtyArray.push(count + 1);
-      }
-    };
     console.log(qtyArray);
     return (
       <div>
         {console.log(skusArray)}
         <form>
           <select name="sizes" onChange={handleSizeChange}>
-            {
-            // if (availabiltyChecker !== 0) {
-              skusArray.map((sku, idx) => {
-                if (sku.qty !== 0) {
-                  return <option value={sku.size}>{sku.size}</option>
-                }
-              })
-            // }
-            }
+            {}
           </select>
           <select name="quantity" value="" onChange={() => console.log('quantity selected!!')}>
             {/* { (count <= skusArray[styleResultsIndex].qty) {
