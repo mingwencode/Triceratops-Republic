@@ -15,6 +15,7 @@ const AppBackground = styled.div`
 const AppBody = styled.div`
   display: grid;
   grid-template-rows: 29% 20% 25% 26%;
+  grid-template-columns: auto;
   border: 10px solid #615e5e;
   background: rgba(203, 216, 225, 1);
   max-width: 70%;
@@ -22,6 +23,7 @@ const AppBody = styled.div`
   align-items: center;
   padding: 10px;
   font-family: 'Shippori Mincho', serif;
+  overFlow: auto;
 `;
 
 const OverviewStyle = styled.div`
@@ -38,6 +40,7 @@ const QASyles = styled.div`
 
 const ReviewsStyles = styled.div`
   grid-row-start: 4;
+
 `;
 
 const App = () => {

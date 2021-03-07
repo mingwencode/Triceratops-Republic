@@ -3,7 +3,9 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import ReviewTile from './ReviewTile';
+import NewReviewForm from './NewReviewForm';
 import RatingsAndReviewsHeader from './RatingsAndReviewsHeader';
 
 const MODAL_STYLES = {
@@ -26,6 +28,34 @@ const OVERLAY_STYLES = {
   backgroundColor: 'rgba(0, 0, 0, .7)',
   zIndex: 1000,
 };
+
+const Button = styled.button`
+display: flex;
+justify-content: left;
+background-color: #344B5B;
+color: white;
+font-family: 'Shippori Mincho', serif;
+padding: 10px;
+margin: 5px;
+width: fit-content;
+border: none;
+outline: none;
+border-radius: 10px;
+box-sizing: border-box;
+ `;
+
+ const ListStyle = styled.div`
+ margin: auto;
+
+ `;
+ const RatingsAndReviewsHeaderStyle = styled.div`
+ display: flex;
+ justify-content: flex-start;
+ `;
+ const MoreReviewsStyle = styled.div`
+ display: flex;
+ justify-content: center;
+ `
 
 const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect, setDropDownSelect }) => {
   const [reviewCount, setReviewCount] = useState(2);
@@ -68,6 +98,7 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
             dropDownselect={dropDownselect}
 
           />
+          <hr />
         </div>
       );
 
@@ -81,32 +112,36 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
   const moreReviews = () => {
     if (reviews.length > reviewCount) {
       return (
-        <button
+        <Button
           type="button"
           onClick={() => {
             setReviewCount(reviewCount + 2);
           }}
         >
           More Reviews?
-        </button>
+        </Button>
       );
     }
   };
 
   if (!reviewModalBoolean) {
     return (
-      <div>
-        <RatingsAndReviewsHeader
-          reviewArray={reviewArray}
-          setDropDownSelect={setDropDownSelect}
-        />
+      <ListStyle>
+        <RatingsAndReviewsHeaderStyle>
+          <RatingsAndReviewsHeader
+            reviewArray={reviewArray}
+            setDropDownSelect={setDropDownSelect}
+          />
+        </RatingsAndReviewsHeaderStyle>
 
         <ul>
           {intitialReviewRender()}
         </ul>
+        <MoreReviewsStyle>
         {moreReviews()}
+        </MoreReviewsStyle>
         {openModal()}
-      </div>
+      </ListStyle>
     );
   }
 
@@ -117,7 +152,7 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
         <div style={OVERLAY_STYLES} />
 
         <div style={MODAL_STYLES}>
-          <button
+          <Button
             type="button"
             onClick={() => {
               setReviewModalBoolean(!reviewModalBoolean);
@@ -125,11 +160,13 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
             }}
           >
             Close
-          </button>
-          <RatingsAndReviewsHeader
-          reviewArray={reviewArray}
-          setDropDownSelect={setDropDownSelect}
-        />
+          </Button>
+          <RatingsAndReviewsHeaderStyle>
+            <RatingsAndReviewsHeader
+              reviewArray={reviewArray}
+              setDropDownSelect={setDropDownSelect}
+            />
+          </RatingsAndReviewsHeaderStyle>
 
           <ul>
             {intitialReviewRender()}

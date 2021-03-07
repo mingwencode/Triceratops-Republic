@@ -1,6 +1,20 @@
 /* esdivnt-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import ShadedStarRating from './ShadedStarRating';
+import styled from 'styled-components';
+
+const Button = styled.button`
+background-color: #344B5B;
+color: white;
+font-family: 'Shippori Mincho', serif;
+padding: 10px;
+margin: 5px;
+width: fit content;
+border: none;
+outline: none;
+border-radius: 10px;
+box-sizing: border-box;
+ `;
 
 const ReviewTile = ({
 // eslint-disable-next-line react/prop-types
@@ -87,9 +101,9 @@ const ReviewTile = ({
         <div
           key="reviewBody"
         >
-          <p>
+          <span>
             {review.body}
-          </p>
+          </span>
         </div>
         {isRecomended()}
         {generateResponse()}
@@ -98,23 +112,23 @@ const ReviewTile = ({
           helpful?
           {' '}
         </span>
-        <button
+        <Button
           type="button"
           onClick={() => submitHelpful()}
         >
           Yes
           {'  '}
-        </button>
+        </Button>
         <span>
         &#40; {review.helpfulness} &#41;
           {' '}
         </span>
-        <button
+        <Button
           type="button"
           onClick={() => submitReport()}
         >
           Report
-        </button>
+        </Button>
       </ul>
     </div>
 

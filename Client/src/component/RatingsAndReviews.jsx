@@ -2,9 +2,41 @@
 /* eslint-disable no-plusplus */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import NewReviewForm from './NewReviewForm';
 import ReviewList from './ReviewList';
 import RatingsAndReviewsBreakDown from './RatingsAndReviewsBreakDown';
+
+
+const RatingsStyle = styled.div`
+  display: grid;
+  grid-template-column: 40%, 60%;
+  margin: auto;
+`;
+
+const RatingsAndReviewsBreakDownStyle = styled.div`
+  grid-column-start: 1;
+
+`;
+
+const ReviewListStyle = styled.div`
+  grid-column: 2/3;
+  break-word: overflow-wrap;
+  max-width: 100%;
+`;
+
+const Button = styled.button`
+background-color: #344B5B;
+color: white;
+font-family: 'Shippori Mincho', serif;
+padding: 10px;
+margin: 5px;
+width: fit-content;
+border: none;
+outline: none;
+border-radius: 10px;
+box-sizing: border-box;
+ `;
 
 const RatingsAndReviews = ({ currentProductId }) => {
   const [reviewArray, setProductReviewArray] = useState();
@@ -85,15 +117,15 @@ const RatingsAndReviews = ({ currentProductId }) => {
 
   if (reviewArray) {
     return (
-      <div>
-        <div>
+      <RatingsStyle>
+        <RatingsAndReviewsBreakDownStyle>
           <RatingsAndReviewsBreakDown
             reviewArray={reviewArray}
             sampleCharacterObj={sampleCharacterObj}
             reviewMetaData={reviewMetaData}
           />
-        </div>
-        <div>
+        </RatingsAndReviewsBreakDownStyle>
+        <ReviewListStyle>
           <ReviewList
             reviewArray={reviewArray}
             getReviews={getReviews}
@@ -101,8 +133,11 @@ const RatingsAndReviews = ({ currentProductId }) => {
             dropDownselect={dropDownselect}
             sampleCharacterObj={sampleCharacterObj}
             setDropDownSelect={setDropDownSelect}
+            showNewReviewModal={showNewMReviewModal}
+            setNewReviewModal={setNewReviewModal}
+            reviewMetaData={reviewMetaData}
           />
-        </div>
+        </ReviewListStyle>
         <div>
           <NewReviewForm
             showNewReviewModal={showNewMReviewModal}
@@ -113,17 +148,17 @@ const RatingsAndReviews = ({ currentProductId }) => {
             getReviews={getReviews}
           />
         </div>
-        <button
+        <Button
           type="button"
           onClick={() => { setNewReviewModal(!showNewMReviewModal); }}
         >
           New Review
-        </button>
-      </div>
+        </Button>
+      </RatingsStyle>
     );
   }
   return (
-    <div>
+    <Button>
       <NewReviewForm
         showNewReviewModal={showNewMReviewModal}
         setNewReviewModal={setNewReviewModal}
@@ -132,7 +167,7 @@ const RatingsAndReviews = ({ currentProductId }) => {
         currentProductId={currentProductId}
         getReviews={getReviews}
       />
-    </div>
+    </Button>
   );
 };
 
