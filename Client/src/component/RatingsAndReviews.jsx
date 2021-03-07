@@ -122,7 +122,18 @@ const RatingsAndReviews = ({ currentProductId }) => {
       </div>
     );
   }
-  return <div />;
+  return (
+    <div>
+      <NewReviewForm
+        showNewReviewModal={showNewMReviewModal}
+        setNewReviewModal={setNewReviewModal}
+        sampleCharacterObj={sampleCharacterObj}
+        reviewMetaData={reviewMetaData}
+        currentProductId={currentProductId}
+        getReviews={getReviews}
+      />
+    </div>
+  );
 };
 
 export default RatingsAndReviews;

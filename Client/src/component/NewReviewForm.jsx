@@ -23,7 +23,7 @@ const OVERLAY_STYLES = {
   backgroundColor: 'rgba(0, 0, 0, .7)',
   zIndex: 1000,
 };
-const TABLE = { border: '1px solid black' };
+const TABLE = { border: '1px white' };
 const NewReviewForm = ({
   showNewReviewModal, currentProductId, setNewReviewModal, sampleCharacterObj, reviewMetaData, getReviews
 }) => {
@@ -76,6 +76,7 @@ const NewReviewForm = ({
                   {key}
                 </span>
               </td>
+              <div style={{fontSize: 10}}>
               <td>
                 <input
                   type="radio"
@@ -127,6 +128,7 @@ const NewReviewForm = ({
                   {sampleCharacterObj[key][5]}
                 </label>
               </td>
+              </div>
 
             </tr>
           );
@@ -304,6 +306,7 @@ const NewReviewForm = ({
             >
               Review Summary
             </label>
+            <br />
             <textarea
               placeholder="Example: Best Purchase ever"
               maxLength="60"
@@ -318,6 +321,7 @@ const NewReviewForm = ({
             >
               Review Body*
             </label>
+            <br />
             <textarea
               placeholder="Why did you like the product or not?"
               minLength="50"
@@ -356,7 +360,8 @@ const NewReviewForm = ({
               value={reviewer_name}
               onChange={(event) => setNickname(event.target.value)}
             />
-            <span>
+            <br />
+            <span style={{ fontSize: 12 }}>
               For privacy reasons, do not use your full name or email address
             </span>
           </div>
@@ -374,7 +379,8 @@ const NewReviewForm = ({
               placeholder="Example: jackson11@email.com"
               onChange={(event) => setEmail(event.target.value)}
             />
-            <span>
+            <br />
+            <span style={{ fontSize: 12 }}>
               For authentication reasons, you will not be emailed
             </span>
           </div>
