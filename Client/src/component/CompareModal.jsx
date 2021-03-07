@@ -5,10 +5,11 @@ import ReactDom from 'react-dom';
 
 const ModalStyles = {
   position: 'fixed',
+  borderRadius: '10px',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  backgroundColor: '#FFF',
+  backgroundColor: 'white',
   padding: '50px',
   zIndex: 1000,
 };
@@ -26,10 +27,24 @@ const OverlayStyles = {
 
 const TableHeader = styled.th`
   border: 1px solid #dddddd;
+  background: #03C9A5;
+  text-align: center;
 `;
 
-const TableCell = styled.td`
+const TableCol1 = styled.td`
   border: 1px solid #dddddd;
+  text-align: left;
+  width: 50em;
+`;
+
+const TableCol2 = styled(TableCol1)`
+  text-align: center;
+  width: 20em;
+
+`;
+
+const TableCol3 = styled(TableCol1)`
+  text-align: right;
 `;
 
 const compareTableCol = (product, feature) => {
@@ -53,11 +68,11 @@ const renderTable = (current, compare) => {
   ));
   const allFeatures = [...new Set(currentFeatures.concat(compareFeatures))];
 
-  return allFeatures.map((feature) => (
-    <tr>
-      <TableCell key="current_col">{compareTableCol(current.features, feature)}</TableCell>
-      <TableCell key="feature_col">{feature}</TableCell>
-      <TableCell key="compare_col">{compareTableCol(compare.features, feature)}</TableCell>
+  return allFeatures.map((feature, index) => (
+    <tr key={index}>
+      <TableCol1 key="current_col">{compareTableCol(current.features, feature)}</TableCol1>
+      <TableCol2 key="feature_col">{feature}</TableCol2>
+      <TableCol3 key="compare_col">{compareTableCol(compare.features, feature)}</TableCol3>
     </tr>
   ));
 };
@@ -80,9 +95,9 @@ const CompareModal = ({ isOpenModal, onDismiss, children, currentItem, compare }
           </thead>
           <tbody>
             <tr>
-              <TableCell>{`$${currentItem.default_price}`}</TableCell>
-              <TableCell>price</TableCell>
-              <TableCell>{`$${compare.price}`}</TableCell>
+              <TableCol1>{`$${currentItem.price}`}</TableCol1>
+              <TableCol2>price</TableCol2>
+              <TableCol3>{`$${compare.price}`}</TableCol3>
             </tr>
             {renderTable(currentItem, compare)}
           </tbody>
