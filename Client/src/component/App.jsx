@@ -18,7 +18,7 @@ const AppBody = styled.div`
   grid-template-columns: auto;
   border: 10px solid #615e5e;
   background: rgba(203, 216, 225, 1);
-  max-width: 70%;
+  max-width: 1250px;
   margin: auto;
   padding: 10px;
   font-family: 'Shippori Mincho', serif;
@@ -39,7 +39,6 @@ const QASyles = styled.div`
 
 const ReviewsStyles = styled.div`
   grid-row-start: 4;
-
 `;
 
 const App = () => {
@@ -121,7 +120,7 @@ const App = () => {
             <QAndA currentProductId={currentProductId} />
           </QASyles>
           <ReviewsStyles>
-            <RatingsAndReviews currentProductId={currentProductId} />
+            <RatingsAndReviews currentProductId={currentProductId} currentItem={currentItem} />
           </ReviewsStyles>
         </AppBody>
       </AppBackground>

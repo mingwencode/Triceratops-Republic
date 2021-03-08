@@ -42,7 +42,7 @@ app.get('/products/:id/styles', (req, res) => {
 // RATING & REVIEWS
 app.get('/reviews/:id', (req, res) => {
   const { id } = req.params;
-  axios.get(`${options.url}reviews/?product_id=${id}`, options)
+  axios.get(`${options.url}reviews/?product_id=${id}&count=100`, options)
     .then((datas) => res.send(datas.data))
     .catch((error) => console.log('server review GET err'));
 });
@@ -56,7 +56,11 @@ app.get('/reviews/meta/:id', (req, res) => {
 
 app.post('/reviews', (req, res) => {
   axios.post(`${options.url}reviews`, req.body, options)
-    .then(() => res.send(201))
+    .then(() => {
+      console.log('successful post');
+      res.send(201);
+    })
+
     .catch((error) => console.log('server review post err', error));
 });
 

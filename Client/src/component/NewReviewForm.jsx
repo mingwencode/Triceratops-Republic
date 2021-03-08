@@ -1,10 +1,10 @@
+/* eslint-disable no-return-assign */
 /* eslint-disable max-len */
 /* eslint-disable consistent-return */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-// import PropTypes from 'prop-types';
 
 const MODAL_STYLES = {
   position: 'fixed',
@@ -14,6 +14,7 @@ const MODAL_STYLES = {
   backgroundColor: '#FFF',
   padding: '50px',
   zIndex: 1000,
+  borderRadius: 10,
 };
 const OVERLAY_STYLES = {
   position: 'fixed',
@@ -25,25 +26,24 @@ const OVERLAY_STYLES = {
   zIndex: 1000,
 };
 
-
-const Button = styled.button`
-background-color: #344B5B;
-color: white;
-font-family: 'Shippori Mincho', serif;
-padding: 10px;
-margin: 5px;
-width: fit-content;
+const ButtonFixed = styled.button`
 border: none;
-outline: none;
-border-radius: 10px;
-box-sizing: border-box;
+background: none;
+font-size: 1.5em;
+color: #344B5B;
+&:focus{
+  outline: none;
+}
+&:hover{
+  color: #A4BBCB;
+  transform: scale(1.5, 1.5);
+}
  `;
-
 
 const SubmitFormStyle = styled.input`
 background-color: #344B5B;
 color: white;
-font-family: 'Shippori Mincho', serif;
+font-family: ‘Roboto’, sans-serif;
 padding: 10px;
 margin: 5px;
 width: fit-content;
@@ -55,7 +55,7 @@ text-align: center;
 `
 const StyledPMessage = styled.p`
   color: red;
-  font-family: 'Shippori Mincho', serif;
+  font-family: 'Roboto', sans-serif;
   font-size: small;
   padding: 2px;
 `;
@@ -87,24 +87,18 @@ box-sizing: border-box;
 
 const TABLE = { border: '1px white' };
 const NewReviewForm = ({
-  showNewReviewModal, currentProductId, setNewReviewModal, sampleCharacterObj, reviewMetaData, getReviews
+  showNewReviewModal, currentProductId, setNewReviewModal, sampleCharacterObj, reviewMetaData, getReviews, currentItem
 }) => {
   const [rating, setStarRating] = useState(5);
   const [recommend, setIsRecommended] = useState();
   const [summary, setChangeSummary] = useState('');
   const [body, setChangeReview] = useState('');
-  const [photos, setUploadPhoto] = useState(null);
+  const [thumbnail, setThumbnail] = useState([]);
+  const [imageUpload, setImageUpload] = useState([]);
   // eslint-disable-next-line camelcase
   const [reviewer_name, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [characisticsState, setCharacteristicsState] = useState({});
-
-  const postReviews = (review) => {
-    axios.post('/reviews', review)
-      .then(() => getReviews(currentProductId))
-      .catch((err) => console.log('post review ', err));
-  };
-
 
   const postCharacteristicsObj = {
     product_id: currentProductId,
@@ -118,6 +112,12 @@ const NewReviewForm = ({
     characteristics: characisticsState,
  };
 
+ const toBase64 = file => new Promise((resolve, reject) => {
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => resolve(reader.result);
+  reader.onerror = error => reject(error);
+});
 
   const renderCharacteristics = () => {
     if (reviewMetaData) {
@@ -205,19 +205,52 @@ const NewReviewForm = ({
     setIsRecommended();
     setChangeSummary();
     setChangeReview();
-    setUploadPhoto();
+    setThumbnail([]);
     setNickname();
     setEmail();
     setCharacteristicsState();
+    setImageUpload([]);
   };
-  const handleSubmit = (e)=> {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    postReviews(postCharacteristicsObj);
-    setNewReviewModal(false);
-    clearForm();
+    const promises = [];
+    // eslint-disable-next-line no-restricted-syntax
+    for (const photo of imageUpload) {
+      const payload = {
+        name: photo.name,
+        data: '',
+      };
+      const promise = toBase64(photo)
+        // eslint-disable-next-line prefer-destructuring
+        .then((result) => payload.data = result.split(',')[1])
+        .then(() => axios.post('/upload_images', payload))
+        .then(({ data }) => data)
+        .catch(console.log);
+      promises.push(promise);
+    }
+    Promise.all(promises)
+      .then((results) => postCharacteristicsObj.photos = results)
+      .then(() => {
+        return axios.post('/reviews', postCharacteristicsObj);
+      })
+      .then(()=> getReviews(currentProductId))
+      .then(()=> setNewReviewModal(false))
+      .then(()=> clearForm())
   };
-  const onPhotoUpload = (event) => {
-    setUploadPhoto(URL.createObjectURL(event.target.files[0]));
+  const onPhotoUpload = (e) => {
+    const imageArray = [];
+    for (let i = 0; i < imageUpload.length; i += 1) {
+      imageArray.push(imageUpload[i]);
+    }
+    imageArray.push(e.target.files[0]);
+    setImageUpload(imageArray);
+
+    const thumbnailArray = [];
+    for (let i = 0; i < thumbnail.length; i += 1) {
+      thumbnailArray.push(thumbnail[i]);
+    }
+    thumbnailArray.push(URL.createObjectURL(e.target.files[0]));
+    setThumbnail(thumbnailArray);
   };
 
   const starRatingTextOne = () => {
@@ -268,14 +301,18 @@ const NewReviewForm = ({
             handleSubmit(e);
           }}
         >
-          <Button
+          <ButtonFixed
             type="button"
             onClick={() => setNewReviewModal(!showNewReviewModal)}
           >
-            X
-          </Button>
+            &#8855;
+          </ButtonFixed>
           <StyledH2> Write Your Review</StyledH2>
-          <h3> About the [Product Name Here] </h3>
+          <h3>
+            About the
+            {' '}
+            {currentItem.name}
+          </h3>
           <div className="rating">
             <legend>Overall Rating*</legend>
             <input
@@ -399,12 +436,7 @@ const NewReviewForm = ({
               name="photo"
               onChange={onPhotoUpload}
             />
-            <img
-              src={photos}
-              height="50"
-              width="50"
-              alt="User uploaded"
-            />
+            {thumbnail.map((image, index) => <img src={image} key={index} alt="uploaded by user" height="50" width="50" />)}
           </div>
           <div>
             <label
