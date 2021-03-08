@@ -6,27 +6,65 @@ import ShadedStarRating from './ShadedStarRating';
 
 const SlideImg = styled.img`
   width: 180px;
-  height: 180px;
+  height: 150px;
   box-sizing: border-box;
-  outline: 1px solid black;
+
   outline-offset: -1px;
-  background: #000;
+  background: white;
+  padding: 5px;
 `;
+ // outline: 1px solid black;
 
 const Card = styled.div`
   width: 180px;
   height: 250px;
-  background: blue;
-  font-size: 0.8em;
+  background: white;
+  font-size: 0.8em;=
   color: white;
-  margin: 0 40px 0 0;
+  margin: 0 20px 0 20px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  &:hover{
+    box-shadow: 0 8px 13px 0 rgba(0,0,0,0.2);
+    transform: scale(1.05, 1.05);
+  }
+  &:active{
+    transform: scale(1, 1);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 `;
 
 const Star = styled.div`
-  height: 10px;
-  width: 10px;
   transform: scale(0.5, 0.5);
-`
+  position:relative;
+  padding-left: 5px;
+  width: 0;
+`;
+
+const Span = styled.div`
+  display:block;
+  color: black;
+  padding-left: 5px;
+`;
+const CompareBtnContainer = styled.div`
+  display: inline-block;
+  position: relative;
+`;
+
+const Button = styled.a`
+position: absolute;
+font-size: 2em;
+bottom: 4.5em;
+left: 5.8em;
+color: #344B5B;
+cursor: pointer;
+&:hover{
+  opacity: 0.5;
+}
+&:active{
+  opacity: 1;
+}
+
+
+`;
 
 const ProductCard = ({
   product, list, removeOutFit, setCurrentProductId, currentItem}) => {
@@ -38,27 +76,31 @@ const ProductCard = ({
 
   return (
     <Card>
-      {list ? (
-        <SlideImg src={product.url} alt="" onClick={() => setCurrentProductId(product.id)} />
-      )
-        : <SlideImg src={product.url} alt="" />}
 
-      <span>{product.category}</span>
-      <span>{product.name}</span>
-      <Star><ShadedStarRating starPercent={product.starPercent} /></Star>
-      <span>{`$${product.price}`}</span>
       {list ? (
-        <div>
-          <button type="button" onClick={() => openModal()}>⭐</button>
+        <CompareBtnContainer>
+          <SlideImg src={product.url} alt="" onClick={() => setCurrentProductId(product.id)} />
+          <Button title="compare" onClick={() => openModal()}>&#9055;</Button>
           <CompareModal
             isOpenModal={showModal}
             onDismiss={setShowModal}
             currentItem={currentItem}
             compare={product}
           />
-        </div>
+        </CompareBtnContainer>
       )
-        : <button type="button" onClick={() => removeOutFit(product.id)}>X</button>}
+        :
+        (
+          <CompareBtnContainer>
+            <SlideImg src={product.url} alt="" />
+            <Button title="remove" onClick={() => removeOutFit(product.id)}>&#8855;</Button>
+          </CompareBtnContainer>
+        )}
+
+      <Span>{product.category}</Span>
+      <Span>{product.name}</Span>
+      <Star><ShadedStarRating starPercent={product.starPercent} /></Star>
+      <Span>{`$${product.price}`}</Span>
     </Card>
 
   );

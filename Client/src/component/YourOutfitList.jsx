@@ -13,19 +13,21 @@ const ViewPortContainer = styled.div`
   position: relative;
   grid-column : 3 / 4;
   justify-self: right;
-  padding-left: 20px;
+  margin-left: 40px;
 `;
 
 const OutfitViewPort = styled.div`
-  width: 620px;
-  height: 250px;
+  width: 660px;
+  height: 280px;
   overflow: hidden;
+  background: red;
 `;
 
 const CardContainer = styled.div`
   display: flex;
   flexDirection: row;
   width: fit-content;
+  margin-top: 5px;
 `;
 
 const BtnContainerOutfitL = styled.div`
