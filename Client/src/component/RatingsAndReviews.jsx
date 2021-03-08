@@ -10,25 +10,29 @@ import RatingsAndReviewsBreakDown from './RatingsAndReviewsBreakDown';
 
 const RatingsStyle = styled.div`
   display: grid;
-  grid-template-column: 40%, 60%;
-  margin: auto;
+  grid-template-columns: 18% 7% 60% 15%;
+  padding: 5px;
+  margin: 0;
 `;
 
 const RatingsAndReviewsBreakDownStyle = styled.div`
   grid-column-start: 1;
+  padding: 15px;
 
 `;
 
 const ReviewListStyle = styled.div`
-  grid-column: 2/3;
+  grid-column: 3/4;
   break-word: overflow-wrap;
-  max-width: 100%;
+  padding: 20px;
+
+
 `;
 
 const Button = styled.button`
 background-color: #344B5B;
 color: white;
-font-family: 'Shippori Mincho', serif;
+font-family: 'Roboto', sans-serif;
 padding: 10px;
 margin: 5px;
 width: fit-content;
@@ -37,8 +41,25 @@ outline: none;
 border-radius: 10px;
 box-sizing: border-box;
  `;
+ const ButtonNewReview = styled.button`
+ grid-column: 3;
+ display: flex;
+ justify-content-center: center;
+ background-color: #344B5B;
+ color: white;
+ font-family: 'Roboto', sans-serif;
+ padding: 10px;
+ margin: 5px;
+ width: fit-content;
+ border: none;
+ outline: none;
+ border-radius: 10px;
+ box-sizing: border-box;
 
-const RatingsAndReviews = ({ currentProductId }) => {
+
+ `;
+
+const RatingsAndReviews = ({ currentProductId, currentItem }) => {
   const [reviewArray, setProductReviewArray] = useState();
   const [showNewMReviewModal, setNewReviewModal] = useState(false);
   const [dropDownselect, setDropDownSelect] = useState('newest');
@@ -146,14 +167,15 @@ const RatingsAndReviews = ({ currentProductId }) => {
             reviewMetaData={reviewMetaData}
             currentProductId={currentProductId}
             getReviews={getReviews}
+            currentItem={currentItem}
           />
         </div>
-        <Button
+        <ButtonNewReview
           type="button"
           onClick={() => { setNewReviewModal(!showNewMReviewModal); }}
         >
           New Review
-        </Button>
+        </ButtonNewReview>
       </RatingsStyle>
     );
   }
