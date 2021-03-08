@@ -14,9 +14,9 @@ const Container = styled.div`
 const ProductListTitle = styled.div`
   grid-row: 1 / 2;
   font-size: 1.2em;
-  font-weight: bold;
+  font-weight: 800;
   justify-items: left;
-  color: #344B5B
+  color: #344B5B;
   border: 1px solid #dddddd;
 `;
 
@@ -26,6 +26,8 @@ const ProductsListDiv = styled.div`
 
 const OutfitTitle = styled(ProductListTitle)`
   grid-row: 3 / 4;
+  margin-top: 5px;
+
 `;
 
 const OutFitListDiv = styled(ProductsListDiv)`

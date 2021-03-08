@@ -24,6 +24,20 @@ const OverlayStyles = {
   zIndex: 1000,
 };
 
+const Button = styled.button`
+  border: none;
+  background: none;
+  font-size: 1em;
+  color: #344B5B;
+  &:focus{
+    outline: none;
+  }
+  &:hover{
+    color: #A4BBCB;
+    transform: scale(1.5, 1.5);
+  }
+`;
+
 
 const TableHeader = styled.th`
   border: 1px solid #dddddd;
@@ -84,7 +98,7 @@ const CompareModal = ({ isOpenModal, onDismiss, children, currentItem, compare }
     <>
       <div style={OverlayStyles} />
       <div style={ModalStyles}>
-        <button type="button" onClick={() => onDismiss((prev) => !prev)}>X</button>
+        <Button type="button" onClick={() => onDismiss((prev) => !prev)}>&#9747;</Button>
         <table>
           <thead>
             <tr>

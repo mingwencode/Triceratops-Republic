@@ -8,24 +8,20 @@ const ListContainer = styled.div`
   grid-template-columns: 60px 1fr 60px;
 `;
 
-const ViewPortContainer = styled.div`
-  margin: 0 auto;
-  position: relative;
-  grid-column : 2 / 3;
-  justify-self: center;
-`;
-
 const ViewPort = styled.div`
   margin: 0 auto;
-  width: 840px;
-  height: 250px;
+  width: 880px;
+  height: 280px;
   overflow: hidden;
+  background: red;
 `;
 
 const CardContainer = styled.div`
   display: flex;
   flexDirection: row;
   width: fit-content;
+  margin-top: 5px;
+
 `;
 
 const BtnContainerRelatedL = styled.div`
@@ -48,10 +44,10 @@ const Button = styled.button`
     outline: none;
   }
   &:hover{
-    font-size: 3em;
+    transform: scale(1.8, 1.8);
   }
   &:active{
-    font-size: 2em;
+    transform: scale(1, 1);
   }
 `;
 
@@ -81,17 +77,15 @@ const RelatedProductsList = ({ setCurrentProductId, currentItem, relatedList, le
       <BtnContainerRelatedL>
         {current === 0 ? null : <Button name="prev_btn" type="button" onClick={() => prevSilde()}>&#8249;</Button>}
       </BtnContainerRelatedL>
-      <ViewPortContainer>
-        <ViewPort className="view-port">
-          <CardContainer ref={cardContainer} className="card-container">
-            {relatedList.length === len && relatedList.map((product, index) => (
-              <div key={index}>
-                <ProductCard product={product} list={true} setCurrentProductId={setCurrentProductId} currentItem={currentItem} />
-              </div>
-            ))}
-          </CardContainer>
-        </ViewPort>
-      </ViewPortContainer>
+      <ViewPort className="view-port">
+        <CardContainer ref={cardContainer} className="card-container">
+          {relatedList.length === len && relatedList.map((product, index) => (
+            <div key={index}>
+              <ProductCard product={product} list={true} setCurrentProductId={setCurrentProductId} currentItem={currentItem} />
+            </div>
+          ))}
+        </CardContainer>
+      </ViewPort>
       <BtnContainerRelatedR>
         {current === len - 4 || len - 4 < 0 ? null : <Button name="next_btn" type="button" onClick={() => nextSlide()}>&#8250;</Button>}
       </BtnContainerRelatedR>
