@@ -6,9 +6,8 @@ import ShadedStarRating from './ShadedStarRating';
 
 const SlideImg = styled.img`
   width: 180px;
-  height: 150px;
+  height: 165px;
   box-sizing: border-box;
-
   outline-offset: -1px;
   background: white;
   padding: 5px;
@@ -19,7 +18,7 @@ const Card = styled.div`
   width: 180px;
   height: 250px;
   background: white;
-  font-size: 0.8em;=
+  font-size: 0.8em;
   color: white;
   margin: 0 20px 0 20px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -41,8 +40,16 @@ const Star = styled.div`
 
 const Span = styled.div`
   display:block;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
   color: black;
   padding-left: 5px;
+`;
+const Name = styled(Span)`
+  font-size: 1.2em;
+  font-weight: 500;
+  font-family: 'Shippori Mincho', serif;
+  padding-bottom: 3px;
 `;
 const CompareBtnContainer = styled.div`
   display: inline-block;
@@ -52,7 +59,7 @@ const CompareBtnContainer = styled.div`
 const Button = styled.a`
 position: absolute;
 font-size: 2em;
-bottom: 4.5em;
+bottom: 5em;
 left: 5.8em;
 color: #344B5B;
 cursor: pointer;
@@ -96,11 +103,10 @@ const ProductCard = ({
             <Button title="remove" onClick={() => removeOutFit(product.id)}>&#8855;</Button>
           </CompareBtnContainer>
         )}
-
       <Span>{product.category}</Span>
-      <Span>{product.name}</Span>
-      <Star><ShadedStarRating starPercent={product.starPercent} /></Star>
+      <Name>{product.name}</Name>
       <Span>{`$${product.price}`}</Span>
+      <Star><ShadedStarRating starPercent={product.starPercent} /></Star>
     </Card>
 
   );

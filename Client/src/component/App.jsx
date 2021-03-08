@@ -34,7 +34,7 @@ const RelatedProductsStyle = styled.div`
 `;
 
 const QASyles = styled.div`
-  grid-row-start: 3;
+  grid-row: 3 / 4;
 `;
 
 const ReviewsStyles = styled.div`
