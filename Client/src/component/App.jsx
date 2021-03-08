@@ -20,7 +20,6 @@ const AppBody = styled.div`
   background: rgba(203, 216, 225, 1);
   max-width: 70%;
   margin: auto;
-
   padding: 10px;
   font-family: 'Shippori Mincho', serif;
   overFlow: auto;
