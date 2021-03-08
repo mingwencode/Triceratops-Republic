@@ -27,16 +27,17 @@ const OVERLAY_STYLES = {
 };
 
 const ButtonFixed = styled.button`
-background-color: #344B5B;
-color: white;
-font-family: 'Roboto', sans-serif;
-padding: 10px;
-margin: 5px;
-width: fit-content;
 border: none;
-outline: none;
-border-radius: 10px;
-box-sizing: border-box;
+background: none;
+font-size: 1.5em;
+color: #344B5B;
+&:focus{
+  outline: none;
+}
+&:hover{
+  color: #A4BBCB;
+  transform: scale(1.5, 1.5);
+}
  `;
 
 const SubmitFormStyle = styled.input`
@@ -86,7 +87,7 @@ box-sizing: border-box;
 
 const TABLE = { border: '1px white' };
 const NewReviewForm = ({
-  showNewReviewModal, currentProductId, setNewReviewModal, sampleCharacterObj, reviewMetaData, getReviews
+  showNewReviewModal, currentProductId, setNewReviewModal, sampleCharacterObj, reviewMetaData, getReviews, currentItem
 }) => {
   const [rating, setStarRating] = useState(5);
   const [recommend, setIsRecommended] = useState();
@@ -98,14 +99,6 @@ const NewReviewForm = ({
   const [reviewer_name, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [characisticsState, setCharacteristicsState] = useState({});
-
-  // const postReviews = (review) => {
-  //   axios.post('/reviews', review)
-  //     .then(() => {
-  //       console.log('post photo')
-  //       getReviews(currentProductId)})
-  //     .catch((err) => console.log('post review ', err));
-  // };
 
   const postCharacteristicsObj = {
     product_id: currentProductId,
@@ -312,10 +305,14 @@ const NewReviewForm = ({
             type="button"
             onClick={() => setNewReviewModal(!showNewReviewModal)}
           >
-            X
+            &#8855;
           </ButtonFixed>
           <StyledH2> Write Your Review</StyledH2>
-          <h3> About the [Product Name Here] </h3>
+          <h3>
+            About the
+            {' '}
+            {currentItem.name}
+          </h3>
           <div className="rating">
             <legend>Overall Rating*</legend>
             <input

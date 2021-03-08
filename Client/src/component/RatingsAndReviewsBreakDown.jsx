@@ -122,9 +122,7 @@ const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharact
       // eslint-disable-next-line consistent-return
       return charObjKeys.map((key, index) => {
         if (reviewChars[key]) {
-          console.log(reviewChars[key].value)
           const arrowPlacement = (reviewChars[key].value / 5) * 300;
-          console.log(arrowPlacement)
           const ARROW_SLIDE_SIZE = {
             fontSize: 15,
             left: arrowPlacement,

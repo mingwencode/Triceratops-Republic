@@ -22,12 +22,15 @@ const MODAL_STYLES = {
 };
 const MODALHEADER_STYLES = {
   position: 'fixed',
-  top: '20%',
+  top: '14%',
+  right: '70%',
   transform: 'translate(-50%, -50%)',
-  backgroundColor: '#FFF',
+  backgroundColor: 'transparent',
   padding: '5px',
   zIndex: 1000,
   maxHeight: 'calc(100vh - 450px)',
+  display: 'grid',
+  gridTemplateColumns: '10% 70% 20%',
 };
 const OVERLAY_STYLES = {
   position: 'fixed',
@@ -38,11 +41,7 @@ const OVERLAY_STYLES = {
   backgroundColor: 'rgba(0, 0, 0, .7)',
 };
 
-const ModalHeader = styled.h4`
-position: fixed,
-display: 'grid',
-gridTemplateColumns: '10% 70% 20%',
-`
+
 const Button = styled.button`
 background-color: #344B5B;
 color: white;
@@ -57,16 +56,17 @@ box-sizing: border-box;
  `;
 
  const ModalButton = styled.button`
-background-color: #344B5B;
-color: white;
-font-family: 'Shippori Mincho', serif;
-padding: 10px;
-margin: 5px;
-width: fit-content;
-border: none;
-outline: none;
-border-radius: 10px;
-box-sizing: border-box;
+ border: none;
+ background: none;
+ font-size: 1.5em;
+ color: #344B5B;
+ &:focus{
+   outline: none;
+ }
+ &:hover{
+   color: #A4BBCB;
+   transform: scale(1.5, 1.5);
+ }
  `;
 
  const ListStyle = styled.div`
@@ -80,6 +80,12 @@ box-sizing: border-box;
  const MoreReviewsStyle = styled.div`
  display: flex;
  justify-content: center;
+ `;
+
+ const ReviewTileStyle = styled.div`
+ &:nth-child(odd){
+  background-color: #D8E2E9;
+}
  `
 
 const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect, setDropDownSelect }) => {
@@ -112,7 +118,7 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
     return reviews.slice(0, reviewCount).map((review, index) => {
 
       return (
-        <div>
+        <ReviewTileStyle>
           <ReviewTile
             key={index}
             putReviewHelpful={putReviewHelpful}
@@ -124,7 +130,7 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
 
           />
           <hr />
-        </div>
+        </ReviewTileStyle>
       );
 
     });
@@ -183,7 +189,6 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
           {moreReviews()}
         </div>
         <div style={MODALHEADER_STYLES}>
-          <ModalHeader>
             <ModalButton
               type="button"
               onClick={() => {
@@ -191,15 +196,8 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
                 setReviewCount(2);
               }}
               >
-              Close
+              &#8855;
             </ModalButton>
-            <RatingsAndReviewsHeaderStyle>
-              <RatingsAndReviewsHeader
-                reviewArray={reviewArray}
-                setDropDownSelect={setDropDownSelect}
-              />
-            </RatingsAndReviewsHeaderStyle>
-          </ModalHeader>
         </div>
       </>
     );

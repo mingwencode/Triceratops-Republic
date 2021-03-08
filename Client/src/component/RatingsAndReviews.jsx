@@ -10,18 +10,19 @@ import RatingsAndReviewsBreakDown from './RatingsAndReviewsBreakDown';
 
 const RatingsStyle = styled.div`
   display: grid;
-  grid-template-columns: 18% 7% 75%;
+  grid-template-columns: 18% 7% 60% 15%;
   padding: 5px;
   margin: 0;
 `;
 
 const RatingsAndReviewsBreakDownStyle = styled.div`
   grid-column-start: 1;
+  padding: 15px;
 
 `;
 
 const ReviewListStyle = styled.div`
-  grid-column-start: 3;
+  grid-column: 3/4;
   break-word: overflow-wrap;
   padding: 20px;
 
@@ -41,9 +42,9 @@ border-radius: 10px;
 box-sizing: border-box;
  `;
  const ButtonNewReview = styled.button`
- grid-column: 3/4;
- display: inline-block;
- text-align: center;
+ grid-column: 3;
+ display: flex;
+ justify-content-center: center;
  background-color: #344B5B;
  color: white;
  font-family: 'Roboto', sans-serif;
@@ -58,7 +59,7 @@ box-sizing: border-box;
 
  `;
 
-const RatingsAndReviews = ({ currentProductId }) => {
+const RatingsAndReviews = ({ currentProductId, currentItem }) => {
   const [reviewArray, setProductReviewArray] = useState();
   const [showNewMReviewModal, setNewReviewModal] = useState(false);
   const [dropDownselect, setDropDownSelect] = useState('newest');
@@ -166,6 +167,7 @@ const RatingsAndReviews = ({ currentProductId }) => {
             reviewMetaData={reviewMetaData}
             currentProductId={currentProductId}
             getReviews={getReviews}
+            currentItem={currentItem}
           />
         </div>
         <ButtonNewReview
