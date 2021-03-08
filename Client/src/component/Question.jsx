@@ -15,6 +15,17 @@ const StyledDiv = styled.div`
   &:nth-child(odd){
     background-color: #D8E2E9;
   }
+  display: grid;
+  grid-template-columns: 60% 40%;
+`;
+
+const MainQA = styled.div`
+  grid-column-start: 1;
+  padding-right: 10px;
+`;
+
+const RightColumn = styled.div`
+  grid-column-start: 2;
 `;
 
 const StyledSpanQ = styled.span`
@@ -26,8 +37,15 @@ const StyledSpan = styled(StyledSpanQ)`
   font-size: smaller;
 `;
 
-const StyledSpanBt = styled(StyledSpan)`
+const StyledA = styled.a`
+  font-family: 'Shippori Mincho', serif;
+  font-weight: bold;
+  padding-right: 8px;
   text-decoration: underline;
+  font-size: smaller;
+  &:hover {
+    color: #344B5B
+  }
 `;
 
 const StyledButton = styled.button`
@@ -82,15 +100,19 @@ const Question = ({ question, onShowAnswerModal, onOpenAnswerModal, questionAnsw
 
   return (
     <StyledDiv>
-      <StyledSpanQ>Q: {question_body} </StyledSpanQ>
-      <StyledSpan> Helpful? </StyledSpan>
-      <StyledSpanBt onClick={handleQuestionHelpfulnessClick}> Yes ({question_helpfulness}) </StyledSpanBt>
-      <StyledSpanBt onClick={(e) => onQuestionReportClick(e)}>{' '} Report</StyledSpanBt>
-      <StyledButton onClick={onAddAnswerButtonClick}> Add an Answer</StyledButton>
-      <StyledSpan>{renderAnswerModal()}</StyledSpan>
-      <div>
-        {newAnswerArray.map((answer, index) => <Answer key={index} answer={answer} putAnswersHelpful={putAnswersHelpful} putAnswersReport={putAnswersReport} />)}
-      </div>
+      <MainQA>
+        <StyledSpanQ>Q: {question_body} </StyledSpanQ>
+        <div>
+          {newAnswerArray.map((answer, index) => <Answer key={index} answer={answer} putAnswersHelpful={putAnswersHelpful} putAnswersReport={putAnswersReport} />)}
+        </div>
+      </MainQA>
+      <RightColumn>
+        <StyledSpan> Helpful? </StyledSpan>
+        <StyledA onClick={handleQuestionHelpfulnessClick}> Yes ({question_helpfulness}) </StyledA>
+        <StyledA onClick={(e) => onQuestionReportClick(e)}>{' '} Report</StyledA>
+        <StyledButton onClick={onAddAnswerButtonClick}> Add an Answer</StyledButton>
+        <StyledSpan>{renderAnswerModal()}</StyledSpan>
+      </RightColumn>
       <hr />
     </StyledDiv>
   );

@@ -12,23 +12,6 @@ import AddNewQuestion from './AddNewQuestion';
 import QuestionAnswerList from './QuestionAnswerList';
 import QAModal from './QAModal';
 
-const MainDiv = styled.div`
-  display: grid;
-  grid-row-template: 15% 75% 10%;
-`;
-
-const SearchBarDiv = styled.div`
-  grid-row-start: 1;
-`;
-
-const QuestionListDiv = styled.div`
-  grid-row-start: 2;
-`;
-
-const MoreButtonDiv = styled.div`
-  grid-row-start: 3;
-`;
-
 const Input = styled.input`
   border: 1px solid #000;
   border-radius: 10px;
@@ -370,22 +353,16 @@ const QAndA = ({ currentProductId }) => {
 
   if (productQuestions) {
     return (
-      <MainDiv>
-        <SearchBarDiv>
-          <StyledH2>Questions and Answers</StyledH2>
-          <SearchDiv>
-            <SearchInput value={searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." /> 
-            <i class="fas fa-search" />
-          </SearchDiv>
-        </SearchBarDiv>
+      <div>
+        <StyledH2>Questions and Answers</StyledH2>
+        <SearchDiv>
+          <SearchInput value={searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." /> 
+          <i class="fas fa-search" />
+        </SearchDiv>
         <span>
-          <QuestionListDiv>
-            <QuestionAnswerList onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} productQuestions={productQuestions} questionAnswersShown={questionAnswersShown} searchText={searchText} putQuestionHelpful={putQuestionHelpful} putQuestionReport={putQuestionReport} putAnswersHelpful={putAnswersHelpful} putAnswersReport={putAnswersReport} setQuestionID={setQuestionID} />
-          </QuestionListDiv>
-          <MoreButtonDiv>
-            <p>{showMoreQuestionsButton()}</p>
-            <AddNewQuestion addQuestionButtonClick={addQuestionButtonClick} />
-          </MoreButtonDiv>
+          <QuestionAnswerList onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} productQuestions={productQuestions} questionAnswersShown={questionAnswersShown} searchText={searchText} putQuestionHelpful={putQuestionHelpful} putQuestionReport={putQuestionReport} putAnswersHelpful={putAnswersHelpful} putAnswersReport={putAnswersReport} setQuestionID={setQuestionID} />
+          <p>{showMoreQuestionsButton()}</p>
+          <AddNewQuestion addQuestionButtonClick={addQuestionButtonClick} />
           <QAModal isOpenModal={isQuestionModalOpen} onDismiss={onQuestionModalDismiss}>
             <form onSubmit={(e) => handleQuestionSubmit(e, questionEmailInput)}>
               <div>
@@ -440,7 +417,7 @@ const QAndA = ({ currentProductId }) => {
             </form>
           </QAModal>
         </span>
-      </MainDiv>
+      </div>
     );
   }
   return <div>Loading...</div>;

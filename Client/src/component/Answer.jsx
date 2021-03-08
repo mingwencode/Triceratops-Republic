@@ -12,8 +12,15 @@ const StyledSpan = styled.span`
   font-size: smaller;
 `;
 
-const StyledSpanBt = styled(StyledSpan)`
+const StyledA = styled.a`
+  font-family: 'Shippori Mincho', serif;
+  font-weight: bold;
+  padding-right: 8px;
   text-decoration: underline;
+  font-size: smaller;
+  &:hover {
+    color: #344B5B
+  }
 `;
 
 const StyledP = styled.p`
@@ -68,16 +75,16 @@ const Answer = ({ answer, putAnswersHelpful, putAnswersReport }) => {
       <StyledSpan>
         Helpful?
       </StyledSpan>
-      <StyledSpanBt onClick={handleHelpfulnessClick}>
+      <StyledA onClick={handleHelpfulnessClick}>
         Yes
         ({helpfulness})
-      </StyledSpanBt>
-      <StyledSpanBt
+      </StyledA>
+      <StyledA
         onClick={(e) => onReportButtonClick(e)}
       >
         {' '}
         {report}
-      </StyledSpanBt>
+      </StyledA>
     </div>
   );
 };
