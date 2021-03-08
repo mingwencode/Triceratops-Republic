@@ -33,18 +33,18 @@ const SearchDiv = styled.div`
 
 const StyledH2 = styled.h2`
   font-family: 'Shippori Mincho', serif;
-  font-weight: bold;
+  font-weight: 800;
   color: #012626;
 `;
 
 const StyledP = styled.p`
-font-family: 'Shippori Mincho', serif;
+font-family: 'Roboto', sans-serif;
 font-weight: bold;
 `;
 
 const StyledPMessage = styled.p`
   color: red;
-  font-family: 'Shippori Mincho', serif;
+  font-family: 'Roboto', sans-serif;
   font-size: small;
   padding: 2px;
 `;
@@ -52,7 +52,7 @@ const StyledPMessage = styled.p`
 const StyledInputButton = styled.input`
   background-color: #344B5B;
   color: white;
-  font-family: 'Shippori Mincho', serif;
+  font-family: 'Roboto', sans-serif;
   padding: 10px;
   margin: 5px;
   width: fit-content;
@@ -65,7 +65,7 @@ const StyledInputButton = styled.input`
 const StyledButton = styled.button`
   background-color: #344B5B;
   color: white;
-  font-family: 'Shippori Mincho', serif;
+  font-family: 'Roboto', sans-serif;
   font-size: smallest;
   padding: 8px;
   margin: 3px;

@@ -29,8 +29,8 @@ const RightColumn = styled.div`
 `;
 
 const StyledSpanQ = styled.span`
-  font-family: 'Shippori Mincho', serif;
-  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
   padding-right: 8px;
 `;
 const StyledSpan = styled(StyledSpanQ)`
@@ -38,8 +38,8 @@ const StyledSpan = styled(StyledSpanQ)`
 `;
 
 const StyledA = styled.a`
-  font-family: 'Shippori Mincho', serif;
-  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
   padding-right: 8px;
   text-decoration: underline;
   font-size: smaller;
@@ -52,7 +52,7 @@ const StyledA = styled.a`
 const StyledButton = styled.button`
   background-color: #344B5B;
   color: white;
-  font-family: 'Shippori Mincho', serif;
+  font-family: 'Roboto', sans-serif;
   font-size: smallest;
   padding: 4px;
   width: fit-content;

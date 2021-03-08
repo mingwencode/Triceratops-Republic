@@ -7,14 +7,14 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const StyledSpan = styled.span`
-  font-family: 'Shippori Mincho', serif;
+  font-family: 'Roboto', sans-serif;
   padding: 5px;
   font-size: smaller;
 `;
 
 const StyledA = styled.a`
-  font-family: 'Shippori Mincho', serif;
-  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
   padding-right: 8px;
   text-decoration: underline;
   font-size: smaller;
@@ -25,8 +25,8 @@ const StyledA = styled.a`
 `;
 
 const StyledP = styled.p`
-font-family: 'Shippori Mincho', serif;
-font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
 `;
 
 const Answer = ({ answer, putAnswersHelpful, putAnswersReport }) => {
