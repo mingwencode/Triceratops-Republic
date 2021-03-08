@@ -41,7 +41,7 @@ const Star = styled.div`
 const Span = styled.div`
   display:block;
   font-family: 'Roboto', sans-serif;
-  font-weight: 300;
+  font-size: smaller;
   color: black;
   padding-left: 5px;
 `;

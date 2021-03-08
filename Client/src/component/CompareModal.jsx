@@ -27,7 +27,7 @@ const OverlayStyles = {
 const Button = styled.button`
   border: none;
   background: none;
-  font-size: 1em;
+  font-size: 1.5em;
   color: #344B5B;
   &:focus{
     outline: none;
@@ -38,40 +38,40 @@ const Button = styled.button`
   }
 `;
 
-
-const TableHeader = styled.th`
+const Table = styled.table`
   border: 1px solid #dddddd;
-  background: #03C9A5;
+  empty-rows: hide;
+`;
+const TableHeader = styled.th`
+  background: #557A95;
   text-align: center;
+  color: white;
+  padding: 16px;
 `;
 
 const TableCol1 = styled.td`
-  border: 1px solid #dddddd;
-  text-align: left;
+  border-collapse: collapse;
+  font-size: 1em;
+  text-align: center;
   width: 50em;
+  font-family: 'Roboto', sans-serif;
+  background-color: #DCD6D0;
+  padding: 10px;
 `;
 
 const TableCol2 = styled(TableCol1)`
   text-align: center;
+  font-size: 1em;
   width: 20em;
-
+  background-color: #8AA7BC;
+  font-weight: bold;
+  color: #323135;
 `;
 
-const TableCol3 = styled(TableCol1)`
-  text-align: right;
+const Price = styled(TableCol1)`
+  font-size: 1.1em;
+  font-weight: bold;
 `;
-
-const compareTableCol = (product, feature) => {
-  for (let i = 0; i < product.length; i += 1) {
-    if(product[i].feature === feature) {
-      if (product[i].value === null) {
-        return null;
-      }
-      return product[i].value;
-    }
-  }
-  return null;
-};
 
 const renderTable = (current, compare) => {
   const currentFeatures = current.features.map((item) => (
@@ -80,13 +80,34 @@ const renderTable = (current, compare) => {
   const compareFeatures = compare.features.map((item) => (
     item.value !== null ? item.feature : null
   ));
-  const allFeatures = [...new Set(currentFeatures.concat(compareFeatures))];
+  const allFeatures = [...new Set(currentFeatures.concat(compareFeatures))].filter(item => item !== null);
 
-  return allFeatures.map((feature, index) => (
+  const tableData = allFeatures.map((feature) => {
+    const tempobj = {feature}
+    for (let i = 0; i < current.features.length; i++) {
+      if (current.features[i].feature === feature) {
+        if (current.features[i].value === null) {
+          tempobj['current'] = null;
+        }
+        tempobj['current'] = current.features[i].value;
+      }
+    }
+    for (let i = 0; i < compare.features.length; i++) {
+      if (compare.features[i].feature === feature) {
+        if (compare.features[i].value === null) {
+          tempobj['compare'] = null;
+        }
+        tempobj['compare'] = compare.features[i].value;
+      }
+    }
+    return tempobj;
+  });
+
+  return tableData.map((data, index) => (
     <tr key={index}>
-      <TableCol1 key="current_col">{compareTableCol(current.features, feature)}</TableCol1>
-      <TableCol2 key="feature_col">{feature}</TableCol2>
-      <TableCol3 key="compare_col">{compareTableCol(compare.features, feature)}</TableCol3>
+      <TableCol1 key="current_col">{data.current}</TableCol1>
+      <TableCol2 key="feature_col">{data.feature}</TableCol2>
+      <TableCol1 key="compare_col">{data.compare}</TableCol1>
     </tr>
   ));
 };
@@ -98,8 +119,8 @@ const CompareModal = ({ isOpenModal, onDismiss, children, currentItem, compare }
     <>
       <div style={OverlayStyles} />
       <div style={ModalStyles}>
-        <Button type="button" onClick={() => onDismiss((prev) => !prev)}>&#9747;</Button>
-        <table>
+        <Button type="button" onClick={() => onDismiss((prev) => !prev)}>&#8855;</Button>
+        <Table>
           <thead>
             <tr>
               <TableHeader>{currentItem.name}</TableHeader>
@@ -109,13 +130,13 @@ const CompareModal = ({ isOpenModal, onDismiss, children, currentItem, compare }
           </thead>
           <tbody>
             <tr>
-              <TableCol1>{`$${currentItem.price}`}</TableCol1>
+              <Price>{`$${currentItem.price}`}</Price>
               <TableCol2>price</TableCol2>
-              <TableCol3>{`$${compare.price}`}</TableCol3>
+              <Price>{`$${compare.price}`}</Price>
             </tr>
             {renderTable(currentItem, compare)}
           </tbody>
-        </table>
+        </Table>
 
         {children}
       </div>

@@ -13,8 +13,8 @@ const ViewPort = styled.div`
   width: 880px;
   height: 280px;
   overflow: hidden;
-  background: red;
 `;
+//background: red;
 
 const CardContainer = styled.div`
   display: flex;

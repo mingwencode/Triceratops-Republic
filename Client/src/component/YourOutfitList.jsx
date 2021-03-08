@@ -20,8 +20,9 @@ const OutfitViewPort = styled.div`
   width: 660px;
   height: 280px;
   overflow: hidden;
-  background: red;
+
 `;
+//background: red;
 
 const CardContainer = styled.div`
   display: flex;

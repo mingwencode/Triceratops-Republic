@@ -6,7 +6,7 @@ import styled from 'styled-components';
 const Button = styled.button`
 background-color: #344B5B;
 color: white;
-font-family: 'Shippori Mincho', serif;
+font-family: 'Roboto', sans-serif;
 padding: 10px;
 margin: 5px;
 width: 150px;
