@@ -53,32 +53,33 @@ const OverviewImageGallery = ({ images, productStyles, currentImageIndex }) => {
       setMainImageIndex((nextImage) => nextImage - 1);
     }
   };
-  console.log(productStyles)
-  return (
-    <div>
-      <button id="prev" type="button" onClick={handlePrevious}>Previous</button>
-      <div className="view-port" style={styles.view_port}>
-        <div ref={thumbContainer} className="thumbnail-container" style={styles.thumbnail_container}>
-          {productStyles.results.map((image, idx) => (
-            <div key={idx}>
-              <Thumbnails
-                image={image.photos[0].thumbnail_url}
-                onThumbnailClick={onThumbnailClick}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-      <button id="next" type="button" onClick={handleNext}>Next</button>
+
+    return (
       <div>
-        <button type="button" onClick={handleMainPrev}>{'<'}</button>
-        <div>
-          <img className="main-image" src={productStyles.results[mainImageIndex].photos[0].url} alt="main diplay" height="300" width="225" />
+        <button id="prev" type="button" onClick={handlePrevious}>Previous</button>
+        <div className="view-port" style={styles.view_port}>
+          <div ref={thumbContainer} className="thumbnail-container" style={styles.thumbnail_container}>
+            {productStyles.results.map((image, idx) => (
+              <div key={idx}>
+                <Thumbnails
+                  image={image.photos[0].thumbnail_url}
+                  onThumbnailClick={onThumbnailClick}
+                />
+              </div>
+            ))}
+          </div>
         </div>
-        <button type="button" onClick={handleMainNext}>{'>'}</button>
+        <button id="next" type="button" onClick={handleNext}>Next</button>
+        <div>
+          <button type="button" onClick={handleMainPrev}>{'<'}</button>
+          <div>
+            <img className="main-image" src={productStyles.results[mainImageIndex].photos[0].url} alt="main diplay" height="300" width="225" />
+          </div>
+          <button type="button" onClick={handleMainNext}>{'>'}</button>
+        </div>
       </div>
-    </div>
-  );
+    );
+
 };
 
 const styles = {
