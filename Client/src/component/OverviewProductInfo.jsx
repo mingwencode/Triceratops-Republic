@@ -3,6 +3,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import ShadedStarRating from './ShadedStarRating';
 
 const OverviewProductInfo = ({
   productStyles, currentItem, currentProductId, handleStyleClick, styleResultsIndex
@@ -12,7 +13,9 @@ const OverviewProductInfo = ({
     return (
 
       <div>
-        <span>Star Rating</span>
+        <div>
+          <ShadedStarRating starPercent={currentItem.starPercent} />
+        </div>
         <form>
           <a className="reviews-a" onClick={() => (console.log('Read all reviews clicked!'))}><u>Read all reviews</u></a>
         </form>

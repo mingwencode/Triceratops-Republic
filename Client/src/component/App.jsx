@@ -15,7 +15,7 @@ const AppBackground = styled.div`
 const AppBody = styled.div`
   display: grid;
   grid-template-rows: 29% 20% 25% 26%;
-  border: 10px solid #615e5e;
+  border: 10px solid #344B5B;
   background: rgba(203, 216, 225, 1);
   max-width: 70%;
   margin: auto;
@@ -42,7 +42,7 @@ const ReviewsStyles = styled.div`
 
 const App = () => {
   //const [productArray, setProductArray] = useState([]);
-  const [currentProductId, setCurrentProductId] = useState(20111);
+  const [currentProductId, setCurrentProductId] = useState(20204);
   const [relatedProductIds, setRelatedProductIds] = useState([]);
   const [productStyles, setProductStyles] = useState();
   const [currentItem, setCurrentItem] = useState({});

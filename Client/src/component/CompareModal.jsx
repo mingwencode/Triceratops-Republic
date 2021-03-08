@@ -49,7 +49,7 @@ const TableCol3 = styled(TableCol1)`
 
 const compareTableCol = (product, feature) => {
   for (let i = 0; i < product.length; i += 1) {
-    if(product[i].feature === feature) {
+    if (product[i].feature === feature) {
       if (product[i].value === null) {
         return null;
       }

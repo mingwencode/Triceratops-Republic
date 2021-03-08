@@ -8,28 +8,51 @@ import OverviewProductInfo from './OverviewProductInfo';
 import OverviewAddToBag from './OverviewAddToBag';
 import OverviewDescription from './OverviewDescription';
 
-// let Body = styled.div`
-//   .item1 { grid-area: top-bar; };
-//   .item2 { grid-area: image-gallery; };
-//   .item3 { grid-area: product-info; };
-//   .item4 { grid-area: add-to-bag; };
-//   .item5 { grid-area: description; };
-
-//   .grid-container {
+// let OvBody = styled.div`
+//   .ov-container {
 //     display: grid;
-//     grid-template-areas:
-//       'top-bar top-bar top-bar top-bar top-bar top-bar'
-//       'image-gallery image-gallery image-gallery product-info product-info product-info'
-//       'description description description description description description';
+//     grid-template-columns: 67% 33%;
+//     grid-template-rows: 200px 1fr 1fr 1fr;
+//     border: 1px solid black;
+//     max-width: 100%;
+//     margin: auto;
+//     align-items: auto;
+//     padding: 5px;
+//     height: 100%
 //   }
-
-//   .grid-container > div {
-//   background-color: rgba(94, 161, 122, 0.959);
-//   text-align: center;
-//   padding: 20px 0;
-//   font-size: 20px;
-// }
 // `;
+// const Tb = styled.div`
+//   .item1 {
+//     grid-column-start: 1;
+//     grid-column-end: end;
+//     grid-row-start: row1-start;
+//     grid-row-end: row1-end;
+//    };
+  //  `
+  // .item2 {
+  //   grid-column-start: first;
+  //   grid-column-end: 2;
+  //   grid-row-start: 2;
+  //   grid-row-end: 4;
+  //  };
+  // .item3 {
+  //   grid-column-start: 2;
+  //   grid-column-end: end;
+  //   grid-row-start: 2;
+  //   grid-row-end: 3;
+  //  };
+  // .item4 {
+  //   grid-column-start: 2;
+  //   grid-column-end: end;
+  //   grid-row-start: 3;
+  //   grid-row-end: 3;
+  //  };
+  // .item5 {
+  //   grid-column-start: 1;
+  //   grid-column-end: end;
+  //   grid-row-start: 3;
+  //   grid-row-end: 4;
+  //  };
 
 const images = [
   'https://s7d5.scene7.com/is/image/Anthropologie/32869075_025_a?$a15-pdp-detail-shot$=&fit=constrain&fmt=webp&qlt=80&wid=1080',
@@ -52,33 +75,44 @@ const Overview = ({ currentItem, productStyles, currentProductId }) => {
   if (currentItem) {
     return (
       <div>
-        <div className="grid-container">
-          <OverviewTopBar className="item1 top-bar" />
+        <div className="ov-container">
           <div>
-            <OverviewImageGallery
-              className="item2 image-gallery"
-              productStyles={productStyles}
-              images={images}
-              currentImageIndex={currentImageIndex}
-            />
-            <OverviewProductInfo
-              className="item3 product-info"
-              currentItem={currentItem}
-              productStyles={productStyles}
-              currentProductId={currentProductId}
-              handleStyleClick={handleStyleClick}
-              styleResultsIndex={styleResultsIndex}
-            />
-            <OverviewAddToBag
-              className="item4 add-to-bag"
-              productStyles={productStyles}
-              styleResultsIndex={styleResultsIndex}
-            />
-            <OverviewDescription
-              className="item5 description"
-              currentItem={currentItem}
-              bullets={descriptionBullets}
-            />
+          <OverviewTopBar className="item1 top-bar" />
+          </div>
+          <div>
+            <div>
+              <OverviewImageGallery
+                className="item2 image-gallery"
+                currentItem={currentItem}
+                productStyles={productStyles}
+                images={images}
+                currentImageIndex={currentImageIndex}
+              />
+            </div>
+            <div>
+              <OverviewProductInfo
+                className="item3 product-info"
+                currentItem={currentItem}
+                productStyles={productStyles}
+                currentProductId={currentProductId}
+                handleStyleClick={handleStyleClick}
+                styleResultsIndex={styleResultsIndex}
+              />
+            </div>
+            <div>
+              <OverviewAddToBag
+                className="item4 add-to-bag"
+                productStyles={productStyles}
+                styleResultsIndex={styleResultsIndex}
+              />
+            </div>
+            <div>
+              <OverviewDescription
+                className="item5 description"
+                currentItem={currentItem}
+                bullets={descriptionBullets}
+              />
+            </div>
           </div>
         </div>
       </div>

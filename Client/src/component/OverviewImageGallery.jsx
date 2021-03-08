@@ -5,9 +5,15 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useRef, useEffect } from 'react';
+import OverviewModal from './OverviewModal';
 import Thumbnails from './OverviewThumbnails';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
+const modalButtonStyle = {
+  position: 'relative',
+  zIndex: 1
+};
 
 const OverviewImageGallery = ({ images, currentImageIndex }) => {
   const [currentImage, setImage] = useState(0);
@@ -92,7 +98,6 @@ const styles = {
     width: 'fit-content'
   }
 };
-
 // OverviewImageGallery.propTypes = {
 //   images: PropTypes.array
 // };
