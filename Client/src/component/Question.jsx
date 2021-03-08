@@ -11,22 +11,51 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Answer from './Answer';
 
-const StyledSpan = styled.span`
-font-family: 'Shippori Mincho', serif;
-font-weight: bold;
-padding-right: 10px;
+const StyledDiv = styled.div`
+  &:nth-child(odd){
+    background-color: #D8E2E9;
+  }
+  display: grid;
+  grid-template-columns: 60% 40%;
 `;
-const StyledSpanBt = styled(StyledSpan)`
+
+const MainQA = styled.div`
+  grid-column-start: 1;
+  padding-right: 10px;
+`;
+
+const RightColumn = styled.div`
+  grid-column-start: 2;
+`;
+
+const StyledSpanQ = styled.span`
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  padding-right: 8px;
+`;
+const StyledSpan = styled(StyledSpanQ)`
+  font-size: smaller;
+`;
+
+const StyledA = styled.a`
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  padding-right: 8px;
   text-decoration: underline;
+  font-size: smaller;
+  cursor: pointer;
+  &:hover {
+    color: #344B5B
+  }
 `;
 
 const StyledButton = styled.button`
-  background-color: #014034;
+  background-color: #344B5B;
   color: white;
-  font-family: 'Shippori Mincho', serif;
+  font-family: 'Roboto', sans-serif;
   font-size: smallest;
   padding: 4px;
-  width: 125px;
+  width: fit-content;
   height: 25px;
   border: none;
   outline: none;
@@ -39,6 +68,11 @@ const Question = ({ question, onShowAnswerModal, onOpenAnswerModal, questionAnsw
   const { question_body, answers, question_id, question_helpfulness } = question;
   // const [isQuestionHelpful, setIsQuestionHelpful] = useState(question_helpfulness);
   const answerArray = Object.values(answers);
+
+  const sortedAnswerArray = answerArray.sort((a, b) => {
+    return (a.helpfulness < b.helpfulness) ? 1 : -1;
+  });
+
 
   // useEffect(() => {
   //   getQuestions(currentProductId);
@@ -66,22 +100,27 @@ const Question = ({ question, onShowAnswerModal, onOpenAnswerModal, questionAnsw
   };
 
   const newAnswerArray = [];
-  for (let i = 0; i < Math.min(questionAnswersShown, answerArray.length); i += 1) {
-    newAnswerArray.push(answerArray[i]);
+  for (let i = 0; i < Math.min(questionAnswersShown, sortedAnswerArray.length); i += 1) {
+    newAnswerArray.push(sortedAnswerArray[i]);
   }
 
   return (
-    <div>
-      <StyledSpan>Q: {question_body} </StyledSpan>
-      <StyledSpan> Helpful? </StyledSpan>
-      <StyledSpanBt onClick={handleQuestionHelpfulnessClick}> Yes ({question_helpfulness}) </StyledSpanBt>
-      <StyledSpanBt onClick={(e) => onQuestionReportClick(e)}>{' '} Report</StyledSpanBt>
-      <StyledButton onClick={onAddAnswerButtonClick}> Add an Answer</StyledButton>
-      <StyledSpan>{renderAnswerModal()}</StyledSpan>
-      <div>
-        {newAnswerArray.map((answer, index) => <Answer key={index} answer={answer} putAnswersHelpful={putAnswersHelpful} putAnswersReport={putAnswersReport} />)}
-      </div>
-    </div>
+    <StyledDiv>
+      <MainQA>
+        <StyledSpanQ>Q: {question_body} </StyledSpanQ>
+        <div>
+          {newAnswerArray.map((answer) => <Answer key={answer.id} answer={answer} putAnswersHelpful={putAnswersHelpful} putAnswersReport={putAnswersReport} />)}
+        </div>
+      </MainQA>
+      <RightColumn>
+        <StyledSpan> Helpful? </StyledSpan>
+        <StyledA onClick={handleQuestionHelpfulnessClick}> Yes ({question_helpfulness}) </StyledA>
+        <StyledA onClick={(e) => onQuestionReportClick(e)}>{' '} Report</StyledA>
+        <StyledButton onClick={onAddAnswerButtonClick}> Add an Answer</StyledButton>
+        <StyledSpan>{renderAnswerModal()}</StyledSpan>
+      </RightColumn>
+      <hr />
+    </StyledDiv>
   );
 };
 

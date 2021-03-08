@@ -7,17 +7,26 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const StyledSpan = styled.span`
-  font-family: 'Shippori Mincho', serif;
+  font-family: 'Roboto', sans-serif;
   padding: 5px;
+  font-size: smaller;
 `;
 
-const StyledSpanBt = styled(StyledSpan)`
+const StyledA = styled.a`
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  padding-right: 8px;
   text-decoration: underline;
+  font-size: smaller;
+  cursor: pointer;
+  &:hover {
+    color: #344B5B
+  }
 `;
 
 const StyledP = styled.p`
-font-family: 'Shippori Mincho', serif;
-font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
 `;
 
 const Answer = ({ answer, putAnswersHelpful, putAnswersReport }) => {
@@ -67,16 +76,16 @@ const Answer = ({ answer, putAnswersHelpful, putAnswersReport }) => {
       <StyledSpan>
         Helpful?
       </StyledSpan>
-      <StyledSpanBt onClick={handleHelpfulnessClick}>
+      <StyledA onClick={handleHelpfulnessClick}>
         Yes
         ({helpfulness})
-      </StyledSpanBt>
-      <StyledSpanBt
+      </StyledA>
+      <StyledA
         onClick={(e) => onReportButtonClick(e)}
       >
         {' '}
         {report}
-      </StyledSpanBt>
+      </StyledA>
     </div>
   );
 };
