@@ -14,6 +14,7 @@ const MODAL_STYLES = {
   backgroundColor: '#FFF',
   padding: '50px',
   zIndex: 1000,
+  borderRadius: 10,
 };
 const OVERLAY_STYLES = {
   position: 'fixed',
@@ -28,7 +29,7 @@ const OVERLAY_STYLES = {
 const ButtonFixed = styled.button`
 background-color: #344B5B;
 color: white;
-font-family: 'Shippori Mincho', serif;
+font-family: 'Roboto', sans-serif;
 padding: 10px;
 margin: 5px;
 width: fit-content;
@@ -41,7 +42,7 @@ box-sizing: border-box;
 const SubmitFormStyle = styled.input`
 background-color: #344B5B;
 color: white;
-font-family: 'Shippori Mincho', serif;
+font-family: ‘Roboto’, sans-serif;
 padding: 10px;
 margin: 5px;
 width: fit-content;
@@ -53,7 +54,7 @@ text-align: center;
 `
 const StyledPMessage = styled.p`
   color: red;
-  font-family: 'Shippori Mincho', serif;
+  font-family: 'Roboto', sans-serif;
   font-size: small;
   padding: 2px;
 `;

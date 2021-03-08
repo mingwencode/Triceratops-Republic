@@ -10,7 +10,7 @@ import RatingsAndReviewsBreakDown from './RatingsAndReviewsBreakDown';
 
 const RatingsStyle = styled.div`
   display: grid;
-  grid-template-column: 50%, 50%;
+  grid-template-columns: 18% 7% 75%;
   padding: 5px;
   margin: 0;
 `;
@@ -21,15 +21,17 @@ const RatingsAndReviewsBreakDownStyle = styled.div`
 `;
 
 const ReviewListStyle = styled.div`
-  grid-column: 2/3;
+  grid-column-start: 3;
   break-word: overflow-wrap;
+  padding: 20px;
+
 
 `;
 
 const Button = styled.button`
 background-color: #344B5B;
 color: white;
-font-family: 'Shippori Mincho', serif;
+font-family: 'Roboto', sans-serif;
 padding: 10px;
 margin: 5px;
 width: fit-content;
@@ -37,6 +39,23 @@ border: none;
 outline: none;
 border-radius: 10px;
 box-sizing: border-box;
+ `;
+ const ButtonNewReview = styled.button`
+ grid-column: 3/4;
+ display: inline-block;
+ text-align: center;
+ background-color: #344B5B;
+ color: white;
+ font-family: 'Roboto', sans-serif;
+ padding: 10px;
+ margin: 5px;
+ width: fit-content;
+ border: none;
+ outline: none;
+ border-radius: 10px;
+ box-sizing: border-box;
+
+
  `;
 
 const RatingsAndReviews = ({ currentProductId }) => {
@@ -149,12 +168,12 @@ const RatingsAndReviews = ({ currentProductId }) => {
             getReviews={getReviews}
           />
         </div>
-        <Button
+        <ButtonNewReview
           type="button"
           onClick={() => { setNewReviewModal(!showNewMReviewModal); }}
         >
           New Review
-        </Button>
+        </ButtonNewReview>
       </RatingsStyle>
     );
   }

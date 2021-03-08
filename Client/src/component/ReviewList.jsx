@@ -18,6 +18,7 @@ const MODAL_STYLES = {
   zIndex: 1000,
   maxHeight: 'calc(100vh - 350px)',
   overflowY: 'auto',
+  borderRadius: 10,
 };
 const MODALHEADER_STYLES = {
   position: 'fixed',
@@ -40,7 +41,7 @@ const OVERLAY_STYLES = {
 const ModalHeader = styled.h4`
 position: fixed,
 display: 'grid',
-gridTemplateColumns: '10% 20% 20% 20% 20%',
+gridTemplateColumns: '10% 70% 20%',
 `
 const Button = styled.button`
 background-color: #344B5B;
