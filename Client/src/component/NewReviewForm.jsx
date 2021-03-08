@@ -1,10 +1,10 @@
+/* eslint-disable no-return-assign */
 /* eslint-disable max-len */
 /* eslint-disable consistent-return */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-// import PropTypes from 'prop-types';
 
 const MODAL_STYLES = {
   position: 'fixed',
@@ -25,7 +25,7 @@ const OVERLAY_STYLES = {
   zIndex: 1000,
 };
 
-const Button = styled.button`
+const ButtonFixed = styled.button`
 background-color: #344B5B;
 color: white;
 font-family: 'Shippori Mincho', serif;
@@ -98,12 +98,13 @@ const NewReviewForm = ({
   const [email, setEmail] = useState('');
   const [characisticsState, setCharacteristicsState] = useState({});
 
-  const postReviews = (review) => {
-    axios.post('/reviews', review)
-      .then(() => getReviews(currentProductId))
-      .catch((err) => console.log('post review ', err));
-  };
-
+  // const postReviews = (review) => {
+  //   axios.post('/reviews', review)
+  //     .then(() => {
+  //       console.log('post photo')
+  //       getReviews(currentProductId)})
+  //     .catch((err) => console.log('post review ', err));
+  // };
 
   const postCharacteristicsObj = {
     product_id: currentProductId,
@@ -117,6 +118,12 @@ const NewReviewForm = ({
     characteristics: characisticsState,
  };
 
+ const toBase64 = file => new Promise((resolve, reject) => {
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => resolve(reader.result);
+  reader.onerror = error => reject(error);
+});
 
   const renderCharacteristics = () => {
     if (reviewMetaData) {
@@ -204,16 +211,37 @@ const NewReviewForm = ({
     setIsRecommended();
     setChangeSummary();
     setChangeReview();
-    setUploadPhoto();
+    setThumbnail([]);
     setNickname();
     setEmail();
     setCharacteristicsState();
+    setImageUpload([]);
   };
-  const handleSubmit = (e)=> {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    postReviews(postCharacteristicsObj);
-    setNewReviewModal(false);
-    clearForm();
+    const promises = [];
+    // eslint-disable-next-line no-restricted-syntax
+    for (const photo of imageUpload) {
+      const payload = {
+        name: photo.name,
+        data: '',
+      };
+      const promise = toBase64(photo)
+        // eslint-disable-next-line prefer-destructuring
+        .then((result) => payload.data = result.split(',')[1])
+        .then(() => axios.post('/upload_images', payload))
+        .then(({ data }) => data)
+        .catch(console.log);
+      promises.push(promise);
+    }
+    Promise.all(promises)
+      .then((results) => postCharacteristicsObj.photos = results)
+      .then(() => {
+        return axios.post('/reviews', postCharacteristicsObj);
+      })
+      .then(()=> getReviews(currentProductId))
+      .then(()=> setNewReviewModal(false))
+      .then(()=> clearForm())
   };
   const onPhotoUpload = (e) => {
     const imageArray = [];
@@ -279,12 +307,12 @@ const NewReviewForm = ({
             handleSubmit(e);
           }}
         >
-          <Button
+          <ButtonFixed
             type="button"
             onClick={() => setNewReviewModal(!showNewReviewModal)}
           >
             X
-          </Button>
+          </ButtonFixed>
           <StyledH2> Write Your Review</StyledH2>
           <h3> About the [Product Name Here] </h3>
           <div className="rating">

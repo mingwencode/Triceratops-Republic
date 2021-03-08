@@ -9,15 +9,24 @@ import NewReviewForm from './NewReviewForm';
 import RatingsAndReviewsHeader from './RatingsAndReviewsHeader';
 
 const MODAL_STYLES = {
+  padding: '75px',
   position: 'fixed',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   backgroundColor: '#FFF',
-  padding: '50px',
+  zIndex: 1000,
+  maxHeight: 'calc(100vh - 350px)',
+  overflowY: 'auto',
+};
+const MODALHEADER_STYLES = {
+  position: 'fixed',
+  top: '20%',
+  transform: 'translate(-50%, -50%)',
+  backgroundColor: '#FFF',
+  padding: '5px',
   zIndex: 1000,
   maxHeight: 'calc(100vh - 450px)',
-  overflowY: 'auto',
 };
 const OVERLAY_STYLES = {
   position: 'fixed',
@@ -26,12 +35,27 @@ const OVERLAY_STYLES = {
   right: 0,
   bottom: 0,
   backgroundColor: 'rgba(0, 0, 0, .7)',
-  zIndex: 1000,
 };
 
+const ModalHeader = styled.h4`
+position: fixed,
+display: 'grid',
+gridTemplateColumns: '10% 20% 20% 20% 20%',
+`
 const Button = styled.button`
-display: flex;
-justify-content: left;
+background-color: #344B5B;
+color: white;
+font-family: 'Shippori Mincho', serif;
+padding: 10px;
+margin: 5px;
+width: fit-content;
+border: none;
+outline: none;
+border-radius: 10px;
+box-sizing: border-box;
+ `;
+
+ const ModalButton = styled.button`
 background-color: #344B5B;
 color: white;
 font-family: 'Shippori Mincho', serif;
@@ -45,12 +69,12 @@ box-sizing: border-box;
  `;
 
  const ListStyle = styled.div`
- margin: auto;
-
+  maxHeight: 'calc(100vh - 450px)',
+  overflowY: 'auto',
  `;
  const RatingsAndReviewsHeaderStyle = styled.div`
- display: flex;
- justify-content: flex-start;
+   display: flex,
+   justify-content: center,
  `;
  const MoreReviewsStyle = styled.div`
  display: flex;
@@ -106,7 +130,7 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
   };
 
   const openModal = () => {
-    if (reviewCount >= 5) setReviewModalBoolean(true);
+    if (reviewCount >= 3) setReviewModalBoolean(true);
   };
 
   const moreReviews = () => {
@@ -138,7 +162,7 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
           {intitialReviewRender()}
         </div>
         <MoreReviewsStyle>
-        {moreReviews()}
+          {moreReviews()}
         </MoreReviewsStyle>
         {openModal()}
       </ListStyle>
@@ -150,28 +174,31 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
       <>
 
         <div style={OVERLAY_STYLES} />
-
         <div style={MODAL_STYLES}>
-          <Button
-            type="button"
-            onClick={() => {
-              setReviewModalBoolean(!reviewModalBoolean);
-              setReviewCount(2);
-            }}
-          >
-            Close
-          </Button>
-          <RatingsAndReviewsHeaderStyle>
-            <RatingsAndReviewsHeader
-              reviewArray={reviewArray}
-              setDropDownSelect={setDropDownSelect}
-            />
-          </RatingsAndReviewsHeaderStyle>
 
           <div>
             {intitialReviewRender()}
           </div>
           {moreReviews()}
+        </div>
+        <div style={MODALHEADER_STYLES}>
+          <ModalHeader>
+            <ModalButton
+              type="button"
+              onClick={() => {
+                setReviewModalBoolean(!reviewModalBoolean);
+                setReviewCount(2);
+              }}
+              >
+              Close
+            </ModalButton>
+            <RatingsAndReviewsHeaderStyle>
+              <RatingsAndReviewsHeader
+                reviewArray={reviewArray}
+                setDropDownSelect={setDropDownSelect}
+              />
+            </RatingsAndReviewsHeaderStyle>
+          </ModalHeader>
         </div>
       </>
     );

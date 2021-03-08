@@ -10,7 +10,7 @@ import RatingsAndReviewsBreakDown from './RatingsAndReviewsBreakDown';
 
 const RatingsStyle = styled.div`
   display: grid;
-  grid-template-column: 40%, 60%;
+  grid-template-column: 50%, 50%;
   padding: 5px;
   margin: 0;
 `;
@@ -23,7 +23,7 @@ const RatingsAndReviewsBreakDownStyle = styled.div`
 const ReviewListStyle = styled.div`
   grid-column: 2/3;
   break-word: overflow-wrap;
-  max-width: 100%;
+
 `;
 
 const Button = styled.button`

@@ -3,9 +3,34 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import ShadedStarRating from './ShadedStarRating';
 
+const AverageStyle = styled.span`
+display: flex;
+justify-content: start;
+font-wieght: bold;
+font-size: 40px;
+`;
 
+const StarWrapper = styled.div`
+
+`
+const StyleStars = styled.span`
+display: flex;
+justify-content: start;
+`
+const ProgStyle = styled.progress`
+webkit-appearance: none;
+   appearance: none;
+  width: 200px;
+  height: 10px;
+}
+`
+const CharStyle = styled.span`
+text-decoration: underline;
+font-size: small;
+`
 // eslint-disable-next-line arrow-body-style
 const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharacterObj }) => {
   const [starPercent, setStarPercent] = useState();
@@ -29,8 +54,8 @@ const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharact
       if (productReviewArray[i].recommend) numberRecommended++;
     }
     const asPercent = (numberRecommended/productReviewArray.length) * 100;
-
-    return asPercent;
+    const averagePrecentRounded = Math.round(asPercent * 10) / 10
+    return averagePrecentRounded;
   };
 
   // eslint-disable-next-line arrow-body-style
@@ -47,11 +72,13 @@ const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharact
       const asPercentForBars = (numberOfStarsObj[key]/productReviewArray.length) * 100;
       return (
         <div key={index}>
-          {key}
-          {' '}
-          stars
-          {' '}
-          <progress
+          <CharStyle>
+            {key}
+            {' '}
+            stars
+            {' '}
+          </CharStyle>
+          <ProgStyle
             id="star"
             max="100"
             value={asPercentForBars}
@@ -123,8 +150,10 @@ const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharact
     <div>
       <h3>Ratings &amp; Reviews </h3>
       <div>
-        <span>{averageRating()}</span>
-        <ShadedStarRating starPercent={starPercent} />
+        <AverageStyle>{averageRating()}</AverageStyle>
+        <StyleStars>
+          <ShadedStarRating starPercent={starPercent} />
+        </StyleStars>
       </div>
       <span>
         {percentRecommended()}

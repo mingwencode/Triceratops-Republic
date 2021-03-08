@@ -20,10 +20,6 @@ const AppBody = styled.div`
   background: rgba(203, 216, 225, 1);
   max-width: 70%;
   margin: auto;
-<<<<<<< HEAD
-=======
-
->>>>>>> 58bac75623112623a410508249953598a5d69ff8
   padding: 10px;
   font-family: 'Shippori Mincho', serif;
   overFlow: auto;
