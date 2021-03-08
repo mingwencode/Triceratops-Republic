@@ -3,6 +3,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 // import PropTypes from 'prop-types';
 
 const MODAL_STYLES = {
@@ -23,7 +24,68 @@ const OVERLAY_STYLES = {
   backgroundColor: 'rgba(0, 0, 0, .7)',
   zIndex: 1000,
 };
-const TABLE = { border: '1px solid black' };
+
+
+const Button = styled.button`
+background-color: #344B5B;
+color: white;
+font-family: 'Shippori Mincho', serif;
+padding: 10px;
+margin: 5px;
+width: fit-content;
+border: none;
+outline: none;
+border-radius: 10px;
+box-sizing: border-box;
+ `;
+
+
+const SubmitFormStyle = styled.input`
+background-color: #344B5B;
+color: white;
+font-family: 'Shippori Mincho', serif;
+padding: 10px;
+margin: 5px;
+width: fit-content;
+border: none;
+outline: none;
+border-radius: 10px;
+box-sizing: border-box;
+text-align: center;
+`
+const StyledPMessage = styled.p`
+  color: red;
+  font-family: 'Shippori Mincho', serif;
+  font-size: small;
+  padding: 2px;
+`;
+
+const StyledH2 = styled.h2`
+  font-family: 'Shippori Mincho', serif;
+  font-weight: bold;
+  color: #012626;
+  text-align: center;
+`;
+
+const Input = styled.input`
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 3px;
+  margin: 5px;
+  width: 250px;
+  box-sizing: border-box;
+  text-align: center;
+`;
+const SyledTextarea = styled.textarea`
+border: 1px solid #000;
+border-radius: 10px;
+padding: 3px;
+margin: 5px;
+width: 250px;
+box-sizing: border-box;
+`
+
+const TABLE = { border: '1px white' };
 const NewReviewForm = ({
   showNewReviewModal, currentProductId, setNewReviewModal, sampleCharacterObj, reviewMetaData, getReviews
 }) => {
@@ -76,6 +138,7 @@ const NewReviewForm = ({
                   {key}
                 </span>
               </td>
+              <div style={{fontSize: 10}}>
               <td>
                 <input
                   type="radio"
@@ -127,6 +190,7 @@ const NewReviewForm = ({
                   {sampleCharacterObj[key][5]}
                 </label>
               </td>
+              </div>
 
             </tr>
           );
@@ -204,13 +268,13 @@ const NewReviewForm = ({
             handleSubmit(e);
           }}
         >
-          <button
+          <Button
             type="button"
             onClick={() => setNewReviewModal(!showNewReviewModal)}
           >
-            Close
-          </button>
-          <h2> Write Your Review</h2>
+            X
+          </Button>
+          <StyledH2> Write Your Review</StyledH2>
           <h3> About the [Product Name Here] </h3>
           <div className="rating">
             <legend>Overall Rating*</legend>
@@ -304,7 +368,8 @@ const NewReviewForm = ({
             >
               Review Summary
             </label>
-            <textarea
+            <br />
+            <SyledTextarea
               placeholder="Example: Best Purchase ever"
               maxLength="60"
               value={summary}
@@ -318,7 +383,8 @@ const NewReviewForm = ({
             >
               Review Body*
             </label>
-            <textarea
+            <br />
+            <SyledTextarea
               placeholder="Why did you like the product or not?"
               minLength="50"
               maxLength="1000"
@@ -347,7 +413,7 @@ const NewReviewForm = ({
             >
               What Is Your Nickname?*
             </label>
-            <input
+            <Input
               type="textbox"
               placeholder="Example: jackson11!"
               required="required"
@@ -356,9 +422,10 @@ const NewReviewForm = ({
               value={reviewer_name}
               onChange={(event) => setNickname(event.target.value)}
             />
-            <span>
+            <br />
+            <StyledPMessage style={{ fontSize: 12 }}>
               For privacy reasons, do not use your full name or email address
-            </span>
+            </StyledPMessage>
           </div>
           <div>
             <label
@@ -369,16 +436,17 @@ const NewReviewForm = ({
             >
               Email*
             </label>
-            <input
+            <Input
               type="email"
               placeholder="Example: jackson11@email.com"
               onChange={(event) => setEmail(event.target.value)}
             />
-            <span>
+            <br />
+            <StyledPMessage style={{ fontSize: 12 }}>
               For authentication reasons, you will not be emailed
-            </span>
+            </StyledPMessage>
           </div>
-          <input
+          <SubmitFormStyle
             type="submit"
             name="submit"
           />
@@ -387,11 +455,5 @@ const NewReviewForm = ({
     </>
   );
 };
-// NewReviewForm.propTypes = {
-//   rating: PropTypes.number.isRequired,
-//   recommend: PropTypes.string.isRequired,
-//   reviewSummary: PropTypes.string.isRequired,
-//   reviewBody: PropTypes.string.isRequired,
-// };
 
 export default NewReviewForm;

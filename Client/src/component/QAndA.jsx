@@ -26,31 +26,36 @@ const SearchInput = styled(Input)`
   padding: 10px;
 `;
 
+const SearchDiv = styled.div`
+  border: 10px;
+  padding: 5px;
+`;
+
 const StyledH2 = styled.h2`
   font-family: 'Shippori Mincho', serif;
-  font-weight: bold;
+  font-weight: 800;
   color: #012626;
 `;
 
 const StyledP = styled.p`
-font-family: 'Shippori Mincho', serif;
+font-family: 'Roboto', sans-serif;
 font-weight: bold;
 `;
 
 const StyledPMessage = styled.p`
   color: red;
-  font-family: 'Shippori Mincho', serif;
+  font-family: 'Roboto', sans-serif;
   font-size: small;
   padding: 2px;
 `;
 
 const StyledInputButton = styled.input`
-  background-color: #014034;
+  background-color: #344B5B;
   color: white;
-  font-family: 'Shippori Mincho', serif;
+  font-family: 'Roboto', sans-serif;
   padding: 10px;
   margin: 5px;
-  width: 150px;
+  width: fit-content;
   border: none;
   outline: none;
   border-radius: 10px;
@@ -58,13 +63,13 @@ const StyledInputButton = styled.input`
 `;
 
 const StyledButton = styled.button`
-  background-color: #014034;
+  background-color: #344B5B;
   color: white;
-  font-family: 'Shippori Mincho', serif;
+  font-family: 'Roboto', sans-serif;
   font-size: smallest;
   padding: 8px;
   margin: 3px;
-  width: 200px;
+  width: fit-content;
   height: 40px;
   border: none;
   outline: none;
@@ -350,7 +355,10 @@ const QAndA = ({ currentProductId }) => {
     return (
       <div>
         <StyledH2>Questions and Answers</StyledH2>
-        <SearchInput value={searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
+        <SearchDiv>
+          <SearchInput value={searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." /> 
+          <i class="fas fa-search" />
+        </SearchDiv>
         <span>
           <QuestionAnswerList onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} productQuestions={productQuestions} questionAnswersShown={questionAnswersShown} searchText={searchText} putQuestionHelpful={putQuestionHelpful} putQuestionReport={putQuestionReport} putAnswersHelpful={putAnswersHelpful} putAnswersReport={putAnswersReport} setQuestionID={setQuestionID} />
           <p>{showMoreQuestionsButton()}</p>

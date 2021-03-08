@@ -2,33 +2,53 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ProductCard from './ProductCard';
 
-const Title = styled.div`
-  font-size: 1.5em;
-  color: palevioletred;
+
+const ListContainer = styled.div`
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
 `;
 
 const ViewPort = styled.div`
   margin: 0 auto;
-  width: 840px;
-  height: 250px;
-  background: rgba(255, 255, 255, 0.5);
+  width: 880px;
+  height: 280px;
   overflow: hidden;
+  background: red;
 `;
 
 const CardContainer = styled.div`
   display: flex;
   flexDirection: row;
   width: fit-content;
+  margin-top: 5px;
+
 `;
 
-const SlideDivOne = styled.div`
-  margin: 0 auto;
-  display:flex;
+const BtnContainerRelatedL = styled.div`
+  align-self: center;
+  justify-self: right;
+  grid-column: 1 / 2;
 `;
 
-const BtnContainer = styled.div`
-  height: 10px;
-  width: 40px;
+const BtnContainerRelatedR = styled(BtnContainerRelatedL)`
+  grid-column: 3 / 4;
+  justify-self: left;
+`;
+
+const Button = styled.button`
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: #344B5B;
+  &:focus{
+    outline: none;
+  }
+  &:hover{
+    transform: scale(1.8, 1.8);
+  }
+  &:active{
+    transform: scale(1, 1);
+  }
 `;
 
 const RelatedProductsList = ({ setCurrentProductId, currentItem, relatedList, len }) => {
@@ -53,28 +73,23 @@ const RelatedProductsList = ({ setCurrentProductId, currentItem, relatedList, le
   };
 
   return (
-    <div>
-      <Title>RELATED PRODUCTS</Title>
-      <SlideDivOne className="list_container">
-        <BtnContainer>
-          {current === 0 ? null: <button name="prev_btn" type="button" onClick={() => prevSilde()}>&#8678;</button>}
-        </BtnContainer>
-        <div>
-          <ViewPort className="view-port">
-            <CardContainer ref={cardContainer} className="card-container">
-              {relatedList.length === len && relatedList.map((product, index) => (
-                <div key={index}>
-                  <ProductCard product={product} list={true} setCurrentProductId={setCurrentProductId} currentItem={currentItem} />
-                </div>
-              ))}
-            </CardContainer>
-          </ViewPort>
-        </div>
-        <BtnContainer>
-          {current === len - 4 || len - 4 < 0 ? null : <button name="next_btn" type="button" onClick={() => nextSlide()}>&#8680;</button>}
-        </BtnContainer>
-      </SlideDivOne>
-    </div>
+    <ListContainer>
+      <BtnContainerRelatedL>
+        {current === 0 ? null : <Button name="prev_btn" type="button" onClick={() => prevSilde()}>&#8249;</Button>}
+      </BtnContainerRelatedL>
+      <ViewPort className="view-port">
+        <CardContainer ref={cardContainer} className="card-container">
+          {relatedList.length === len && relatedList.map((product, index) => (
+            <div key={index}>
+              <ProductCard product={product} list={true} setCurrentProductId={setCurrentProductId} currentItem={currentItem} />
+            </div>
+          ))}
+        </CardContainer>
+      </ViewPort>
+      <BtnContainerRelatedR>
+        {current === len - 4 || len - 4 < 0 ? null : <Button name="next_btn" type="button" onClick={() => nextSlide()}>&#8250;</Button>}
+      </BtnContainerRelatedR>
+    </ListContainer>
   );
 };
 
