@@ -43,6 +43,7 @@ const StyledA = styled.a`
   padding-right: 8px;
   text-decoration: underline;
   font-size: smaller;
+  cursor: pointer;
   &:hover {
     color: #344B5B
   }
@@ -67,6 +68,11 @@ const Question = ({ question, onShowAnswerModal, onOpenAnswerModal, questionAnsw
   const { question_body, answers, question_id, question_helpfulness } = question;
   // const [isQuestionHelpful, setIsQuestionHelpful] = useState(question_helpfulness);
   const answerArray = Object.values(answers);
+
+  const sortedAnswerArray = answerArray.sort((a, b) => {
+    return (a.helpfulness < b.helpfulness) ? 1 : -1;
+  });
+
 
   // useEffect(() => {
   //   getQuestions(currentProductId);
@@ -94,8 +100,8 @@ const Question = ({ question, onShowAnswerModal, onOpenAnswerModal, questionAnsw
   };
 
   const newAnswerArray = [];
-  for (let i = 0; i < Math.min(questionAnswersShown, answerArray.length); i += 1) {
-    newAnswerArray.push(answerArray[i]);
+  for (let i = 0; i < Math.min(questionAnswersShown, sortedAnswerArray.length); i += 1) {
+    newAnswerArray.push(sortedAnswerArray[i]);
   }
 
   return (
@@ -103,7 +109,7 @@ const Question = ({ question, onShowAnswerModal, onOpenAnswerModal, questionAnsw
       <MainQA>
         <StyledSpanQ>Q: {question_body} </StyledSpanQ>
         <div>
-          {newAnswerArray.map((answer, index) => <Answer key={index} answer={answer} putAnswersHelpful={putAnswersHelpful} putAnswersReport={putAnswersReport} />)}
+          {newAnswerArray.map((answer) => <Answer key={answer.id} answer={answer} putAnswersHelpful={putAnswersHelpful} putAnswersReport={putAnswersReport} />)}
         </div>
       </MainQA>
       <RightColumn>

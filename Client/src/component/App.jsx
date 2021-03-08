@@ -14,13 +14,12 @@ const AppBackground = styled.div`
 
 const AppBody = styled.div`
   display: grid;
-  grid-template-rows: 32% 20% 29% 20%;
+  grid-template-rows: 31% 20% 29% 20%;
   grid-template-columns: auto;
   border: 10px solid #615e5e;
   background: rgba(203, 216, 225, 1);
   max-width: 70%;
   margin: auto;
-  align-items: center;
   padding: 10px;
   font-family: 'Shippori Mincho', serif;
   overFlow: auto;

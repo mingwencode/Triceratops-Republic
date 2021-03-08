@@ -77,7 +77,7 @@ app.put('/reviews/:review_id/report', (req, res) => {
 // QUESTIONS AND ANSWERS
 app.get('/qa/questions/:id', (req, res) => {
   const { id } = req.params;
-  axios.get(`${options.url}qa/questions/?product_id=${id}`, options)
+  axios.get(`${options.url}qa/questions/?product_id=${id}&count=100`, options)
     .then((datas) => res.send(datas.data))
     .catch((error) => console.log(error));
 });

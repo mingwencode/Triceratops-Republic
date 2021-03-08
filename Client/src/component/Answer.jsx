@@ -18,6 +18,7 @@ const StyledA = styled.a`
   padding-right: 8px;
   text-decoration: underline;
   font-size: smaller;
+  cursor: pointer;
   &:hover {
     color: #344B5B
   }
