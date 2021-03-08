@@ -12,9 +12,9 @@ import styled from 'styled-components';
 import Answer from './Answer';
 
 const StyledDiv = styled.div`
-  &:nth-child(odd){
-    background-color: #D8E2E9;
-  }
+&:nth-child(odd){
+  background-color: #D8E2E9;
+}
   display: grid;
   grid-template-columns: 60% 40%;
 `;
@@ -30,17 +30,20 @@ const RightColumn = styled.div`
 
 const StyledSpanQ = styled.span`
   font-family: 'Roboto', sans-serif;
-  font-weight: 600;
+  font-weight: 800;
   padding-right: 8px;
+  padding-left: 4px;
 `;
 const StyledSpan = styled(StyledSpanQ)`
   font-size: smaller;
+  font-weight: 400;
 `;
 
 const StyledA = styled.a`
   font-family: 'Roboto', sans-serif;
-  font-weight: 600;
+  font-weight: 400;
   padding-right: 8px;
+  padding-left: 4px;
   text-decoration: underline;
   font-size: smaller;
   cursor: pointer;
@@ -67,13 +70,12 @@ const Question = ({ question, onShowAnswerModal, onOpenAnswerModal, questionAnsw
   const [showAnswerModal, setShowAnswerModal] = useState(false);
   const { question_body, answers, question_id, question_helpfulness } = question;
   // const [isQuestionHelpful, setIsQuestionHelpful] = useState(question_helpfulness);
+
   const answerArray = Object.values(answers);
 
   const sortedAnswerArray = answerArray.sort((a, b) => {
     return (a.helpfulness < b.helpfulness) ? 1 : -1;
   });
-
-
   // useEffect(() => {
   //   getQuestions(currentProductId);
   // }, [currentProductId]);

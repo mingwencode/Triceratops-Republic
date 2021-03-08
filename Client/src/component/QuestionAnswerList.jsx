@@ -20,7 +20,7 @@ const QuestionAnswerList = ({ onShowAnswerModal, onOpenAnswerModal, questionAnsw
     const searchArray = [];
     for (let i = 0; i < sortedArray.length; i += 1) {
       if (sortedArray[i].question_body.includes(searchText)) {
-        searchArray.push(sortedArray);
+        searchArray.push(sortedArray[i]);
       }
     }
     for (let i = 0; i < Math.min(questionAnswersShown, searchArray.length); i += 1) {
@@ -31,6 +31,7 @@ const QuestionAnswerList = ({ onShowAnswerModal, onOpenAnswerModal, questionAnsw
       newQaArray.push(sortedArray[i]);
     }
   }
+
   return (
     <div style={questionStyles}>
       {newQaArray.map((question, index) => <Question question={question} key={question.question_id} onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} questionAnswersShown={questionAnswersShown} putQuestionHelpful={putQuestionHelpful} putQuestionReport={putQuestionReport} putAnswersHelpful={putAnswersHelpful} putAnswersReport={putAnswersReport} setQuestionID={setQuestionID} />)}
