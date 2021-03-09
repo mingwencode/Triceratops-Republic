@@ -5,17 +5,21 @@ const logo = '../images/logoFEC.png';
 
 const topBarStyle = {
   display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space around'
+  justifyContent: 'flex-start'
+}
+
+const search = {
+  display: 'flex',
+  justifyContent: 'flex-end',
 }
 
 const OverviewTopBar = () => (
-  <div style={topBarStyle}>
-    <div>
+  <div>
+    <div style={topBarStyle}>
       <img src={logo} alt="logo" height="50" width="50" />
       <h4>Triceratop Republic</h4>
     </div>
-    <div>
+    <div style={search}>
       <form>
         <input name="seachBar" className="search-bar" placeholder="Search" />
       </form>
