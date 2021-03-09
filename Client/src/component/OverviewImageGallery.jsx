@@ -5,13 +5,20 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useRef, useEffect } from 'react';
+import OverviewModal from './OverviewModal';
 import Thumbnails from './OverviewThumbnails';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const OverviewImageGallery = ({ images, currentImageIndex }) => {
+const modalButtonStyle = {
+  position: 'relative',
+  zIndex: 1
+};
+
+const OverviewImageGallery = ({ images, productStyles, currentImageIndex }) => {
   const [currentImage, setImage] = useState(0);
   const [mainImageIndex, setMainImageIndex] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
   const thumbContainer = React.useRef();
 
   const onThumbnailClick = (e, idx) => {
@@ -37,7 +44,7 @@ const OverviewImageGallery = ({ images, currentImageIndex }) => {
   };
 
   const handleMainNext = () => {
-    if (mainImageIndex < images.length - 1) {
+    if (mainImageIndex < productStyles.results.length - 1) {
       setMainImageIndex((prevImage) => prevImage + 1);
     }
   };
@@ -48,15 +55,21 @@ const OverviewImageGallery = ({ images, currentImageIndex }) => {
     }
   };
 
+
+
   return (
     <div>
       <button id="prev" type="button" onClick={handlePrevious}>Previous</button>
       <div className="view-port" style={styles.view_port}>
-        <div ref={thumbContainer} className="thumbnail-container" style={styles.thumbnail_container}>
-          {images.map((image, idx) => (
+        <div
+          ref={thumbContainer}
+          className="thumbnail-container"
+          style={styles.thumbnail_container}
+        >
+          {productStyles.results.map((image, idx) => (
             <div key={idx}>
               <Thumbnails
-                image={image}
+                image={image.photos[0].thumbnail_url}
                 onThumbnailClick={onThumbnailClick}
               />
             </div>
@@ -67,7 +80,15 @@ const OverviewImageGallery = ({ images, currentImageIndex }) => {
       <div>
         <button type="button" onClick={handleMainPrev}>{'<'}</button>
         <div>
-          <img className="main-image" src={images[mainImageIndex]} alt="main diplay" height="300" width="225" />
+          <div style={modalButtonStyle}>
+            <button onClick={() => setIsOpen(true)}>[ ]</button>
+            <OverviewModal
+              open={isOpen}
+              onClose={() => setIsOpen(false)}
+              productStyles={productStyles}
+            />
+          </div>
+          <img className="main-image" src={productStyles.results[mainImageIndex].photos[0].url} alt="main diplay" height="300" width="225" />
         </div>
         <button type="button" onClick={handleMainNext}>{'>'}</button>
       </div>
@@ -92,7 +113,6 @@ const styles = {
     width: 'fit-content'
   }
 };
-
 // OverviewImageGallery.propTypes = {
 //   images: PropTypes.array
 // };

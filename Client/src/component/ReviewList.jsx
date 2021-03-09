@@ -21,7 +21,7 @@ const MODAL_STYLES = {
   borderRadius: 10,
 };
 const MODALHEADER_STYLES = {
-  position: 'absoulte',
+  position: 'fixed',
   top: '14%',
   right: '70%',
   transform: 'translate(-50%, -50%)',
@@ -172,6 +172,7 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
   if (!reviewModalBoolean) {
     return (
       <div>
+        <br />
       <ListStyle>
         <RatingsAndReviewsHeaderStyle>
           <RatingsAndReviewsHeader

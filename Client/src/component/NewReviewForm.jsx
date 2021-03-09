@@ -85,60 +85,11 @@ width: 250px;
 box-sizing: border-box;
 `
 
-// const TxtCenter = styled.div`
-//   text-align: center;
-// `
-// const Hide = styled.input`
-//   display: none;
-// `
-
-// const Clear = styled.div`
-//   float: none;
-//   clear: both;
-// `
-
-// const Rating = styled.div`
-//   width: 90px;
-//   unicode-bidi: bidi-override;
-//   direction: rtl;
-//   text-align: center;
-//   position: relative;
-// `
-
-// .rating > label {
-//   float: right;
-//   display: inline;
-//   padding: 0;
-//   margin: 0;
-//   position: relative;
-//   width: 1.1em;
-//   cursor: pointer;
-//   color: #000;
-// }
-
-// .rating > label:hover,
-// .rating > label:hover ~ label,
-// .rating > input.radio-btn:checked ~ label {
-//   color: transparent;
-// }
-
-// .rating > label:hover:before,
-// .rating > label:hover ~ label:before,
-// .rating > input.radio-btn:checked ~ label:before,
-// .rating > input.radio-btn:checked ~ label:before {
-//   content: "\2605";
-//   position: absolute;
-//   left: 0;
-//   color: #FFD700;
-// }
-
-
-
 const TABLE = { border: '1px white' };
 const NewReviewForm = ({
   showNewReviewModal, currentProductId, setNewReviewModal, sampleCharacterObj, reviewMetaData, getReviews, currentItem
 }) => {
-  const [rating, setStarRating] = useState(5);
+  const [rating, setStarRating] = useState();
   const [recommend, setIsRecommended] = useState();
   const [summary, setChangeSummary] = useState('');
   const [body, setChangeReview] = useState('');
@@ -302,35 +253,27 @@ const NewReviewForm = ({
     setThumbnail(thumbnailArray);
   };
 
-  const starRatingTextOne = () => {
+  const starRatingText = () => {
     if (rating === 1) {
       return (
         <span>Poor</span>
       );
     }
-  };
-  const starRatingTextTwo = () => {
     if (rating === 2) {
       return (
         <span>Fair</span>
       );
     }
-  };
-  const starRatingTextThree = () => {
     if (rating === 3) {
       return (
         <span>Average</span>
       );
     }
-  };
-  const starRatingTextFour = () => {
     if (rating === 4) {
       return (
         <span>Good</span>
       );
     }
-  };
-  const starRatingTextFive = () => {
     if (rating === 5) {
       return (
         <span>Great</span>
@@ -362,66 +305,26 @@ const NewReviewForm = ({
             {' '}
             {currentItem.name}
           </h3>
+          <legend>Overall Rating*</legend>
           <div className="rating">
-            <legend>Overall Rating*</legend>
-   {/* <TxtCenter>
-    <form>
-        <Rating>
-            <Hide id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
-            <label for="star5">☆</label>
-            <inpHideut id="star4" name="star" type="radio" value="4" class="radio-btn hide" />
-            <label for="star4">☆</label>
-            <Hide id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
-            <label for="star3">☆</label>
-            <Hide id="star2" name="star" type="radio" value="2" class="radio-btn hide" />
-            <label for="star2">☆</label>
-            <Hide id="star1" name="star" type="radio" value="1" class="radio-btn hide" />
-            <label for="star1">☆</label>
-            <Clear></Clear>
-        </Rating>
-    </form>
-</TxtCenter> */}
-            <input
-              type="radio"
-              id="star5"
-              name="rating"
-              value="5"
-              required="required"
-              onClick={() => setStarRating(5)}
-            />
-            {starRatingTextFive()}
-            <input
-              type="radio"
-              id="star4"
-              name="rating"
-              value="4"
-              onClick={() => setStarRating(4)}
-            />
-            {starRatingTextFour()}
-            <input
-              type="radio"
-              id="star3"
-              name="rating"
-              value="3"
-              onClick={() => setStarRating(3)}
-            />
-            {starRatingTextThree()}
-            <input
-              type="radio"
-              id="star2"
-              name="rating"
-              value="2"
-              onClick={() => setStarRating(2)}
-            />
-            {starRatingTextTwo()}
-            <input
-              type="radio"
-              id="star1"
-              name="rating"
-              value="1"
-              onClick={() => setStarRating(1)}
-            />
-            {starRatingTextOne()}
+            <div className="txt-center">
+              <form>
+                <div className="rating">
+                  <input id="star5" name="star" type="radio" value="5" className="radio-btn hide" required="required" onClick={() => setStarRating(5)}/>
+                  <label htmlFor="star5">☆</label>
+                  <input id="star4" name="star" type="radio" value="4" className="radio-btn hide" onClick={() => setStarRating(4)}/>
+                  <label htmlFor="star4">☆</label>
+                  <input id="star3" name="star" type="radio" value="3" className="radio-btn hide" onClick={() => setStarRating(3)}/>
+                  <label htmlFor="star3">☆</label>
+                  <input id="star2" name="star" type="radio" value="2" className="radio-btn hide" onClick={() => setStarRating(2)}/>
+                  <label htmlFor="star2">☆</label>
+                  <input id="star1" name="star" type="radio" value="1" className="radio-btn hide" onClick={() => setStarRating(1)}/>
+                  <label htmlFor="star1">☆</label>
+                  <div className="clear" />
+                </div>
+              </form>
+              {starRatingText()}
+            </div>
           </div>
           <div>
             <legend>Do You Recommend?*</legend>
