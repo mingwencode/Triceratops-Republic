@@ -43,15 +43,16 @@ color: #344B5B;
 const SubmitFormStyle = styled.input`
 background-color: #344B5B;
 color: white;
-font-family: ‘Roboto’, sans-serif;
-padding: 10px;
-margin: 5px;
+font-family: 'Roboto', sans-serif;
+font-weight: 500;
+padding: 8px;
+margin: 3px;
 width: fit-content;
+height: 40px;
 border: none;
 outline: none;
-border-radius: 10px;
+border-radius: 8px;
 box-sizing: border-box;
-text-align: center;
 `
 const StyledPMessage = styled.p`
   color: red;
@@ -83,6 +84,19 @@ padding: 3px;
 margin: 5px;
 width: 250px;
 box-sizing: border-box;
+`
+const StyledSpanFont = styled.span`
+font-family: 'Roboto', sans-serif;
+`
+const StyledSpanLabel = styled.label`
+font-family: 'Roboto', sans-serif;
+`
+const Styledh3 = styled.h3`
+font-family: 'Shippori Mincho', serif;
+`
+const StyledLegend = styled.legend`
+font-family: 'Roboto', sans-serif;
+
 `
 
 const TABLE = { border: '1px white' };
@@ -133,10 +147,10 @@ const NewReviewForm = ({
             <tr key={index}>
               <td />
               <td>
-                <span
+                <StyledSpanFont
                 >
                   {key}
-                </span>
+                </StyledSpanFont>
               </td>
               <div style={{fontSize: 10}}>
               <td>
@@ -146,9 +160,9 @@ const NewReviewForm = ({
                   required="reduired"
                   onClick={() => setCharacteristicsState({ ...characisticsState, [characteristicKey]: 1 })}
                 />
-                <label>
+                <StyledSpanLabel>
                   {sampleCharacterObj[key][1]}
-                </label>
+                </StyledSpanLabel>
               </td>
               <td>
                 <input
@@ -156,9 +170,9 @@ const NewReviewForm = ({
                   name={key}
                   onClick={() => setCharacteristicsState({ ...characisticsState, [characteristicKey]: 2 })}
                 />
-                <label>
+                <StyledSpanLabel>
                   {sampleCharacterObj[key][2]}
-                </label>
+                </StyledSpanLabel>
               </td>
               <td>
                 <input
@@ -166,9 +180,9 @@ const NewReviewForm = ({
                   name={key}
                   onClick={() => setCharacteristicsState({ ...characisticsState, [characteristicKey]: 3 })}
                 />
-                <label>
+                <StyledSpanLabel>
                   {sampleCharacterObj[key][3]}
-                </label>
+                </StyledSpanLabel>
               </td>
               <td>
                 <input
@@ -176,9 +190,9 @@ const NewReviewForm = ({
                   name={key}
                   onClick={() => setCharacteristicsState({ ...characisticsState, [characteristicKey]: 4 })}
                 />
-                <label>
+                <StyledSpanLabel>
                   {sampleCharacterObj[key][4]}
-                </label>
+                </StyledSpanLabel>
               </td>
               <td>
                 <input
@@ -186,9 +200,9 @@ const NewReviewForm = ({
                   name={key}
                   onClick={() => setCharacteristicsState({...characisticsState, [characteristicKey]: 5 })}
                 />
-                <label>
+                <StyledSpanLabel>
                   {sampleCharacterObj[key][5]}
-                </label>
+                </StyledSpanLabel>
               </td>
               </div>
 
@@ -256,27 +270,27 @@ const NewReviewForm = ({
   const starRatingText = () => {
     if (rating === 1) {
       return (
-        <span>Poor</span>
+        <StyledSpanFont>Poor</StyledSpanFont>
       );
     }
     if (rating === 2) {
       return (
-        <span>Fair</span>
+        <StyledSpanFont>Fair</StyledSpanFont>
       );
     }
     if (rating === 3) {
       return (
-        <span>Average</span>
+        <StyledSpanFont>Average</StyledSpanFont>
       );
     }
     if (rating === 4) {
       return (
-        <span>Good</span>
+        <StyledSpanFont>Good</StyledSpanFont>
       );
     }
     if (rating === 5) {
       return (
-        <span>Great</span>
+        <StyledSpanFont>Great</StyledSpanFont>
       );
     }
   };
@@ -300,12 +314,12 @@ const NewReviewForm = ({
             &#8855;
           </ButtonFixed>
           <StyledH2> Write Your Review</StyledH2>
-          <h3>
+          <Styledh3>
             About the
             {' '}
             {currentItem.name}
-          </h3>
-          <legend>Overall Rating*</legend>
+          </Styledh3>
+          <StyledLegend>Overall Rating*</StyledLegend>
           <div className="rating">
             <div className="txt-center">
               <form>
@@ -327,7 +341,7 @@ const NewReviewForm = ({
             </div>
           </div>
           <div>
-            <legend>Do You Recommend?*</legend>
+            <StyledLegend>Do You Recommend?*</StyledLegend>
             <input
               type="radio"
               id="yes"
@@ -335,12 +349,12 @@ const NewReviewForm = ({
               value="yes"
               onChange={() => setIsRecommended(true)}
             />
-            <label
+            <StyledSpanLabel
               htmlFor="yes"
               title="Recommended"
             >
               Yes
-            </label>
+            </StyledSpanLabel>
             <input
               type="radio"
               id="no"
@@ -349,15 +363,15 @@ const NewReviewForm = ({
               onChange={() => setIsRecommended(false)}
               required="required"
             />
-            <label
+            <StyledSpanLabel
               htmlFor="no"
               title="notRecommended"
             >
               No
-            </label>
+            </StyledSpanLabel>
           </div>
           <div>
-            <label id="charTitle">Characteristics*</label>
+            <StyledSpanLabel id="charTitle">Characteristics*</StyledSpanLabel>
             <table id="characteristics" style={TABLE}>
               <tbody style={TABLE}>
                 <tr style={TABLE}>
@@ -368,12 +382,12 @@ const NewReviewForm = ({
             </table>
           </div>
           <div>
-            <label
+            <StyledSpanLabel
               htmlFor="Summary"
               title="ReviewSummary"
             >
               Review Summary
-            </label>
+            </StyledSpanLabel>
             <br />
             <SyledTextarea
               placeholder="Example: Best Purchase ever"
@@ -383,12 +397,12 @@ const NewReviewForm = ({
             />
           </div>
           <div>
-            <label
+            <StyledSpanLabel
               htmlFor="Review"
               title="ReviewBody"
             >
               Review Body*
-            </label>
+            </StyledSpanLabel>
             <br />
             <SyledTextarea
               placeholder="Why did you like the product or not?"
@@ -408,12 +422,12 @@ const NewReviewForm = ({
             {thumbnail.map((image, index) => <img src={image} key={index} alt="uploaded by user" height="50" width="50" />)}
           </div>
           <div>
-            <label
+            <StyledSpanLabel
               htmlFor="nickname"
               title="nickname"
             >
               What Is Your Nickname?*
-            </label>
+            </StyledSpanLabel>
             <Input
               type="textbox"
               placeholder="Example: jackson11!"
@@ -429,14 +443,14 @@ const NewReviewForm = ({
             </StyledPMessage>
           </div>
           <div>
-            <label
+            <StyledSpanLabel
               htmlFor="email"
               title="email"
               required="required"
               maxLength="60"
             >
               Email*
-            </label>
+            </StyledSpanLabel>
             <Input
               type="email"
               placeholder="Example: jackson11@email.com"

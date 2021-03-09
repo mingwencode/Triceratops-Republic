@@ -10,7 +10,7 @@ import RatingsAndReviewsBreakDown from './RatingsAndReviewsBreakDown';
 
 const RatingsStyle = styled.div`
   display: grid;
-  grid-template-columns: 18% 7% 68% 7%;
+  grid-template-columns: 24% 3% 68% 5%;
   padding: 5px;
   margin: 0;
 `;
@@ -33,12 +33,14 @@ const Button = styled.button`
 background-color: #344B5B;
 color: white;
 font-family: 'Roboto', sans-serif;
-padding: 10px;
-margin: 5px;
+font-weight: 500;
+padding: 8px;
+margin: 3px;
 width: fit-content;
+height: 40px;
 border: none;
 outline: none;
-border-radius: 10px;
+border-radius: 8px;
 box-sizing: border-box;
  `;
 
