@@ -31,8 +31,8 @@ const OverviewAddToBag = ({ productStyles, styleResultsIndex }) => {
       }
     };
 
-    let count = 0;
     const qtyArray = [];
+
     const handleSizeChange = (e) => {
       e.preventDefault();
       for (let i = 0; i < skusArray.length; i++) {
@@ -88,7 +88,7 @@ const OverviewAddToBag = ({ productStyles, styleResultsIndex }) => {
       <div>
         <form>
           <select name="sizes" onChange={handleSizeChange}>
-            <option value="" disabled selected hidden>Select Size</option>
+            <option disabled selected hidden>Select Size</option>
             {sizes()}
           </select>
           <select name="quantity" onChange={handleQtyChange}>
