@@ -32,7 +32,7 @@ const StyledSpanQ = styled.span`
   font-family: 'Roboto', sans-serif;
   font-weight: 800;
   padding-right: 8px;
-  padding-left: 10px;
+  padding-left: 30px;
   padding-top: 5px;
 `;
 const StyledSpan = styled(StyledSpanQ)`
@@ -50,7 +50,7 @@ const StyledA = styled.a`
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   padding-right: 8px;
-  padding-left: 10px;
+  padding-left: 30px;
   text-decoration: underline;
   font-size: smaller;
   cursor: pointer;

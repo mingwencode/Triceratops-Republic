@@ -23,7 +23,10 @@ const Input = styled.input`
 
 const SearchInput = styled(Input)`
   width: 500px;
-  padding: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 30px;
 `;
 
 const SearchDiv = styled.div`
@@ -34,7 +37,7 @@ const SearchDiv = styled.div`
 const StyledH2 = styled.h3`
   font-family: 'Shippori Mincho', serif;
   font-weight: 800;
-  padding-left: 10px;
+  padding-left: 15px;
   color: #344B5B;
 `;
 
