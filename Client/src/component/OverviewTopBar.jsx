@@ -10,6 +10,7 @@ const TB = styled.span`
 
 const Logo = styled.span`
   justify-content: flex-start;
+  position: 'fixed';
 `;
 
 const Title = styled.span`

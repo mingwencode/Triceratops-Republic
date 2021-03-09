@@ -3,12 +3,13 @@ import React, { useState, useEffect } from 'react';
 
 const modalStyles = {
   position: 'fixed',
-  width: '90%',
+  borderRadius: '10px',
+  width: 'fit-content',
   minHeight: '800px',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  backgroundColor: '#FFF',
+  backgroundColor: '#9fafb6',
   padding: '50px',
   zIndex: 1000
 };
