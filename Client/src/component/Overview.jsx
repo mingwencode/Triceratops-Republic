@@ -10,7 +10,7 @@ import OverviewDescription from './OverviewDescription';
 
 let OvBody = styled.div`
     display: grid;
-    grid-template-columns: 67% 33%;
+    grid-template-columns: 55% 45%;
     grid-template-rows: 34% 33% 33%;
     max-width: 100%;
     margin: auto;
@@ -55,7 +55,7 @@ const Overview = ({ currentItem, productStyles, currentProductId }) => {
     setStyleResultsIndex(idx);
   };
 
-  if (currentItem) {
+  if (productStyles) {
     return (
       <div>
         <Tb>

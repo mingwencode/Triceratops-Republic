@@ -31,8 +31,8 @@ const OverviewAddToBag = ({ productStyles, styleResultsIndex }) => {
       }
     };
 
-    let count = 0;
     const qtyArray = [];
+
     const handleSizeChange = (e) => {
       e.preventDefault();
       for (let i = 0; i < skusArray.length; i++) {
