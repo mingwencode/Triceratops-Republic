@@ -10,20 +10,20 @@ import Thumbnails from './OverviewThumbnails';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const modalButtonStyle = {
-  position: 'relative',
-  zIndex: 1
-};
+// const modalButtonStyle = {
+//   position: 'relative',
+//   zIndex: 1
+// };
 
-const OverviewImageGallery = ({ images, productStyles, currentImageIndex }) => {
+const OverviewImageGallery = ({ productStyles, currentImageIndex }) => {
   const [currentImage, setImage] = useState(0);
   const [mainImageIndex, setMainImageIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const thumbContainer = React.useRef();
 
-  const onThumbnailClick = (e, idx) => {
-    e.preventDefault();
+  const onThumbnailClick = (idx) => {
     setImage(idx);
+    setMainImageIndex(idx);
   };
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const OverviewImageGallery = ({ images, productStyles, currentImageIndex }) => {
 
   return (
     <div>
-      <button id="prev" type="button" onClick={handlePrevious}>Previous</button>
+      {currentImage === 0 ? null : <button id="prev" type="button" onClick={handlePrevious}>Previous</button>}
       <div className="view-port" style={styles.view_port}>
         <div
           ref={thumbContainer}
@@ -69,28 +69,29 @@ const OverviewImageGallery = ({ images, productStyles, currentImageIndex }) => {
           {productStyles.results.map((image, idx) => (
             <div key={idx}>
               <Thumbnails
-                image={image.photos[0].thumbnail_url}
+                idx={idx}
+                image={image.photos[0].url}
                 onThumbnailClick={onThumbnailClick}
               />
             </div>
           ))}
         </div>
       </div>
-      <button id="next" type="button" onClick={handleNext}>Next</button>
+      {currentImage === productStyles.results.length - 1 ? null : <button id="next" type="button" onClick={handleNext}>Next</button>}
       <div>
-        <button type="button" onClick={handleMainPrev}>{'<'}</button>
+        {mainImageIndex === 0 ? null : <button type="button" onClick={handleMainPrev}>{'<'}</button>}
         <div>
-          <div style={modalButtonStyle}>
+          <div>
             <button onClick={() => setIsOpen(true)}>[ ]</button>
             <OverviewModal
               open={isOpen}
               onClose={() => setIsOpen(false)}
               productStyles={productStyles}
-            />
+            >Fancy</OverviewModal>
           </div>
-          <img className="main-image" src={productStyles.results[mainImageIndex].photos[0].url} alt="main diplay" height="300" width="225" />
+          <img className="main-image" src={productStyles.results[mainImageIndex].photos[0].url} alt="main diplay" height="500" />
         </div>
-        <button type="button" onClick={handleMainNext}>{'>'}</button>
+        {mainImageIndex === productStyles.results.length - 1 ? null : <button type="button" onClick={handleMainNext}>{'>'}</button>}
       </div>
     </div>
   );

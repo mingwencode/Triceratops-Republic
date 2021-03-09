@@ -1,10 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
-import OverviewModalCard from './OverviewModalCard';
+/* eslint-disable react/prop-types */
+import React, { useState, useEffect } from 'react';
 
 const modalStyles = {
   position: 'fixed',
   width: '90%',
-  height: '800px',
+  minHeight: '800px',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
@@ -23,37 +23,14 @@ const overlayStyle = {
   zIndex: 1000
 };
 
-const styles = {
-  view_port: {
-    position: 'relative',
-    top: '80%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '50px',
-    height: '50px',
-    backgroundColor: 'red',
-    zIndex: 1000,
-    overflow: 'hidden'
-  },
-  modal_image_container: {
-    display: 'flex',
-    flexDirection: 'row',
-    width: 'fit-content'
-  }
-};
 
+// const background = productStyles.results[modalImageIndex].photos[0].url;
 const OverviewModal = ({ open, onClose, productStyles }) => {
   const [modalImageIndex, setModalImageIndex] = useState(0);
-  const modalImageContainer = React.useRef();
   if (!open) return null;
 
-  // useEffect(() => {
-  //   modalImageContainer.current.style.transitionDuration = '0.5s';
-  //   modalImageContainer.current.style.transform = `translate(-${70 * modalImageIndex}px)`;
-  // }, [modalImageIndex]);
-
   const handleNext = () => {
-    if (modalImageIndex < modalImageContainer.current.children.length - 1) {
+    if (modalImageIndex < productStyles.results.length - 1) {
       setModalImageIndex(((prevImage) => prevImage + 1));
     }
   };
@@ -68,24 +45,16 @@ const OverviewModal = ({ open, onClose, productStyles }) => {
     <>
       <div style={overlayStyle} />
       <div style={modalStyles}>
-        <button onClick={onClose}>X</button>
-      </div>
-      <div>
-        <button className="modalPrevBtn" onClick={handlePrevious}>Prev</button>
         <div>
-          <div className="view-port" style={styles.view_port}>
-            <div ref={modalImageContainer} className="modal_image_container" style={styles.modal_image_container}>
-              {productStyles.results.map((image, idx) => {
-                <div>
-                  <OverviewModalCard
-                    image={image.photos[0].url}
-                  />
-                </div>
-              })}
-            </div>
-          </div>
+          <button onClick={onClose}>X</button>
         </div>
-        <button className="modalNextBtn"onClick={handleNext}>Next</button>
+        <div>
+          <button className="modalPrevBtn" onClick={handlePrevious}>Prev</button>
+        </div>
+        <div>
+          <img src={productStyles.results[modalImageIndex].photos[0].url} alt="" height="900" />
+        </div>
+        <button className="modalNextBtn" onClick={handleNext}>Next</button>
       </div>
     </>
   );
