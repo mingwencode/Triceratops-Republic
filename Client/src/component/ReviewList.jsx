@@ -111,10 +111,10 @@ box-sizing: border-box;
 
 `;
 
-const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect, setDropDownSelect, currentItem, showNewMReviewModal, setNewReviewModal, sampleCharacterObj, reviewMetaData }) => {
+const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect, setDropDownSelect, currentItem, showNewMReviewModal, setNewReviewModal, moreReviewsBoolean, setMoreReview }) => {
   const [reviewCount, setReviewCount] = useState(2);
   const [reviewModalBoolean, setReviewModalBoolean] = useState(false);
-  const [moreReviewsBoolean, setMoreReview] = useState(true);
+
 
   const reviews = reviewArray.results;
   useEffect(() => {

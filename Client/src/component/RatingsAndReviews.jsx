@@ -44,7 +44,7 @@ border-radius: 8px;
 box-sizing: border-box;
  `;
 
-const RatingsAndReviews = ({ currentProductId, currentItem, mockReviews, mockReviewMetadata }) => {
+const RatingsAndReviews = ({ currentProductId, currentItem, mockReviews, mockReviewMetadata, moreReviewsBoolean, setMoreReview  }) => {
   const [reviewArray, setProductReviewArray] = useState();
   const [showNewMReviewModal, setNewReviewModal] = useState(false);
   const [dropDownselect, setDropDownSelect] = useState('newest');
@@ -153,6 +153,7 @@ const RatingsAndReviews = ({ currentProductId, currentItem, mockReviews, mockRev
             setNewReviewModal={setNewReviewModal}
             reviewMetaData={reviewMetaData}
             currentItem={currentItem}
+            moreReviewsBoolean={moreReviewsBoolean} setMoreReview={setMoreReview}
           />
         </ReviewListStyle>
         <div>
