@@ -104,6 +104,12 @@ box-sizing: border-box;
   background-color: #D8E2E9;
 }
  `
+ const StyledH2 = styled.h2`
+  background: rgba(203, 216, 225, 1);
+  border-radius: 8px;
+  box-sizing: border-box;
+
+`;
 
 const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect, setDropDownSelect, currentItem, showNewMReviewModal, setNewReviewModal, sampleCharacterObj, reviewMetaData }) => {
   const [reviewCount, setReviewCount] = useState(2);
