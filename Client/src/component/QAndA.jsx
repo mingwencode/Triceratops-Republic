@@ -7,7 +7,7 @@
 /* eslint-disable consistent-return */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import AddNewQuestion from './AddNewQuestion';
 import QuestionAnswerList from './QuestionAnswerList';
 import QAModal from './QAModal';
@@ -31,10 +31,11 @@ const SearchDiv = styled.div`
   padding: 5px;
 `;
 
-const StyledH2 = styled.h2`
+const StyledH2 = styled.h3`
   font-family: 'Shippori Mincho', serif;
   font-weight: 800;
-  color: #012626;
+  padding-left: 10px;
+  color: #344B5B;
 `;
 
 const StyledP = styled.p`
@@ -66,7 +67,7 @@ const StyledButton = styled.button`
   background-color: #344B5B;
   color: white;
   font-family: 'Roboto', sans-serif;
-  font-size: smallest;
+  font-weight: 600;
   padding: 8px;
   margin: 3px;
   width: fit-content;
@@ -354,7 +355,7 @@ const QAndA = ({ currentProductId }) => {
   if (productQuestions) {
     return (
       <div>
-        <StyledH2>Questions and Answers</StyledH2>
+        <StyledH2>QUESTION AND ANSWERS</StyledH2>
         <SearchDiv>
           <SearchInput value={searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." /> 
           <i class="fas fa-search" />

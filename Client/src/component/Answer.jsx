@@ -12,9 +12,14 @@ const StyledSpan = styled.span`
   font-size: smaller;
 `;
 
+const StyledSpanBy = styled(StyledSpan)`
+  padding-left: 15px;
+`;
+
 const StyledA = styled.a`
   font-family: 'Roboto', sans-serif;
   font-weight: 600;
+  padding-left: 10px;
   padding-right: 8px;
   text-decoration: underline;
   font-size: smaller;
@@ -26,7 +31,12 @@ const StyledA = styled.a`
 
 const StyledP = styled.p`
   font-family: 'Roboto', sans-serif;
+  padding-left: 10px;
   font-weight: 600;
+`;
+
+const StyledImg = styled.img`
+  padding: 5px;
 `;
 
 const Answer = ({ answer, putAnswersHelpful, putAnswersReport }) => {
@@ -53,7 +63,7 @@ const Answer = ({ answer, putAnswersHelpful, putAnswersReport }) => {
   const renderPhotos = () => {
     if (photos.length !== 0) {
       return (
-        <p>{photos.map((photo, index) => <img src={photo} key={index} alt="answer posted" height="50" width="50" />)}</p>
+        <p>{photos.map((photo, index) => <StyledImg src={photo} key={index} alt="answer posted" height="50" width="50" />)}</p>
       )
     }
   }
@@ -64,12 +74,12 @@ const Answer = ({ answer, putAnswersHelpful, putAnswersReport }) => {
         {body}
       </StyledP>
       {renderPhotos()}
-      <StyledSpan>
+      <StyledSpanBy>
         by
         {' '}
         {answerer_name}
         ,
-      </StyledSpan>
+      </StyledSpanBy>
       <StyledSpan>
         {getProperDate(date)}
       </StyledSpan>
