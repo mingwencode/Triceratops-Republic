@@ -8,16 +8,17 @@ const Container = styled.div`
   display: grid;
   grid-template-rows: 40px 1fr 40px 1fr;
   margin: 0;
-  background :yellow;
+  background: rgba(203, 216, 225, 1);
+  padding: 30px;
 `;
+//background :yellow;
 //background: yellow;
 const ProductListTitle = styled.div`
   grid-row: 1 / 2;
-  font-size: 1.2em;
+  font-size: 1.17em;
   font-weight: 800;
   justify-items: left;
   color: #344B5B;
-  border: 1px solid #dddddd;
 `;
 
 const ProductsListDiv = styled.div`

@@ -9,19 +9,19 @@ const ListContainer = styled.div`
 `;
 
 const ViewPortContainer = styled.div`
-  margin: 0 auto;
+  margin-right: 91px;
   position: relative;
   grid-column : 3 / 4;
   justify-self: right;
-  margin-left: 40px;
 `;
 
 const OutfitViewPort = styled.div`
   width: 660px;
   height: 280px;
   overflow: hidden;
-  background: red;
+
 `;
+//background: red;
 
 const CardContainer = styled.div`
   display: flex;
@@ -55,6 +55,42 @@ const Button = styled.button`
   &:active{
     font-size: 2em;
   }
+`;
+
+const AddButtonContainer = styled.div`
+  width: 180px;
+  height: 250px;
+  background: white;
+  font-size: 0.8em;
+  opacity: 0.6;
+  color: white;
+  margin-top: 5px;
+  margin-left: 115px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  &:hover{
+    box-shadow: 0 8px 13px 0 rgba(0,0,0,0.2);
+    transform: scale(1.05, 1.05);
+  }
+  &:active{
+    transform: scale(1, 1);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+`
+const ButtonWrap = styled.div`
+  width: 180px;
+  height: 250px;
+  display: inline-block;
+  position: relative;
+`;
+
+
+const AddButton = styled.a`
+  position: absolute;
+  opacity: 0.5;
+  font-size: 4em;
+  bottom: 1.95em;
+  left: 1.25em;
+  color: #344B5B;
+  cursor: default;
 `;
 
 
@@ -101,8 +137,11 @@ const YourOutfitList = ({currentItem}) => {
       <BtnContainerOutfitL>
         {current === 0 ? null : <Button name="prev_btn" type="button" onClick={() => prevSilde()}>&#8249;</Button>}
       </BtnContainerOutfitL>
-      <button name="add_btn" type="button" onClick={() => addOutFit(currentItem)}>Add</button>
-
+      <AddButtonContainer>
+        <ButtonWrap name="add_btn" type="button" onClick={() => addOutFit(currentItem)}>
+          <AddButton>&#10133;</AddButton>
+        </ButtonWrap>
+      </AddButtonContainer>
       <ViewPortContainer>
         <OutfitViewPort className="view-port">
           <CardContainer ref={cardContainer} className="card-container">
