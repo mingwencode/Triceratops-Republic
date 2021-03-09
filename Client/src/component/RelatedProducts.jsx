@@ -8,7 +8,8 @@ const Container = styled.div`
   display: grid;
   grid-template-rows: 40px 1fr 40px 1fr;
   margin: 0;
-
+  background: rgba(203, 216, 225, 1);
+  padding: 30px;
 `;
 //background :yellow;
 //background: yellow;
@@ -18,7 +19,6 @@ const ProductListTitle = styled.div`
   font-weight: 800;
   justify-items: left;
   color: #344B5B;
-  border: 1px solid #dddddd;
 `;
 
 const ProductsListDiv = styled.div`

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import CompareModal from './CompareModal';
 import ShadedStarRating from './ShadedStarRating';
 
+
 const SlideImg = styled.img`
   width: 180px;
   height: 165px;
@@ -11,8 +12,8 @@ const SlideImg = styled.img`
   outline-offset: -1px;
   background: white;
   padding: 5px;
+  object-fit: cover;
 `;
- // outline: 1px solid black;
 
 const Card = styled.div`
   width: 180px;

@@ -9,15 +9,28 @@ import NewReviewForm from './NewReviewForm';
 import RatingsAndReviewsHeader from './RatingsAndReviewsHeader';
 
 const MODAL_STYLES = {
+  padding: '75px',
   position: 'fixed',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   backgroundColor: '#FFF',
-  padding: '50px',
+  zIndex: 1000,
+  maxHeight: 'calc(100vh - 350px)',
+  overflowY: 'auto',
+  borderRadius: 10,
+};
+const MODALHEADER_STYLES = {
+  position: 'fixed',
+  top: '14%',
+  right: '70%',
+  transform: 'translate(-50%, -50%)',
+  backgroundColor: 'transparent',
+  padding: '5px',
   zIndex: 1000,
   maxHeight: 'calc(100vh - 450px)',
-  overflowY: 'auto',
+  display: 'grid',
+  gridTemplateColumns: '10% 70% 20%',
 };
 const OVERLAY_STYLES = {
   position: 'fixed',
@@ -26,12 +39,10 @@ const OVERLAY_STYLES = {
   right: 0,
   bottom: 0,
   backgroundColor: 'rgba(0, 0, 0, .7)',
-  zIndex: 1000,
 };
 
+
 const Button = styled.button`
-display: flex;
-justify-content: left;
 background-color: #344B5B;
 color: white;
 font-family: 'Shippori Mincho', serif;
@@ -44,17 +55,37 @@ border-radius: 10px;
 box-sizing: border-box;
  `;
 
- const ListStyle = styled.div`
- margin: auto;
+ const ModalButton = styled.button`
+ border: none;
+ background: none;
+ font-size: 1.5em;
+ color: #344B5B;
+ &:focus{
+   outline: none;
+ }
+ &:hover{
+   color: #A4BBCB;
+   transform: scale(1.5, 1.5);
+ }
+ `;
 
+ const ListStyle = styled.div`
+  maxHeight: 'calc(100vh - 450px)',
+  overflowY: 'auto',
  `;
  const RatingsAndReviewsHeaderStyle = styled.div`
- display: flex;
- justify-content: flex-start;
+   display: flex,
+   justify-content: center,
  `;
  const MoreReviewsStyle = styled.div`
  display: flex;
  justify-content: center;
+ `;
+
+ const ReviewTileStyle = styled.div`
+ &:nth-child(odd){
+  background-color: #D8E2E9;
+}
  `
 
 const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect, setDropDownSelect }) => {
@@ -87,7 +118,7 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
     return reviews.slice(0, reviewCount).map((review, index) => {
 
       return (
-        <div>
+        <ReviewTileStyle>
           <ReviewTile
             key={index}
             putReviewHelpful={putReviewHelpful}
@@ -99,14 +130,14 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
 
           />
           <hr />
-        </div>
+        </ReviewTileStyle>
       );
 
     });
   };
 
   const openModal = () => {
-    if (reviewCount >= 5) setReviewModalBoolean(true);
+    if (reviewCount >= 3) setReviewModalBoolean(true);
   };
 
   const moreReviews = () => {
@@ -134,11 +165,11 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
           />
         </RatingsAndReviewsHeaderStyle>
 
-        <ul>
+        <div>
           {intitialReviewRender()}
-        </ul>
+        </div>
         <MoreReviewsStyle>
-        {moreReviews()}
+          {moreReviews()}
         </MoreReviewsStyle>
         {openModal()}
       </ListStyle>
@@ -150,28 +181,23 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
       <>
 
         <div style={OVERLAY_STYLES} />
-
         <div style={MODAL_STYLES}>
-          <Button
-            type="button"
-            onClick={() => {
-              setReviewModalBoolean(!reviewModalBoolean);
-              setReviewCount(2);
-            }}
-          >
-            Close
-          </Button>
-          <RatingsAndReviewsHeaderStyle>
-            <RatingsAndReviewsHeader
-              reviewArray={reviewArray}
-              setDropDownSelect={setDropDownSelect}
-            />
-          </RatingsAndReviewsHeaderStyle>
 
-          <ul>
+          <div>
             {intitialReviewRender()}
-          </ul>
+          </div>
           {moreReviews()}
+        </div>
+        <div style={MODALHEADER_STYLES}>
+            <ModalButton
+              type="button"
+              onClick={() => {
+                setReviewModalBoolean(!reviewModalBoolean);
+                setReviewCount(2);
+              }}
+              >
+              &#8855;
+            </ModalButton>
         </div>
       </>
     );

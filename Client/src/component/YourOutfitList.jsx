@@ -58,6 +58,47 @@ const Button = styled.button`
   }
 `;
 
+const AddButtonContainer = styled.div`
+  width: 180px;
+  height: 250px;
+  background: white;
+  font-size: 0.8em;
+  opacity: 0.6;
+  color: white;
+  margin: 0 20px 0 20px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  &:hover{
+    box-shadow: 0 8px 13px 0 rgba(0,0,0,0.2);
+    transform: scale(1.05, 1.05);
+  }
+  &:active{
+    transform: scale(1, 1);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+`
+const ButtonWrap = styled.div`
+  width: 180px;
+  height: 250px;
+  display: inline-block;
+  position: relative;
+`;
+
+
+const AddButton = styled.a`
+  position: absolute;
+  opacity: 0.5;
+  font-size: 4em;
+  bottom: 1.95em;
+  left: 1.25em;
+  color: #344B5B;
+  cursor: pointer;
+  &:hover{
+    opacity: 0.2;
+  }
+  &:active{
+    opacity: 1;
+  }
+`;
+
 
 const YourOutfitList = ({currentItem}) => {
   const [current, setCurrent] = useState(0);
@@ -102,8 +143,11 @@ const YourOutfitList = ({currentItem}) => {
       <BtnContainerOutfitL>
         {current === 0 ? null : <Button name="prev_btn" type="button" onClick={() => prevSilde()}>&#8249;</Button>}
       </BtnContainerOutfitL>
-      <button name="add_btn" type="button" onClick={() => addOutFit(currentItem)}>Add</button>
-
+      <AddButtonContainer>
+        <ButtonWrap name="add_btn" type="button" onClick={() => addOutFit(currentItem)}>
+          <AddButton>&#10133;</AddButton>
+        </ButtonWrap>
+      </AddButtonContainer>
       <ViewPortContainer>
         <OutfitViewPort className="view-port">
           <CardContainer ref={cardContainer} className="card-container">

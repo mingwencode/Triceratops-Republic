@@ -16,7 +16,7 @@ const AppBody = styled.div`
   display: grid;
   grid-template-rows: 31% 22% 27% 20%;
   grid-template-columns: auto;
-  border: 10px solid #615e5e;
+  box-shadow: 10px 50px 100px 0 rgba(0,0,0,0.1);
   background: rgba(203, 216, 225, 1);
   max-width: 1250px;
   margin: auto;

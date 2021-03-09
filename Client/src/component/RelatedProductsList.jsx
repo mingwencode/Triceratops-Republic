@@ -6,14 +6,19 @@ import ProductCard from './ProductCard';
 const ListContainer = styled.div`
   display: grid;
   grid-template-columns: 60px 1fr 60px;
+
 `;
 
 const ViewPort = styled.div`
+  padding-top: 10px;
   margin: 0 auto;
   width: 880px;
   height: 280px;
   overflow: hidden;
+
 `;
+
+//transform: scale(1.2, 1.2);
 //background: red;
 
 const CardContainer = styled.div`

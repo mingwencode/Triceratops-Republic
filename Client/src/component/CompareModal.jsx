@@ -55,7 +55,7 @@ const TableCol1 = styled.td`
   text-align: center;
   width: 50em;
   font-family: 'Roboto', sans-serif;
-  background-color: #DCD6D0;
+  background-color: #E5E0DC;
   padding: 10px;
 `;
 
@@ -142,7 +142,6 @@ const CompareModal = ({ isOpenModal, onDismiss, children, currentItem, compare }
       </div>
     </>,
     document.getElementById('portal'),
-
   );
 };
 
