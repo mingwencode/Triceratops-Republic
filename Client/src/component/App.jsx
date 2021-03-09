@@ -48,7 +48,6 @@ const App = () => {
   const [productStyles, setProductStyles] = useState();
   const [currentItem, setCurrentItem] = useState({});
 
-
   // RELATED PRODUCTS
   const getRelatedProductIds = (id) => {
     axios.get(`/products/${id}/related`)
@@ -111,7 +110,7 @@ const App = () => {
             <Overview
               currentItem={currentItem}
               productStyles={productStyles}
-              />
+            />
           </OverviewStyle>
           <RelatedProductsStyle>
             <RelatedProducts setCurrentProductId={setCurrentProductId} relatedProductIds={relatedProductIds} currentItem={currentItem} />

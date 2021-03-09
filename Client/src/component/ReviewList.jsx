@@ -21,7 +21,7 @@ const MODAL_STYLES = {
   borderRadius: 10,
 };
 const MODALHEADER_STYLES = {
-  position: 'fixed',
+  position: 'absoulte',
   top: '14%',
   right: '70%',
   transform: 'translate(-50%, -50%)',
@@ -41,6 +41,20 @@ const OVERLAY_STYLES = {
   backgroundColor: 'rgba(0, 0, 0, .7)',
 };
 
+const ButtonNewReview = styled.button`
+background-color: #344B5B;
+color: white;
+font-family: 'Roboto', sans-serif;
+padding: 10px;
+margin: 5px;
+width: fit-content;
+border: none;
+outline: none;
+border-radius: 10px;
+box-sizing: border-box;
+
+
+`;
 
 const Button = styled.button`
 background-color: #344B5B;
@@ -88,7 +102,7 @@ box-sizing: border-box;
 }
  `
 
-const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect, setDropDownSelect }) => {
+const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect, setDropDownSelect, currentItem, showNewMReviewModal, setNewReviewModal, sampleCharacterObj, reviewMetaData }) => {
   const [reviewCount, setReviewCount] = useState(2);
   const [reviewModalBoolean, setReviewModalBoolean] = useState(false);
   const [moreReviewsBoolean, setMoreReview] = useState(true);
@@ -157,6 +171,7 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
 
   if (!reviewModalBoolean) {
     return (
+      <div>
       <ListStyle>
         <RatingsAndReviewsHeaderStyle>
           <RatingsAndReviewsHeader
@@ -170,9 +185,16 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
         </div>
         <MoreReviewsStyle>
           {moreReviews()}
+        <ButtonNewReview
+          type="button"
+          onClick={() => { setNewReviewModal(!showNewMReviewModal); }}
+        >
+          New Review
+        </ButtonNewReview>
         </MoreReviewsStyle>
         {openModal()}
       </ListStyle>
+      </div>
     );
   }
 

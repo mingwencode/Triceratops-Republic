@@ -105,7 +105,7 @@ const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharact
 
 
   const CHAR_RATING = {
-    background: 'lightgrey',
+    background: '#59585D',
     height: '7px',
     width: '300px',
     position: 'relative',

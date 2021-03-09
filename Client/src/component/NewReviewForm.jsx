@@ -85,6 +85,55 @@ width: 250px;
 box-sizing: border-box;
 `
 
+// const TxtCenter = styled.div`
+//   text-align: center;
+// `
+// const Hide = styled.input`
+//   display: none;
+// `
+
+// const Clear = styled.div`
+//   float: none;
+//   clear: both;
+// `
+
+// const Rating = styled.div`
+//   width: 90px;
+//   unicode-bidi: bidi-override;
+//   direction: rtl;
+//   text-align: center;
+//   position: relative;
+// `
+
+// .rating > label {
+//   float: right;
+//   display: inline;
+//   padding: 0;
+//   margin: 0;
+//   position: relative;
+//   width: 1.1em;
+//   cursor: pointer;
+//   color: #000;
+// }
+
+// .rating > label:hover,
+// .rating > label:hover ~ label,
+// .rating > input.radio-btn:checked ~ label {
+//   color: transparent;
+// }
+
+// .rating > label:hover:before,
+// .rating > label:hover ~ label:before,
+// .rating > input.radio-btn:checked ~ label:before,
+// .rating > input.radio-btn:checked ~ label:before {
+//   content: "\2605";
+//   position: absolute;
+//   left: 0;
+//   color: #FFD700;
+// }
+
+
+
 const TABLE = { border: '1px white' };
 const NewReviewForm = ({
   showNewReviewModal, currentProductId, setNewReviewModal, sampleCharacterObj, reviewMetaData, getReviews, currentItem
@@ -208,7 +257,7 @@ const NewReviewForm = ({
     setThumbnail([]);
     setNickname();
     setEmail();
-    setCharacteristicsState();
+    setCharacteristicsState({});
     setImageUpload([]);
   };
   const handleSubmit = (e) => {
@@ -315,6 +364,23 @@ const NewReviewForm = ({
           </h3>
           <div className="rating">
             <legend>Overall Rating*</legend>
+   {/* <TxtCenter>
+    <form>
+        <Rating>
+            <Hide id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
+            <label for="star5">☆</label>
+            <inpHideut id="star4" name="star" type="radio" value="4" class="radio-btn hide" />
+            <label for="star4">☆</label>
+            <Hide id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
+            <label for="star3">☆</label>
+            <Hide id="star2" name="star" type="radio" value="2" class="radio-btn hide" />
+            <label for="star2">☆</label>
+            <Hide id="star1" name="star" type="radio" value="1" class="radio-btn hide" />
+            <label for="star1">☆</label>
+            <Clear></Clear>
+        </Rating>
+    </form>
+</TxtCenter> */}
             <input
               type="radio"
               id="star5"
