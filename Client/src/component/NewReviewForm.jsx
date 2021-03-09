@@ -43,15 +43,16 @@ color: #344B5B;
 const SubmitFormStyle = styled.input`
 background-color: #344B5B;
 color: white;
-font-family: ‘Roboto’, sans-serif;
-padding: 10px;
-margin: 5px;
+font-family: 'Roboto', sans-serif;
+font-weight: 500;
+padding: 8px;
+margin: 3px;
 width: fit-content;
+height: 40px;
 border: none;
 outline: none;
-border-radius: 10px;
+border-radius: 8px;
 box-sizing: border-box;
-text-align: center;
 `
 const StyledPMessage = styled.p`
   color: red;
@@ -84,12 +85,25 @@ margin: 5px;
 width: 250px;
 box-sizing: border-box;
 `
+const StyledSpanFont = styled.span`
+font-family: 'Roboto', sans-serif;
+`
+const StyledSpanLabel = styled.label`
+font-family: 'Roboto', sans-serif;
+`
+const Styledh3 = styled.h3`
+font-family: 'Shippori Mincho', serif;
+`
+const StyledLegend = styled.legend`
+font-family: 'Roboto', sans-serif;
+
+`
 
 const TABLE = { border: '1px white' };
 const NewReviewForm = ({
   showNewReviewModal, currentProductId, setNewReviewModal, sampleCharacterObj, reviewMetaData, getReviews, currentItem
 }) => {
-  const [rating, setStarRating] = useState(5);
+  const [rating, setStarRating] = useState();
   const [recommend, setIsRecommended] = useState();
   const [summary, setChangeSummary] = useState('');
   const [body, setChangeReview] = useState('');
@@ -133,10 +147,10 @@ const NewReviewForm = ({
             <tr key={index}>
               <td />
               <td>
-                <span
+                <StyledSpanFont
                 >
                   {key}
-                </span>
+                </StyledSpanFont>
               </td>
               <div style={{fontSize: 10}}>
               <td>
@@ -146,9 +160,9 @@ const NewReviewForm = ({
                   required="reduired"
                   onClick={() => setCharacteristicsState({ ...characisticsState, [characteristicKey]: 1 })}
                 />
-                <label>
+                <StyledSpanLabel>
                   {sampleCharacterObj[key][1]}
-                </label>
+                </StyledSpanLabel>
               </td>
               <td>
                 <input
@@ -156,9 +170,9 @@ const NewReviewForm = ({
                   name={key}
                   onClick={() => setCharacteristicsState({ ...characisticsState, [characteristicKey]: 2 })}
                 />
-                <label>
+                <StyledSpanLabel>
                   {sampleCharacterObj[key][2]}
-                </label>
+                </StyledSpanLabel>
               </td>
               <td>
                 <input
@@ -166,9 +180,9 @@ const NewReviewForm = ({
                   name={key}
                   onClick={() => setCharacteristicsState({ ...characisticsState, [characteristicKey]: 3 })}
                 />
-                <label>
+                <StyledSpanLabel>
                   {sampleCharacterObj[key][3]}
-                </label>
+                </StyledSpanLabel>
               </td>
               <td>
                 <input
@@ -176,9 +190,9 @@ const NewReviewForm = ({
                   name={key}
                   onClick={() => setCharacteristicsState({ ...characisticsState, [characteristicKey]: 4 })}
                 />
-                <label>
+                <StyledSpanLabel>
                   {sampleCharacterObj[key][4]}
-                </label>
+                </StyledSpanLabel>
               </td>
               <td>
                 <input
@@ -186,9 +200,9 @@ const NewReviewForm = ({
                   name={key}
                   onClick={() => setCharacteristicsState({...characisticsState, [characteristicKey]: 5 })}
                 />
-                <label>
+                <StyledSpanLabel>
                   {sampleCharacterObj[key][5]}
-                </label>
+                </StyledSpanLabel>
               </td>
               </div>
 
@@ -208,7 +222,7 @@ const NewReviewForm = ({
     setThumbnail([]);
     setNickname();
     setEmail();
-    setCharacteristicsState();
+    setCharacteristicsState({});
     setImageUpload([]);
   };
   const handleSubmit = (e) => {
@@ -253,38 +267,30 @@ const NewReviewForm = ({
     setThumbnail(thumbnailArray);
   };
 
-  const starRatingTextOne = () => {
+  const starRatingText = () => {
     if (rating === 1) {
       return (
-        <span>Poor</span>
+        <StyledSpanFont>Poor</StyledSpanFont>
       );
     }
-  };
-  const starRatingTextTwo = () => {
     if (rating === 2) {
       return (
-        <span>Fair</span>
+        <StyledSpanFont>Fair</StyledSpanFont>
       );
     }
-  };
-  const starRatingTextThree = () => {
     if (rating === 3) {
       return (
-        <span>Average</span>
+        <StyledSpanFont>Average</StyledSpanFont>
       );
     }
-  };
-  const starRatingTextFour = () => {
     if (rating === 4) {
       return (
-        <span>Good</span>
+        <StyledSpanFont>Good</StyledSpanFont>
       );
     }
-  };
-  const starRatingTextFive = () => {
     if (rating === 5) {
       return (
-        <span>Great</span>
+        <StyledSpanFont>Great</StyledSpanFont>
       );
     }
   };
@@ -308,57 +314,34 @@ const NewReviewForm = ({
             &#8855;
           </ButtonFixed>
           <StyledH2> Write Your Review</StyledH2>
-          <h3>
+          <Styledh3>
             About the
             {' '}
             {currentItem.name}
-          </h3>
+          </Styledh3>
+          <StyledLegend>Overall Rating*</StyledLegend>
           <div className="rating">
-            <legend>Overall Rating*</legend>
-            <input
-              type="radio"
-              id="star5"
-              name="rating"
-              value="5"
-              required="required"
-              onClick={() => setStarRating(5)}
-            />
-            {starRatingTextFive()}
-            <input
-              type="radio"
-              id="star4"
-              name="rating"
-              value="4"
-              onClick={() => setStarRating(4)}
-            />
-            {starRatingTextFour()}
-            <input
-              type="radio"
-              id="star3"
-              name="rating"
-              value="3"
-              onClick={() => setStarRating(3)}
-            />
-            {starRatingTextThree()}
-            <input
-              type="radio"
-              id="star2"
-              name="rating"
-              value="2"
-              onClick={() => setStarRating(2)}
-            />
-            {starRatingTextTwo()}
-            <input
-              type="radio"
-              id="star1"
-              name="rating"
-              value="1"
-              onClick={() => setStarRating(1)}
-            />
-            {starRatingTextOne()}
+            <div className="txt-center">
+              <form>
+                <div className="rating">
+                  <input id="star5" name="star" type="radio" value="5" className="radio-btn hide" required="required" onClick={() => setStarRating(5)}/>
+                  <label htmlFor="star5">☆</label>
+                  <input id="star4" name="star" type="radio" value="4" className="radio-btn hide" onClick={() => setStarRating(4)}/>
+                  <label htmlFor="star4">☆</label>
+                  <input id="star3" name="star" type="radio" value="3" className="radio-btn hide" onClick={() => setStarRating(3)}/>
+                  <label htmlFor="star3">☆</label>
+                  <input id="star2" name="star" type="radio" value="2" className="radio-btn hide" onClick={() => setStarRating(2)}/>
+                  <label htmlFor="star2">☆</label>
+                  <input id="star1" name="star" type="radio" value="1" className="radio-btn hide" onClick={() => setStarRating(1)}/>
+                  <label htmlFor="star1">☆</label>
+                  <div className="clear" />
+                </div>
+              </form>
+              {starRatingText()}
+            </div>
           </div>
           <div>
-            <legend>Do You Recommend?*</legend>
+            <StyledLegend>Do You Recommend?*</StyledLegend>
             <input
               type="radio"
               id="yes"
@@ -366,12 +349,12 @@ const NewReviewForm = ({
               value="yes"
               onChange={() => setIsRecommended(true)}
             />
-            <label
+            <StyledSpanLabel
               htmlFor="yes"
               title="Recommended"
             >
               Yes
-            </label>
+            </StyledSpanLabel>
             <input
               type="radio"
               id="no"
@@ -380,15 +363,15 @@ const NewReviewForm = ({
               onChange={() => setIsRecommended(false)}
               required="required"
             />
-            <label
+            <StyledSpanLabel
               htmlFor="no"
               title="notRecommended"
             >
               No
-            </label>
+            </StyledSpanLabel>
           </div>
           <div>
-            <label id="charTitle">Characteristics*</label>
+            <StyledSpanLabel id="charTitle">Characteristics*</StyledSpanLabel>
             <table id="characteristics" style={TABLE}>
               <tbody style={TABLE}>
                 <tr style={TABLE}>
@@ -399,12 +382,12 @@ const NewReviewForm = ({
             </table>
           </div>
           <div>
-            <label
+            <StyledSpanLabel
               htmlFor="Summary"
               title="ReviewSummary"
             >
               Review Summary
-            </label>
+            </StyledSpanLabel>
             <br />
             <SyledTextarea
               placeholder="Example: Best Purchase ever"
@@ -414,12 +397,12 @@ const NewReviewForm = ({
             />
           </div>
           <div>
-            <label
+            <StyledSpanLabel
               htmlFor="Review"
               title="ReviewBody"
             >
               Review Body*
-            </label>
+            </StyledSpanLabel>
             <br />
             <SyledTextarea
               placeholder="Why did you like the product or not?"
@@ -439,12 +422,12 @@ const NewReviewForm = ({
             {thumbnail.map((image, index) => <img src={image} key={index} alt="uploaded by user" height="50" width="50" />)}
           </div>
           <div>
-            <label
+            <StyledSpanLabel
               htmlFor="nickname"
               title="nickname"
             >
               What Is Your Nickname?*
-            </label>
+            </StyledSpanLabel>
             <Input
               type="textbox"
               placeholder="Example: jackson11!"
@@ -460,14 +443,14 @@ const NewReviewForm = ({
             </StyledPMessage>
           </div>
           <div>
-            <label
+            <StyledSpanLabel
               htmlFor="email"
               title="email"
               required="required"
               maxLength="60"
             >
               Email*
-            </label>
+            </StyledSpanLabel>
             <Input
               type="email"
               placeholder="Example: jackson11@email.com"

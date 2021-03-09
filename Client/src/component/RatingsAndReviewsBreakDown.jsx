@@ -32,6 +32,10 @@ font-family: 'Roboto', sans-serif;
 `
 const StyledSpanFont = styled.span`
 font-family: 'Roboto', sans-serif;
+font-sizeL: medium;
+`
+const Styledh3 = styled.h3`
+font-family: 'Shippori Mincho', serif;
 `
 // eslint-disable-next-line arrow-body-style
 const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharacterObj }) => {
@@ -105,7 +109,7 @@ const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharact
 
 
   const CHAR_RATING = {
-    background: 'lightgrey',
+    background: '#59585D',
     height: '7px',
     width: '300px',
     position: 'relative',
@@ -140,7 +144,6 @@ const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharact
               </div>
               <span style={{fontSize: '12px' }}>{sampleCharacterObj[key][1]}</span>
               <span style={{fontSize: '12px', display: 'flex', justifyContent: 'flex-end'}}>{sampleCharacterObj[key][5]}</span>
-              <br />
             </div>
           );
         }
@@ -150,7 +153,7 @@ const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharact
 
   return (
     <div>
-      <h3>Ratings &amp; Reviews </h3>
+      <Styledh3>Ratings &amp; Reviews </Styledh3>
       <div>
         <AverageStyle>{averageRating()}</AverageStyle>
         <StyleStars>

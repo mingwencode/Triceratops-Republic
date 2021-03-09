@@ -33,8 +33,8 @@ const NameDateWrap = styled.div`
 display: inline;
 text-align: right;
 `
-const ReviewName = styled.span`
-
+const StyledSpanFont = styled.span`
+font-family: 'Roboto', sans-serif;
 `
 
 const ReviewTile = ({
@@ -78,10 +78,10 @@ const ReviewTile = ({
           <i
             className="fas fa-check"
           />
-          <span>
+          <StyledSpanFont>
             {' '}
             I Recommend This Product
-          </span>
+          </StyledSpanFont>
         </div>
       );
     }
@@ -91,13 +91,13 @@ const ReviewTile = ({
     if (review.response) {
       return (
         <div>
-          <span>
+          <StyledSpanFont>
             Response:
-          </span>
+          </StyledSpanFont>
           <br />
-          <span>
+          <StyledSpanFont>
             {review.response}
-          </span>
+          </StyledSpanFont>
         </div>
       );
     }
@@ -131,10 +131,10 @@ const ReviewTile = ({
         {isRecomended()}
         {generateResponse()}
         <br />
-        <span>
+        <StyledSpanFont>
           Helpful?
           {' '}
-        </span>
+        </StyledSpanFont>
         <StyledA
           type="button"
           onClick={() => submitHelpful()}
