@@ -39,6 +39,12 @@ app.get('/products/:id/styles', (req, res) => {
   .catch((error) => console.log('server styles GET err'));
 });
 
+app.post('/cart', (req, res) => {
+  axios.post(`${options.url}cart`, req.body, options)
+    .then(() => res.sendStatus(201))
+    .catch((error) => console.log('server cart POST err', error.data));
+});
+
 // RATING & REVIEWS
 app.get('/reviews/:id', (req, res) => {
   const { id } = req.params;

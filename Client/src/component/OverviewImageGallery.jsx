@@ -18,6 +18,7 @@ const modalButtonStyle = {
 const OverviewImageGallery = ({ images, productStyles, currentImageIndex }) => {
   const [currentImage, setImage] = useState(0);
   const [mainImageIndex, setMainImageIndex] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
   const thumbContainer = React.useRef();
 
   const onThumbnailClick = (e, idx) => {
@@ -43,7 +44,7 @@ const OverviewImageGallery = ({ images, productStyles, currentImageIndex }) => {
   };
 
   const handleMainNext = () => {
-    if (mainImageIndex < images.length - 1) {
+    if (mainImageIndex < productStyles.results.length - 1) {
       setMainImageIndex((prevImage) => prevImage + 1);
     }
   };
@@ -54,32 +55,45 @@ const OverviewImageGallery = ({ images, productStyles, currentImageIndex }) => {
     }
   };
 
-    return (
-      <div>
-        <button id="prev" type="button" onClick={handlePrevious}>Previous</button>
-        <div className="view-port" style={styles.view_port}>
-          <div ref={thumbContainer} className="thumbnail-container" style={styles.thumbnail_container}>
-            {productStyles.results.map((image, idx) => (
-              <div key={idx}>
-                <Thumbnails
-                  image={image.photos[0].thumbnail_url}
-                  onThumbnailClick={onThumbnailClick}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-        <button id="next" type="button" onClick={handleNext}>Next</button>
-        <div>
-          <button type="button" onClick={handleMainPrev}>{'<'}</button>
-          <div>
-            <img className="main-image" src={productStyles.results[mainImageIndex].photos[0].url} alt="main diplay" height="300" width="225" />
-          </div>
-          <button type="button" onClick={handleMainNext}>{'>'}</button>
+
+
+  return (
+    <div>
+      <button id="prev" type="button" onClick={handlePrevious}>Previous</button>
+      <div className="view-port" style={styles.view_port}>
+        <div
+          ref={thumbContainer}
+          className="thumbnail-container"
+          style={styles.thumbnail_container}
+        >
+          {productStyles.results.map((image, idx) => (
+            <div key={idx}>
+              <Thumbnails
+                image={image.photos[0].thumbnail_url}
+                onThumbnailClick={onThumbnailClick}
+              />
+            </div>
+          ))}
         </div>
       </div>
-    );
-
+      <button id="next" type="button" onClick={handleNext}>Next</button>
+      <div>
+        <button type="button" onClick={handleMainPrev}>{'<'}</button>
+        <div>
+          <div style={modalButtonStyle}>
+            <button onClick={() => setIsOpen(true)}>[ ]</button>
+            <OverviewModal
+              open={isOpen}
+              onClose={() => setIsOpen(false)}
+              productStyles={productStyles}
+            />
+          </div>
+          <img className="main-image" src={productStyles.results[mainImageIndex].photos[0].url} alt="main diplay" height="300" width="225" />
+        </div>
+        <button type="button" onClick={handleMainNext}>{'>'}</button>
+      </div>
+    </div>
+  );
 };
 
 const styles = {
