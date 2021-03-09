@@ -11,8 +11,7 @@ const Container = styled.div`
   background: rgba(203, 216, 225, 1);
   padding: 30px;
 `;
-//background :yellow;
-//background: yellow;
+
 const ProductListTitle = styled.div`
   grid-row: 1 / 2;
   font-size: 1.17em;

@@ -14,7 +14,7 @@ const AppBackground = styled.div`
 
 const AppBody = styled.div`
   display: grid;
-  grid-template-rows: 31% 22% 27% 20%;
+  grid-template-rows: 25% 22% 23% 30%;
   grid-template-columns: auto;
   box-shadow: 10px 50px 100px 0 rgba(0,0,0,0.1);
   background: rgba(203, 216, 225, 1);
@@ -22,7 +22,7 @@ const AppBody = styled.div`
   margin: auto;
   padding: 10px;
   font-family: 'Shippori Mincho', serif;
-  overFlow: auto;
+
 `;
 
 const OverviewStyle = styled.div`
@@ -69,7 +69,7 @@ const App = () => {
         const { id, name, category, default_price, features, slogan, description } = res[0].data;
         const styleResult = res[1].data.results;
         let url = '';
-        let largeUrl ='';
+        let largeUrl = '';
         let object = {};
         setProductStyles(res[1].data);
 
