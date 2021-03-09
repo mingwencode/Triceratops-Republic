@@ -14,7 +14,11 @@ const AppBackground = styled.div`
 
 const AppBody = styled.div`
   display: grid;
+<<<<<<< HEAD
   grid-template-rows: 25% 22% 22% 31%;
+=======
+  grid-template-rows: 25% 22% 23% 30%;
+>>>>>>> 1a6ee10cdb5214e2a401402647d97a7601c88244
   grid-template-columns: auto;
   box-shadow: 10px 50px 100px 0 rgba(0,0,0,0.1);
   background: rgba(203, 216, 225, 1);
@@ -119,7 +123,7 @@ const App = () => {
             <QAndA currentProductId={currentProductId} />
           </QASyles>
           <ReviewsStyles>
-            <RatingsAndReviews currentProductId={currentProductId} />
+            <RatingsAndReviews currentProductId={currentProductId} currentItem={currentItem} />
           </ReviewsStyles>
         </AppBody>
       </AppBackground>

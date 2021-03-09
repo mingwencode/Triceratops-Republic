@@ -10,7 +10,7 @@ import RatingsAndReviewsBreakDown from './RatingsAndReviewsBreakDown';
 
 const RatingsStyle = styled.div`
   display: grid;
-  grid-template-columns: 18% 7% 60% 15%;
+  grid-template-columns: 24% 3% 68% 5%;
   padding: 5px;
   margin: 0;
 `;
@@ -33,30 +33,15 @@ const Button = styled.button`
 background-color: #344B5B;
 color: white;
 font-family: 'Roboto', sans-serif;
-padding: 10px;
-margin: 5px;
+font-weight: 500;
+padding: 8px;
+margin: 3px;
 width: fit-content;
+height: 40px;
 border: none;
 outline: none;
-border-radius: 10px;
+border-radius: 8px;
 box-sizing: border-box;
- `;
- const ButtonNewReview = styled.button`
- grid-column: 3;
- display: flex;
- justify-content-center: center;
- background-color: #344B5B;
- color: white;
- font-family: 'Roboto', sans-serif;
- padding: 10px;
- margin: 5px;
- width: fit-content;
- border: none;
- outline: none;
- border-radius: 10px;
- box-sizing: border-box;
-
-
  `;
 
 const RatingsAndReviews = ({ currentProductId, currentItem, mockReviews, mockReviewMetadata }) => {
@@ -167,6 +152,7 @@ const RatingsAndReviews = ({ currentProductId, currentItem, mockReviews, mockRev
             showNewReviewModal={showNewMReviewModal}
             setNewReviewModal={setNewReviewModal}
             reviewMetaData={reviewMetaData}
+            currentItem={currentItem}
           />
         </ReviewListStyle>
         <div>
@@ -180,12 +166,6 @@ const RatingsAndReviews = ({ currentProductId, currentItem, mockReviews, mockRev
             currentItem={currentItem}
           />
         </div>
-        <ButtonNewReview
-          type="button"
-          onClick={() => { setNewReviewModal(!showNewMReviewModal); }}
-        >
-          New Review
-        </ButtonNewReview>
       </RatingsStyle>
     );
   }

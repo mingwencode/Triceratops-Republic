@@ -41,17 +41,34 @@ const OVERLAY_STYLES = {
   backgroundColor: 'rgba(0, 0, 0, .7)',
 };
 
+const ButtonNewReview = styled.button`
+background-color: #344B5B;
+color: white;
+font-family: 'Roboto', sans-serif;
+font-weight: 500;
+padding: 8px;
+margin: 3px;
+width: fit-content;
+height: 40px;
+border: none;
+outline: none;
+border-radius: 8px;
+box-sizing: border-box;
+
+`;
 
 const Button = styled.button`
 background-color: #344B5B;
 color: white;
-font-family: 'Shippori Mincho', serif;
-padding: 10px;
-margin: 5px;
+font-family: 'Roboto', sans-serif;
+font-weight: 600;
+padding: 8px;
+margin: 3px;
 width: fit-content;
+height: 40px;
 border: none;
 outline: none;
-border-radius: 10px;
+border-radius: 8px;
 box-sizing: border-box;
  `;
 
@@ -88,14 +105,17 @@ box-sizing: border-box;
 }
  `
 
-const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect, setDropDownSelect }) => {
+const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect, setDropDownSelect, currentItem, showNewMReviewModal, setNewReviewModal, sampleCharacterObj, reviewMetaData }) => {
   const [reviewCount, setReviewCount] = useState(2);
   const [reviewModalBoolean, setReviewModalBoolean] = useState(false);
   const [moreReviewsBoolean, setMoreReview] = useState(true);
 
   const reviews = reviewArray.results;
+  useEffect(() => {
+    if (reviews.length < 2) setMoreReview(false);
+  }, [reviewArray]);
 
-  if (reviews.length < 2) setMoreReview(false);
+
 
 
   const putReviewHelpful = (review_id) => {
@@ -157,6 +177,8 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
 
   if (!reviewModalBoolean) {
     return (
+      <div>
+        <br />
       <ListStyle>
         <RatingsAndReviewsHeaderStyle>
           <RatingsAndReviewsHeader
@@ -170,9 +192,16 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
         </div>
         <MoreReviewsStyle>
           {moreReviews()}
+        <ButtonNewReview
+          type="button"
+          onClick={() => { setNewReviewModal(!showNewMReviewModal); }}
+        >
+          New Review
+        </ButtonNewReview>
         </MoreReviewsStyle>
         {openModal()}
       </ListStyle>
+      </div>
     );
   }
 
@@ -189,15 +218,15 @@ const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect,
           {moreReviews()}
         </div>
         <div style={MODALHEADER_STYLES}>
-            <ModalButton
-              type="button"
-              onClick={() => {
-                setReviewModalBoolean(!reviewModalBoolean);
-                setReviewCount(2);
-              }}
-              >
-              &#8855;
-            </ModalButton>
+          <ModalButton
+            type="button"
+            onClick={() => {
+              setReviewModalBoolean(!reviewModalBoolean);
+              setReviewCount(2);
+            }}
+          >
+            &#8855;
+          </ModalButton>
         </div>
       </>
     );
