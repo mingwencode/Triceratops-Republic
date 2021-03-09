@@ -13,13 +13,13 @@ const StyledSpan = styled.span`
 `;
 
 const StyledSpanBy = styled(StyledSpan)`
-  padding-left: 15px;
+  padding-left: 35px;
 `;
 
 const StyledA = styled.a`
   font-family: 'Roboto', sans-serif;
   font-weight: 600;
-  padding-left: 10px;
+  padding-left: 30px;
   padding-right: 8px;
   text-decoration: underline;
   font-size: smaller;
@@ -31,12 +31,13 @@ const StyledA = styled.a`
 
 const StyledP = styled.p`
   font-family: 'Roboto', sans-serif;
-  padding-left: 10px;
-  font-weight: 600;
+  padding-left: 30px;
+  font-weight: 500;
 `;
 
 const StyledImg = styled.img`
-  padding: 5px;
+  padding-right: 5px;
+  padding-left: 30px;
 `;
 
 const Answer = ({ answer, putAnswersHelpful, putAnswersReport }) => {

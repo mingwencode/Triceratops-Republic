@@ -23,7 +23,10 @@ const Input = styled.input`
 
 const SearchInput = styled(Input)`
   width: 500px;
-  padding: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 30px;
 `;
 
 const SearchDiv = styled.div`
@@ -34,7 +37,7 @@ const SearchDiv = styled.div`
 const StyledH2 = styled.h3`
   font-family: 'Shippori Mincho', serif;
   font-weight: 800;
-  padding-left: 10px;
+  padding-left: 15px;
   color: #344B5B;
 `;
 
@@ -67,7 +70,7 @@ const StyledButton = styled.button`
   background-color: #344B5B;
   color: white;
   font-family: 'Roboto', sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   padding: 8px;
   margin: 3px;
   width: fit-content;
@@ -78,9 +81,12 @@ const StyledButton = styled.button`
   box-sizing: border-box;
 `;
 
+const ButtonP = styled.p`
+  padding-left: 30px;
+`;
+
 const QAndA = ({ currentProductId }) => {
   const [productQuestions, setProductQuestions] = useState();
-  const [answers, setAnswers] = useState();
   const [questionInput, setQuestionInput] = useState('');
   const [questionNicknameInput, setQuestionNicknameInput] = useState('');
   const [questionEmailInput, setQuestionEmailInput] = useState('');
@@ -128,14 +134,6 @@ const QAndA = ({ currentProductId }) => {
       .catch((err) => console.log('get questions: ', err));
   };
 
-  // const getAnswers = (question_id) => {
-  //   axios.get(`/qa/questions/${question_id}/answers`)
-  //     .then((res) => (
-  //       setAnswers(res.data)
-  //     ))
-  //     .catch((err) => console.log('get questions: ', err));
-  // };
-
   const postQuestion = (question) => {
     axios.post('/qa/questions', question)
       .then(() => {
@@ -145,14 +143,6 @@ const QAndA = ({ currentProductId }) => {
       .catch((err) => console.log('post question ', err));
   };
 
-  // const postAnswer = (answer, question_id) => {
-  //   axios.post(`/qa/questions/${question_id}/answers`, answer)
-  //     .then(() => {
-  //       console.log('posting answers works!!');
-  //       getQuestions(currentProductId);
-  //     })
-  //     .catch((err) => console.log('post question ', err));
-  // };
 
   const putQuestionHelpful = (question_id) => {
     axios.put(`/qa/questions/${question_id}/helpful`)
@@ -347,7 +337,7 @@ const QAndA = ({ currentProductId }) => {
   const showMoreQuestionsButton = () => {
     if (productQuestions.results.length > questionAnswersShown) {
       return (
-        <StyledButton type="button" onClick={(e) => onMoreQuestionsButtonClick(e)}>More Answered Questions</StyledButton>
+        <ButtonP><StyledButton type="button" onClick={(e) => onMoreQuestionsButtonClick(e)}>More Answered Questions</StyledButton></ButtonP>
       );
     }
   };
@@ -358,7 +348,7 @@ const QAndA = ({ currentProductId }) => {
         <StyledH2>QUESTION AND ANSWERS</StyledH2>
         <SearchDiv>
           <SearchInput value={searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." /> 
-          <i class="fas fa-search" />
+          <i className="fas fa-search" />
         </SearchDiv>
         <span>
           <QuestionAnswerList onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} productQuestions={productQuestions} questionAnswersShown={questionAnswersShown} searchText={searchText} putQuestionHelpful={putQuestionHelpful} putQuestionReport={putQuestionReport} putAnswersHelpful={putAnswersHelpful} putAnswersReport={putAnswersReport} setQuestionID={setQuestionID} />
