@@ -7,7 +7,7 @@ const Button = styled.button`
   background-color: #344B5B;
   color: white;
   font-family: 'Roboto', sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   padding: 10px;
   margin: 5px;
   width: 150px;
@@ -17,10 +17,15 @@ const Button = styled.button`
   box-sizing: border-box;
 `;
 
+const P = styled.p`
+  padding-left: 30px;
+`;
+
+
 const AddNewQuestion = ({ addQuestionButtonClick }) => {
   return (
     <div>
-      <Button type="button" onClick={() => addQuestionButtonClick()}>Add A Question {' '}<i class="fas fa-plus fa-sm" /></Button>
+      <P><Button type="button" onClick={() => addQuestionButtonClick()}>Add A Question +</Button></P>
     </div>
   );
 };

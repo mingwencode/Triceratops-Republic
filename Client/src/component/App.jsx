@@ -22,6 +22,7 @@ const AppBody = styled.div`
   margin: auto;
   padding: 10px;
   font-family: 'Shippori Mincho', serif;
+}
 `;
 
 const OverviewStyle = styled.div`
