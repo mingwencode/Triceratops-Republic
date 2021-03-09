@@ -14,6 +14,7 @@ const ViewPortContainer = styled.div`
   grid-column : 3 / 4;
   justify-self: right;
   margin-left: 40px;
+  background:red;
 `;
 
 const OutfitViewPort = styled.div`
