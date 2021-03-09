@@ -8,37 +8,43 @@ import OverviewProductInfo from './OverviewProductInfo';
 import OverviewAddToBag from './OverviewAddToBag';
 import OverviewDescription from './OverviewDescription';
 
-// let Body = styled.div`
-//   .item1 { grid-area: top-bar; };
-//   .item2 { grid-area: image-gallery; };
-//   .item3 { grid-area: product-info; };
-//   .item4 { grid-area: add-to-bag; };
-//   .item5 { grid-area: description; };
-
-//   .grid-container {
-//     display: grid;
-//     grid-template-areas:
-//       'top-bar top-bar top-bar top-bar top-bar top-bar'
-//       'image-gallery image-gallery image-gallery product-info product-info product-info'
-//       'description description description description description description';
-//   }
-
-//   .grid-container > div {
-//   background-color: rgba(94, 161, 122, 0.959);
-//   text-align: center;
-//   padding: 20px 0;
-//   font-size: 20px;
-// }
-// `;
-
-const images = [
-  'https://s7d5.scene7.com/is/image/Anthropologie/32869075_025_a?$a15-pdp-detail-shot$=&fit=constrain&fmt=webp&qlt=80&wid=1080',
-  'https://s7d5.scene7.com/is/image/Anthropologie/4130231803171_001_b?$a15-pdp-detail-shot$=&fit=constrain&fmt=webp&qlt=80&wid=1080',
-  'https://cdn-2.jjshouse.com/upimg/s400/14/e8/1d7f95ba39b8185247fae73928c414e8.jpg',
-  'https://www.lulus.com/images/product/xlarge/4445090_247570.jpg?w=375&hdpi=1',
-  'https://media.tedbaker.com/t_m_pdp_primary,q_auto:best,f_auto/Product/Womens/242843_BABY-PINK_1',
-];
-const descriptionBullets = ['GMO and pesticide free', 'Some other crap', 'Probably untrue', 'Other information'];
+let OvBody = styled.div`
+    display: grid;
+    grid-template-columns: 67% 33%;
+    grid-template-rows: 34% 33% 33%;
+    max-width: 100%;
+    margin: auto;
+    /* align-items: auto; */
+    padding: 5px;
+    height: 100%;
+`;
+const Tb = styled.div`
+  /* grid-column: 2; */
+`;
+const Ig = styled.div`
+   grid-column-start: 1;
+   grid-column-end: 2;
+   /* grid-row-start: 2;
+   grid-row-end: 4; */
+`
+const Pi = styled.div`
+  grid-column-start: 2;
+  grid-column-end: end;
+  /* grid-row-start: 2;
+  grid-row-end: 3; */
+`;
+const AddTB = styled.div`
+  grid-column-start: 2;
+  grid-column-end: end;
+  /* grid-row-start: 3;
+  grid-row-end: 3; */
+`;
+const Des = styled.div`
+  grid-column-start: 1;
+  grid-column-end: end;
+  /* grid-row-start: 3;
+  grid-row-end: 4; */
+`;
 
 const Overview = ({ currentItem, productStyles, currentProductId }) => {
   const [currentImageIndex, setImageIndex] = useState(0);
@@ -52,35 +58,46 @@ const Overview = ({ currentItem, productStyles, currentProductId }) => {
   if (currentItem) {
     return (
       <div>
-        <div className="grid-container">
+        <Tb>
           <OverviewTopBar className="item1 top-bar" />
+        </Tb>
+      <OvBody>
+        <div className="ov-container">
           <div>
-            <OverviewImageGallery
-              className="item2 image-gallery"
-              productStyles={productStyles}
-              images={images}
-              currentImageIndex={currentImageIndex}
-            />
-            <OverviewProductInfo
-              className="item3 product-info"
-              currentItem={currentItem}
-              productStyles={productStyles}
-              currentProductId={currentProductId}
-              handleStyleClick={handleStyleClick}
-              styleResultsIndex={styleResultsIndex}
-            />
-            <OverviewAddToBag
-              className="item4 add-to-bag"
-              productStyles={productStyles}
-              styleResultsIndex={styleResultsIndex}
-            />
-            <OverviewDescription
-              className="item5 description"
-              currentItem={currentItem}
-              bullets={descriptionBullets}
-            />
+            <Ig>
+              <OverviewImageGallery
+                className="item2 image-gallery"
+                currentItem={currentItem}
+                productStyles={productStyles}
+                currentImageIndex={currentImageIndex}
+              />
+            </Ig>
+            <Pi>
+              <OverviewProductInfo
+                className="item3 product-info"
+                currentItem={currentItem}
+                productStyles={productStyles}
+                currentProductId={currentProductId}
+                handleStyleClick={handleStyleClick}
+                styleResultsIndex={styleResultsIndex}
+              />
+            </Pi>
+            <AddTB>
+              <OverviewAddToBag
+                className="item4 add-to-bag"
+                productStyles={productStyles}
+                styleResultsIndex={styleResultsIndex}
+              />
+            </AddTB>
+            <Des>
+              <OverviewDescription
+                className="item5 description"
+                currentItem={currentItem}
+              />
+            </Des>
           </div>
         </div>
+      </OvBody>
       </div>
     );
   }
