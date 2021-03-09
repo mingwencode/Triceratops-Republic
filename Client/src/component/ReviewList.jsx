@@ -61,7 +61,7 @@ const Button = styled.button`
 background-color: #344B5B;
 color: white;
 font-family: 'Roboto', sans-serif;
-font-weight: 600;
+font-weight: 500;
 padding: 8px;
 margin: 3px;
 width: fit-content;

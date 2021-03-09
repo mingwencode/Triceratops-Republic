@@ -10,7 +10,7 @@ import RatingsAndReviewsBreakDown from './RatingsAndReviewsBreakDown';
 
 const RatingsStyle = styled.div`
   display: grid;
-  grid-template-columns: 24% 3% 68% 5%;
+  grid-template-columns: 26% 2% 69% 5%;
   padding: 5px;
   margin: 0;
 `;
