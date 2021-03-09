@@ -43,14 +43,13 @@ const StyledSpan = styled(StyledSpanQ)`
 const StyledSpanHelpful = styled(StyledSpanQ)`
   font-size: smaller;
   font-weight: 400;
-  padding-left: 150px;
+  padding-left: 125px;
 `;
 
 const StyledA = styled.a`
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   padding-right: 8px;
-  padding-left: 30px;
   text-decoration: underline;
   font-size: smaller;
   cursor: pointer;

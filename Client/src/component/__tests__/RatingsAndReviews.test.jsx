@@ -113,7 +113,7 @@ const mockReviews = {
 }
 
 describe('RatingsAndReviews', () => {
-  test('RatingsAndReviews intitial load', () => {
+  test('RatingsAndReviews intitial load', async () => {
     const results = render(<RatingsAndReviews
             mockReviews={ mockReviews }
             currentProductId={ 1 }
@@ -124,6 +124,6 @@ describe('RatingsAndReviews', () => {
     // How do I wait for useEffects to run? (async)
 
     const result = screen.queryAllByTestId('newFormButton')
-    expect(result.length).toBe(1)
-  });
+    await expect(result.length).toBe(1)
+  })
 });
