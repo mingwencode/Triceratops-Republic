@@ -9,12 +9,10 @@ const ListContainer = styled.div`
 `;
 
 const ViewPortContainer = styled.div`
-  margin: 0 auto;
+  margin-right: 91px;
   position: relative;
   grid-column : 3 / 4;
   justify-self: right;
-  margin-left: 40px;
-  background:red;
 `;
 
 const OutfitViewPort = styled.div`
@@ -66,7 +64,8 @@ const AddButtonContainer = styled.div`
   font-size: 0.8em;
   opacity: 0.6;
   color: white;
-  margin: 0 20px 0 20px;
+  margin-top: 5px;
+  margin-left: 115px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   &:hover{
     box-shadow: 0 8px 13px 0 rgba(0,0,0,0.2);
@@ -91,13 +90,7 @@ const AddButton = styled.a`
   bottom: 1.95em;
   left: 1.25em;
   color: #344B5B;
-  cursor: pointer;
-  &:hover{
-    opacity: 0.2;
-  }
-  &:active{
-    opacity: 1;
-  }
+  cursor: default;
 `;
 
 
