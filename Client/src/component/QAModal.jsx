@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable arrow-body-style */
 import React from 'react';
-import ReactDom from 'react-dom';
+import styled from 'styled-components';
 
 const ModalStyles = {
   position: 'fixed',
   top: '50%',
   left: '50%',
+  borderRadius: '10px',
   transform: 'translate(-50%, -50%)',
   backgroundColor: '#FFF',
   padding: '50px',
@@ -23,6 +24,20 @@ const OverlayStyles = {
   zIndex: 1000,
 };
 
+const Button = styled.button`
+  border: none;
+  background: none;
+  font-size: 2em;
+  color: #344B5B;
+  &:focus{
+    outline: none;
+  }
+  &:hover{
+    color: #A4BBCB;
+    transform: scale(1.5, 1.5);
+  }
+`;
+
 const QAModal = ({ isOpenModal, onDismiss, children }) => {
   if (!isOpenModal) return null;
 
@@ -30,7 +45,7 @@ const QAModal = ({ isOpenModal, onDismiss, children }) => {
     <>
       <div style={OverlayStyles} />
       <div style={ModalStyles}>
-        <button type="button" onClick={onDismiss}>X</button>
+        <Button type="button" onClick={onDismiss}>&#8855;</Button>
         {children}
       </div>
     </>

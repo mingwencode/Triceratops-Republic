@@ -59,7 +59,7 @@ box-sizing: border-box;
 
  `;
 
-const RatingsAndReviews = ({ currentProductId, currentItem }) => {
+const RatingsAndReviews = ({ currentProductId, currentItem, mockReviews, mockReviewMetadata }) => {
   const [reviewArray, setProductReviewArray] = useState();
   const [showNewMReviewModal, setNewReviewModal] = useState(false);
   const [dropDownselect, setDropDownSelect] = useState('newest');
@@ -112,12 +112,22 @@ const RatingsAndReviews = ({ currentProductId, currentItem }) => {
   });
 
   const getReviews = (id, sortOption) => {
+    if (mockReviews !== undefined) {
+      setProductReviewArray(mockReviews)
+      return
+    }
+
     axios.get(`/reviews/${id}&sort=${sortOption}`)
       .then((res) => (setProductReviewArray(res.data)))
       .catch((err) => console.log('get reviews ', err));
   };
 
   const getReviewsMeta = (id) => {
+    if (mockReviewMetadata !== undefined) {
+      setReviewMetaData(mockReviewMetadata)
+      return
+    }
+
     axios.get(`/reviews/meta/${id}`)
       .then((res) => (
         setReviewMetaData(res.data)
@@ -179,8 +189,9 @@ const RatingsAndReviews = ({ currentProductId, currentItem }) => {
       </RatingsStyle>
     );
   }
+
   return (
-    <Button>
+    <Button data-testid="newFormButton">
       <NewReviewForm
         showNewReviewModal={showNewMReviewModal}
         setNewReviewModal={setNewReviewModal}
