@@ -6,6 +6,14 @@ import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon, Pin
 import styled from 'styled-components';
 import ShadedStarRating from './ShadedStarRating';
 
+const Pi = styled.div`
+  padding-top: 40px;
+  margin-top: 10px;
+`;
+const Reviews = styled.div`
+  flex: row;
+`;
+
 const OverviewProductInfo = ({
   productStyles, currentItem, currentProductId, handleStyleClick, styleResultsIndex
 }) => {
@@ -15,7 +23,7 @@ const OverviewProductInfo = ({
   if (productStyles) {
     return (
 
-      <div>
+      <Pi>
         <div>
           <FacebookShareButton
             url={shareUrl}
@@ -39,12 +47,12 @@ const OverviewProductInfo = ({
             <TwitterIcon size={32} round />
           </TwitterShareButton>
         </div>
-        <div>
+        <Reviews>
           <ShadedStarRating starPercent={currentItem.starPercent} />
-        </div>
-        <form>
-          <a className="reviews-a" onClick={() => (console.log('Read all reviews clicked!'))}><u>Read all reviews</u></a>
-        </form>
+          <form>
+            <a className="reviews-a" onClick={() => (console.log('Read all reviews clicked!'))}><u>Read all reviews</u></a>
+          </form>
+        </Reviews>
         <div>
           <span>{currentItem.category}</span>
         </div>
@@ -73,7 +81,7 @@ const OverviewProductInfo = ({
             width="70"
           />
         ))}
-      </div>
+      </Pi>
     );
   }
   return <div>Loading..</div>

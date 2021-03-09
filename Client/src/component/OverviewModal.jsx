@@ -52,7 +52,7 @@ const OverviewModal = ({ open, onClose, productStyles }) => {
           <button className="modalPrevBtn" onClick={handlePrevious}>Prev</button>
         </div>
         <div>
-          <img src={productStyles.results[modalImageIndex].photos[0].url} alt="" max-height="900px" />
+          <img src={productStyles.results[modalImageIndex].photos[0].url} alt="" height="900" />
         </div>
         <button className="modalNextBtn" onClick={handleNext}>Next</button>
       </div>
