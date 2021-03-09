@@ -121,9 +121,9 @@ const ReviewTile = ({
         <div
           key="reviewBody"
         >
-          <span>
+          <StyledSpanFont>
             {review.body}
-          </span>
+          </StyledSpanFont>
         </div>
         <div>
           {renderPhotos()}

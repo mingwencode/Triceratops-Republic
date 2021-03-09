@@ -41,6 +41,8 @@ color: #344B5B;
  `;
 
 const SubmitFormStyle = styled.input`
+display: flex;
+justify-content: center;
 background-color: #344B5B;
 color: white;
 font-family: 'Roboto', sans-serif;
@@ -54,7 +56,7 @@ outline: none;
 border-radius: 8px;
 box-sizing: border-box;
 `
-const StyledPMessage = styled.p`
+const StyledPMessage = styled.span`
   color: red;
   font-family: 'Roboto', sans-serif;
   font-size: small;
@@ -62,7 +64,10 @@ const StyledPMessage = styled.p`
 `;
 
 const StyledH2 = styled.h2`
+  background: rgba(203, 216, 225, 1);
   font-family: 'Shippori Mincho', serif;
+  border-radius: 8px;
+  box-sizing: border-box;
   font-weight: bold;
   color: #012626;
   text-align: center;
@@ -441,6 +446,7 @@ const NewReviewForm = ({
             <StyledPMessage style={{ fontSize: 12 }}>
               For privacy reasons, do not use your full name or email address
             </StyledPMessage>
+            <br />
           </div>
           <div>
             <StyledSpanLabel

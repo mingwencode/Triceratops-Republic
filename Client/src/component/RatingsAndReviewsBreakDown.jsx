@@ -142,8 +142,10 @@ const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharact
               >
                 <i style={ARROW_SLIDE_SIZE} className="fas fa-arrow-up" />
               </div>
+              <div style={{display: 'flex', justifyContent: 'space-between'}}>
               <span style={{fontSize: '12px' }}>{sampleCharacterObj[key][1]}</span>
-              <span style={{fontSize: '12px', display: 'flex', justifyContent: 'flex-end'}}>{sampleCharacterObj[key][5]}</span>
+              <span style={{fontSize: '12px'}}>{sampleCharacterObj[key][5]}</span>
+              </div>
             </div>
           );
         }
@@ -153,7 +155,7 @@ const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharact
 
   return (
     <div>
-      <Styledh3>Ratings &amp; Reviews </Styledh3>
+      <Styledh3>RATINGS &amp; REVIEWS </Styledh3>
       <div>
         <AverageStyle>{averageRating()}</AverageStyle>
         <StyleStars>
