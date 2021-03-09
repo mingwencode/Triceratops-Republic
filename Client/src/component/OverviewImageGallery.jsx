@@ -59,7 +59,7 @@ const OverviewImageGallery = ({ productStyles, currentImageIndex }) => {
 
   return (
     <div>
-      <button id="prev" type="button" onClick={handlePrevious}>Previous</button>
+      {currentImage === 0 ? null : <button id="prev" type="button" onClick={handlePrevious}>Previous</button>}
       <div className="view-port" style={styles.view_port}>
         <div
           ref={thumbContainer}
@@ -77,9 +77,9 @@ const OverviewImageGallery = ({ productStyles, currentImageIndex }) => {
           ))}
         </div>
       </div>
-      <button id="next" type="button" onClick={handleNext}>Next</button>
+      {currentImage === productStyles.results.length - 1 ? null : <button id="next" type="button" onClick={handleNext}>Next</button>}
       <div>
-        <button type="button" onClick={handleMainPrev}>{'<'}</button>
+        {mainImageIndex === 0 ? null : <button type="button" onClick={handleMainPrev}>{'<'}</button>}
         <div>
           <div>
             <button onClick={() => setIsOpen(true)}>[ ]</button>
@@ -89,9 +89,9 @@ const OverviewImageGallery = ({ productStyles, currentImageIndex }) => {
               productStyles={productStyles}
             >Fancy</OverviewModal>
           </div>
-          <img className="main-image" src={productStyles.results[mainImageIndex].photos[0].url} alt="main diplay" height="300" width="225" />
+          <img className="main-image" src={productStyles.results[mainImageIndex].photos[0].url} alt="main diplay" height="500" />
         </div>
-        <button type="button" onClick={handleMainNext}>{'>'}</button>
+        {mainImageIndex === productStyles.results.length - 1 ? null : <button type="button" onClick={handleMainNext}>{'>'}</button>}
       </div>
     </div>
   );

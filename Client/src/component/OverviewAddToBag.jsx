@@ -88,7 +88,7 @@ const OverviewAddToBag = ({ productStyles, styleResultsIndex }) => {
       <div>
         <form>
           <select name="sizes" onChange={handleSizeChange}>
-            <option value="" disabled selected hidden>Select Size</option>
+            <option disabled selected hidden>Select Size</option>
             {sizes()}
           </select>
           <select name="quantity" onChange={handleQtyChange}>

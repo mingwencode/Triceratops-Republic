@@ -14,7 +14,7 @@ const AppBackground = styled.div`
 
 const AppBody = styled.div`
   display: grid;
-  grid-template-rows: 31% 22% 27% 20%;
+  grid-template-rows: 25% 22% 22% 31%;
   grid-template-columns: auto;
   box-shadow: 10px 50px 100px 0 rgba(0,0,0,0.1);
   background: rgba(203, 216, 225, 1);
@@ -22,7 +22,6 @@ const AppBody = styled.div`
   margin: auto;
   padding: 10px;
   font-family: 'Shippori Mincho', serif;
-  overFlow: auto;
 `;
 
 const OverviewStyle = styled.div`
