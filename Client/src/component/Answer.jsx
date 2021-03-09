@@ -12,10 +12,14 @@ const StyledSpan = styled.span`
   font-size: smaller;
 `;
 
+const StyledSpanBy = styled(StyledSpan)`
+  padding-left: 15px;
+`;
+
 const StyledA = styled.a`
   font-family: 'Roboto', sans-serif;
   font-weight: 600;
-  padding-left: 4px;
+  padding-left: 10px;
   padding-right: 8px;
   text-decoration: underline;
   font-size: smaller;
@@ -27,7 +31,7 @@ const StyledA = styled.a`
 
 const StyledP = styled.p`
   font-family: 'Roboto', sans-serif;
-  padding-left: 4px;
+  padding-left: 10px;
   font-weight: 600;
 `;
 
@@ -70,12 +74,12 @@ const Answer = ({ answer, putAnswersHelpful, putAnswersReport }) => {
         {body}
       </StyledP>
       {renderPhotos()}
-      <StyledSpan>
+      <StyledSpanBy>
         by
         {' '}
         {answerer_name}
         ,
-      </StyledSpan>
+      </StyledSpanBy>
       <StyledSpan>
         {getProperDate(date)}
       </StyledSpan>

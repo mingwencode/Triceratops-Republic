@@ -34,7 +34,7 @@ const SearchDiv = styled.div`
 const StyledH2 = styled.h3`
   font-family: 'Shippori Mincho', serif;
   font-weight: 800;
-  padding-left: 4px;
+  padding-left: 10px;
   color: #344B5B;
 `;
 
@@ -67,7 +67,7 @@ const StyledButton = styled.button`
   background-color: #344B5B;
   color: white;
   font-family: 'Roboto', sans-serif;
-  font-size: smallest;
+  font-weight: 600;
   padding: 8px;
   margin: 3px;
   width: fit-content;

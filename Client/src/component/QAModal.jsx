@@ -27,7 +27,7 @@ const OverlayStyles = {
 const Button = styled.button`
   border: none;
   background: none;
-  font-size: 1.5em;
+  font-size: 2em;
   color: #344B5B;
   &:focus{
     outline: none;

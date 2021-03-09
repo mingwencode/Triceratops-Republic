@@ -1,13 +1,34 @@
 /* eslint-disable padded-blocks */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import styled from 'styled-components';
 
+const SelectStyle = styled.select`
+  height: 20px;
+  color: gray;
+  padding-left: 5px;
+  font-size: 14px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin-left: 10px;
+
+  option {
+    color: black;
+    display: flex;
+    white-space: pre;
+    min-height: 20px;
+    padding: 0px 2px 1px;
+  }
+  `
+const HeaderWrapper = styled.div`
+font-family: 'Roboto', sans-serif;
+`
 // eslint-disable-next-line arrow-body-style
 const RatingsAndReviewsHeader = ({ reviewArray, setDropDownSelect }) => {
 
   return (
-    <div className="wrapper-dropdown">
-      <form>
+    <HeaderWrapper>
+      <div>
 
         <span>
           {reviewArray.results.length}
@@ -15,7 +36,7 @@ const RatingsAndReviewsHeader = ({ reviewArray, setDropDownSelect }) => {
           reviews, sorted by
         </span>
 
-        <select onChange={(e) => setDropDownSelect(e.target.value)}>
+        <SelectStyle onChange={(e) => setDropDownSelect(e.target.value)}>
           <option
             value="helpful"
           >
@@ -31,10 +52,10 @@ const RatingsAndReviewsHeader = ({ reviewArray, setDropDownSelect }) => {
           >
             Relevant
           </option>
-        </select>
-      </form>
+        </SelectStyle>
+      </div>
 
-    </div>
+    </HeaderWrapper>
   );
 };
 

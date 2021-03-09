@@ -1,24 +1,45 @@
 /* esdivnt-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
-import ShadedStarRating from './ShadedStarRating';
 import styled from 'styled-components';
+import ShadedStarRating from './ShadedStarRating';
 
-const Button = styled.button`
-background-color: #344B5B;
-color: white;
-font-family: 'Shippori Mincho', serif;
-padding: 10px;
-margin: 5px;
-width: fit content;
-border: none;
-outline: none;
-border-radius: 10px;
-box-sizing: border-box;
+
+
+const ReviewPhoto = styled.img`
+ padding-left: 10px;
  `;
+ const StyledA = styled.a`
+  cursor: pointer;
+  font-family: 'Shippori Mincho', serif;
+  font-weight: bold;
+  padding-right: 8px;
+  text-decoration: underline;
+  font-size: smaller;
+  &:hover {
+    color: #344B5B
+  }
+`;
+const ReviewSummary = styled.span`
+  font-weight: bold;
+  font-size: larger;
+`;
+const DateStyle = styled.span`
+display: flex;
+justify-content: start;
+font-style: italic;
+font-size: smaller;
+`;
+const NameDateWrap = styled.div`
+display: inline;
+text-align: right;
+`
+const ReviewName = styled.span`
+
+`
 
 const ReviewTile = ({
 // eslint-disable-next-line react/prop-types
-  review, putReviewReport, putReviewHelpful, currentProductId, getReviews, dropDownselect
+  review, putReviewReport, putReviewHelpful,
 }) => {
   const [starRating, setStarRating] = useState();
   const [helpfulClick, setHelpfulClick] = useState(true);
@@ -43,7 +64,13 @@ const ReviewTile = ({
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
-
+  const renderPhotos = () => {
+    if (review.photos.length !== 0) {
+      return (
+        <p>{review.photos.map((photo, index) => <ReviewPhoto src={photo.url} key={index} alt="review" height="50" width="50" />)}</p>
+      )
+    }
+  }
   const isRecomended = () => {
     if (review.recommend) {
       return (
@@ -79,25 +106,18 @@ const ReviewTile = ({
     <div>
       <ul>
         <ShadedStarRating starPercent={starRating} />
-        <div key="reviewName">
-          <span
-            className="reviewName"
-          >
+        <NameDateWrap>
             {review.reviewer_name}
-          </span>
-          <span
-            className="reviewDate"
-          >
+          <DateStyle>
             {formatDate(review.date)}
-          </span>
-        </div>
+          </DateStyle>
+        </NameDateWrap>
         <div key="reviewSummary">
-          <span
-            className="reviewSummary"
-          >
+          <ReviewSummary>
             {review.summary}
-          </span>
+          </ReviewSummary>
         </div>
+        <br />
         <div
           key="reviewBody"
         >
@@ -105,30 +125,31 @@ const ReviewTile = ({
             {review.body}
           </span>
         </div>
+        <div>
+          {renderPhotos()}
+        </div>
         {isRecomended()}
         {generateResponse()}
         <br />
         <span>
-          helpful?
+          Helpful?
           {' '}
         </span>
-        <Button
+        <StyledA
           type="button"
           onClick={() => submitHelpful()}
         >
           Yes
           {'  '}
-        </Button>
-        <span>
-        &#40; {review.helpfulness} &#41;
-          {' '}
-        </span>
-        <Button
+          &#40; {review.helpfulness} &#41;
+        </StyledA>
+        {'  '}
+        <StyledA
           type="button"
           onClick={() => submitReport()}
         >
           Report
-        </Button>
+        </StyledA>
       </ul>
     </div>
 

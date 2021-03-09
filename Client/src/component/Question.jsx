@@ -32,18 +32,25 @@ const StyledSpanQ = styled.span`
   font-family: 'Roboto', sans-serif;
   font-weight: 800;
   padding-right: 8px;
-  padding-left: 4px;
+  padding-left: 10px;
+  padding-top: 5px;
 `;
 const StyledSpan = styled(StyledSpanQ)`
   font-size: smaller;
   font-weight: 400;
 `;
 
+const StyledSpanHelpful = styled(StyledSpanQ)`
+  font-size: smaller;
+  font-weight: 400;
+  padding-left: 150px;
+`;
+
 const StyledA = styled.a`
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   padding-right: 8px;
-  padding-left: 4px;
+  padding-left: 10px;
   text-decoration: underline;
   font-size: smaller;
   cursor: pointer;
@@ -115,7 +122,7 @@ const Question = ({ question, onShowAnswerModal, onOpenAnswerModal, questionAnsw
         </div>
       </MainQA>
       <RightColumn>
-        <StyledSpan> Helpful? </StyledSpan>
+        <StyledSpanHelpful> Helpful? </StyledSpanHelpful>
         <StyledA onClick={handleQuestionHelpfulnessClick}> Yes ({question_helpfulness}) </StyledA>
         <StyledA onClick={(e) => onQuestionReportClick(e)}>{' '} Report</StyledA>
         <StyledButton onClick={onAddAnswerButtonClick}> Add an Answer</StyledButton>

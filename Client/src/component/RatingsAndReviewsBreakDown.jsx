@@ -3,9 +3,36 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import ShadedStarRating from './ShadedStarRating';
 
+const AverageStyle = styled.span`
+display: flex;
+justify-content: start;
+font-wieght: bold;
+font-size: 40px;
+`;
 
+
+const StyleStars = styled.span`
+display: flex;
+justify-content: start;
+`
+const ProgStyle = styled.progress`
+webkit-appearance: none;
+   appearance: none;
+  width: 200px;
+  height: 10px;
+}
+`
+const CharStyle = styled.span`
+text-decoration: underline;
+font-size: small;
+font-family: 'Roboto', sans-serif;
+`
+const StyledSpanFont = styled.span`
+font-family: 'Roboto', sans-serif;
+`
 // eslint-disable-next-line arrow-body-style
 const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharacterObj }) => {
   const [starPercent, setStarPercent] = useState();
@@ -29,8 +56,8 @@ const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharact
       if (productReviewArray[i].recommend) numberRecommended++;
     }
     const asPercent = (numberRecommended/productReviewArray.length) * 100;
-
-    return asPercent;
+    const averagePrecentRounded = Math.round(asPercent * 10) / 10
+    return averagePrecentRounded;
   };
 
   // eslint-disable-next-line arrow-body-style
@@ -47,11 +74,13 @@ const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharact
       const asPercentForBars = (numberOfStarsObj[key]/productReviewArray.length) * 100;
       return (
         <div key={index}>
-          {key}
-          {' '}
-          stars
-          {' '}
-          <progress
+          <CharStyle>
+            {key}
+            {' '}
+            stars
+            {' '}
+          </CharStyle>
+          <ProgStyle
             id="star"
             max="100"
             value={asPercentForBars}
@@ -78,7 +107,7 @@ const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharact
   const CHAR_RATING = {
     background: 'lightgrey',
     height: '7px',
-    width: '220px',
+    width: '300px',
     position: 'relative',
 
   };
@@ -93,7 +122,7 @@ const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharact
       // eslint-disable-next-line consistent-return
       return charObjKeys.map((key, index) => {
         if (reviewChars[key]) {
-          const arrowPlacement = (reviewChars[key].value / 5) * 100;
+          const arrowPlacement = (reviewChars[key].value / 5) * 300;
           const ARROW_SLIDE_SIZE = {
             fontSize: 15,
             left: arrowPlacement,
@@ -102,15 +131,15 @@ const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharact
 
           return (
             <div key={index}>
-              <span>{key}</span>
+              <StyledSpanFont>{key}</StyledSpanFont>
               <br />
               <div
                 style={CHAR_RATING}
               >
                 <i style={ARROW_SLIDE_SIZE} className="fas fa-arrow-up" />
               </div>
-              <span style={{fontSize: '12px'}}>{sampleCharacterObj[key][1]}</span>
-              <span style={{fontSize: '12px'}}>{sampleCharacterObj[key][5]}</span>
+              <span style={{fontSize: '12px' }}>{sampleCharacterObj[key][1]}</span>
+              <span style={{fontSize: '12px', display: 'flex', justifyContent: 'flex-end'}}>{sampleCharacterObj[key][5]}</span>
               <br />
             </div>
           );
@@ -123,13 +152,15 @@ const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharact
     <div>
       <h3>Ratings &amp; Reviews </h3>
       <div>
-        <span>{averageRating()}</span>
-        <ShadedStarRating starPercent={starPercent} />
+        <AverageStyle>{averageRating()}</AverageStyle>
+        <StyleStars>
+          <ShadedStarRating starPercent={starPercent} />
+        </StyleStars>
       </div>
-      <span>
+      <StyledSpanFont>
         {percentRecommended()}
         % of reviews recommend this product
-      </span>
+      </StyledSpanFont>
       <div>
         {generateStarBar()}
       </div>
