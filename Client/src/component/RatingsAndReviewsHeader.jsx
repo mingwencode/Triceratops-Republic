@@ -38,9 +38,9 @@ const RatingsAndReviewsHeader = ({ reviewArray, setDropDownSelect }) => {
 
         <SelectStyle onChange={(e) => setDropDownSelect(e.target.value)}>
           <option
-            value="helpful"
+            value="relevant"
           >
-            Helpful
+            relevant
           </option>
           <option
             value="newest"
@@ -48,9 +48,9 @@ const RatingsAndReviewsHeader = ({ reviewArray, setDropDownSelect }) => {
             Newest
           </option>
           <option
-            value="relevant"
+            value="Helpful"
           >
-            Relevant
+            Helpful
           </option>
         </SelectStyle>
       </div>
