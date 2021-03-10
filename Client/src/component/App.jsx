@@ -71,6 +71,7 @@ const App = () => {
         let url = '';
         let largeUrl ='';
         let object = {};
+        console.log(res[1].data)
         setProductStyles(res[1].data);
 
         let count = 0;

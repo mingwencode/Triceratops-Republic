@@ -14,7 +14,6 @@ const TB = styled.span`
 const Logo = styled.span`
   justify-content: flex-start;
   position: 'fixed';
-  height: fit-content;
   self-align: center;
 `;
 
@@ -55,7 +54,7 @@ const SearchBtn = styled.button`
 const OverviewTopBar = () => (
   <TB>
     <Logo>
-      <img src={logo} alt="logo" height="90" width="80" />
+      <img src={logo} alt="logo" height="60" width="60" />
     </Logo>
     <Title>
       <h2>Triceratop Republic</h2>
@@ -63,7 +62,7 @@ const OverviewTopBar = () => (
     <Search>
       <Input name="seachBar" className="search-bar" placeholder="Search" />
       <span>
-        <SearchBtn className="search-bar-btn" type="submit">Search</SearchBtn>
+        <SearchBtn className="search-bar-btn" type="submit" onClick={() => alert('Product Not Found')}>Search</SearchBtn>
       </span>
     </Search>
   </TB>
