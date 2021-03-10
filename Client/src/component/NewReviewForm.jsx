@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 /* eslint-disable consistent-return */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -55,7 +55,7 @@ border: none;
 outline: none;
 border-radius: 8px;
 box-sizing: border-box;
-`
+`;
 const StyledPMessage = styled.span`
   color: red;
   font-family: 'Roboto', sans-serif;
@@ -89,20 +89,25 @@ padding: 3px;
 margin: 5px;
 width: 250px;
 box-sizing: border-box;
-`
+`;
 const StyledSpanFont = styled.span`
 font-family: 'Roboto', sans-serif;
-`
+`;
 const StyledSpanLabel = styled.label`
 font-family: 'Roboto', sans-serif;
-`
+`;
 const Styledh3 = styled.h3`
 font-family: 'Shippori Mincho', serif;
-`
+`;
 const StyledLegend = styled.legend`
 font-family: 'Roboto', sans-serif;
 
-`
+`;
+const StyledReaminingCharactersSpan = styled.span`
+font-family: 'Roboto', sans-serif;
+font-size: .7em;
+padding-left: 250px;
+`;
 
 const TABLE = { border: '1px white' };
 const NewReviewForm = ({
@@ -118,6 +123,7 @@ const NewReviewForm = ({
   const [reviewer_name, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [characisticsState, setCharacteristicsState] = useState({});
+  const [remainingCharacters, setRemainingCharacters] = useState(50);
 
   const postCharacteristicsObj = {
     product_id: currentProductId,
@@ -229,6 +235,7 @@ const NewReviewForm = ({
     setEmail();
     setCharacteristicsState({});
     setImageUpload([]);
+    setRemainingCharacters(50);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -299,6 +306,8 @@ const NewReviewForm = ({
       );
     }
   };
+
+
 
   if (!showNewReviewModal) {
     return null;
@@ -415,15 +424,22 @@ const NewReviewForm = ({
               maxLength="1000"
               required="required"
               value={body}
-              onChange={(event) => setChangeReview(event.target.value)}
+              onChange={(event) => {
+                setChangeReview(event.target.value);
+                setRemainingCharacters(49 - body.length);
+              }}
             />
+            <br />
+
+            {body.length > 50 ? (<StyledReaminingCharactersSpan> Minimum Reached</StyledReaminingCharactersSpan>) : (<StyledReaminingCharactersSpan> Minimum characters left  {remainingCharacters} </StyledReaminingCharactersSpan>)}
           </div>
           <div>
+            {thumbnail.length < 5 ? (
             <input
               type="file"
               name="photo"
               onChange={onPhotoUpload}
-            />
+            />) : null }
             {thumbnail.map((image, index) => <img src={image} key={index} alt="uploaded by user" height="50" width="50" />)}
           </div>
           <div>

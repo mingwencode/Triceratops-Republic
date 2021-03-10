@@ -13,7 +13,7 @@ const StyledSpan = styled.span`
 `;
 
 const StyledSpanBy = styled(StyledSpan)`
-  padding-left: 35px;
+  padding-left: 48px;
 `;
 
 const StyledA = styled.a`
@@ -36,7 +36,7 @@ const StyledP = styled.p`
 
 const StyledImg = styled.img`
   padding-right: 5px;
-  padding-left: 30px;
+  padding-left: 48px;
 `;
 
 const Answer = ({ answer, putAnswersHelpful, putAnswersReport }) => {
@@ -69,7 +69,7 @@ const Answer = ({ answer, putAnswersHelpful, putAnswersReport }) => {
   }
   return (
     <div>
-      <StyledP>A:
+      <StyledP data-testid="A">A:
         {' '}
         {body}
       </StyledP>
@@ -83,10 +83,10 @@ const Answer = ({ answer, putAnswersHelpful, putAnswersReport }) => {
       <StyledSpan>
         {getProperDate(date)}
       </StyledSpan>
-      <StyledSpan>
+      <StyledSpan data-testid="helpful">
         Helpful?
       </StyledSpan>
-      <StyledA onClick={handleHelpfulnessClick}>
+      <StyledA data-testid="Yes" onClick={handleHelpfulnessClick}>
         Yes
         ({helpfulness})
       </StyledA>
