@@ -53,8 +53,8 @@ const Button = styled.button`
 `;
 const Modal = styled.div`
   display: flex;
-  justify-content: flex-end;
-  grid-column: 3/4;
+  justify-content: flex-start;
+  grid-column: 4/5;
   grid-row: 1/2;
   z-index: 1000;
 `;
@@ -74,7 +74,7 @@ const Image = styled.span`
 `;
 const Img = styled.img`
   height: 500px;
-  max-width: 400px;
+  max-width: 370px;
   object-fit: cover;
 `;
 

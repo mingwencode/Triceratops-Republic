@@ -11,6 +11,8 @@ const TB = styled.span`
 const Logo = styled.span`
   justify-content: flex-start;
   position: 'fixed';
+  height: fit-content;
+  self-align: center;
 `;
 
 const Title = styled.span`
@@ -21,6 +23,7 @@ const Title = styled.span`
 const Search = styled.span`
   justify-content: flex-end;
   margin: 7px;
+  self-align: center;
 `;
 
 const SearchBtn = styled.button`
@@ -40,7 +43,7 @@ const SearchBtn = styled.button`
 const OverviewTopBar = () => (
   <TB>
     <Logo>
-      <img src={logo} alt="logo" height="70" width="70" />
+      <img src={logo} alt="logo" height="90" width="80" />
     </Logo>
     <Title>
       <h2>Triceratop Republic</h2>
