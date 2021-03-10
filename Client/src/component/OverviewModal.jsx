@@ -3,12 +3,14 @@ import React, { useState, useEffect } from 'react';
 
 const modalStyles = {
   position: 'fixed',
-  width: '90%',
+  borderRadius: '10px',
+  height: 'fit-content',
+  width: 'fit-content',
   minHeight: '800px',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  backgroundColor: '#FFF',
+  backgroundColor: 'rfga(195, 240, 247, .7)',
   padding: '50px',
   zIndex: 1000
 };
@@ -52,7 +54,7 @@ const OverviewModal = ({ open, onClose, productStyles }) => {
           <button className="modalPrevBtn" onClick={handlePrevious}>Prev</button>
         </div>
         <div>
-          <img src={productStyles.results[modalImageIndex].photos[0].url} alt="" height="900" />
+          <img src={productStyles.results[modalImageIndex].photos[0].url} alt="" height="900" width="700" />
         </div>
         <button className="modalNextBtn" onClick={handleNext}>Next</button>
       </div>

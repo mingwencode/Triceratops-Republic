@@ -5,23 +5,21 @@ import React from 'react';
 const Thumbnails = ({ idx, image, onThumbnailClick }) => {
   return (
     <div style={styles.thumbnails}>
-      <img src={image} onClick={(e) => onThumbnailClick(idx)} alt="" height="70px" width="60px" />
+      <img src={image} onClick={(e) => onThumbnailClick(idx)} alt="" height="60px" width="50px" />
     </div>
   );
 };
 
 const styles = {
   thumbnails: {
-    width: '350px',
-    height: '200px',
-    width: '60px',
-    height: '70px',
-    backgroundColor: 'blue',
-    border: '2px solid black',
+    // width: '350px',
+    // height: '200px',
+    width: '50px',
+    height: '60px',
+    border: '1px solid black',
     borderSizing: 'border-box',
     boxSizing: 'border-box',
     fontSize: '2.5em',
-    color: 'white'
   }
 };
 
