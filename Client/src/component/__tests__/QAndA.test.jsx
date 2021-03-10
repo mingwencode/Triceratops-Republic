@@ -27,9 +27,3 @@ describe('QAndA', () => {
   });
 });
 
-describe('QAndA', () => {
-  test('renders QAndA Button content', () => {
-    render(<QAndA />);
-    screen.getByRole('button', { name: /Add A Question +/i });
-  });
-});

@@ -14,7 +14,11 @@ const AppBackground = styled.div`
 
 const AppBody = styled.div`
   display: grid;
+<<<<<<< HEAD
   grid-template-autp: 25% 23% 25% 27%;
+=======
+  grid-template-auto: 25% 23% 25% 27%;
+>>>>>>> 78ceb66677f3a97b475e9d7e6f80ddf39c784340
   grid-template-columns: auto;
   box-shadow: 10px 50px 100px 0 rgba(0,0,0,0.1);
   background: rgba(203, 216, 225, 1);
