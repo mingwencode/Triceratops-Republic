@@ -6,10 +6,12 @@ const Description = styled.div`
   grid-template-columns: 70% 30%;
   font-family: 'Roboto', sans-serif;
   padding-top: 20px;
+  background-color: #D8E2E9;
 `;
 const SloganDesc = styled.div`
   grid-column: 1/2;
   border-right: 2px solid black;
+  padding-left: 10px;
 `;
 const Bullets = styled.div`
   grid-column: 2/3;

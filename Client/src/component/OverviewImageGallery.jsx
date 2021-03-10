@@ -22,6 +22,7 @@ const Gallery = styled.div`
   margin-top: 10px;
 `;
 const Carousel = styled.div`
+  transform: scale(1.05, 1.05);
   grid-column: 1;
   grid-row: 2/3;
 `;

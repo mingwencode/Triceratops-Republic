@@ -10,7 +10,7 @@ import QAndA from './QAndA';
 import RelatedProducts from './RelatedProducts';
 
 const AppBackground = styled.div`
-  background: rgba(203, 216, 225, 1);
+  background: rgba(215, 213, 215, 1);
 `;
 
 const AppBody = styled.div`
@@ -31,10 +31,12 @@ const OverviewStyle = styled.div`
 
 const RelatedProductsStyle = styled.div`
   grid-row-start: 2;
+  border-bottom: 1px dotted #344B5B;
 `;
 
 const QASyles = styled.div`
   grid-row: 3 / 4;
+  border-bottom: 1px dotted #344B5B;
 `;
 
 const ReviewsStyles = styled.div`
@@ -74,7 +76,6 @@ const App = () => {
         let smallUrl = '';
         let salePrice = '';
         let object = {};
-        console.log(res[1].data)
         setProductStyles(res[1].data);
 
         let count = 0;
@@ -117,6 +118,8 @@ const App = () => {
               currentItem={currentItem}
               productStyles={productStyles}
               setReviewModalBoolean={setReviewModalBoolean}
+              outfitArray={outfitArray}
+              setOutfitArray={setOutfitArray}
             />
           </OverviewStyle>
           <RelatedProductsStyle>

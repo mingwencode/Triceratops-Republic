@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
 import React, { useState, useEffect } from 'react';
@@ -31,11 +32,28 @@ const Add = styled.div`
   padding-right: 10px;
 `;
 
-const OverviewAddToBag = ({ productStyles, styleResultsIndex }) => {
+const OverviewAddToBag = ({ productStyles, styleResultsIndex, outfitArray, setOutfitArray, currentItem }) => {
   const [sizeSelected, setSize] = useState('');
   const [qtyState, setQtyState] = useState();
   const [currentQty, setCurrentQty] = useState();
   const [addToBagId, setAddToBagId] = useState();
+  const qtyArray = [];
+
+  const handleAddOutfitClick = () => {
+    const tempArray = [...outfitArray];
+    if (tempArray.length > 0) {
+      for (const outfit of tempArray) {
+        if (outfit.id === currentItem.id) {
+          break;
+        }
+      }
+      tempArray.unshift(currentItem);
+      setOutfitArray(tempArray);
+    } else {
+      tempArray.unshift(currentItem);
+      setOutfitArray(tempArray);
+    }
+  };
 
   if (productStyles !== undefined) {
     // eslint-disable-next-line prefer-const
@@ -59,11 +77,9 @@ const OverviewAddToBag = ({ productStyles, styleResultsIndex }) => {
       }
     };
 
-    const qtyArray = [];
-
     const handleSizeChange = (e) => {
       e.preventDefault();
-      for (let i = 0; i < skusArray.length; i++) {
+      for (let i = 0; i < skusArray.length; i += 1) {
         if (skusArray[i].size === e.target.value) {
           setQtyState(skusArray[i].qty);
           setAddToBagId(skusArray[i].id);
@@ -77,14 +93,14 @@ const OverviewAddToBag = ({ productStyles, styleResultsIndex }) => {
     };
 
     if (qtyState > 0) {
-      for (let i = 0; i <= qtyState; i++) {
+      for (let i = 0; i <= qtyState; i += 1) {
         qtyArray.push(i);
       }
     }
 
     const qtySelection = () => {
       if (qtyArray.length === 0) {
-        return <option>-</option>
+        return <option>-</option>;
       }
       return qtyArray.slice(0, 16).map((qty, idx) => (
         <option key={idx} value={idx}>{qty}</option>
@@ -107,7 +123,7 @@ const OverviewAddToBag = ({ productStyles, styleResultsIndex }) => {
     };
 
     const handleATBSubmit = (id) => {
-      axios.post('/cart', {sku_id: id})
+      axios.post('/cart', { sku_id: id })
         .then(() => console.log('added to bag!!!'))
         .catch(() => console.log('failed to add to bag'));
     };
@@ -124,12 +140,12 @@ const OverviewAddToBag = ({ productStyles, styleResultsIndex }) => {
           </Select>
         </form>
         <Add>
-        <form onSubmit={handleATBSubmit}>
-          {addToBagBtn()}
-        </form>
-        <form>
-          <Button type="button" className="favorite-outfit">+</Button>
-        </form>
+          <form onSubmit={handleATBSubmit}>
+            {addToBagBtn()}
+          </form>
+          <form>
+            <Button type="button" className="favorite-outfit" onClick={handleAddOutfitClick}>+</Button>
+          </form>
         </Add>
       </div>
     );

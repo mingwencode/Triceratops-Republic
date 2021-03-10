@@ -24,13 +24,17 @@ const ReadReviews = styled.a`
   }
 `;
 const ProductName = styled.div`
-  max-width: 200px;
-  font-size: 40px;
+  max-width: 300px;
+  font-size: 30px;
   font-family: 'Shippori Mincho', serif;
+  padding-bottom: 5px;
+`;
+const Price = styled.span`
+  padding-bottom: 10px;
 `;
 const StyleThumb = styled.img`
   border-radius: 50%;
-  padding-right: 10px;
+  padding: 10px;
   &:hover{
     color: #A4BBCB;
     transform: scale(1.5, 1.5);
@@ -83,29 +87,27 @@ const OverviewProductInfo = ({
         <div>
           <ProductName><strong>{currentItem.name}</strong></ProductName>
         </div>
-        <div>
-          <span className="price">
-            {productStyles.results[styleResultsIndex].sale_price === null
-              ? (
-                <span>
+        <Price className="price">
+          {productStyles.results[styleResultsIndex].sale_price === null
+            ? (
+              <span>
+                $
+                {productStyles.results[styleResultsIndex].original_price}
+              </span>
+            )
+            : (
+              <span>
+                <s>
                   $
                   {productStyles.results[styleResultsIndex].original_price}
-                </span>
-              )
-              : (
-                <span>
-                  <s>
-                    $
-                    {productStyles.results[styleResultsIndex].original_price}
-                  </s>
-                  {'  '}
-                  $
-                  {productStyles.results[styleResultsIndex].sale_price}
-                </span>
-              )}
-          </span>
-        </div>
-        <div>
+                </s>
+                {'  '}
+                $
+                {productStyles.results[styleResultsIndex].sale_price}
+              </span>
+            )}
+        </Price>
+        <div style={{ padding: '10px' }}>
           <strong>
             Style
             {'> '}
