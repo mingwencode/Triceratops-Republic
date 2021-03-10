@@ -12,14 +12,6 @@ describe('App', () => {
       screen.getByText("Loading...");
 })});
 
-// describe.only("Fetchy", () => {
-//   beforeAll(() => {
-//       jest.useFakeTimers();
-//   })
-
-//   afterAll(() => {
-//       jest.useRealTimers()
-//   })
 
 
 // describe('App', () => {
