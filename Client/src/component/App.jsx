@@ -47,6 +47,7 @@ const App = () => {
   const [relatedProductIds, setRelatedProductIds] = useState();
   const [productStyles, setProductStyles] = useState();
   const [currentItem, setCurrentItem] = useState({});
+  const [moreReviewsBoolean, setMoreReview] = useState(true);
 
   // RELATED PRODUCTS
   const getRelatedProductIds = (id) => {
@@ -119,7 +120,7 @@ const App = () => {
             <QAndA currentProductId={currentProductId} />
           </QASyles>
           <ReviewsStyles>
-            <RatingsAndReviews currentProductId={currentProductId} currentItem={currentItem} />
+            <RatingsAndReviews currentProductId={currentProductId} currentItem={currentItem} moreReviewsBoolean={moreReviewsBoolean} setMoreReview={setMoreReview}/>
           </ReviewsStyles>
         </AppBody>
       </AppBackground>
