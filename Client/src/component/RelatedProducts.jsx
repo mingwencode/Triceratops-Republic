@@ -6,18 +6,18 @@ import YourOutfitList from './YourOutfitList';
 
 const Container = styled.div`
   display: grid;
-  grid-template-rows: 40px 1fr 40px 1fr;
+  grid-template-rows: 50px 1fr 50px 1fr;
   margin: 0;
   background: rgba(203, 216, 225, 1);
   padding: 30px;
 `;
-//background :yellow;
-//background: yellow;
+
 const ProductListTitle = styled.div`
   grid-row: 1 / 2;
   font-size: 1.17em;
   font-weight: 800;
   justify-items: left;
+  margin-top: 15px;
   color: #344B5B;
 `;
 
@@ -35,7 +35,7 @@ const OutFitListDiv = styled(ProductsListDiv)`
   grid-row: 4 / 5;
 `;
 
-const RelatedProducts = ({setCurrentProductId, relatedProductIds, currentItem}) => {
+const RelatedProducts = ({setCurrentProductId, relatedProductIds, currentItem, outfitArray, setOutfitArray}) => {
   const [relatedList, setRelatedList] = useState([]);
   const [len, setLen] = useState(0);
 
@@ -50,7 +50,8 @@ const RelatedProducts = ({setCurrentProductId, relatedProductIds, currentItem}) 
         .then((res) => {
           const { id, name, category, default_price, features } = res[0].data;
           const styleResult = res[1].data.results;
-          let url = '';
+          let smallUrl = '';
+          let salePrice = '';
           let object = {};
 
           let count = 0;
@@ -61,12 +62,13 @@ const RelatedProducts = ({setCurrentProductId, relatedProductIds, currentItem}) 
 
           for (let i = 0; i < styleResult.length; i++) {
             if (styleResult[i]['default?']) {
-              url = styleResult[i].photos[0].thumbnail_url;
+              smallUrl = styleResult[i].photos[0].url;
+              salePrice = styleResult[i].sale_price;
               break;
             }
           }
           object = {
-            id, name, category, price: default_price, features, url, starPercent,
+            id, name, category, price: default_price, features, smallUrl, starPercent, salePrice,
           };
           list.push(object);
         })
@@ -90,7 +92,7 @@ const RelatedProducts = ({setCurrentProductId, relatedProductIds, currentItem}) 
       </ProductsListDiv>
       <OutfitTitle>YOUR OUTFIT</OutfitTitle>
       <OutFitListDiv>
-        <YourOutfitList currentItem={currentItem} />
+        <YourOutfitList currentItem={currentItem} outfitArray={outfitArray} setOutfitArray={setOutfitArray} />
       </OutFitListDiv>
     </Container>
   );
