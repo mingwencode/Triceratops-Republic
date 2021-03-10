@@ -5,7 +5,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import ReviewTile from './ReviewTile';
-import NewReviewForm from './NewReviewForm';
 import RatingsAndReviewsHeader from './RatingsAndReviewsHeader';
 
 const MODAL_STYLES = {
@@ -32,6 +31,9 @@ const MODALHEADER_STYLES = {
   display: 'grid',
   gridTemplateColumns: '10% 70% 20%',
 };
+
+
+
 const OVERLAY_STYLES = {
   position: 'fixed',
   top: 0,
