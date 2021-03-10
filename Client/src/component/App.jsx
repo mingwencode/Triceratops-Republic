@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-use-before-define */
 import React, { useState, useEffect } from 'react';
@@ -47,7 +48,7 @@ const App = () => {
   const [relatedProductIds, setRelatedProductIds] = useState();
   const [productStyles, setProductStyles] = useState();
   const [currentItem, setCurrentItem] = useState({});
-  const [moreReviewsBoolean, setMoreReview] = useState(true);
+  const [reviewModalBoolean, setReviewModalBoolean] = useState(false);
 
   // RELATED PRODUCTS
   const getRelatedProductIds = (id) => {
@@ -120,7 +121,7 @@ const App = () => {
             <QAndA currentProductId={currentProductId} />
           </QASyles>
           <ReviewsStyles>
-            <RatingsAndReviews currentProductId={currentProductId} currentItem={currentItem} moreReviewsBoolean={moreReviewsBoolean} setMoreReview={setMoreReview}/>
+            <RatingsAndReviews currentProductId={currentProductId} currentItem={currentItem} setReviewModalBoolean={setReviewModalBoolean} reviewModalBoolean={reviewModalBoolean} />
           </ReviewsStyles>
         </AppBody>
       </AppBackground>

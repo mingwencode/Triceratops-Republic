@@ -19,10 +19,10 @@ const SelectStyle = styled.select`
     min-height: 20px;
     padding: 0px 2px 1px;
   }
-  `
+  `;
 const HeaderWrapper = styled.div`
 font-family: 'Roboto', sans-serif;
-`
+`;
 // eslint-disable-next-line arrow-body-style
 const RatingsAndReviewsHeader = ({ reviewArray, setDropDownSelect }) => {
 
