@@ -12,14 +12,11 @@ const ListContainer = styled.div`
 const ViewPort = styled.div`
   padding-top: 10px;
   margin: 0 auto;
-  width: 880px;
+  width: 960px;
   height: 280px;
   overflow: hidden;
 
 `;
-
-//transform: scale(1.2, 1.2);
-//background: red;
 
 const CardContainer = styled.div`
   display: flex;
@@ -62,7 +59,7 @@ const RelatedProductsList = ({ setCurrentProductId, currentItem, relatedList, le
 
   useEffect(() => {
     cardContainer.current.style.transitionDuration = '0.5s';
-    cardContainer.current.style.transform = `translate(-${220 * current}px)`;
+    cardContainer.current.style.transform = `translate(-${240 * current}px)`;
   }, [current]);
 
   const prevSilde = () => {
@@ -86,7 +83,7 @@ const RelatedProductsList = ({ setCurrentProductId, currentItem, relatedList, le
         <CardContainer ref={cardContainer} className="card-container">
           {relatedList.length === len && relatedList.map((product, index) => (
             <div key={index}>
-              <ProductCard product={product} list={true} setCurrentProductId={setCurrentProductId} currentItem={currentItem} />
+              <ProductCard product={product} list={true} setCurrentProductId={setCurrentProductId} currentItem={currentItem} setCurrent={setCurrent}/>
             </div>
           ))}
         </CardContainer>

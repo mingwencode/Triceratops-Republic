@@ -21,7 +21,7 @@ const Card = styled.div`
   background: white;
   font-size: 0.8em;
   color: white;
-  margin: 0 20px 0 20px;
+  margin: 0 30px 0 30px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   &:hover{
     box-shadow: 0 8px 13px 0 rgba(0,0,0,0.2);
@@ -46,6 +46,23 @@ const Span = styled.div`
   color: black;
   padding-left: 5px;
 `;
+
+const Span1 = styled(Span)`
+  display:inline;
+  padding-right: 5px;
+  position: relative;
+  top: -5px;
+`;
+
+const Star1 = styled(Star)`
+  position: relative;
+  top: -5px;
+`;
+
+const SpanSale = styled(Span1)`
+  text-decoration: line-through;
+`;
+
 const Name = styled(Span)`
   font-size: 1.2em;
   font-weight: 500;
@@ -75,20 +92,25 @@ cursor: pointer;
 `;
 
 const ProductCard = ({
-  product, list, removeOutFit, setCurrentProductId, currentItem}) => {
+  product, list, removeOutFit, setCurrentProductId, currentItem, setCurrent}) => {
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
     setShowModal((prev) => !prev);
   };
 
+  const resetPage = () => {
+    setCurrentProductId(product.id);
+    setCurrent(0);
+  }
+
   return (
     <Card>
 
       {list ? (
         <CompareBtnContainer>
-          <SlideImg src={product.url} alt="" onClick={() => setCurrentProductId(product.id)} />
-          <Button title="compare" onClick={() => openModal()}>&#9055;</Button>
+          <SlideImg data-testid="relatedListImage" src={product.smallUrl} alt="" onClick={() => resetPage()} />
+          <Button data-testid="compareBtn" title="compare" onClick={() => openModal()}>&#9055;</Button>
           <CompareModal
             isOpenModal={showModal}
             onDismiss={setShowModal}
@@ -100,14 +122,21 @@ const ProductCard = ({
         :
         (
           <CompareBtnContainer>
-            <SlideImg src={product.url} alt="" />
-            <Button title="remove" onClick={() => removeOutFit(product.id)}>&#8855;</Button>
+            <SlideImg data-testid="relatedOutfitImage" src={product.smallUrl} alt="" />
+            <Button data-testid="closeBtn" title="remove" onClick={() => removeOutFit(product.id)}>&#8855;</Button>
           </CompareBtnContainer>
         )}
       <Span>{product.category}</Span>
       <Name>{product.name}</Name>
-      <Span>{`$${product.price}`}</Span>
-      <Star><ShadedStarRating starPercent={product.starPercent} /></Star>
+      {product.salePrice ?
+      (<>
+        <Span1>{`$${product.salePrice}`}</Span1>
+        <SpanSale>{`$${product.price}`}</SpanSale>
+        <Star1><ShadedStarRating starPercent={product.starPercent} /></Star1>
+       </>)
+       :(<><Span>{`$${product.price}`}</Span>
+       <Star><ShadedStarRating starPercent={product.starPercent} /></Star></>)}
+
     </Card>
 
   );

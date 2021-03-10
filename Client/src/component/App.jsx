@@ -43,11 +43,13 @@ const ReviewsStyles = styled.div`
 `;
 
 const App = () => {
-  const [currentProductId, setCurrentProductId] = useState(20114);
+  //const [productArray, setProductArray] = useState([]);
+  const [currentProductId, setCurrentProductId] = useState(20817);
   const [relatedProductIds, setRelatedProductIds] = useState();
   const [productStyles, setProductStyles] = useState();
   const [currentItem, setCurrentItem] = useState({});
   const [reviewModalBoolean, setReviewModalBoolean] = useState(false);
+  const [outfitArray, setOutfitArray] = useState([]);
 
   // RELATED PRODUCTS
   const getRelatedProductIds = (id) => {
@@ -69,7 +71,8 @@ const App = () => {
         const { id, name, category, default_price, features, slogan, description } = res[0].data;
         const styleResult = res[1].data.results;
         let url = '';
-        let largeUrl ='';
+        let smallUrl = '';
+        let salePrice = '';
         let object = {};
         setProductStyles(res[1].data);
 
@@ -82,12 +85,13 @@ const App = () => {
         for (let i = 0; i < styleResult.length; i++) {
           if (styleResult[i]['default?']) {
             url = styleResult[i].photos[0].thumbnail_url;
-            largeUrl = styleResult[i].photos[0].url;
+            smallUrl = styleResult[i].photos[0].url;
+            salePrice = styleResult[i].sale_price;
             break;
           }
         }
         object = {
-          id, name, category, price: default_price, features, url, starPercent, slogan, description, largeUrl,
+          id, name, category, price: default_price, features, url, starPercent, slogan, description, smallUrl, salePrice,
         };
         return object;
       })
@@ -115,7 +119,7 @@ const App = () => {
             />
           </OverviewStyle>
           <RelatedProductsStyle>
-            <RelatedProducts setCurrentProductId={setCurrentProductId} relatedProductIds={relatedProductIds} currentItem={currentItem} />
+            <RelatedProducts setCurrentProductId={setCurrentProductId} relatedProductIds={relatedProductIds} currentItem={currentItem} outfitArray={outfitArray} setOutfitArray={setOutfitArray} />
           </RelatedProductsStyle>
           <QASyles>
             <QAndA currentProductId={currentProductId} />

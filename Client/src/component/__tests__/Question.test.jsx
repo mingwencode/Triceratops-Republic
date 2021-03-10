@@ -24,7 +24,7 @@ const question = {
         }
     }
 }
-  
+
 
 describe('Question', () => {
   test('renders Q:', () => {
