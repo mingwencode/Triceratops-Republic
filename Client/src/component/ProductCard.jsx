@@ -46,6 +46,23 @@ const Span = styled.div`
   color: black;
   padding-left: 5px;
 `;
+
+const Span1 = styled(Span)`
+  display:inline;
+  padding-right: 5px;
+  position: relative;
+  top: -5px;
+`;
+
+const Star1 = styled(Star)`
+  position: relative;
+  top: -5px;
+`;
+
+const SpanSale = styled(Span1)`
+  text-decoration: line-through;
+`;
+
 const Name = styled(Span)`
   font-size: 1.2em;
   font-weight: 500;
@@ -87,8 +104,8 @@ const ProductCard = ({
 
       {list ? (
         <CompareBtnContainer>
-          <SlideImg src={product.url} alt="" onClick={() => setCurrentProductId(product.id)} />
-          <Button title="compare" onClick={() => openModal()}>&#9055;</Button>
+          <SlideImg data-testid="relatedListImage" src={product.url} alt="" onClick={() => setCurrentProductId(product.id)} />
+          <Button data-testid="compareBtn" title="compare" onClick={() => openModal()}>&#9055;</Button>
           <CompareModal
             isOpenModal={showModal}
             onDismiss={setShowModal}
@@ -100,14 +117,21 @@ const ProductCard = ({
         :
         (
           <CompareBtnContainer>
-            <SlideImg src={product.url} alt="" />
-            <Button title="remove" onClick={() => removeOutFit(product.id)}>&#8855;</Button>
+            <SlideImg data-testid="relatedOutfitImage" src={product.url} alt="" />
+            <Button data-testid="closeBtn" title="remove" onClick={() => removeOutFit(product.id)}>&#8855;</Button>
           </CompareBtnContainer>
         )}
       <Span>{product.category}</Span>
       <Name>{product.name}</Name>
-      <Span>{`$${product.price}`}</Span>
-      <Star><ShadedStarRating starPercent={product.starPercent} /></Star>
+      {product.salePrice ?
+      (<>
+        <Span1>{`$${product.salePrice}`}</Span1>
+        <SpanSale>{`$${product.price}`}</SpanSale>
+        <Star1><ShadedStarRating starPercent={product.starPercent} /></Star1>
+       </>)
+       :(<><Span>{`$${product.price}`}</Span>
+       <Star><ShadedStarRating starPercent={product.starPercent} /></Star></>)}
+
     </Card>
 
   );

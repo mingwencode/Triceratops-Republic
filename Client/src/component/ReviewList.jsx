@@ -61,7 +61,7 @@ const Button = styled.button`
 background-color: #344B5B;
 color: white;
 font-family: 'Roboto', sans-serif;
-font-weight: 600;
+font-weight: 500;
 padding: 8px;
 margin: 3px;
 width: fit-content;
@@ -104,11 +104,17 @@ box-sizing: border-box;
   background-color: #D8E2E9;
 }
  `
+ const StyledH2 = styled.h2`
+  background: rgba(203, 216, 225, 1);
+  border-radius: 8px;
+  box-sizing: border-box;
 
-const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect, setDropDownSelect, currentItem, showNewMReviewModal, setNewReviewModal, sampleCharacterObj, reviewMetaData }) => {
+`;
+
+const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect, setDropDownSelect, currentItem, showNewMReviewModal, setNewReviewModal, moreReviewsBoolean, setMoreReview }) => {
   const [reviewCount, setReviewCount] = useState(2);
   const [reviewModalBoolean, setReviewModalBoolean] = useState(false);
-  const [moreReviewsBoolean, setMoreReview] = useState(true);
+
 
   const reviews = reviewArray.results;
   useEffect(() => {

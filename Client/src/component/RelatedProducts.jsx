@@ -50,6 +50,7 @@ const RelatedProducts = ({setCurrentProductId, relatedProductIds, currentItem}) 
           const { id, name, category, default_price, features } = res[0].data;
           const styleResult = res[1].data.results;
           let url = '';
+          let salePrice = '';
           let object = {};
 
           let count = 0;
@@ -61,11 +62,12 @@ const RelatedProducts = ({setCurrentProductId, relatedProductIds, currentItem}) 
           for (let i = 0; i < styleResult.length; i++) {
             if (styleResult[i]['default?']) {
               url = styleResult[i].photos[0].thumbnail_url;
+              salePrice = styleResult[i].sale_price;
               break;
             }
           }
           object = {
-            id, name, category, price: default_price, features, url, starPercent,
+            id, name, category, price: default_price, features, url, starPercent, salePrice,
           };
           list.push(object);
         })

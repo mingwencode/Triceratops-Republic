@@ -9,6 +9,6 @@ import AddNewQuestion from '../AddNewQuestion';
 describe('AddNewQuestion', () => {
   test('renders button with Add a Question', () => {
     render(<AddNewQuestion addQuestionButtonClick={() => {}} />);
-    screen.getByText('Add A Question');
+    screen.getByText('Add A Question +');
   });
 });

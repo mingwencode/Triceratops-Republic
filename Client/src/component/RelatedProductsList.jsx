@@ -18,9 +18,6 @@ const ViewPort = styled.div`
 
 `;
 
-//transform: scale(1.2, 1.2);
-//background: red;
-
 const CardContainer = styled.div`
   display: flex;
   flexDirection: row;
