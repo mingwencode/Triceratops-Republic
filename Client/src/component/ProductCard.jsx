@@ -21,7 +21,7 @@ const Card = styled.div`
   background: white;
   font-size: 0.8em;
   color: white;
-  margin: 0 20px 0 20px;
+  margin: 0 30px 0 30px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   &:hover{
     box-shadow: 0 8px 13px 0 rgba(0,0,0,0.2);
@@ -104,7 +104,7 @@ const ProductCard = ({
 
       {list ? (
         <CompareBtnContainer>
-          <SlideImg data-testid="relatedListImage" src={product.url} alt="" onClick={() => setCurrentProductId(product.id)} />
+          <SlideImg data-testid="relatedListImage" src={product.smallUrl} alt="" onClick={() => setCurrentProductId(product.id)} />
           <Button data-testid="compareBtn" title="compare" onClick={() => openModal()}>&#9055;</Button>
           <CompareModal
             isOpenModal={showModal}
@@ -117,7 +117,7 @@ const ProductCard = ({
         :
         (
           <CompareBtnContainer>
-            <SlideImg data-testid="relatedOutfitImage" src={product.url} alt="" />
+            <SlideImg data-testid="relatedOutfitImage" src={product.smallUrl} alt="" />
             <Button data-testid="closeBtn" title="remove" onClick={() => removeOutFit(product.id)}>&#8855;</Button>
           </CompareBtnContainer>
         )}

@@ -9,14 +9,14 @@ const ListContainer = styled.div`
 `;
 
 const ViewPortContainer = styled.div`
-  margin-right: 91px;
+  margin-right: 55px;
   position: relative;
   grid-column : 3 / 4;
   justify-self: right;
 `;
 
 const OutfitViewPort = styled.div`
-  width: 660px;
+  width: 720px;
   height: 280px;
   overflow: hidden;
 
@@ -65,7 +65,7 @@ const AddButtonContainer = styled.div`
   opacity: 0.6;
   color: white;
   margin-top: 5px;
-  margin-left: 115px;
+  margin-left: 85px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   &:hover{
     box-shadow: 0 8px 13px 0 rgba(0,0,0,0.2);
@@ -94,14 +94,14 @@ const AddButton = styled.a`
 `;
 
 
-const YourOutfitList = ({currentItem}) => {
+const YourOutfitList = ({currentItem, outfitArray, setOutfitArray}) => {
   const [current, setCurrent] = useState(0);
-  const [outfitArray, setOutfitArray] = useState([]);
+
   const cardContainer = React.useRef();
 
   useEffect(() => {
     cardContainer.current.style.transitionDuration = '0.5s';
-    cardContainer.current.style.transform = `translate(-${220 * current}px)`;
+    cardContainer.current.style.transform = `translate(-${240 * current}px)`;
   }, [current]);
 
   const prevSilde = () => {

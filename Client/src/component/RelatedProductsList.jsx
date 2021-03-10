@@ -12,7 +12,7 @@ const ListContainer = styled.div`
 const ViewPort = styled.div`
   padding-top: 10px;
   margin: 0 auto;
-  width: 880px;
+  width: 960px;
   height: 280px;
   overflow: hidden;
 
@@ -59,7 +59,7 @@ const RelatedProductsList = ({ setCurrentProductId, currentItem, relatedList, le
 
   useEffect(() => {
     cardContainer.current.style.transitionDuration = '0.5s';
-    cardContainer.current.style.transform = `translate(-${220 * current}px)`;
+    cardContainer.current.style.transform = `translate(-${240 * current}px)`;
   }, [current]);
 
   const prevSilde = () => {
