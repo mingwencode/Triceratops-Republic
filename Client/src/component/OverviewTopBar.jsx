@@ -5,21 +5,37 @@ const logo = '../images/logoFEC.png';
 
 const TB = styled.span`
   display: flex;
-  background-color: rgba(89, 88, 93, .7);
+  position: 'fixed';
+  background-color: rgba(176, 162, 149, .7);
+  width: 'fit-content';
+  border-radius: 10px;
 `;
 
 const Logo = styled.span`
   justify-content: flex-start;
+  position: 'fixed';
+  height: fit-content;
+  self-align: center;
 `;
 
 const Title = styled.span`
-  color: #cac3bb;
+  color: #030200;
   margin-top: 10px;
+  font-family: 'Roboto', sans-serif;
 `;
 
 const Search = styled.span`
   justify-content: flex-end;
   margin: 7px;
+  self-align: center;
+  padding-left: 200px;
+`;
+const Input = styled.input`
+  border: 1px solid #000;
+  border-radius: 10px;
+  width: 500px;
+  height: 30px;
+  box-sizing: border-box;
 `;
 
 const SearchBtn = styled.button`
@@ -39,17 +55,17 @@ const SearchBtn = styled.button`
 const OverviewTopBar = () => (
   <TB>
     <Logo>
-      <img src={logo} alt="logo" height="70" width="70" />
+      <img src={logo} alt="logo" height="90" width="80" />
     </Logo>
     <Title>
       <h2>Triceratop Republic</h2>
     </Title>
     <Search>
-      <input name="seachBar" className="search-bar" placeholder="Search" />
+      <Input name="seachBar" className="search-bar" placeholder="Search" />
+      <span>
+        <SearchBtn className="search-bar-btn" type="submit">Search</SearchBtn>
+      </span>
     </Search>
-    <span>
-      <SearchBtn className="search-bar-btn" type="submit">Search</SearchBtn>
-    </span>
   </TB>
 );
 

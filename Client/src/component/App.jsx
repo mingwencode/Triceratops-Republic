@@ -112,6 +112,7 @@ const App = () => {
             <Overview
               currentItem={currentItem}
               productStyles={productStyles}
+              setReviewModalBoolean={setReviewModalBoolean}
             />
           </OverviewStyle>
           <RelatedProductsStyle>
