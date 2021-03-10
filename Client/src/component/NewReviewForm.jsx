@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 /* eslint-disable consistent-return */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -55,7 +55,7 @@ border: none;
 outline: none;
 border-radius: 8px;
 box-sizing: border-box;
-`
+`;
 const StyledPMessage = styled.span`
   color: red;
   font-family: 'Roboto', sans-serif;
@@ -89,24 +89,29 @@ padding: 3px;
 margin: 5px;
 width: 250px;
 box-sizing: border-box;
-`
+`;
 const StyledSpanFont = styled.span`
 font-family: 'Roboto', sans-serif;
-`
+`;
 const StyledSpanLabel = styled.label`
 font-family: 'Roboto', sans-serif;
-`
+`;
 const Styledh3 = styled.h3`
 font-family: 'Shippori Mincho', serif;
-`
+`;
 const StyledLegend = styled.legend`
 font-family: 'Roboto', sans-serif;
 
-`
+`;
+const StyledReaminingCharactersSpan = styled.span`
+font-family: 'Roboto', sans-serif;
+font-size: .7em;
+padding-left: 250px;
+`;
 
 const TABLE = { border: '1px white' };
 const NewReviewForm = ({
-  showNewReviewModal, currentProductId, setNewReviewModal, sampleCharacterObj, reviewMetaData, getReviews, currentItem
+  showNewReviewModal, currentProductId, setNewReviewModal, sampleCharacterObj, reviewMetaData, getReviews, currentItem,
 }) => {
   const [rating, setStarRating] = useState();
   const [recommend, setIsRecommended] = useState();
@@ -118,25 +123,26 @@ const NewReviewForm = ({
   const [reviewer_name, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [characisticsState, setCharacteristicsState] = useState({});
+  const [remainingCharacters, setRemainingCharacters] = useState(50);
 
   const postCharacteristicsObj = {
     product_id: currentProductId,
-    rating: rating,
-    summary: summary,
-    body: body,
-    recommend: recommend,
+    rating,
+    summary,
+    body,
+    recommend,
     name: reviewer_name,
-    email: email,
+    email,
     photos: [],
     characteristics: characisticsState,
- };
+  };
 
- const toBase64 = file => new Promise((resolve, reject) => {
-  const reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = () => resolve(reader.result);
-  reader.onerror = error => reject(error);
-});
+  const toBase64 = (file) => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
 
   const renderCharacteristics = () => {
     if (reviewMetaData) {
@@ -147,68 +153,67 @@ const NewReviewForm = ({
       // eslint-disable-next-line consistent-return
       return charObjKeys.map((key, index) => {
         if (reviewChars[key]) {
-          let characteristicKey = JSON.stringify(reviewChars[key].id);
+          const characteristicKey = JSON.stringify(reviewChars[key].id);
           return (
             <tr key={index}>
               <td />
               <td>
-                <StyledSpanFont
-                >
+                <StyledSpanFont>
                   {key}
                 </StyledSpanFont>
               </td>
-              <div style={{fontSize: 10}}>
-              <td>
-                <input
-                  type="radio"
-                  name={key}
-                  required="reduired"
-                  onClick={() => setCharacteristicsState({ ...characisticsState, [characteristicKey]: 1 })}
-                />
-                <StyledSpanLabel>
-                  {sampleCharacterObj[key][1]}
-                </StyledSpanLabel>
-              </td>
-              <td>
-                <input
-                  type="radio"
-                  name={key}
-                  onClick={() => setCharacteristicsState({ ...characisticsState, [characteristicKey]: 2 })}
-                />
-                <StyledSpanLabel>
-                  {sampleCharacterObj[key][2]}
-                </StyledSpanLabel>
-              </td>
-              <td>
-                <input
-                  type="radio"
-                  name={key}
-                  onClick={() => setCharacteristicsState({ ...characisticsState, [characteristicKey]: 3 })}
-                />
-                <StyledSpanLabel>
-                  {sampleCharacterObj[key][3]}
-                </StyledSpanLabel>
-              </td>
-              <td>
-                <input
-                  type="radio"
-                  name={key}
-                  onClick={() => setCharacteristicsState({ ...characisticsState, [characteristicKey]: 4 })}
-                />
-                <StyledSpanLabel>
-                  {sampleCharacterObj[key][4]}
-                </StyledSpanLabel>
-              </td>
-              <td>
-                <input
-                  type="radio"
-                  name={key}
-                  onClick={() => setCharacteristicsState({...characisticsState, [characteristicKey]: 5 })}
-                />
-                <StyledSpanLabel>
-                  {sampleCharacterObj[key][5]}
-                </StyledSpanLabel>
-              </td>
+              <div style={{ fontSize: 10 }}>
+                <td>
+                  <input
+                    type="radio"
+                    name={key}
+                    required="reduired"
+                    onClick={() => setCharacteristicsState({ ...characisticsState, [characteristicKey]: 1 })}
+                  />
+                  <StyledSpanLabel>
+                    {sampleCharacterObj[key][1]}
+                  </StyledSpanLabel>
+                </td>
+                <td>
+                  <input
+                    type="radio"
+                    name={key}
+                    onClick={() => setCharacteristicsState({ ...characisticsState, [characteristicKey]: 2 })}
+                  />
+                  <StyledSpanLabel>
+                    {sampleCharacterObj[key][2]}
+                  </StyledSpanLabel>
+                </td>
+                <td>
+                  <input
+                    type="radio"
+                    name={key}
+                    onClick={() => setCharacteristicsState({ ...characisticsState, [characteristicKey]: 3 })}
+                  />
+                  <StyledSpanLabel>
+                    {sampleCharacterObj[key][3]}
+                  </StyledSpanLabel>
+                </td>
+                <td>
+                  <input
+                    type="radio"
+                    name={key}
+                    onClick={() => setCharacteristicsState({ ...characisticsState, [characteristicKey]: 4 })}
+                  />
+                  <StyledSpanLabel>
+                    {sampleCharacterObj[key][4]}
+                  </StyledSpanLabel>
+                </td>
+                <td>
+                  <input
+                    type="radio"
+                    name={key}
+                    onClick={() => setCharacteristicsState({ ...characisticsState, [characteristicKey]: 5 })}
+                  />
+                  <StyledSpanLabel>
+                    {sampleCharacterObj[key][5]}
+                  </StyledSpanLabel>
+                </td>
               </div>
 
             </tr>
@@ -217,7 +222,6 @@ const NewReviewForm = ({
       });
     }
   };
-
 
   const clearForm = () => {
     setStarRating();
@@ -229,6 +233,7 @@ const NewReviewForm = ({
     setEmail();
     setCharacteristicsState({});
     setImageUpload([]);
+    setRemainingCharacters(50);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -249,12 +254,10 @@ const NewReviewForm = ({
     }
     Promise.all(promises)
       .then((results) => postCharacteristicsObj.photos = results)
-      .then(() => {
-        return axios.post('/reviews', postCharacteristicsObj);
-      })
-      .then(()=> getReviews(currentProductId))
-      .then(()=> setNewReviewModal(false))
-      .then(()=> clearForm())
+      .then(() => axios.post('/reviews', postCharacteristicsObj))
+      .then(() => getReviews(currentProductId))
+      .then(() => setNewReviewModal(false))
+      .then(() => clearForm());
   };
   const onPhotoUpload = (e) => {
     const imageArray = [];
@@ -329,15 +332,15 @@ const NewReviewForm = ({
             <div className="txt-center">
               <form>
                 <div className="rating">
-                  <input id="star5" name="star" type="radio" value="5" className="radio-btn hide" required="required" onClick={() => setStarRating(5)}/>
+                  <input id="star5" name="star" type="radio" value="5" className="radio-btn hide" required="required" onClick={() => setStarRating(5)} />
                   <label htmlFor="star5">☆</label>
-                  <input id="star4" name="star" type="radio" value="4" className="radio-btn hide" onClick={() => setStarRating(4)}/>
+                  <input id="star4" name="star" type="radio" value="4" className="radio-btn hide" onClick={() => setStarRating(4)} />
                   <label htmlFor="star4">☆</label>
-                  <input id="star3" name="star" type="radio" value="3" className="radio-btn hide" onClick={() => setStarRating(3)}/>
+                  <input id="star3" name="star" type="radio" value="3" className="radio-btn hide" onClick={() => setStarRating(3)} />
                   <label htmlFor="star3">☆</label>
-                  <input id="star2" name="star" type="radio" value="2" className="radio-btn hide" onClick={() => setStarRating(2)}/>
+                  <input id="star2" name="star" type="radio" value="2" className="radio-btn hide" onClick={() => setStarRating(2)} />
                   <label htmlFor="star2">☆</label>
-                  <input id="star1" name="star" type="radio" value="1" className="radio-btn hide" onClick={() => setStarRating(1)}/>
+                  <input id="star1" name="star" type="radio" value="1" className="radio-btn hide" onClick={() => setStarRating(1)} />
                   <label htmlFor="star1">☆</label>
                   <div className="clear" />
                 </div>
@@ -379,9 +382,7 @@ const NewReviewForm = ({
             <StyledSpanLabel id="charTitle">Characteristics*</StyledSpanLabel>
             <table id="characteristics" style={TABLE}>
               <tbody style={TABLE}>
-                <tr style={TABLE}>
-                  {/* {renderTableHeader()} */}
-                </tr>
+                <tr style={TABLE}/>
                 {renderCharacteristics()}
               </tbody>
             </table>
@@ -415,15 +416,29 @@ const NewReviewForm = ({
               maxLength="1000"
               required="required"
               value={body}
-              onChange={(event) => setChangeReview(event.target.value)}
+              onChange={(event) => {
+                setChangeReview(event.target.value);
+                setRemainingCharacters(49 - body.length);
+              }}
             />
+            <br />
+
+            {body.length > 50 ? (<StyledReaminingCharactersSpan> Minimum Reached</StyledReaminingCharactersSpan>) : (
+              <StyledReaminingCharactersSpan>
+                {' '}
+                Minimum characters left
+                {remainingCharacters}
+              </StyledReaminingCharactersSpan>
+            )}
           </div>
           <div>
-            <input
-              type="file"
-              name="photo"
-              onChange={onPhotoUpload}
-            />
+            {thumbnail.length < 5 ? (
+              <input
+                type="file"
+                name="photo"
+                onChange={onPhotoUpload}
+              />
+            ) : null }
             {thumbnail.map((image, index) => <img src={image} key={index} alt="uploaded by user" height="50" width="50" />)}
           </div>
           <div>

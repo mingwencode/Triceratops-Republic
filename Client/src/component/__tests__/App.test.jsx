@@ -12,14 +12,6 @@ describe('App', () => {
       screen.getByText("Loading...");
 })});
 
-describe.only("Fetchy", () => {
-  beforeAll(() => {
-      jest.useFakeTimers();
-  })
-
-  afterAll(() => {
-      jest.useRealTimers()
-  })
 
 
 // describe('App', () => {
@@ -76,9 +68,9 @@ describe.only("Fetchy", () => {
 // });
 
 
-test('renders the correct content', () => {
-  const root = document.createElement('div');
-  ReactDOM.render(<App />, root);
+// test('renders the correct content', () => {
+//   const root = document.createElement('div');
+//   ReactDOM.render(<App />, root);
 
-  expect(root.querySelector('h1').textContent).toBe('Hello!');
-});
+//   expect(root.querySelector('h1').textContent).toBe('Hello!');
+// });

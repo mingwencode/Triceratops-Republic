@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-use-before-define */
 import React, { useState, useEffect } from 'react';
@@ -14,7 +15,7 @@ const AppBackground = styled.div`
 
 const AppBody = styled.div`
   display: grid;
-  grid-template-rows: 25% 23% 25% 27%;
+  grid-template-auto: 25% 23% 25% 27%;
   grid-template-columns: auto;
   box-shadow: 10px 50px 100px 0 rgba(0,0,0,0.1);
   background: rgba(203, 216, 225, 1);
@@ -42,12 +43,11 @@ const ReviewsStyles = styled.div`
 `;
 
 const App = () => {
-  //const [productArray, setProductArray] = useState([]);
-  const [currentProductId, setCurrentProductId] = useState(20111);
+  const [currentProductId, setCurrentProductId] = useState(20114);
   const [relatedProductIds, setRelatedProductIds] = useState();
   const [productStyles, setProductStyles] = useState();
   const [currentItem, setCurrentItem] = useState({});
-  const [moreReviewsBoolean, setMoreReview] = useState(true);
+  const [reviewModalBoolean, setReviewModalBoolean] = useState(false);
 
   // RELATED PRODUCTS
   const getRelatedProductIds = (id) => {
@@ -121,7 +121,7 @@ const App = () => {
             <QAndA currentProductId={currentProductId} />
           </QASyles>
           <ReviewsStyles>
-            <RatingsAndReviews currentProductId={currentProductId} currentItem={currentItem} moreReviewsBoolean={moreReviewsBoolean} setMoreReview={setMoreReview}/>
+            <RatingsAndReviews currentProductId={currentProductId} currentItem={currentItem} setReviewModalBoolean={setReviewModalBoolean} reviewModalBoolean={reviewModalBoolean} />
           </ReviewsStyles>
         </AppBody>
       </AppBackground>

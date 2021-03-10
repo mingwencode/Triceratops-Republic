@@ -19,10 +19,10 @@ const SelectStyle = styled.select`
     min-height: 20px;
     padding: 0px 2px 1px;
   }
-  `
+  `;
 const HeaderWrapper = styled.div`
 font-family: 'Roboto', sans-serif;
-`
+`;
 // eslint-disable-next-line arrow-body-style
 const RatingsAndReviewsHeader = ({ reviewArray, setDropDownSelect }) => {
 
@@ -38,9 +38,9 @@ const RatingsAndReviewsHeader = ({ reviewArray, setDropDownSelect }) => {
 
         <SelectStyle onChange={(e) => setDropDownSelect(e.target.value)}>
           <option
-            value="helpful"
+            value="relevant"
           >
-            Helpful
+            relevant
           </option>
           <option
             value="newest"
@@ -48,9 +48,9 @@ const RatingsAndReviewsHeader = ({ reviewArray, setDropDownSelect }) => {
             Newest
           </option>
           <option
-            value="relevant"
+            value="Helpful"
           >
-            Relevant
+            Helpful
           </option>
         </SelectStyle>
       </div>

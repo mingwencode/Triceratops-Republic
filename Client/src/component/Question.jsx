@@ -50,7 +50,6 @@ const StyledA = styled.a`
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   padding-right: 8px;
-  padding-left: 30px;
   text-decoration: underline;
   font-size: smaller;
   cursor: pointer;
@@ -116,16 +115,16 @@ const Question = ({ question, onShowAnswerModal, onOpenAnswerModal, questionAnsw
   return (
     <StyledDiv>
       <MainQA>
-        <StyledSpanQ>Q: {question_body} </StyledSpanQ>
+        <StyledSpanQ data-testid="Q">Q: {question_body} </StyledSpanQ>
         <div>
           {newAnswerArray.map((answer) => <Answer key={answer.id} answer={answer} putAnswersHelpful={putAnswersHelpful} putAnswersReport={putAnswersReport} />)}
         </div>
       </MainQA>
       <RightColumn>
-        <StyledSpanHelpful> Helpful? </StyledSpanHelpful>
+        <StyledSpanHelpful data-testid="Helpful"> Helpful? </StyledSpanHelpful>
         <StyledA onClick={handleQuestionHelpfulnessClick}> Yes ({question_helpfulness}) </StyledA>
-        <StyledA onClick={(e) => onQuestionReportClick(e)}>{' '} Report</StyledA>
-        <StyledButton onClick={onAddAnswerButtonClick}> Add an Answer</StyledButton>
+        <StyledA data-testid="report" onClick={(e) => onQuestionReportClick(e)}>{' '} Report</StyledA>
+        <StyledButton data-testid="Add Answer" onClick={onAddAnswerButtonClick}> Add an Answer</StyledButton>
         <StyledSpan>{renderAnswerModal()}</StyledSpan>
       </RightColumn>
       <hr />
