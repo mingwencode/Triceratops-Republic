@@ -36,6 +36,9 @@ font-sizeL: medium;
 `
 const Styledh3 = styled.h3`
 font-family: 'Shippori Mincho', serif;
+color: #344B5B;
+font-weight: 800;
+font-size: 1.17em;
 `
 // eslint-disable-next-line arrow-body-style
 const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharacterObj }) => {
