@@ -30,7 +30,7 @@ const StyleThumb = styled.img`
 `;
 
 const OverviewProductInfo = ({
-  productStyles, currentItem, currentProductId, handleStyleClick, styleResultsIndex, setMoreReview
+  productStyles, currentItem, currentProductId, handleStyleClick, styleResultsIndex, setReviewModalBoolean
 }) => {
   const shareUrl = 'http://github.com';
   const title = 'Triceratop Republic';
@@ -65,7 +65,7 @@ const OverviewProductInfo = ({
         <Reviews>
           <ShadedStarRating starPercent={currentItem.starPercent} />
           <form>
-            <ReadReviews className="reviews-a" onClick={() => setMoreReview(false)}><u>Read all reviews</u></ReadReviews>
+            <ReadReviews className="reviews-a" onClick={() => setReviewModalBoolean(true)}><u>Read all reviews</u></ReadReviews>
           </form>
         </Reviews>
         <div>

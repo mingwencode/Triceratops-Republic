@@ -36,7 +36,7 @@ const Des = styled.div`
   grid-row-end: 4; */
 `;
 
-const Overview = ({ currentItem, productStyles, currentProductId, setMoreReview }) => {
+const Overview = ({ currentItem, productStyles, currentProductId, setReviewModalBoolean }) => {
   const [currentImageIndex, setImageIndex] = useState(0);
   const [styleResultsIndex, setStyleResultsIndex] = useState(0);
   const [currentProductIndex, setCurrentProductIndex] = useState();
@@ -71,7 +71,7 @@ const Overview = ({ currentItem, productStyles, currentProductId, setMoreReview 
                     currentProductId={currentProductId}
                     handleStyleClick={handleStyleClick}
                     styleResultsIndex={styleResultsIndex}
-                    setMoreReview={setMoreReview}
+                    setReviewModalBoolean={setReviewModalBoolean}
                   />
                 </div>
                 <div>
