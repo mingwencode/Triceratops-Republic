@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const OverviewDescription = ({ bullets, currentItem }) => {
+const OverviewDescription = ({ currentItem }) => {
   const placeholder = '';
 
   if (currentItem.id !== undefined) {

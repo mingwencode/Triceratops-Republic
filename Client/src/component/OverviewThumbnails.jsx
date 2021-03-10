@@ -2,10 +2,10 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 
-const Thumbnails = ({ image, onThumbnailClick }) => {
+const Thumbnails = ({ idx, image, onThumbnailClick }) => {
   return (
     <div style={styles.thumbnails}>
-      <img src={image} alt="" height="70px" width="60px" />
+      <img src={image} onClick={(e) => onThumbnailClick(idx)} alt="" height="70px" width="60px" />
     </div>
   );
 };
