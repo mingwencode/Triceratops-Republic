@@ -83,7 +83,7 @@ const RelatedProductsList = ({ setCurrentProductId, currentItem, relatedList, le
         <CardContainer ref={cardContainer} className="card-container">
           {relatedList.length === len && relatedList.map((product, index) => (
             <div key={index}>
-              <ProductCard product={product} list={true} setCurrentProductId={setCurrentProductId} currentItem={currentItem} />
+              <ProductCard product={product} list={true} setCurrentProductId={setCurrentProductId} currentItem={currentItem} setCurrent={setCurrent}/>
             </div>
           ))}
         </CardContainer>

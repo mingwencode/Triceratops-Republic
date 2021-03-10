@@ -92,19 +92,24 @@ cursor: pointer;
 `;
 
 const ProductCard = ({
-  product, list, removeOutFit, setCurrentProductId, currentItem}) => {
+  product, list, removeOutFit, setCurrentProductId, currentItem, setCurrent}) => {
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
     setShowModal((prev) => !prev);
   };
 
+  const resetPage = () => {
+    setCurrentProductId(product.id);
+    setCurrent(0);
+  }
+
   return (
     <Card>
 
       {list ? (
         <CompareBtnContainer>
-          <SlideImg data-testid="relatedListImage" src={product.smallUrl} alt="" onClick={() => setCurrentProductId(product.id)} />
+          <SlideImg data-testid="relatedListImage" src={product.smallUrl} alt="" onClick={() => resetPage()} />
           <Button data-testid="compareBtn" title="compare" onClick={() => openModal()}>&#9055;</Button>
           <CompareModal
             isOpenModal={showModal}

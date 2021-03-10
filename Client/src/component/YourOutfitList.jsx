@@ -129,6 +129,9 @@ const YourOutfitList = ({currentItem, outfitArray, setOutfitArray}) => {
 
   const removeOutFit = (id) => {
     const newList = outfitArray.filter((item) => (item.id !== id));
+    if(current > 0) {
+      setCurrent(current - 1);
+    }
     setOutfitArray(newList);
   };
 
