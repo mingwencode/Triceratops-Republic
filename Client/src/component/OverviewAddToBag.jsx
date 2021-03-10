@@ -2,6 +2,34 @@
 /* eslint-disable no-restricted-syntax */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const Button = styled.button`
+  justify-content: flex-end;
+  background-color: #344B5B;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  padding: 10px;
+  margin: 5px;
+  width: fit-content;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  box-sizing: border-box;
+`;
+const Select = styled.select`
+  border-radius: 10px;
+  padding-top: 5px;
+  padding-right: 10px;
+  font-size: 17px;
+  text-align: center;
+`;
+const Add = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding-top: 5px;
+  padding-right: 10px;
+`;
 
 const OverviewAddToBag = ({ productStyles, styleResultsIndex }) => {
   const [sizeSelected, setSize] = useState('');
@@ -74,7 +102,7 @@ const OverviewAddToBag = ({ productStyles, styleResultsIndex }) => {
 
     const addToBagBtn = () => {
       if (availabiltyChecker) {
-        return <button onClick={pleaseSelect} type="button">Add To Bag</button>;
+        return <Button onClick={pleaseSelect} type="button">Add To Bag</Button>;
       }
     };
 
@@ -87,20 +115,22 @@ const OverviewAddToBag = ({ productStyles, styleResultsIndex }) => {
     return (
       <div>
         <form>
-          <select name="sizes" onChange={handleSizeChange}>
+          <Select name="sizes" onChange={handleSizeChange}>
             <option disabled selected hidden>Select Size</option>
             {sizes()}
-          </select>
-          <select name="quantity" onChange={handleQtyChange}>
+          </Select>
+          <Select name="quantity" onChange={handleQtyChange}>
             {qtySelection()}
-          </select>
+          </Select>
         </form>
+        <Add>
         <form onSubmit={handleATBSubmit}>
           {addToBagBtn()}
         </form>
         <form>
-          <button type="button" className="favorite-outfit">+</button>
+          <Button type="button" className="favorite-outfit">+</Button>
         </form>
+        </Add>
       </div>
     );
   }

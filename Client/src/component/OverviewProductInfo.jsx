@@ -7,15 +7,30 @@ import styled from 'styled-components';
 import ShadedStarRating from './ShadedStarRating';
 
 const Pi = styled.div`
-  padding-top: 40px;
+  padding-top: 20px;
   margin-top: 10px;
 `;
 const Reviews = styled.div`
   flex: row;
 `;
+const ReadReviews = styled.a`
+  &:hover{
+    color: #A4BBCB;
+    transform: scale(1.5, 1.5);
+    cursor: pointer;
+  }
+`;
+const ProductName = styled.div`
+  max-width: 200px;
+  font-size: 40px;
+`;
+const StyleThumb = styled.img`
+  border-radius: 50%;
+  padding-right: 10px;
+`;
 
 const OverviewProductInfo = ({
-  productStyles, currentItem, currentProductId, handleStyleClick, styleResultsIndex
+  productStyles, currentItem, currentProductId, handleStyleClick, styleResultsIndex, setMoreReview
 }) => {
   const shareUrl = 'http://github.com';
   const title = 'Triceratop Republic';
@@ -50,14 +65,14 @@ const OverviewProductInfo = ({
         <Reviews>
           <ShadedStarRating starPercent={currentItem.starPercent} />
           <form>
-            <a className="reviews-a" onClick={() => (console.log('Read all reviews clicked!'))}><u>Read all reviews</u></a>
+            <ReadReviews className="reviews-a" onClick={() => setMoreReview(false)}><u>Read all reviews</u></ReadReviews>
           </form>
         </Reviews>
         <div>
           <span>{currentItem.category}</span>
         </div>
         <div>
-          <span>{currentItem.name}</span>
+          <ProductName><strong>{currentItem.name}</strong></ProductName>
         </div>
         <div>
           <span className="price">
@@ -72,7 +87,7 @@ const OverviewProductInfo = ({
           <span className="style-name">{productStyles.results[styleResultsIndex].name}</span>
         </div>
         {productStyles.results.map((style, idx) => (
-          <img
+          <StyleThumb
             key={idx}
             src={style.photos[0].thumbnail_url}
             alt=""
