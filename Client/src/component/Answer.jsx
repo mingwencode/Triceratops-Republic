@@ -69,7 +69,7 @@ const Answer = ({ answer, putAnswersHelpful, putAnswersReport }) => {
   }
   return (
     <div>
-      <StyledP>A:
+      <StyledP data-testid="A">A:
         {' '}
         {body}
       </StyledP>
@@ -83,10 +83,10 @@ const Answer = ({ answer, putAnswersHelpful, putAnswersReport }) => {
       <StyledSpan>
         {getProperDate(date)}
       </StyledSpan>
-      <StyledSpan>
+      <StyledSpan data-testid="helpful">
         Helpful?
       </StyledSpan>
-      <StyledA onClick={handleHelpfulnessClick}>
+      <StyledA data-testid="Yes" onClick={handleHelpfulnessClick}>
         Yes
         ({helpfulness})
       </StyledA>
