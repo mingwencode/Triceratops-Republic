@@ -6,7 +6,7 @@ const logo = '../images/logoFEC.png';
 const TB = styled.span`
   display: flex;
   position: 'fixed';
-  background-color: rgba(176, 162, 149, .7);
+  background-color: rgba(67, 96, 117, .7);
   width: 'fit-content';
   border-radius: 10px;
 `;

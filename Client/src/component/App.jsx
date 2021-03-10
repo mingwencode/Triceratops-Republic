@@ -10,7 +10,7 @@ import QAndA from './QAndA';
 import RelatedProducts from './RelatedProducts';
 
 const AppBackground = styled.div`
-  background: rgba(203, 216, 225, 1);
+  background: rgba(215, 213, 215, 1);
 `;
 
 const AppBody = styled.div`
