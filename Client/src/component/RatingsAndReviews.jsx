@@ -44,7 +44,7 @@ border-radius: 8px;
 box-sizing: border-box;
  `;
 
-const RatingsAndReviews = ({ currentProductId, currentItem, mockReviews, mockReviewMetadata, moreReviewsBoolean, setMoreReview  }) => {
+const RatingsAndReviews = ({ currentProductId, currentItem, mockReviews, mockReviewMetadata, setReviewModalBoolean, reviewModalBoolean }) => {
   const [reviewArray, setProductReviewArray] = useState();
   const [showNewMReviewModal, setNewReviewModal] = useState(false);
   const [dropDownselect, setDropDownSelect] = useState('relevant');
@@ -98,8 +98,8 @@ const RatingsAndReviews = ({ currentProductId, currentItem, mockReviews, mockRev
 
   const getReviews = (id, sortOption) => {
     if (mockReviews !== undefined) {
-      setProductReviewArray(mockReviews)
-      return
+      setProductReviewArray(mockReviews);
+      return;
     }
 
     axios.get(`/reviews/${id}&sort=${sortOption}`)
@@ -109,8 +109,8 @@ const RatingsAndReviews = ({ currentProductId, currentItem, mockReviews, mockRev
 
   const getReviewsMeta = (id) => {
     if (mockReviewMetadata !== undefined) {
-      setReviewMetaData(mockReviewMetadata)
-      return
+      setReviewMetaData(mockReviewMetadata);
+      return;
     }
 
     axios.get(`/reviews/meta/${id}`)
@@ -120,7 +120,6 @@ const RatingsAndReviews = ({ currentProductId, currentItem, mockReviews, mockRev
       .catch((err) => console.log('get review meta ', err));
   };
 
-
   useEffect(() => {
     getReviews(currentProductId, dropDownselect);
     getReviewsMeta(currentProductId);
@@ -129,7 +128,6 @@ const RatingsAndReviews = ({ currentProductId, currentItem, mockReviews, mockRev
   useEffect(() => {
     getReviews(currentProductId, dropDownselect);
   }, [dropDownselect]);
-
 
   if (reviewArray) {
     return (
@@ -153,7 +151,8 @@ const RatingsAndReviews = ({ currentProductId, currentItem, mockReviews, mockRev
             setNewReviewModal={setNewReviewModal}
             reviewMetaData={reviewMetaData}
             currentItem={currentItem}
-            moreReviewsBoolean={moreReviewsBoolean} setMoreReview={setMoreReview}
+            setReviewModalBoolean={setReviewModalBoolean}
+            reviewModalBoolean={reviewModalBoolean}
           />
         </ReviewListStyle>
         <div>

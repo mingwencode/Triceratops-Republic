@@ -60,7 +60,7 @@ const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharact
       if (productReviewArray[i].recommend) numberRecommended++;
     }
     const asPercent = (numberRecommended/productReviewArray.length) * 100;
-    const averagePrecentRounded = Math.round(asPercent * 10) / 10
+    const averagePrecentRounded = Math.round(asPercent * 10) / 10;
     return averagePrecentRounded;
   };
 
@@ -75,7 +75,7 @@ const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharact
     };
     productReviewArray.forEach((review) => {numberOfStarsObj[review.rating] += 1; });
     return Object.keys(numberOfStarsObj).map((key, index) => {
-      const asPercentForBars = (numberOfStarsObj[key]/productReviewArray.length) * 100;
+      const asPercentForBars = (numberOfStarsObj[key] / productReviewArray.length) * 100;
       return (
         <div key={index}>
           <CharStyle>
@@ -142,9 +142,9 @@ const RatingsAndReviewsBreakDown = ({ reviewArray, reviewMetaData, sampleCharact
               >
                 <i style={ARROW_SLIDE_SIZE} className="fas fa-arrow-up" />
               </div>
-              <div style={{display: 'flex', justifyContent: 'space-between'}}>
-              <span style={{fontSize: '12px' }}>{sampleCharacterObj[key][1]}</span>
-              <span style={{fontSize: '12px'}}>{sampleCharacterObj[key][5]}</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ fontSize: '12px' }}>{sampleCharacterObj[key][1]}</span>
+                <span style={{ fontSize: '12px' }}>{sampleCharacterObj[key][5]}</span>
               </div>
             </div>
           );
