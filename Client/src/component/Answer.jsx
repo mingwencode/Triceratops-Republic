@@ -13,7 +13,7 @@ const StyledSpan = styled.span`
 `;
 
 const StyledSpanBy = styled(StyledSpan)`
-  padding-left: 35px;
+  padding-left: 48px;
 `;
 
 const StyledA = styled.a`
@@ -36,7 +36,7 @@ const StyledP = styled.p`
 
 const StyledImg = styled.img`
   padding-right: 5px;
-  padding-left: 30px;
+  padding-left: 48px;
 `;
 
 const Answer = ({ answer, putAnswersHelpful, putAnswersReport }) => {
