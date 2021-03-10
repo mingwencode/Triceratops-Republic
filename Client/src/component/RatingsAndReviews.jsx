@@ -47,7 +47,7 @@ box-sizing: border-box;
 const RatingsAndReviews = ({ currentProductId, currentItem, mockReviews, mockReviewMetadata, moreReviewsBoolean, setMoreReview  }) => {
   const [reviewArray, setProductReviewArray] = useState();
   const [showNewMReviewModal, setNewReviewModal] = useState(false);
-  const [dropDownselect, setDropDownSelect] = useState('newest');
+  const [dropDownselect, setDropDownSelect] = useState('relevant');
   const [reviewMetaData, setReviewMetaData] = useState();
   const [sampleCharacterObj, setSampleCharcterObj] = useState({
     Size: {
