@@ -22,15 +22,18 @@ const StyledDiv = styled.div`
 const MainQA = styled.div`
   grid-column-start: 1;
   padding-right: 10px;
+  padding-top: 5px;
 `;
 
 const RightColumn = styled.div`
   grid-column-start: 2;
+  padding-top: 5px;
 `;
 
 const StyledSpanQ = styled.span`
   font-family: 'Roboto', sans-serif;
   font-weight: 800;
+  font-size: large;
   padding-right: 8px;
   padding-left: 30px;
   padding-top: 5px;
