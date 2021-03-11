@@ -77,6 +77,7 @@ const Img = styled.img`
   height: 500px;
   max-width: 370px;
   object-fit: cover;
+  border-radius: 5px;
 `;
 
 const OverviewImageGallery = ({ productStyles, currentImageIndex }) => {
@@ -160,7 +161,7 @@ const OverviewImageGallery = ({ productStyles, currentImageIndex }) => {
         >Fancy</OverviewModal>
       </Modal>
       <Image>
-        <Img className="main-image" src={productStyles.results[mainImageIndex].photos[0].url} alt="main diplay" height="500" width="500" />
+        <Img className="main-image" src={productStyles.results[mainImageIndex].photos[0].url} alt="main diplay" height="500px" width="500px" />
       </Image>
       <BtnRight>
         {mainImageIndex === productStyles.results.length - 1 ? null : <Button type="button" onClick={handleMainNext}>&#8250;</Button>}
