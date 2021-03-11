@@ -16,16 +16,16 @@ const MODAL_STYLES = {
   transform: 'translate(-50%, -50%)',
   backgroundColor: '#FFF',
   zIndex: 1000,
-  maxHeight: 'calc(100vh - 350px)',
+  maxHeight: 'calc(100vh - 100px)',
   overflowY: 'auto',
   borderRadius: 10,
   boxSizing: 'border-box',
-  border: 'solid rgba(67, 96, 117, .7) 10px'
+  border: 'solid rgba(67, 96, 117, .7) 10px',
 };
 const MODALHEADER_STYLES = {
   position: 'fixed',
-  top: '20%',
-  right: '71%',
+  top: '17%',
+  right: '68%',
   transform: 'translate(-50%, -50%)',
   backgroundColor: 'transparent',
   padding: '5px',
@@ -110,12 +110,6 @@ box-sizing: border-box;
   background-color: #D8E2E9;
 }
  `
- const StyledH2 = styled.h2`
-  background: rgba(203, 216, 225, 1);
-  border-radius: 8px;
-  box-sizing: border-box;
-
-`;
 
 const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect, setDropDownSelect, showNewMReviewModal, setReviewModalBoolean, reviewModalBoolean, setNewReviewModal }) => {
   const [reviewCount, setReviewCount] = useState(2);
