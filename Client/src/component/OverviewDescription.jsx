@@ -4,13 +4,20 @@ import styled from 'styled-components';
 const Description = styled.div`
   display: grid;
   grid-template-columns: 70% 30%;
+  font-family: 'Roboto', sans-serif;
+  padding-top: 20px;
+  background-color: #D8E2E9;
 `;
 const SloganDesc = styled.div`
   grid-column: 1/2;
   border-right: 2px solid black;
+  padding-left: 10px;
 `;
 const Bullets = styled.div`
   grid-column: 2/3;
+`;
+const List = styled.li`
+  list-style: '✓';
 `;
 
 const OverviewDescription = ({ currentItem }) => {
@@ -19,7 +26,7 @@ const OverviewDescription = ({ currentItem }) => {
   if (currentItem.id !== undefined) {
     const features = () => (
       currentItem.features.map((feature, idx) => (
-        <li key={idx}>{feature.feature + feature.value}</li>
+        <List key={idx}>{feature.feature + feature.value}</List>
       ))
     );
 

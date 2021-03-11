@@ -12,6 +12,8 @@ const ModalStyles = {
   backgroundColor: 'white',
   padding: '50px',
   zIndex: 1000,
+  boxSizing: 'border-box',
+  border: 'solid rgba(67, 96, 117, .7) 10px'
 };
 
 const OverlayStyles = {

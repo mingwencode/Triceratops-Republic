@@ -19,11 +19,13 @@ const MODAL_STYLES = {
   maxHeight: 'calc(100vh - 350px)',
   overflowY: 'auto',
   borderRadius: 10,
+  boxSizing: 'border-box',
+  border: 'solid rgba(67, 96, 117, .7) 10px'
 };
 const MODALHEADER_STYLES = {
   position: 'fixed',
-  top: '14%',
-  right: '70%',
+  top: '20%',
+  right: '71%',
   transform: 'translate(-50%, -50%)',
   backgroundColor: 'transparent',
   padding: '5px',
@@ -90,12 +92,13 @@ box-sizing: border-box;
  `;
 
  const ListStyle = styled.div`
-  maxHeight: 'calc(100vh - 450px)',
-  overflowY: 'auto',
+  maxHeight: 'calc(100vh - 450px)';
+  overflowY: 'auto';
  `;
  const RatingsAndReviewsHeaderStyle = styled.div`
-   display: flex,
-   justify-content: center,
+   display: flex;
+   justify-content: flex-end;
+   padding-bottom: 10px;
  `;
  const MoreReviewsStyle = styled.div`
  display: flex;

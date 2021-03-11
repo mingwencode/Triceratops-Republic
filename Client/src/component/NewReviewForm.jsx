@@ -15,6 +15,8 @@ const MODAL_STYLES = {
   padding: '50px',
   zIndex: 1000,
   borderRadius: 10,
+  boxSizing: 'border-box',
+  border: 'solid rgba(67, 96, 117, .7) 10px'
 };
 const OVERLAY_STYLES = {
   position: 'fixed',
@@ -227,7 +229,7 @@ const NewReviewForm = ({
     setStarRating();
     setIsRecommended();
     setChangeSummary();
-    setChangeReview();
+    setChangeReview('');
     setThumbnail([]);
     setNickname();
     setEmail();
@@ -427,6 +429,7 @@ const NewReviewForm = ({
               <StyledReaminingCharactersSpan>
                 {' '}
                 Minimum characters left
+                {' '}
                 {remainingCharacters}
               </StyledReaminingCharactersSpan>
             )}

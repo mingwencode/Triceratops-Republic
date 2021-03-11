@@ -103,7 +103,7 @@ const ReviewTile = ({
     }
   };
   return (
-    <div>
+    <div style={{ paddingTop: '3px' }}>
       <ul>
         <ShadedStarRating starPercent={starRating} />
         <NameDateWrap>

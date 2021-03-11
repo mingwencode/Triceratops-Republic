@@ -81,7 +81,7 @@ const StyledButton = styled.button`
   box-sizing: border-box;
 `;
 
-const ButtonP = styled.p`
+const ButtonP = styled.span`
   padding-left: 30px;
 `;
 

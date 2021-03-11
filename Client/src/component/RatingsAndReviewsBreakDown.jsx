@@ -10,7 +10,7 @@ const AverageStyle = styled.span`
 display: flex;
 justify-content: start;
 font-wieght: bold;
-font-size: 40px;
+font-size: 60px;
 `;
 
 
