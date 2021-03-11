@@ -3,24 +3,26 @@ import styled from 'styled-components';
 
 const logo = '../images/logoFEC.png';
 
-const TB = styled.span`
+const TB = styled.div`
   display: flex;
   position: 'fixed';
-  background-color: rgba(67, 96, 117, 0.7);
+  background-color: rgba(67, 96, 117, .7);
   width: 'fit-content';
   border-radius: 10px;
 `;
 
-const Logo = styled.span`
+const Logo = styled.img`
+  display: inline;
   justify-content: flex-start;
-  position: 'fixed';
-  height: fit-content;
-  self-align: center;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 `;
 
 const Title = styled.span`
   color: #030200;
   margin-top: 10px;
+  font-size: xx-large;
   font-family: 'Roboto', sans-serif;
 `;
 
@@ -54,16 +56,14 @@ const SearchBtn = styled.button`
 
 const OverviewTopBar = () => (
   <TB>
-    <Logo>
-      <img src={logo} alt="logo" height="90" width="80" />
-    </Logo>
+    <Logo src={logo} alt="logo" height="60" width="75" />
     <Title>
-      <h2>Triceratop Republic</h2>
+      <span>TRICERATOPS REPUBLIC</span>
     </Title>
     <Search>
       <Input name="seachBar" className="search-bar" placeholder="Search" />
       <span>
-        <SearchBtn className="search-bar-btn" type="submit">Search</SearchBtn>
+        <SearchBtn className="search-bar-btn" type="submit" onClick={() => alert('Product Not Found')}>Search</SearchBtn>
       </span>
     </Search>
   </TB>

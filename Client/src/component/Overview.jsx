@@ -36,7 +36,7 @@ const Des = styled.div`
   grid-row-end: 4; */
 `;
 
-const Overview = ({ currentItem, productStyles, currentProductId, setReviewModalBoolean }) => {
+const Overview = ({ currentItem, productStyles, currentProductId, setReviewModalBoolean, outfitArray, setOutfitArray }) => {
   const [currentImageIndex, setImageIndex] = useState(0);
   const [styleResultsIndex, setStyleResultsIndex] = useState(0);
   const [currentProductIndex, setCurrentProductIndex] = useState();
@@ -79,6 +79,9 @@ const Overview = ({ currentItem, productStyles, currentProductId, setReviewModal
                     className="item4 add-to-bag"
                     productStyles={productStyles}
                     styleResultsIndex={styleResultsIndex}
+                    outfitArray={outfitArray}
+                    setOutfitArray={setOutfitArray}
+                    currentItem={currentItem}
                   />
                 </div>
               </Pi>

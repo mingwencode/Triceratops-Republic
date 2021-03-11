@@ -1,12 +1,14 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
 const modalStyles = {
+  display: 'inline',
   position: 'fixed',
   borderRadius: '10px',
   height: 'fit-content',
   width: 'fit-content',
-  minHeight: '800px',
+  minHeight: '1000px',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
@@ -24,6 +26,34 @@ const overlayStyle = {
   backgroundColor: 'rgba(0, 0, 0, .7)',
   zIndex: 1000
 };
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 20px 1fr 20px;
+  grid-template-rows: 20px 1fr;
+`;
+
+const Button = styled.button`
+  border: none;
+  background: none;
+  font-size: 2em;
+  color: #A4BBCB;
+  z-index: 1005
+  &:focus{
+    outline: none;
+  }
+  &:hover{
+    color: #A4BBCB;
+    transform: scale(1.5, 1.5);
+  }
+`;
+
+const Image = styled.img`
+  &:hover{
+    transform: scale(2.5, 2.5);
+    cursor: pointer;
+  }
+`;
 
 
 // const background = productStyles.results[modalImageIndex].photos[0].url;
@@ -48,15 +78,13 @@ const OverviewModal = ({ open, onClose, productStyles }) => {
       <div style={overlayStyle} />
       <div style={modalStyles}>
         <div>
-          <button onClick={onClose}>X</button>
+          <Button onClick={onClose}>&#8855;</Button>
         </div>
         <div>
-          <button className="modalPrevBtn" onClick={handlePrevious}>Prev</button>
+          <Button type="button" className="modalPrevBtn" onClick={handlePrevious}>&#8249;</Button>
+          <Image src={productStyles.results[modalImageIndex].photos[0].url} alt="" height="900" width="700" />
+          <Button type="button" className="modalNextBtn" onClick={handleNext}>&#8250;</Button>
         </div>
-        <div>
-          <img src={productStyles.results[modalImageIndex].photos[0].url} alt="" height="900" width="700" />
-        </div>
-        <button className="modalNextBtn" onClick={handleNext}>Next</button>
       </div>
     </>
   );
