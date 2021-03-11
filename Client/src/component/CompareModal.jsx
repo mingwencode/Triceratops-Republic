@@ -1,30 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import ReactDom from 'react-dom';
 //import PropTypes from 'prop-types';
 
-const ModalStyles = {
-  position: 'fixed',
-  borderRadius: '10px',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  backgroundColor: 'white',
-  padding: '50px',
-  zIndex: 1000,
-  boxSizing: 'border-box',
-  border: 'solid rgba(67, 96, 117, .7) 10px'
-};
+const ModalStyles = styled.div`
+  position: fixed;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 50px;
+  z-index: 1000;
+  box-sizing: border-box;
+  border: solid rgba(67, 96, 117, .7) 10px;
+`;
 
-const OverlayStyles = {
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  backgroundColor: 'rgba(0, 0, 0, .7)',
-  zIndex: 1000,
-};
+const OverlayStyles = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, .7);
+  z-index: 1000;
+`;
 
 const Button = styled.button`
   border: none;
@@ -86,20 +86,20 @@ const renderTable = (current, compare) => {
 
   const tableData = allFeatures.map((feature) => {
     const tempobj = {feature}
-    for (let i = 0; i < current.features.length; i++) {
+    for (let i = 0; i < current.features.length; i += 1) {
       if (current.features[i].feature === feature) {
         if (current.features[i].value === null) {
-          tempobj['current'] = null;
+          tempobj.current = null;
         }
-        tempobj['current'] = current.features[i].value;
+        tempobj.current = current.features[i].value;
       }
     }
-    for (let i = 0; i < compare.features.length; i++) {
+    for (let i = 0; i < compare.features.length; i += 1) {
       if (compare.features[i].feature === feature) {
         if (compare.features[i].value === null) {
-          tempobj['compare'] = null;
+          tempobj.compare = null;
         }
-        tempobj['compare'] = compare.features[i].value;
+        tempobj.compare = compare.features[i].value;
       }
     }
     return tempobj;
@@ -119,8 +119,8 @@ const CompareModal = ({ isOpenModal, onDismiss, children, currentItem, compare }
 
   return ReactDom.createPortal(
     <>
-      <div style={OverlayStyles} />
-      <div style={ModalStyles}>
+      <OverlayStyles />
+      <ModalStyles>
         <Button type="button" onClick={() => onDismiss((prev) => !prev)}>&#8855;</Button>
         <Table>
           <thead>
@@ -141,7 +141,7 @@ const CompareModal = ({ isOpenModal, onDismiss, children, currentItem, compare }
         </Table>
 
         {children}
-      </div>
+      </ModalStyles>
     </>,
     document.getElementById('portal'),
   );
