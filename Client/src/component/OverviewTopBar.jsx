@@ -14,16 +14,16 @@ const TB = styled.div`
 const Logo = styled.img`
   display: inline;
   justify-content: flex-start;
-  padding-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
 `;
 
 const Title = styled.span`
   color: #030200;
-  margin-top: 10px;
-  font-size: xx-large;
-  font-family: 'Roboto', sans-serif;
+  margin-top: 23px;
+  margin-left: 5px;
+  font-size: x-large;
+  font-family: 'Montserrat', sans-serif;
 `;
 
 const Search = styled.span`
@@ -56,7 +56,7 @@ const SearchBtn = styled.button`
 
 const OverviewTopBar = () => (
   <TB>
-    <Logo src={logo} alt="logo" height="60" width="75" />
+    <Logo src={logo} alt="logo" height="65" width="80" />
     <Title>
       <span>TRICERATOPS REPUBLIC</span>
     </Title>
