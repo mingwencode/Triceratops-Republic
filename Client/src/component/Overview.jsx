@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import OverviewTopBar from './OverviewTopBar';
 import OverviewImageGallery from './OverviewImageGallery';
 import OverviewProductInfo from './OverviewProductInfo';
 import OverviewAddToBag from './OverviewAddToBag';
@@ -15,9 +14,6 @@ let OvBody = styled.div`
   max-width: 100%;
   margin: 0;
   padding: 5px;
-`;
-const Tb = styled.div`
-  /* grid-column: 2; */
 `;
 const Ig = styled.div`
   grid-column-start: 1;
@@ -41,16 +37,9 @@ const Overview = ({ currentItem, productStyles, currentProductId, setReviewModal
   const [styleResultsIndex, setStyleResultsIndex] = useState(0);
   const [currentProductIndex, setCurrentProductIndex] = useState();
 
-  const handleStyleClick = (idx) => {
-    setStyleResultsIndex(idx);
-  };
-
   if (productStyles) {
     return (
       <div>
-        <Tb>
-          <OverviewTopBar className="item1 top-bar" />
-        </Tb>
         <div className="ov-container">
           <div>
             <OvBody>
@@ -69,8 +58,8 @@ const Overview = ({ currentItem, productStyles, currentProductId, setReviewModal
                     currentItem={currentItem}
                     productStyles={productStyles}
                     currentProductId={currentProductId}
-                    handleStyleClick={handleStyleClick}
                     styleResultsIndex={styleResultsIndex}
+                    setStyleResultsIndex={setStyleResultsIndex}
                     setReviewModalBoolean={setReviewModalBoolean}
                   />
                 </div>

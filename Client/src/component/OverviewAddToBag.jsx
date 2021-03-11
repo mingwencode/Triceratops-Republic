@@ -1,3 +1,7 @@
+/* eslint-disable no-alert */
+/* eslint-disable semi */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-unused-expressions */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
@@ -44,10 +48,10 @@ const OverviewAddToBag = ({ productStyles, styleResultsIndex, outfitArray, setOu
     if (tempArray.length > 0) {
       for (const outfit of tempArray) {
         if (outfit.id === currentItem.id) {
-          tempArray.unshift(currentItem);
-          break;
+          return;
         }
       }
+      tempArray.unshift(currentItem);
       setOutfitArray(tempArray);
     } else {
       tempArray.unshift(currentItem);
@@ -90,6 +94,7 @@ const OverviewAddToBag = ({ productStyles, styleResultsIndex, outfitArray, setOu
 
     const handleQtyChange = (e) => {
       e.preventDefault();
+      setCurrentQty(e.target.value);
     };
 
     if (qtyState > 0) {
@@ -107,25 +112,27 @@ const OverviewAddToBag = ({ productStyles, styleResultsIndex, outfitArray, setOu
       ));
     };
 
+    const handleATBSubmit = (id) => {
+      axios.post('/cart', { sku_id: id })
+        .then(() => console.log('added to bag!!!'))
+        .catch(() => console.log('failed to add to bag'));
+    };
+
     const pleaseSelect = () => {
       if (sizeSelected === '') {
         alert('Please Select Size and Quantity');
+      } else {
+        currentQty > 0 ?
+          (handleATBSubmit(addToBagId),
+          alert('Added to Bag!')) :
+          alert('Please Select Quantity')
       }
-      handleATBSubmit(addToBagId);
-      alert('Added to Bag!')
-      location.reload();
     };
 
     const addToBagBtn = () => {
       if (availabiltyChecker) {
         return <Button onClick={pleaseSelect} type="button">Add To Bag</Button>;
       }
-    };
-
-    const handleATBSubmit = (id) => {
-      axios.post('/cart', { sku_id: id })
-        .then(() => console.log('added to bag!!!'))
-        .catch(() => console.log('failed to add to bag'));
     };
 
     return (

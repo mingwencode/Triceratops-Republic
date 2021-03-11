@@ -8,6 +8,7 @@ import Overview from './Overview';
 import RatingsAndReviews from './RatingsAndReviews';
 import QAndA from './QAndA';
 import RelatedProducts from './RelatedProducts';
+import OverviewTopBar from './OverviewTopBar';
 
 const AppBackground = styled.div`
   background: rgba(215, 213, 215, 1);
@@ -23,6 +24,10 @@ const AppBody = styled.div`
   margin: auto;
   padding: 10px;
   font-family: 'Shippori Mincho', serif;
+`;
+
+const Tb = styled.div`
+  /* grid-column: 2; */
 `;
 
 const OverviewStyle = styled.div`
@@ -112,6 +117,9 @@ const App = () => {
   if (relatedProductIds && productStyles) {
     return (
       <AppBackground>
+        <Tb>
+          <OverviewTopBar className="item1 top-bar" />
+        </Tb>
         <AppBody>
           <OverviewStyle>
             <Overview

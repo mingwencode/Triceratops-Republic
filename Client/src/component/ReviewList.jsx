@@ -16,7 +16,7 @@ const MODAL_STYLES = {
   transform: 'translate(-50%, -50%)',
   backgroundColor: '#FFF',
   zIndex: 1000,
-  maxHeight: 'calc(100vh - 350px)',
+  maxHeight: 'calc(100vh - 100px)',
   overflowY: 'auto',
   borderRadius: 10,
   boxSizing: 'border-box',
@@ -24,8 +24,8 @@ const MODAL_STYLES = {
 };
 const MODALHEADER_STYLES = {
   position: 'fixed',
-  top: '20%',
-  right: '71%',
+  top: '17%',
+  right: '68%',
   transform: 'translate(-50%, -50%)',
   backgroundColor: 'transparent',
   padding: '5px',
