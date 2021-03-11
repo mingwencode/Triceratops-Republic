@@ -44,7 +44,7 @@ const OverviewAddToBag = ({ productStyles, styleResultsIndex, outfitArray, setOu
     if (tempArray.length > 0) {
       for (const outfit of tempArray) {
         if (outfit.id === currentItem.id) {
-          break;
+          return;
         }
       }
       tempArray.unshift(currentItem);

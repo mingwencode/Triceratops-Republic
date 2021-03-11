@@ -160,7 +160,7 @@ const OverviewImageGallery = ({ productStyles, currentImageIndex }) => {
         >Fancy</OverviewModal>
       </Modal>
       <Image>
-        <Img className="main-image" src={productStyles.results[mainImageIndex].photos[0].url} alt="main diplay" />
+        <Img className="main-image" src={productStyles.results[mainImageIndex].photos[0].url} alt="main diplay" height="500" width="500" />
       </Image>
       <BtnRight>
         {mainImageIndex === productStyles.results.length - 1 ? null : <Button type="button" onClick={handleMainNext}>&#8250;</Button>}
