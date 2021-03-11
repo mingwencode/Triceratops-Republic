@@ -24,7 +24,7 @@ const MODAL_STYLES = {
 };
 const MODALHEADER_STYLES = {
   position: 'fixed',
-  top: '16%',
+  top: '20%',
   right: '71%',
   transform: 'translate(-50%, -50%)',
   backgroundColor: 'transparent',
