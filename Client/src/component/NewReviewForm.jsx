@@ -277,6 +277,7 @@ const NewReviewForm = ({
     setThumbnail(thumbnailArray);
   };
 
+
   const starRatingText = () => {
     if (rating === 1) {
       return (
