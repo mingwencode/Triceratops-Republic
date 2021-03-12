@@ -1,10 +1,11 @@
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable arrow-body-style */
 /* eslint-disable max-len */
-/* eslint-disable consistent-return */
+/* eslint-disable arrow-body-style */
+/* eslint-disable prefer-destructuring */
+/* eslint-disable no-return-assign */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable camelcase */
+/* eslint-disable no-console */
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
