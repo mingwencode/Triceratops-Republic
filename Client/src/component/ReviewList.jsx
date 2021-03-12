@@ -35,8 +35,6 @@ const MODALHEADER_STYLES = {
   gridTemplateColumns: '10% 70% 20%',
 };
 
-
-
 const OVERLAY_STYLES = {
   position: 'fixed',
   top: 0,
@@ -111,7 +109,17 @@ box-sizing: border-box;
 }
  `
 
-const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect, setDropDownSelect, showNewMReviewModal, setReviewModalBoolean, reviewModalBoolean, setNewReviewModal }) => {
+const ReviewList = ({
+  reviewArray,
+  currentProductId,
+  getReviews,
+  dropDownselect,
+  setDropDownSelect,
+  showNewMReviewModal,
+  setReviewModalBoolean,
+  reviewModalBoolean,
+  setNewReviewModal
+}) => {
   const [reviewCount, setReviewCount] = useState(2);
   const [moreReviewsBoolean, setMoreReview] = useState(false);
   const reviews = reviewArray.results;

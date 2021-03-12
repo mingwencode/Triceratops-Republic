@@ -4,10 +4,6 @@ import styled from 'styled-components';
 import ShadedStarRating from './ShadedStarRating';
 
 
-
-const ReviewPhoto = styled.img`
- padding-left: 10px;
- `;
  const StyledA = styled.a`
   cursor: pointer;
   font-family: 'Shippori Mincho', serif;

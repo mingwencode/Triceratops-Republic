@@ -28,6 +28,7 @@ const AppBody = styled.div`
 
 const Tb = styled.div`
   /* grid-column: 2; */
+
 `;
 
 const OverviewStyle = styled.div`
@@ -50,8 +51,7 @@ const ReviewsStyles = styled.div`
 `;
 
 const App = () => {
-  //const [productArray, setProductArray] = useState([]);
-  const [currentProductId, setCurrentProductId] = useState(20817);
+  const [currentProductId, setCurrentProductId] = useState(20506);
   const [relatedProductIds, setRelatedProductIds] = useState();
   const [productStyles, setProductStyles] = useState();
   const [currentItem, setCurrentItem] = useState({});
