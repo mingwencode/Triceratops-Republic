@@ -381,7 +381,7 @@ const NewReviewForm = ({
           </div>
           <div>
             <StyledSpanLabel id="charTitle">Characteristics*</StyledSpanLabel>
-            <table id="characteristics" style={TABLE}>
+            <table id="characteristics">
               <tbody>
                 <tr />
                 {renderCharacteristics()}
