@@ -6,7 +6,10 @@ const Description = styled.div`
   grid-template-columns: 70% 30%;
   font-family: 'Roboto', sans-serif;
   padding-top: 20px;
-  background-color: #D8E2E9;
+  @media (prefers-color-scheme:light){
+  background-color: #D8E2E9;}
+  @media (prefers-color-scheme:dark){
+    background-color: #60606C;}
 `;
 const SloganDesc = styled.div`
   grid-column: 1/2;

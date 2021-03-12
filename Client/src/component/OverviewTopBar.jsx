@@ -6,7 +6,10 @@ const logo = '../images/logoFEC.png';
 
 const TB = styled.div`
   position: 'fixed';
-  background-color: rgba(67, 96, 117, .7);
+  @media(prefers-color-scheme:light){
+  background-color: rgba(67, 96, 117, .7);}
+  @media(prefers-color-scheme:dark){
+    background-color: #60606C;}
   width: 'fit-content';
 `;
 const InnerItems = styled.div`
