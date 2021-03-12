@@ -53,7 +53,6 @@ const App = () => {
   const [reviewModalBoolean, setReviewModalBoolean] = useState(false);
   const [outfitArray, setOutfitArray] = useState([]);
 
-  // RELATED PRODUCTS
   const getRelatedProductIds = (id) => {
     axios.get(`/products/${id}/related`)
       .then((res) => (
@@ -62,7 +61,6 @@ const App = () => {
       .catch(err => console.log('get related product ids ', err));
   };
 
-
   const getCurrentProductInfo = (pId) => {
     const requestOne = axios.get(`/products/${pId}`);
     const requestTwo = axios.get(`/products/${pId}/styles`);
@@ -70,7 +68,9 @@ const App = () => {
 
     axios.all([requestOne, requestTwo, requestThree])
       .then((res) => {
-        const { id, name, category, default_price, features, slogan, description } = res[0].data;
+        const {
+          id, name, category, default_price, features, slogan, description
+        } = res[0].data;
         const styleResult = res[1].data.results;
         let url = '';
         let smallUrl = '';
@@ -84,7 +84,7 @@ const App = () => {
         const average = count / res[2].data.results.length;
         starPercent = ((average / 5) * 100);
 
-        for (let i = 0; i < styleResult.length; i++) {
+        for (let i = 0; i < styleResult.length; i += 1) {
           if (styleResult[i]['default?']) {
             url = styleResult[i].photos[0].thumbnail_url;
             smallUrl = styleResult[i].photos[0].url;

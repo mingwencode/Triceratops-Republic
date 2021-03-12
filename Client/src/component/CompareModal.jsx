@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import ReactDom from 'react-dom';
-//import PropTypes from 'prop-types';
 
 const ModalStyles = styled.div`
   position: fixed;
@@ -114,7 +113,9 @@ const renderTable = (current, compare) => {
   ));
 };
 
-const CompareModal = ({ isOpenModal, onDismiss, children, currentItem, compare }) => {
+const CompareModal = ({
+  isOpenModal, onDismiss, children, currentItem, compare,
+}) => {
   if (!isOpenModal) return null;
 
   return ReactDom.createPortal(
@@ -146,10 +147,5 @@ const CompareModal = ({ isOpenModal, onDismiss, children, currentItem, compare }
     document.getElementById('portal'),
   );
 };
-
-// ProductCard.propTypes = {
-//   product: PropTypes.shape.isRequired,
-//   //url: PropTypes.string.isRequired,
-// };
 
 export default CompareModal;

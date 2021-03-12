@@ -3,11 +3,6 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ShadedStarRating from './ShadedStarRating';
 
-
-
-const ReviewPhoto = styled.img`
- padding-left: 10px;
- `;
  const StyledA = styled.a`
   cursor: pointer;
   font-family: 'Shippori Mincho', serif;
@@ -36,6 +31,13 @@ text-align: right;
 const StyledSpanFont = styled.span`
 font-family: 'Roboto', sans-serif;
 `
+const ImageP = styled.p`
+  padding-left: 43px;
+`;
+const StyledImg = styled.img`
+  padding: 5px;
+  border-radius: 10px;
+`;
 
 const ReviewTile = ({
 // eslint-disable-next-line react/prop-types
@@ -67,7 +69,7 @@ const ReviewTile = ({
   const renderPhotos = () => {
     if (review.photos.length !== 0) {
       return (
-        <p>{review.photos.map((photo, index) => <ReviewPhoto src={photo.url} key={index} alt="review" height="50" width="50" />)}</p>
+        <ImageP>{review.photos.map((photo, index) => <StyledImg src={photo.url} key={index} alt="review" height="50" width="50" />)}</ImageP>
       )
     }
   }

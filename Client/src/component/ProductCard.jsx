@@ -116,8 +116,7 @@ const ProductCard = ({
           />
         </CompareBtnContainer>
       )
-        :
-        (
+        : (
           <CompareBtnContainer>
             <SlideImg data-testid="relatedOutfitImage" src={product.smallUrl} alt="" />
             <Button data-testid="closeBtn" title="remove" onClick={() => removeOutFit(product.id)}>&#8855;</Button>
@@ -126,31 +125,22 @@ const ProductCard = ({
       <Span>{product.category}</Span>
       <Name>{product.name}</Name>
       {product.salePrice ?
-      (<>
+        (
+          <>
         <Span1>{`$${product.salePrice}`}</Span1>
         <SpanSale>{`$${product.price}`}</SpanSale>
         <Star1><ShadedStarRating starPercent={product.starPercent} /></Star1>
-       </>)
-       :(<><Span>{`$${product.price}`}</Span>
-       <Star><ShadedStarRating starPercent={product.starPercent} /></Star></>)}
-
+          </>
+)
+        : (
+          <>
+            <Span>{`$${product.price}`}</Span>
+            <Star><ShadedStarRating starPercent={product.starPercent} /></Star>
+          </>
+        )}
     </Card>
 
   );
 };
-
-// ProductCard.propTypes = {
-//   product: PropTypes.objectOf(
-//     PropTypes.oneOfType([
-//       PropTypes.string,
-//       PropTypes.number.isRequired
-//     ])
-//   ),
-  // list: PropTypes.bool.isRequired,
-  // removeOutFit: PropTypes.func,
-  // setCurrentProductId: PropTypes.func.isRequired,
-  // currentItem: PropTypes.object
-
-//};
 
 export default React.memo(ProductCard);

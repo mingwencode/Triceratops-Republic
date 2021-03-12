@@ -35,6 +35,7 @@ const Price = styled.span`
 const StyleThumb = styled.img`
   border-radius: 50%;
   margin: 10px;
+  object-fit: cover;
   &:hover{
     color: #A4BBCB;
     transform: scale(1.5, 1.5);
