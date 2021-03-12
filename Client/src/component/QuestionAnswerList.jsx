@@ -34,7 +34,7 @@ const QuestionAnswerList = ({ onShowAnswerModal, onOpenAnswerModal, questionAnsw
 
   return (
     <div style={questionStyles}>
-      {newQaArray.map((question, index) => <Question question={question} key={question.question_id} onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} questionAnswersShown={questionAnswersShown} putQuestionHelpful={putQuestionHelpful} putQuestionReport={putQuestionReport} putAnswersHelpful={putAnswersHelpful} putAnswersReport={putAnswersReport} setQuestionID={setQuestionID} />)}
+      {newQaArray.map((question) => <Question question={question} key={question.question_id} onShowAnswerModal={onShowAnswerModal} onOpenAnswerModal={onOpenAnswerModal} questionAnswersShown={questionAnswersShown} putQuestionHelpful={putQuestionHelpful} putQuestionReport={putQuestionReport} putAnswersHelpful={putAnswersHelpful} putAnswersReport={putAnswersReport} setQuestionID={setQuestionID} />)}
     </div>
   );
 };

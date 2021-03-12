@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ShadedStarRating from './ShadedStarRating';
 
-
  const StyledA = styled.a`
   cursor: pointer;
   font-family: 'Shippori Mincho', serif;

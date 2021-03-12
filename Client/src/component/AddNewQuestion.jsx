@@ -1,6 +1,6 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable arrow-body-style */
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Button = styled.button`
@@ -21,17 +21,12 @@ const P = styled.p`
   padding-left: 30px;
 `;
 
-
 const AddNewQuestion = ({ addQuestionButtonClick }) => {
   return (
     <div>
       <P><Button type="button" onClick={() => addQuestionButtonClick()}>Add A Question +</Button></P>
     </div>
   );
-};
-
-AddNewQuestion.propTypes = {
-  addQuestionButtonClick: PropTypes.func.isRequired,
 };
 
 export default AddNewQuestion;
