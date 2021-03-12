@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 /* eslint-disable consistent-return */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -111,7 +111,6 @@ font-size: .7em;
 padding-left: 250px;
 `;
 
-const TABLE = { border: '1px white' };
 const NewReviewForm = ({
   showNewReviewModal, currentProductId, setNewReviewModal, sampleCharacterObj, reviewMetaData, getReviews, currentItem,
 }) => {
@@ -383,8 +382,8 @@ const NewReviewForm = ({
           <div>
             <StyledSpanLabel id="charTitle">Characteristics*</StyledSpanLabel>
             <table id="characteristics" style={TABLE}>
-              <tbody style={TABLE}>
-                <tr style={TABLE}/>
+              <tbody>
+                <tr />
                 {renderCharacteristics()}
               </tbody>
             </table>

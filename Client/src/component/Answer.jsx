@@ -39,7 +39,6 @@ const StyledP = styled.p`
 const ImageP = styled.p`
   padding-left: 43px;
 `;
-
 const StyledImg = styled.img`
   padding: 5px;
   border-radius: 10px;

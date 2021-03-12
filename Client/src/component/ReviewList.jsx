@@ -20,7 +20,7 @@ const MODAL_STYLES = {
   overflowY: 'auto',
   borderRadius: 10,
   boxSizing: 'border-box',
-  border: 'solid rgba(67, 96, 117, .7) 10px'
+  border: 'solid rgba(67, 96, 117, .7) 10px',
 };
 const MODALHEADER_STYLES = {
   position: 'fixed',
@@ -34,8 +34,6 @@ const MODALHEADER_STYLES = {
   display: 'grid',
   gridTemplateColumns: '10% 70% 20%',
 };
-
-
 
 const OVERLAY_STYLES = {
   position: 'fixed',
@@ -110,14 +108,18 @@ box-sizing: border-box;
   background-color: #D8E2E9;
 }
  `
- const StyledH2 = styled.h2`
-  background: rgba(203, 216, 225, 1);
-  border-radius: 8px;
-  box-sizing: border-box;
 
-`;
-
-const ReviewList = ({ reviewArray, currentProductId, getReviews, dropDownselect, setDropDownSelect, showNewMReviewModal, setReviewModalBoolean, reviewModalBoolean, setNewReviewModal }) => {
+const ReviewList = ({
+  reviewArray,
+  currentProductId,
+  getReviews,
+  dropDownselect,
+  setDropDownSelect,
+  showNewMReviewModal,
+  setReviewModalBoolean,
+  reviewModalBoolean,
+  setNewReviewModal
+}) => {
   const [reviewCount, setReviewCount] = useState(2);
   const [moreReviewsBoolean, setMoreReview] = useState(false);
   const reviews = reviewArray.results;
