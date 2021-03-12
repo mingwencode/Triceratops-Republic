@@ -345,7 +345,7 @@ const QAndA = ({ currentProductId }) => {
   if (productQuestions) {
     return (
       <div>
-        <StyledH2>QUESTION AND ANSWERS</StyledH2>
+        <StyledH2>QUESTIONS AND ANSWERS</StyledH2>
         <SearchDiv>
           <SearchInput value={searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
           <i className="fas fa-search" />

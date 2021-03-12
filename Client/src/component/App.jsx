@@ -26,10 +26,6 @@ const AppBody = styled.div`
   font-family: 'Shippori Mincho', serif;
 `;
 
-const Tb = styled.div`
-  /* grid-column: 2; */
-`;
-
 const OverviewStyle = styled.div`
   grid-row-start: 1;
 `;
@@ -50,8 +46,7 @@ const ReviewsStyles = styled.div`
 `;
 
 const App = () => {
-  //const [productArray, setProductArray] = useState([]);
-  const [currentProductId, setCurrentProductId] = useState(20817);
+  const [currentProductId, setCurrentProductId] = useState(20506);
   const [relatedProductIds, setRelatedProductIds] = useState();
   const [productStyles, setProductStyles] = useState();
   const [currentItem, setCurrentItem] = useState({});
@@ -117,9 +112,9 @@ const App = () => {
   if (relatedProductIds && productStyles) {
     return (
       <AppBackground>
-        <Tb>
+        <div>
           <OverviewTopBar className="item1 top-bar" />
-        </Tb>
+        </div>
         <AppBody>
           <OverviewStyle>
             <Overview

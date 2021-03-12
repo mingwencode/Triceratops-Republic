@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-alert */
 /* eslint-disable semi */
 /* eslint-disable no-restricted-globals */
@@ -36,7 +37,8 @@ const Add = styled.div`
   padding-right: 10px;
 `;
 
-const OverviewAddToBag = ({ productStyles, styleResultsIndex, outfitArray, setOutfitArray, currentItem }) => {
+const OverviewAddToBag = ({ productStyles, styleResultsIndex, outfitArray,
+  setOutfitArray, currentItem }) => {
   const [sizeSelected, setSize] = useState('');
   const [qtyState, setQtyState] = useState();
   const [currentQty, setCurrentQty] = useState();
@@ -70,13 +72,12 @@ const OverviewAddToBag = ({ productStyles, styleResultsIndex, outfitArray, setOu
     const sizes = () => {
       if (availabiltyChecker !== 0) {
         return skusArray.map((sku, idx) => {
-          if (sku.qty !== 0) {
+          if (sku.qty > 0) {
             return (
               <option key={idx} value={sku.size}>{sku.size}</option>
             )
-          } else {
-            return 'OUT OF STOCK';
           }
+          return 'OUT OF STOCK';
         });
       }
     };
@@ -122,10 +123,10 @@ const OverviewAddToBag = ({ productStyles, styleResultsIndex, outfitArray, setOu
       if (sizeSelected === '') {
         alert('Please Select Size and Quantity');
       } else {
-        currentQty > 0 ?
-          (handleATBSubmit(addToBagId),
-          alert('Added to Bag!')) :
-          alert('Please Select Quantity')
+        currentQty > 0
+          ? (handleATBSubmit(addToBagId),
+          alert('Added to Bag!'))
+          : alert('Please Select Quantity')
       }
     };
 

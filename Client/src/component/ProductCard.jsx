@@ -1,9 +1,8 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import CompareModal from './CompareModal';
 import ShadedStarRating from './ShadedStarRating';
-
 
 const SlideImg = styled.img`
   width: 180px;
@@ -87,8 +86,6 @@ cursor: pointer;
 &:active{
   opacity: 1;
 }
-
-
 `;
 
 const ProductCard = ({
@@ -102,7 +99,7 @@ const ProductCard = ({
   const resetPage = () => {
     setCurrentProductId(product.id);
     setCurrent(0);
-  }
+  };
 
   return (
     <Card>
