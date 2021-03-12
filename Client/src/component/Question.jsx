@@ -7,7 +7,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable arrow-body-style */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Answer from './Answer';
 
@@ -85,9 +85,6 @@ const Question = ({ question, onShowAnswerModal, onOpenAnswerModal, questionAnsw
   const sortedAnswerArray = answerArray.sort((a, b) => {
     return (a.helpfulness < b.helpfulness) ? 1 : -1;
   });
-  // useEffect(() => {
-  //   getQuestions(currentProductId);
-  // }, [currentProductId]);
 
   const onAddAnswerButtonClick = () => {
     setShowAnswerModal(true);
