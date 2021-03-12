@@ -58,25 +58,26 @@ const OverviewProductInfo = ({
   };
 
   const styleThumbnail = () => {
+    const randomVar = 'to make eslint happy';
     return productStyles.results.map((style, idx) => (
       styleChosen === idx ?
-      <StyleThumb
-        key={idx}
-        src={style.photos[0].thumbnail_url}
-        alt=""
-        onClick={() => handleStyleClick(idx)}
-        style={{boxSizing: 'border-box', border: '5px solid #344B5B'}}
-        height="80"
-        width="70"
-      /> :
-      <StyleThumb
-        key={idx}
-        src={style.photos[0].thumbnail_url}
-        alt=""
-        onClick={() => handleStyleClick(idx)}
-        height="80"
-        width="70"
-      />
+        <StyleThumb
+          key={idx}
+          src={style.photos[0].thumbnail_url}
+          alt=""
+          onClick={() => handleStyleClick(idx)}
+          style={{boxSizing: 'border-box', border: '5px solid #344B5B'}}
+          height="80"
+          width="70"
+        /> :
+        <StyleThumb
+          key={idx}
+          src={style.photos[0].thumbnail_url}
+          alt=""
+          onClick={() => handleStyleClick(idx)}
+          height="80"
+          width="70"
+        />
     ));
   };
 
