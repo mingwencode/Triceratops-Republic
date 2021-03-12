@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ProductCard from './ProductCard';
 
-
 const ListContainer = styled.div`
   display: grid;
   grid-template-columns: 60px 180px 1fr 60px;
@@ -19,9 +18,7 @@ const OutfitViewPort = styled.div`
   width: 720px;
   height: 280px;
   overflow: hidden;
-
 `;
-//background: red;
 
 const CardContainer = styled.div`
   display: flex;
@@ -82,7 +79,6 @@ const ButtonWrap = styled.div`
   position: relative;
 `;
 
-
 const AddButton = styled.a`
   position: absolute;
   opacity: 0.5;
@@ -92,7 +88,6 @@ const AddButton = styled.a`
   color: #344B5B;
   cursor: default;
 `;
-
 
 const YourOutfitList = ({currentItem, outfitArray, setOutfitArray}) => {
   const [current, setCurrent] = useState(0);

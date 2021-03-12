@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ProductCard from './ProductCard';
 
-
 const ListContainer = styled.div`
   display: grid;
   grid-template-columns: 60px 1fr 60px;
-
 `;
 
 const ViewPort = styled.div`
@@ -15,7 +13,6 @@ const ViewPort = styled.div`
   width: 960px;
   height: 280px;
   overflow: hidden;
-
 `;
 
 const CardContainer = styled.div`
@@ -23,7 +20,6 @@ const CardContainer = styled.div`
   flexDirection: row;
   width: fit-content;
   margin-top: 5px;
-
 `;
 
 const BtnContainerRelatedL = styled.div`
