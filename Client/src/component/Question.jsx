@@ -13,7 +13,10 @@ import Answer from './Answer';
 
 const StyledDiv = styled.div`
 &:nth-child(odd){
-  background-color: #D8E2E9;
+  @media (prefers-color-scheme:light){
+    background-color: #D8E2E9;}
+    @media (prefers-color-scheme:dark){
+      background-color: #60606C;}
 }
   display: grid;
   grid-template-columns: 60% 40%;

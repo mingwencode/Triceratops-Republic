@@ -37,7 +37,12 @@ const Button = styled.button`
   background: none;
   border: none;
   font-size: 2em;
-  color: #344B5B;
+  @media (prefers-color-scheme:light){
+    color: #344B5B;
+  }
+  @media (prefers-color-scheme:dark){
+    color: white;
+  }
   &:focus{
     outline: none;
   }

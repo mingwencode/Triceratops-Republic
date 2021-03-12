@@ -10,7 +10,7 @@ const styles = {
     border: '3px solid #344B5B',
     boxSizing: 'border-box',
     fontSize: '2.5em',
-    borderRadius: '3px'
+    borderRadius: '3px',
   }
 };
 

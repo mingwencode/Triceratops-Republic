@@ -36,7 +36,10 @@ font-sizeL: medium;
 `
 const Styledh3 = styled.h3`
 font-family: 'Shippori Mincho', serif;
-color: #344B5B;
+(prefers-color-scheme:light){
+  color: #344B5B;}
+  @media (prefers-color-scheme:dark){
+    color: #D7D5D7;
 font-weight: 800;
 font-size: 1.17em;
 `

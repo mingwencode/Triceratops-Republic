@@ -8,20 +8,24 @@ import styled from 'styled-components';
 import ReviewTile from './ReviewTile';
 import RatingsAndReviewsHeader from './RatingsAndReviewsHeader';
 
-const MODAL_STYLES = {
-  padding: '75px',
-  position: 'fixed',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  backgroundColor: '#FFF',
-  zIndex: 1000,
-  maxHeight: 'calc(100vh - 100px)',
-  overflowY: 'auto',
-  borderRadius: 10,
-  boxSizing: 'border-box',
-  border: 'solid rgba(67, 96, 117, .7) 10px',
-};
+const MODAL_STYLES = styled.div`
+  padding: 75px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  @media (prefers-color-scheme:dark){
+  background: #60606C};
+  @media (prefers-color-scheme:light){
+    background: white};
+  z-index: 1000;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  border-radius: 10;
+  box-sizing: border-box;
+  border: solid rgba(67, 96, 117, .7) 10px;
+`;
+
 const MODALHEADER_STYLES = {
   position: 'fixed',
   top: '17%',
@@ -105,7 +109,10 @@ box-sizing: border-box;
 
  const ReviewTileStyle = styled.div`
  &:nth-child(odd){
-  background-color: #D8E2E9;
+  @media (prefers-color-scheme:light){
+    background-color: #D8E2E9;}
+    @media (prefers-color-scheme:dark){
+      background-color: #60606C;}
 }
  `
 
@@ -219,13 +226,13 @@ const ReviewList = ({
       <>
 
         <div style={OVERLAY_STYLES} />
-        <div style={MODAL_STYLES}>
+        <MODAL_STYLES>
 
           <div>
             {intitialReviewRender()}
           </div>
           {moreReviews()}
-        </div>
+        </MODAL_STYLES>
         <div style={MODALHEADER_STYLES}>
           <ModalButton
             type="button"
