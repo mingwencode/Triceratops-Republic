@@ -3,15 +3,6 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ShadedStarRating from './ShadedStarRating';
 
-const ImageP = styled.p`
-  padding-left: 43px;
-`;
-
-const StyledImg = styled.img`
-  padding: 5px;
-  border-radius: 10px;
-`;
-
  const StyledA = styled.a`
   cursor: pointer;
   font-family: 'Shippori Mincho', serif;
@@ -40,6 +31,13 @@ text-align: right;
 const StyledSpanFont = styled.span`
 font-family: 'Roboto', sans-serif;
 `
+const ImageP = styled.p`
+  padding-left: 43px;
+`;
+const StyledImg = styled.img`
+  padding: 5px;
+  border-radius: 10px;
+`;
 
 const ReviewTile = ({
 // eslint-disable-next-line react/prop-types
