@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const modalStyles = {
@@ -27,12 +28,6 @@ const overlayStyle = {
   zIndex: 1000
 };
 
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 20px 1fr 20px;
-  grid-template-rows: 20px 1fr;
-`;
-
 const Button = styled.button`
   border: none;
   background: none;
@@ -49,16 +44,12 @@ const Button = styled.button`
 `;
 
 const Image = styled.img`
-  &:hover{
-    transform: scale(2.5, 2.5);
-    cursor: pointer;
-  }
+  max-width: 1000;
 `;
 
-
-// const background = productStyles.results[modalImageIndex].photos[0].url;
 const OverviewModal = ({ open, onClose, productStyles }) => {
   const [modalImageIndex, setModalImageIndex] = useState(0);
+  const [magnefied, setMagnefied] = useState(false);
   if (!open) return null;
 
   const handleNext = () => {
@@ -73,6 +64,24 @@ const OverviewModal = ({ open, onClose, productStyles }) => {
     }
   };
 
+  const onClickMag = () => {
+    setMagnefied(!magnefied);
+    magnefy();
+  };
+
+  const magnefy = () => (magnefied === false
+    ? <Image src={productStyles.results[modalImageIndex].photos[0].url} alt="" height="1200" onClick={onClickMag} style={{ cursor: 'zoom-in' }} />
+    : (
+      <Image
+        src={productStyles.results[modalImageIndex].photos[0].url}
+        alt=""
+        height="1000"
+        width="800"
+        onClick={onClickMag}
+        style={{ transform: 'scale(2.5, 2.5)', cursor: 'zoom-out' }}
+      />
+    ));
+
   return (
     <>
       <div style={overlayStyle} />
@@ -82,7 +91,7 @@ const OverviewModal = ({ open, onClose, productStyles }) => {
         </div>
         <div>
           <Button type="button" className="modalPrevBtn" onClick={handlePrevious}>&#8249;</Button>
-          <Image src={productStyles.results[modalImageIndex].photos[0].url} alt="" height="900" width="700" />
+          {magnefy()}
           <Button type="button" className="modalNextBtn" onClick={handleNext}>&#8250;</Button>
         </div>
       </div>

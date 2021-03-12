@@ -14,9 +14,13 @@ const Pi = styled.div`
   font-family: 'Roboto', sans-serif;
 `;
 const Reviews = styled.div`
+  display: flex;
   flex: row;
+  justify-content: flex-start;
 `;
 const ReadReviews = styled.a`
+  padding-top: 5px;
+  padding-left: 5px;
   &:hover{
     color: #A4BBCB;
     transform: scale(1.5, 1.5);
@@ -35,7 +39,6 @@ const Price = styled.span`
 const StyleThumb = styled.img`
   border-radius: 50%;
   margin: 10px;
-  object-fit: cover;
   &:hover{
     color: #A4BBCB;
     transform: scale(1.5, 1.5);
@@ -60,16 +63,17 @@ const OverviewProductInfo = ({
   const styleThumbnail = () => {
     const randomVar = 'to make eslint happy';
     return productStyles.results.map((style, idx) => (
-      styleChosen === idx ?
+      styleChosen === idx ? (
         <StyleThumb
           key={idx}
           src={style.photos[0].thumbnail_url}
           alt=""
           onClick={() => handleStyleClick(idx)}
-          style={{boxSizing: 'border-box', border: '5px solid #344B5B'}}
+          style={{ boxSizing: 'border-box', border: '5px solid #344B5B' }}
           height="80"
           width="70"
-        /> :
+        />
+      ) : (
         <StyleThumb
           key={idx}
           src={style.photos[0].thumbnail_url}
@@ -78,6 +82,7 @@ const OverviewProductInfo = ({
           height="80"
           width="70"
         />
+      )
     ));
   };
 
@@ -109,11 +114,9 @@ const OverviewProductInfo = ({
         </div>
         <Reviews>
           <ShadedStarRating starPercent={currentItem.starPercent} />
-          <form>
-            <ReadReviews className="reviews-a" onClick={() => setReviewModalBoolean(true)}><u>Read all reviews</u></ReadReviews>
-          </form>
+          <ReadReviews className="reviews-a" onClick={() => setReviewModalBoolean(true)}><u>Read all reviews</u></ReadReviews>
         </Reviews>
-        <div>
+        <div style={{ paddingTop: '5px' }}>
           <span>{currentItem.category}</span>
         </div>
         <div>
