@@ -5,15 +5,9 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useRef, useEffect } from 'react';
+import styled from 'styled-components';
 import OverviewModal from './OverviewModal';
 import Thumbnails from './OverviewThumbnails';
-// import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
-// const modalButtonStyle = {
-//   position: 'relative',
-//   zIndex: 1
-// };
 
 const Gallery = styled.div`
   display: grid;
@@ -80,7 +74,7 @@ const Img = styled.img`
   border-radius: 5px;
 `;
 
-const OverviewImageGallery = ({ productStyles, currentImageIndex }) => {
+const OverviewImageGallery = ({ productStyles }) => {
   const [currentImage, setImage] = useState(0);
   const [mainImageIndex, setMainImageIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
@@ -120,8 +114,6 @@ const OverviewImageGallery = ({ productStyles, currentImageIndex }) => {
     }
   };
 
-
-
   return (
     <Gallery>
       <BtnTop>
@@ -158,7 +150,7 @@ const OverviewImageGallery = ({ productStyles, currentImageIndex }) => {
           open={isOpen}
           onClose={() => setIsOpen(false)}
           productStyles={productStyles}
-        >Fancy</OverviewModal>
+        />
       </Modal>
       <Image>
         <Img className="main-image" src={productStyles.results[mainImageIndex].photos[0].url} alt="main diplay" height="500px" width="500px" />
@@ -186,8 +178,5 @@ const styles = {
     width: 'fit-content'
   }
 };
-// OverviewImageGallery.propTypes = {
-//   images: PropTypes.array
-// };
 
 export default OverviewImageGallery;
