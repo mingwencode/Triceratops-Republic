@@ -5,8 +5,8 @@ import React from 'react';
 
 const styles = {
   thumbnails: {
-    width: '50px',
-    height: '60px',
+    width: '55px',
+    height: '65px',
     border: '3px solid #344B5B',
     boxSizing: 'border-box',
     fontSize: '2.5em',
