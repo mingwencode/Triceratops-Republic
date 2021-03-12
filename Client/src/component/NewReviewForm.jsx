@@ -6,18 +6,24 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
-const MODAL_STYLES = {
-  position: 'fixed',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  backgroundColor: '#FFF',
-  padding: '50px',
-  zIndex: 1000,
-  borderRadius: 10,
-  boxSizing: 'border-box',
-  border: 'solid rgba(67, 96, 117, .7) 10px'
-};
+const MODAL_STYLES = styled.div`
+  padding: 75px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  @media (prefers-color-scheme:dark){
+  background: #60606C};
+  @media (prefers-color-scheme:light){
+    background: white};
+  z-index: 1000;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  border-radius: 10;
+  box-sizing: border-box;
+  border: solid rgba(67, 96, 117, .7) 10px;
+`;
+
 const OVERLAY_STYLES = {
   position: 'fixed',
   top: 0,
@@ -310,7 +316,7 @@ const NewReviewForm = ({
   return (
     <>
       <div style={OVERLAY_STYLES} />
-      <div style={MODAL_STYLES}>
+      <MODAL_STYLES>
         <form
           onSubmit={(e) => {
             handleSubmit(e);
@@ -489,7 +495,7 @@ const NewReviewForm = ({
             name="submit"
           />
         </form>
-      </div>
+      </MODAL_STYLES>
     </>
   );
 };

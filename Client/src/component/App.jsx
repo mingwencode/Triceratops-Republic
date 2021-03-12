@@ -11,10 +11,15 @@ import RelatedProducts from './RelatedProducts';
 import OverviewTopBar from './OverviewTopBar';
 
 const AppBackground = styled.div`
-  background: rgba(215, 213, 215, 1);
+@media (prefers-color-scheme:light){
+  background: rgba(215, 213, 215, 1); }
+  @media (prefers-color-scheme:dark){
+    background: #1D1D20;
+    color: white;}
 `;
 
 const AppBody = styled.div`
+  @media (prefers-color-scheme:light){
   display: grid;
   grid-template-auto: 25% 23% 25% 27%;
   grid-template-columns: auto;
@@ -23,7 +28,17 @@ const AppBody = styled.div`
   max-width: 1250px;
   margin: auto;
   padding: 10px;
-  font-family: 'Shippori Mincho', serif;
+  font-family: 'Shippori Mincho', serif;}
+  @media (prefers-color-scheme:dark){
+    display: grid;
+    grid-template-auto: 25% 23% 25% 27%;
+    grid-template-columns: auto;
+    box-shadow: 10px 50px 100px 0 rgba(100,225,0,0.1);
+    background: #3A3A41;
+    max-width: 1250px;
+    margin: auto;
+    padding: 10px;
+    font-family: 'Shippori Mincho', serif;}
 `;
 
 const OverviewStyle = styled.div`
