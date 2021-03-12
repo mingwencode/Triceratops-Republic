@@ -4,20 +4,15 @@ import ProductCard from './ProductCard';
 
 const ListContainer = styled.div`
   display: grid;
-  grid-template-columns: 60px 180px 1fr 60px;
-`;
-
-const ViewPortContainer = styled.div`
-  margin-right: 55px;
-  position: relative;
-  grid-column : 3 / 4;
-  justify-self: right;
+  grid-template-columns: 60px 1068px 60px;
 `;
 
 const OutfitViewPort = styled.div`
   width: 720px;
   height: 280px;
   overflow: hidden;
+  grid-column: 2 / 3;
+  justify-self:right;
 `;
 
 const CardContainer = styled.div`
@@ -34,7 +29,7 @@ const BtnContainerOutfitL = styled.div`
 `;
 
 const BtnContainerOutfitR = styled(BtnContainerOutfitL)`
-  grid-column: 4 / 5;
+  grid-column: 3 / 4;
   justify-self: left;
 `;
 
@@ -42,7 +37,13 @@ const Button = styled.button`
   background: none;
   border: none;
   font-size: 2em;
-  color: #344B5B;
+  @media (prefers-color-scheme:light){
+    color: #344B5B;
+  }
+
+  @media (prefers-color-scheme:dark){
+    color: white;
+  }
   &:focus{
     outline: none;
   }
@@ -62,7 +63,8 @@ const AddButtonContainer = styled.div`
   opacity: 0.6;
   color: white;
   margin-top: 5px;
-  margin-left: 85px;
+  justify-self: right;
+  grid-column: 1 / 2;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   &:hover{
     box-shadow: 0 8px 13px 0 rgba(0,0,0,0.2);
@@ -87,6 +89,12 @@ const AddButton = styled.a`
   left: 1.25em;
   color: #344B5B;
   cursor: default;
+`;
+
+const MidCol = styled.div`
+  grid-column: 2 / 3;
+  display: grid;
+  grid-template-columns: 265px 750px;
 `;
 
 const YourOutfitList = ({currentItem, outfitArray, setOutfitArray}) => {
@@ -135,12 +143,12 @@ const YourOutfitList = ({currentItem, outfitArray, setOutfitArray}) => {
       <BtnContainerOutfitL>
         {current === 0 ? null : <Button name="prev_btn" type="button" onClick={() => prevSilde()}>&#8249;</Button>}
       </BtnContainerOutfitL>
+      <MidCol>
       <AddButtonContainer>
         <ButtonWrap name="add_btn" type="button" onClick={() => addOutFit(currentItem)}>
           <AddButton>&#10133;</AddButton>
         </ButtonWrap>
       </AddButtonContainer>
-      <ViewPortContainer>
         <OutfitViewPort className="view-port">
           <CardContainer ref={cardContainer} className="card-container">
             {(outfitArray.length === 0) ? null : (outfitArray.map((product, index) => (
@@ -150,7 +158,7 @@ const YourOutfitList = ({currentItem, outfitArray, setOutfitArray}) => {
             )))}
           </CardContainer>
         </OutfitViewPort>
-      </ViewPortContainer>
+      </MidCol>
       <BtnContainerOutfitR>
         {current === outfitArray.length - 3 || outfitArray.length - 3 < 0 ? null : <Button name="next_btn" type="button" onClick={() => nextSlide()}>&#8250;</Button>}
       </BtnContainerOutfitR>

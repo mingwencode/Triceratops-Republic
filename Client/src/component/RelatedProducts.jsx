@@ -8,7 +8,7 @@ const Container = styled.div`
   display: grid;
   grid-template-rows: 50px 1fr 50px 1fr;
   margin: 0;
-  background: rgba(203, 216, 225, 1);
+
   padding: 30px;
 `;
 
@@ -18,7 +18,11 @@ const ProductListTitle = styled.div`
   font-weight: 800;
   justify-items: left;
   margin-top: 15px;
-  color: #344B5B;
+  @media (prefers-color-scheme:light){
+  color: #344B5B;}
+  @media (prefers-color-scheme:dark){
+    color: #D7D5D7;
+  }
 `;
 
 const ProductsListDiv = styled.div`

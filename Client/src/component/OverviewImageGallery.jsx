@@ -35,7 +35,12 @@ const Button = styled.button`
   background: none;
   border: none;
   font-size: 2em;
-  color: #344B5B;
+  @media (prefers-color-scheme:light){
+    color: #344B5B;
+  }
+  @media (prefers-color-scheme:dark){
+    color: white;
+  }
   &:focus{
     outline: none;
   }
@@ -87,7 +92,7 @@ const OverviewImageGallery = ({ productStyles }) => {
 
   useEffect(() => {
     thumbContainer.current.style.transitionDuration = '0.5s';
-    thumbContainer.current.style.transform = `translate(0, -${60 * currentImage}px)`;
+    thumbContainer.current.style.transform = `translate(0, -${65 * currentImage}px)`;
   }, [currentImage]);
 
   const handleNext = () => {
