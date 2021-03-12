@@ -34,7 +34,7 @@ const Price = styled.span`
 `;
 const StyleThumb = styled.img`
   border-radius: 50%;
-  padding: 10px;
+  margin: 10px;
   &:hover{
     color: #A4BBCB;
     transform: scale(1.5, 1.5);
@@ -43,14 +43,44 @@ const StyleThumb = styled.img`
 `;
 
 const OverviewProductInfo = ({
-  productStyles, currentItem, currentProductId, handleStyleClick, styleResultsIndex, setReviewModalBoolean,
+  productStyles, currentItem, currentProductId,
+  styleResultsIndex, setStyleResultsIndex, setReviewModalBoolean
 }) => {
+  const [styleChosen, setStyleChosen] = useState();
   const shareUrl = 'http://github.com';
   const title = 'Triceratop Republic';
 
+  const handleStyleClick = (idx) => {
+    setStyleResultsIndex(idx);
+    idx === styleChosen ? setStyleChosen() :
+    setStyleChosen(idx);
+  };
+
+  const styleThumbnail = () => {
+    return productStyles.results.map((style, idx) => (
+      styleChosen === idx ?
+      <StyleThumb
+        key={idx}
+        src={style.photos[0].thumbnail_url}
+        alt=""
+        onClick={() => handleStyleClick(idx)}
+        style={{boxSizing: 'border-box', border: '5px solid #344B5B'}}
+        height="80"
+        width="70"
+      /> :
+      <StyleThumb
+        key={idx}
+        src={style.photos[0].thumbnail_url}
+        alt=""
+        onClick={() => handleStyleClick(idx)}
+        height="80"
+        width="70"
+      />
+    ));
+  };
+
   if (productStyles) {
     return (
-
       <Pi>
         <div>
           <FacebookShareButton
@@ -97,13 +127,13 @@ const OverviewProductInfo = ({
             )
             : (
               <span>
-                <s>
-                  $
-                  {productStyles.results[styleResultsIndex].original_price}
-                </s>
-                {'  '}
                 $
                 {productStyles.results[styleResultsIndex].sale_price}
+                {'    '}
+                $
+                <s>
+                  {productStyles.results[styleResultsIndex].original_price}
+                </s>
               </span>
             )}
         </Price>
@@ -114,16 +144,7 @@ const OverviewProductInfo = ({
           </strong>
           <span className="style-name">{productStyles.results[styleResultsIndex].name}</span>
         </div>
-        {productStyles.results.map((style, idx) => (
-          <StyleThumb
-            key={idx}
-            src={style.photos[0].thumbnail_url}
-            alt=""
-            onClick={() => handleStyleClick(idx)}
-            height="80"
-            width="70"
-          />
-        ))}
+        {styleThumbnail()}
       </Pi>
     );
   }
