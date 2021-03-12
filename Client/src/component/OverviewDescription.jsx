@@ -13,9 +13,6 @@ const SloganDesc = styled.div`
   border-right: 2px solid black;
   padding-left: 10px;
 `;
-const Bullets = styled.div`
-  grid-column: 2/3;
-`;
 const List = styled.li`
   list-style: '✓';
 `;
@@ -24,7 +21,7 @@ const OverviewDescription = ({ currentItem }) => {
   if (currentItem.id !== undefined) {
     const features = () => (
       currentItem.features.map((feature, idx) => (
-        <List key={idx}>{feature.feature + feature.value}</List>
+        <List key={idx}>{`${feature.feature} ${feature.value}`}</List>
       ))
     );
 

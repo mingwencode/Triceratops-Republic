@@ -56,7 +56,7 @@ const OverviewTopBar = () => (
     <InnerItems>
       <Logo src={logo} alt="logo" height="80" width="95" />
       <Title>
-        <span>TRICERATOPS REPUBLIC</span>
+        <span>TRICERATOP REPUBLIC</span>
       </Title>
       <Search>
         <Input name="seachBar" className="search-bar" placeholder="SEARCH" />
