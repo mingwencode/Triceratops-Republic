@@ -21,8 +21,6 @@ const List = styled.li`
 `;
 
 const OverviewDescription = ({ currentItem }) => {
-  const placeholder = '';
-
   if (currentItem.id !== undefined) {
     const features = () => (
       currentItem.features.map((feature, idx) => (
