@@ -84,8 +84,7 @@ const App = () => {
     axios.all([requestOne, requestTwo, requestThree])
       .then((res) => {
         const {
-          id, name, category, default_price, features, slogan, description
-        } = res[0].data;
+          id, name, category, default_price, features, slogan, description} = res[0].data;
         const styleResult = res[1].data.results;
         let url = '';
         let smallUrl = '';

@@ -92,7 +92,7 @@ const OverviewImageGallery = ({ productStyles }) => {
 
   useEffect(() => {
     thumbContainer.current.style.transitionDuration = '0.5s';
-    thumbContainer.current.style.transform = `translate(0, -${60 * currentImage}px)`;
+    thumbContainer.current.style.transform = `translate(0, -${65 * currentImage}px)`;
   }, [currentImage]);
 
   const handleNext = () => {

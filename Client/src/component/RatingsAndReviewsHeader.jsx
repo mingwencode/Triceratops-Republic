@@ -40,7 +40,7 @@ const RatingsAndReviewsHeader = ({ reviewArray, setDropDownSelect }) => {
           <option
             value="relevant"
           >
-            relevant
+            Relevant
           </option>
           <option
             value="newest"
