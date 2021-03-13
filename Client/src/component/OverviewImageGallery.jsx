@@ -155,6 +155,8 @@ const OverviewImageGallery = ({ productStyles }) => {
           open={isOpen}
           onClose={() => setIsOpen(false)}
           productStyles={productStyles}
+          mainImageIndex={mainImageIndex}
+          setMainImageIndex={setMainImageIndex}
         />
       </Modal>
       <Image>
