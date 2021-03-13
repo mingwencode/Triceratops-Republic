@@ -10,7 +10,7 @@ const modalStyles = {
   height: 'fit-content',
   width: 'fit-content',
   minHeight: '1000px',
-  top: '50%',
+  top: '65%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   backgroundColor: 'rfga(195, 240, 247, .7)',
@@ -70,13 +70,12 @@ const OverviewModal = ({ open, onClose, productStyles }) => {
   };
 
   const magnefy = () => (magnefied === false
-    ? <Image src={productStyles.results[modalImageIndex].photos[0].url} alt="" height="1200" onClick={onClickMag} style={{ cursor: 'zoom-in' }} />
+    ? <Image src={productStyles.results[modalImageIndex].photos[0].url} alt="" height="700" onClick={onClickMag} style={{ cursor: 'zoom-in' }} />
     : (
       <Image
         src={productStyles.results[modalImageIndex].photos[0].url}
         alt=""
-        height="1000"
-        width="800"
+        height="700"
         onClick={onClickMag}
         style={{ transform: 'scale(2.5, 2.5)', cursor: 'zoom-out' }}
       />
