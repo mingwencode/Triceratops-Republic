@@ -10,7 +10,7 @@ const modalStyles = {
   height: 'fit-content',
   width: 'fit-content',
   minHeight: '1000px',
-  top: '50%',
+  top: '65%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   backgroundColor: 'rfga(195, 240, 247, .7)',
@@ -47,20 +47,19 @@ const Image = styled.img`
   max-width: 1000;
 `;
 
-const OverviewModal = ({ open, onClose, productStyles }) => {
-  const [modalImageIndex, setModalImageIndex] = useState(0);
+const OverviewModal = ({ open, onClose, productStyles, mainImageIndex, setMainImageIndex }) => {
   const [magnefied, setMagnefied] = useState(false);
   if (!open) return null;
 
   const handleNext = () => {
-    if (modalImageIndex < productStyles.results.length - 1) {
-      setModalImageIndex(((prevImage) => prevImage + 1));
+    if (mainImageIndex < productStyles.results.length - 1) {
+      setMainImageIndex(((prevImage) => prevImage + 1));
     }
   };
 
   const handlePrevious = () => {
-    if (modalImageIndex > 0) {
-      setModalImageIndex((nextImage) => nextImage - 1);
+    if (mainImageIndex > 0) {
+      setMainImageIndex((nextImage) => nextImage - 1);
     }
   };
 
@@ -70,13 +69,12 @@ const OverviewModal = ({ open, onClose, productStyles }) => {
   };
 
   const magnefy = () => (magnefied === false
-    ? <Image src={productStyles.results[modalImageIndex].photos[0].url} alt="" height="1200" onClick={onClickMag} style={{ cursor: 'zoom-in' }} />
+    ? <Image src={productStyles.results[mainImageIndex].photos[0].url} alt="" height="700" onClick={onClickMag} style={{ cursor: 'zoom-in' }} />
     : (
       <Image
-        src={productStyles.results[modalImageIndex].photos[0].url}
+        src={productStyles.results[mainImageIndex].photos[0].url}
         alt=""
-        height="1000"
-        width="800"
+        height="700"
         onClick={onClickMag}
         style={{ transform: 'scale(2.5, 2.5)', cursor: 'zoom-out' }}
       />
