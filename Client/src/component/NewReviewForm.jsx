@@ -18,7 +18,6 @@ const MODAL_STYLES = styled.div`
     background: white};
   z-index: 1000;
   max-height: calc(100vh - 100px);
-  overflow-y: auto;
   border-radius: 10;
   box-sizing: border-box;
   border: solid rgba(67, 96, 117, .7) 10px;
@@ -323,6 +322,7 @@ const NewReviewForm = ({
           }}
         >
           <ButtonFixed
+            name="close-review-form"
             type="button"
             onClick={() => setNewReviewModal(!showNewReviewModal)}
           >

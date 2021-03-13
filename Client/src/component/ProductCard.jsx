@@ -107,7 +107,7 @@ const ProductCard = ({
       {list ? (
         <CompareBtnContainer>
           <SlideImg data-testid="relatedListImage" src={product.smallUrl} alt="" onClick={() => resetPage()} />
-          <Button data-testid="compareBtn" title="compare" onClick={() => openModal()}>&#9055;</Button>
+          <Button name="compare-products" data-testid="compareBtn" title="compare" onClick={() => openModal()}>&#9055;</Button>
           <CompareModal
             isOpenModal={showModal}
             onDismiss={setShowModal}
@@ -119,7 +119,7 @@ const ProductCard = ({
         : (
           <CompareBtnContainer>
             <SlideImg data-testid="relatedOutfitImage" src={product.smallUrl} alt="" />
-            <Button data-testid="closeBtn" title="remove" onClick={() => removeOutFit(product.id)}>&#8855;</Button>
+            <Button name="remove-outfit" data-testid="closeBtn" title="remove" onClick={() => removeOutFit(product.id)}>&#8855;</Button>
           </CompareBtnContainer>
         )}
       <Span>{product.category}</Span>

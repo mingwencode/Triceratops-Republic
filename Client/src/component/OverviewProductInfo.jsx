@@ -91,6 +91,7 @@ const OverviewProductInfo = ({
       <Pi>
         <div>
           <FacebookShareButton
+            name="share-to-facebook"
             url={shareUrl}
             quote={title}
             className="Demo__some-network__share-button"
@@ -98,6 +99,7 @@ const OverviewProductInfo = ({
             <FacebookIcon size={32} round />
           </FacebookShareButton>
           <PinterestShareButton
+            name="share-to-pintrest"
             url={shareUrl}
             media={`${String(window.location)}/${productStyles.results[styleResultsIndex].photos.url}`}
             className="Demo__some-network__share-button"
@@ -105,6 +107,7 @@ const OverviewProductInfo = ({
             <PinterestIcon size={32} round />
           </PinterestShareButton>
           <TwitterShareButton
+            name="share-to-twitter"
             url={shareUrl}
             title={title}
             className="Demo__some-network__share-button"

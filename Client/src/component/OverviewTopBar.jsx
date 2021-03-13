@@ -64,7 +64,7 @@ const OverviewTopBar = () => (
       <Search>
         <Input name="seachBar" className="search-bar" placeholder="SEARCH" />
         <span>
-          <SearchBtn className="search-bar-btn" type="submit" onClick={() => alert('Product Not Found')}>Search</SearchBtn>
+          <SearchBtn name="search-products" className="search-bar-btn" type="submit" onClick={() => alert('Product Not Found')}>Search</SearchBtn>
         </span>
       </Search>
     </InnerItems>

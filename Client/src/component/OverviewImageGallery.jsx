@@ -122,7 +122,7 @@ const OverviewImageGallery = ({ productStyles }) => {
   return (
     <Gallery>
       <BtnTop>
-        {currentImage === productStyles.results.length - 1 ? null : <Button id="next" type="button" onClick={handleNext}>⌃</Button>}
+        {currentImage === productStyles.results.length - 1 ? null : <Button name="next-thumbnail" id="next" type="button" onClick={handleNext}>⌃</Button>}
       </BtnTop>
       <Carousel>
         <div className="view-port" style={styles.view_port}>
@@ -144,13 +144,13 @@ const OverviewImageGallery = ({ productStyles }) => {
         </div>
       </Carousel>
       <BtnBottom>
-        {currentImage === 0 ? null : <Button id="prev" type="button" onClick={handlePrevious}>⌄</Button>}
+        {currentImage === 0 ? null : <Button name="previous-thumbnail" id="prev" type="button" onClick={handlePrevious}>⌄</Button>}
       </BtnBottom>
       <BtnLeft>
-        {mainImageIndex === 0 ? null : <Button type="button" onClick={handleMainPrev}>&#8249;</Button>}
+        {mainImageIndex === 0 ? null : <Button name="main-picture-previous" type="button" onClick={handleMainPrev}>&#8249;</Button>}
       </BtnLeft>
       <Modal>
-        <Button onClick={() => setIsOpen(true)}>&#10545;</Button>
+        <Button name="expand-photo" onClick={() => setIsOpen(true)}>&#10545;</Button>
         <OverviewModal
           open={isOpen}
           onClose={() => setIsOpen(false)}
@@ -163,7 +163,7 @@ const OverviewImageGallery = ({ productStyles }) => {
         <Img className="main-image" src={productStyles.results[mainImageIndex].photos[0].url} alt="main diplay" height="500px" width="500px" />
       </Image>
       <BtnRight>
-        {mainImageIndex === productStyles.results.length - 1 ? null : <Button type="button" onClick={handleMainNext}>&#8250;</Button>}
+        {mainImageIndex === productStyles.results.length - 1 ? null : <Button name="main-picture-next" type="button" onClick={handleMainNext}>&#8250;</Button>}
       </BtnRight>
     </Gallery>
   );

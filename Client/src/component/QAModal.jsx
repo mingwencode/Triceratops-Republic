@@ -52,7 +52,7 @@ const QAModal = ({ isOpenModal, onDismiss, children }) => {
     <>
       <div style={OverlayStyles} />
       <MODAL_STYLES>
-        <Button data-testid="button" type="button" onClick={onDismiss}>&#8855;</Button>
+        <Button name="close-modal" data-testid="button" type="button" onClick={onDismiss}>&#8855;</Button>
         {children}
       </MODAL_STYLES>
     </>

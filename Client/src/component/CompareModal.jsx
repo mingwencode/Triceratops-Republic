@@ -122,7 +122,7 @@ const CompareModal = ({
     <>
       <OverlayStyles />
       <ModalStyles>
-        <Button type="button" onClick={() => onDismiss((prev) => !prev)}>&#8855;</Button>
+        <Button name="close-modal" type="button" onClick={() => onDismiss((prev) => !prev)}>&#8855;</Button>
         <Table>
           <thead>
             <tr>

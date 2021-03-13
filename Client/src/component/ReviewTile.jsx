@@ -105,8 +105,8 @@ const ReviewTile = ({
     }
   };
   return (
-    <div style={{ paddingTop: '3px' }}>
-      <ul>
+    <div style={{ padding: '13px' }}>
+      <div>
         <ShadedStarRating starPercent={starRating} />
         <NameDateWrap>
             {review.reviewer_name}
@@ -138,6 +138,7 @@ const ReviewTile = ({
           {' '}
         </StyledSpanFont>
         <StyledA
+          name="helpful"
           type="button"
           onClick={() => submitHelpful()}
         >
@@ -147,12 +148,13 @@ const ReviewTile = ({
         </StyledA>
         {'  '}
         <StyledA
+          name="report"
           type="button"
           onClick={() => submitReport()}
         >
           Report
         </StyledA>
-      </ul>
+      </div>
     </div>
 
   );
