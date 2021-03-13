@@ -341,7 +341,7 @@ const QAndA = ({ currentProductId }) => {
   const showMoreQuestionsButton = () => {
     if (productQuestions.results.length > questionAnswersShown) {
       return (
-        <ButtonP><StyledButton type="button" onClick={(e) => onMoreQuestionsButtonClick(e)}>More Answered Questions</StyledButton></ButtonP>
+        <ButtonP><StyledButton name="More-questions?" type="button" onClick={(e) => onMoreQuestionsButtonClick(e)}>More Answered Questions</StyledButton></ButtonP>
       );
     }
   };

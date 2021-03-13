@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const SelectStyle = styled.select`
   height: 20px;
-  color: gray;
+  color: black;
   padding-left: 5px;
   font-size: 14px;
   border-radius: 10px;

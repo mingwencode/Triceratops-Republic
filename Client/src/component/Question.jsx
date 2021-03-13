@@ -127,7 +127,7 @@ const Question = ({ question, onShowAnswerModal, onOpenAnswerModal, questionAnsw
         <StyledSpanHelpful data-testid="Helpful"> Helpful? </StyledSpanHelpful>
         <StyledA onClick={handleQuestionHelpfulnessClick}> Yes ({question_helpfulness}) </StyledA>
         <StyledA data-testid="report" onClick={(e) => onQuestionReportClick(e)}>{' '} Report</StyledA>
-        <StyledButton data-testid="Add Answer" onClick={onAddAnswerButtonClick}> Add an Answer</StyledButton>
+        <StyledButton name="add-answer" data-testid="Add Answer" onClick={onAddAnswerButtonClick}> Add an Answer</StyledButton>
         <StyledSpan>{renderAnswerModal()}</StyledSpan>
       </RightColumn>
       <hr />

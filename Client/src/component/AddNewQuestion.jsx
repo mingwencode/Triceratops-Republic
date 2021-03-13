@@ -24,7 +24,7 @@ const P = styled.p`
 const AddNewQuestion = ({ addQuestionButtonClick }) => {
   return (
     <div>
-      <P><Button type="button" onClick={() => addQuestionButtonClick()}>Add A Question +</Button></P>
+      <P><Button name="add question" type="button" onClick={() => addQuestionButtonClick()}>Add A Question +</Button></P>
     </div>
   );
 };

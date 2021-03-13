@@ -178,7 +178,7 @@ const RatingsAndReviews = ({
   }
 
   return (
-    <Button data-testid="newFormButton">
+    <Button name="new-review" data-testid="newFormButton">
       <NewReviewForm
         showNewReviewModal={showNewMReviewModal}
         setNewReviewModal={setNewReviewModal}

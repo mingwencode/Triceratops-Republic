@@ -24,7 +24,9 @@ const OverviewDescription = ({ currentItem }) => {
   if (currentItem.id !== undefined) {
     const features = () => (
       currentItem.features.map((feature, idx) => (
-        <List key={idx}>{`${feature.feature} ${feature.value}`}</List>
+        feature.value !== null
+          ? <List key={idx}>{`${feature.feature} ${feature.value}`}</List>
+          : <List key={idx}>{`${feature.feature}`}</List>
       ))
     );
 

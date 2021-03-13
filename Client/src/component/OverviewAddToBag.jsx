@@ -132,7 +132,7 @@ const OverviewAddToBag = ({ productStyles, styleResultsIndex, outfitArray,
 
     const addToBagBtn = () => {
       if (availabiltyChecker) {
-        return <Button onClick={pleaseSelect} type="button">Add To Bag</Button>;
+        return <Button name="add-to-bag" onClick={pleaseSelect} type="button">Add To Bag</Button>;
       }
     };
 
@@ -152,7 +152,7 @@ const OverviewAddToBag = ({ productStyles, styleResultsIndex, outfitArray,
             {addToBagBtn()}
           </form>
           <form>
-            <Button type="button" className="favorite-outfit" onClick={handleAddOutfitClick}>+</Button>
+            <Button name="add-to-favorites" type="button" className="favorite-outfit" onClick={handleAddOutfitClick}>+</Button>
           </form>
         </Add>
       </div>
