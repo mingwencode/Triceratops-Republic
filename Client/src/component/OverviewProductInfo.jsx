@@ -23,7 +23,7 @@ const ReadReviews = styled.a`
   padding-left: 5px;
   &:hover{
     color: #A4BBCB;
-    transform: scale(1.5, 1.5);
+    transform: scale(1.05, 1.05);
     cursor: pointer;
   }
 `;

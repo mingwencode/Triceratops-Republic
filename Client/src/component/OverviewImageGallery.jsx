@@ -4,7 +4,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import OverviewModal from './OverviewModal';
 import Thumbnails from './OverviewThumbnails';
@@ -155,6 +155,8 @@ const OverviewImageGallery = ({ productStyles }) => {
           open={isOpen}
           onClose={() => setIsOpen(false)}
           productStyles={productStyles}
+          mainImageIndex={mainImageIndex}
+          setMainImageIndex={setMainImageIndex}
         />
       </Modal>
       <Image>
