@@ -86,12 +86,12 @@ const OverviewModal = ({ open, onClose, productStyles, mainImageIndex, setMainIm
       <div style={overlayStyle} />
       <div style={modalStyles}>
         <div>
-          <Button onClick={onClose}>&#8855;</Button>
+          <Button name="close-modal" onClick={onClose}>&#8855;</Button>
         </div>
         <div>
-          <Button type="button" className="modalPrevBtn" onClick={handlePrevious}>&#8249;</Button>
+          <Button name="previous-picture" type="button" className="modalPrevBtn" onClick={handlePrevious}>&#8249;</Button>
           {magnefy()}
-          <Button type="button" className="modalNextBtn" onClick={handleNext}>&#8250;</Button>
+          <Button name="next-picture" type="button" className="modalNextBtn" onClick={handleNext}>&#8250;</Button>
         </div>
       </div>
     </>

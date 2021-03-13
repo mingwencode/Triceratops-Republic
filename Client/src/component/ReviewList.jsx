@@ -180,6 +180,7 @@ const ReviewList = ({
     if (reviews.length > reviewCount) {
       return (
         <Button
+          name="more-reviews"
           type="button"
           onClick={() => {
             setReviewCount(reviewCount + 2);
@@ -209,6 +210,7 @@ const ReviewList = ({
           <MoreReviewsStyle>
             {moreReviews()}
             <ButtonNewReview
+              name="new-review"
               type="button"
               onClick={() => { setNewReviewModal(!showNewMReviewModal); }}
             >
@@ -235,6 +237,7 @@ const ReviewList = ({
         </MODAL_STYLES>
         <div style={MODALHEADER_STYLES}>
           <ModalButton
+            name="close-modal"
             type="button"
             onClick={() => {
               setReviewModalBoolean(!reviewModalBoolean);
