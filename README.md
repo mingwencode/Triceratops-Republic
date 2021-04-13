@@ -1,4 +1,4 @@
-# travel-bug
+# Triceratop Republic
 
 <p align="center">
   <a href="https://github.com/Pixel-Triceratops/Triceratops-Republic">
@@ -67,52 +67,53 @@ Some unexpected challenges included:
 </ul>
 
 # How does the app work?
-Full Page Application
+<h1>Full Page Application</h1>
 
 <img src="./Client/assets/FEC-overiew.png" >
 
-Product Overview:
+<h1>Product Overview:</h1>
 
 <img src="./Client/assets/Overview.png" >
 
-Product Image Enhanced:
+<h1>Product Image Enhanced:</h1>
 
 <img src="./Client/assets/OvEnhanced.png" >
 
-Choosing Size:
-<br />
+<h1>Choosing Size:</h1>
+
 <img src="./Client/assets/OvChooseSize.png" >
 
-Related Products and Outfit List:
-<br />
+
+<h1>Related Products and Outfit List:</h1>
+
 <img src="./Client/assets/RelatedProductspng.png" >
 
-Compare Products Modal:
-<br />
+<h1>Compare Products Modal:</h1>
+
 <img src="./Client/assets/RelatedProductComparison.png" >
 
-Questions and Answers:
-<br />
+<h1>Questions and Answers:</h1>
+
 <img src="./Client/assets/QandA.png" >
 
-Add a Question:
-<br />
+<h1>Add a Question:</h1>
+
 <img src="./Client/assets/QuestionAdd.png" >
 
-Add an Answer:
-<br />
+<h1>Add an Answer:</h1>
+
 <img src="./Client/assets/QAddAnswer.png" >
 
-Ratings and Reviews:
-<br />
+<h1>Ratings and Reviews:</h1>
+
 <img src="./Client/assets/ReviewSection.png" >
 
-More Reviews Modal:
-<br />
+<h1>More Reviews Modal:</h1>
+
 <img src="./Client/assets/ReviewsModal.png" >
 
-New Review Form:
-<br />
+<h1>New Review Form:</h1>
+
 <img src="./Client/assets/ReviewModal.png" >
 
 
