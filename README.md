@@ -42,7 +42,7 @@ Some unexpected challenges included:
 <li>Dynamically rendering features with asynchronous HTTP requests</li>
 <li>Reduced time to first contentful paint and time to interactivity</li>
 <li>App wide integration of accessibility practices</li>
-<li>Something about endpoints and APIS ***********</li>
+<li>Handling large data sets from multiple API endpoints</li>
 </ul>
 
 # User Stories
@@ -67,7 +67,7 @@ Some unexpected challenges included:
 </ul>
 
 # How does the app work?
-<h1>Full Page Application</h1>
+<h1>Full Page Application:</h1>
 
 <img src="./Client/assets/FEC-overiew.png" >
 
