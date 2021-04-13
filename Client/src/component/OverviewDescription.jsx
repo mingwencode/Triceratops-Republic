@@ -29,7 +29,7 @@ const OverviewDescription = ({ currentItem }) => {
           : <List key={idx}>{`${feature.feature}`}</List>
       ))
     );
-
+    console.log(currentItem);
     return (
       <Description>
         <SloganDesc>

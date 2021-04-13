@@ -44,6 +44,7 @@ const Button = styled.button`
 `;
 
 const Image = styled.img`
+  max-height: 1000;
   max-width: 1000;
 `;
 
@@ -63,11 +64,6 @@ const OverviewModal = ({ open, onClose, productStyles, mainImageIndex, setMainIm
     }
   };
 
-  const onClickMag = () => {
-    setMagnefied(!magnefied);
-    magnefy();
-  };
-
   const magnefy = () => (magnefied === false
     ? <Image src={productStyles.results[mainImageIndex].photos[0].url} alt="" height="700" onClick={onClickMag} style={{ cursor: 'zoom-in' }} />
     : (
@@ -79,6 +75,11 @@ const OverviewModal = ({ open, onClose, productStyles, mainImageIndex, setMainIm
         style={{ transform: 'scale(2.5, 2.5)', cursor: 'zoom-out' }}
       />
     ));
+
+  const onClickMag = () => {
+    setMagnefied(!magnefied);
+    magnefy();
+  };
 
   return (
     <>
