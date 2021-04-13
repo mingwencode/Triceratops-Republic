@@ -68,54 +68,52 @@ Some unexpected challenges included:
 
 # How does the app work?
 Full Page Application
-<br />
 
-<img src="./Client/assets/FEC-overiew.png" width="150">
+<img src="./Client/assets/FEC-overiew.png" >
 
 Product Overview:
-<br />
 
-<img src="./Client/assets/Overview.png" width="150">
+<img src="./Client/assets/Overview.png" >
 
 Product Image Enhanced:
-<br />
-<img src="./Client/assets/OvEnhanced.png" width="150">
+
+<img src="./Client/assets/OvEnhanced.png" >
 
 Choosing Size:
 <br />
-<img src="./Client/assets/OvChooseSize.png" width="150">
+<img src="./Client/assets/OvChooseSize.png" >
 
 Related Products and Outfit List:
 <br />
-<img src="./Client/assets/RelatedProductspng.png" width="150">
+<img src="./Client/assets/RelatedProductspng.png" >
 
 Compare Products Modal:
 <br />
-<img src="./Client/assets/RelatedProductComparison.png" width="150">
+<img src="./Client/assets/RelatedProductComparison.png" >
 
 Questions and Answers:
 <br />
-<img src="./Client/assets/QandA.png" width="150">
+<img src="./Client/assets/QandA.png" >
 
 Add a Question:
 <br />
-<img src="./Client/assets/QuestionAdd.png" width="150">
+<img src="./Client/assets/QuestionAdd.png" >
 
 Add an Answer:
 <br />
-<img src="./Client/assets/QAddAnswer.png" width="150">
+<img src="./Client/assets/QAddAnswer.png" >
 
 Ratings and Reviews:
 <br />
-<img src="./Client/assets/ReviewSection.png" width="150">
+<img src="./Client/assets/ReviewSection.png" >
 
 More Reviews Modal:
 <br />
-<img src="./Client/assets/ReviewsModal.png" width="150">
+<img src="./Client/assets/ReviewsModal.png" >
 
 New Review Form:
 <br />
-<img src="./Client/assets/ReviewModal.png" width="150">
+<img src="./Client/assets/ReviewModal.png" >
 
 
 
