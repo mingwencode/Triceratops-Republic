@@ -67,52 +67,52 @@ Some unexpected challenges included:
 </ul>
 
 # How does the app work?
-<h1>Full Page Application:</h1>
+<h2>Full Page Application:</h2>
 
 <img src="./Client/assets/FEC-overiew.png" >
 
-<h1>Product Overview:</h1>
+<h2>Product Overview:</h2>
 
 <img src="./Client/assets/Overview.png" >
 
-<h1>Product Image Enhanced:</h1>
+<h2>Product Image Enhanced:</h2>
 
 <img src="./Client/assets/OvEnhanced.png" >
 
-<h1>Choosing Size:</h1>
+<h2>Choosing Size:</h2>
 
 <img src="./Client/assets/OvChooseSize.png" >
 
 
-<h1>Related Products and Outfit List:</h1>
+<h2>Related Products and Outfit List:</h2>
 
 <img src="./Client/assets/RelatedProductspng.png" >
 
-<h1>Compare Products Modal:</h1>
+<h2>Compare Products Modal:</h2>
 
 <img src="./Client/assets/RelatedProductComparison.png" >
 
-<h1>Questions and Answers:</h1>
+<h2>Questions and Answers:</h2>
 
 <img src="./Client/assets/QandA.png" >
 
-<h1>Add a Question:</h1>
+<h2>Add a Question:</h2>
 
 <img src="./Client/assets/QuestionAdd.png" >
 
-<h1>Add an Answer:</h1>
+<h2>Add an Answer:</h2>
 
 <img src="./Client/assets/QAddAnswer.png" >
 
-<h1>Ratings and Reviews:</h1>
+<h2>Ratings and Reviews:</h2>
 
 <img src="./Client/assets/ReviewSection.png" >
 
-<h1>More Reviews Modal:</h1>
+<h2>More Reviews Modal:</h2>
 
 <img src="./Client/assets/ReviewsModal.png" >
 
-<h1>New Review Form:</h1>
+<h2>New Review Form:</h2>
 
 <img src="./Client/assets/ReviewModal.png" >
 
