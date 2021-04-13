@@ -67,34 +67,56 @@ Some unexpected challenges included:
 </ul>
 
 # How does the app work?
-Splash Screen:
+Full Page Application
 <br />
 
-<img src="./travel_bug/app/screens/assets/App Loading Screen.gif" width="150">
+<img src="./Client/assets/FEC-overiew.png" width="150">
 
-Login and Register:
+Product Overview:
 <br />
-<img src="./travel_bug/app/screens/assets/Login and Register.gif" width="150">
 
-Itinerary and Calendar:
-<br />
-<img src="./travel_bug/app/screens/assets/Itinerary Screen.gif" width="150">
+<img src="./Client/assets/Overview.png" width="150">
 
-Map Directions:
+Product Image Enhanced:
 <br />
-<img src="./travel_bug/app/screens/assets/Map Directions.gif" width="150">
+<img src="./Client/assets/OvEnhanced.png" width="150">
 
-Map Search:
+Choosing Size:
 <br />
-<img src="./travel_bug/app/screens/assets/Map Search.gif" width="150">
+<img src="./Client/assets/OvChooseSize.png" width="150">
 
-Important Contacts:
+Related Products and Outfit List:
 <br />
-<img src="./travel_bug/app/screens/assets/Important Contacts.gif" width="150">
+<img src="./Client/assets/RelatedProductspng.png" width="150">
 
-Messages:
+Compare Products Modal:
 <br />
-<img src="./travel_bug/app/screens/assets/Messages.gif" width="150">
+<img src="./Client/assets/RelatedProductComparison.png" width="150">
+
+Questions and Answers:
+<br />
+<img src="./Client/assets/QandA.png" width="150">
+
+Add a Question:
+<br />
+<img src="./Client/assets/QuestionAdd.png" width="150">
+
+Add an Answer:
+<br />
+<img src="./Client/assets/QAddAnswer.png" width="150">
+
+Ratings and Reviews:
+<br />
+<img src="./Client/assets/ReviewSection.png" width="150">
+
+More Reviews Modal:
+<br />
+<img src="./Client/assets/ReviewsModal.png" width="150">
+
+New Review Form:
+<br />
+<img src="./Client/assets/ReviewModal.png" width="150">
+
 
 
 # Workflow and Key Lessons
